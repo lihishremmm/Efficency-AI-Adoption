@@ -2,7 +2,7 @@
 
 Two static pages summarizing the "AI Usage Assessment — NICE UX Team" survey (37 responses):
 
-- **`index.html`** — the full written report (executive summary, findings, KPI baseline, champions, program, action items), mirroring the Word report.
+- **`index.html`** — the full written report (executive summary, findings, KPI baseline, program, action items), mirroring the Word report.
 - **`dashboard.html`** — an interactive chart dashboard (Chart.js) with the same data.
 
 Both link to each other via a top nav bar.
