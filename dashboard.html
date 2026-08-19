@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Usage Assessment — NICE UX Team</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<style>
+  :root{
+    --navy:#1F3864;
+    --accent:#2E75B6;
+    --accent2:#5B9BD5;
+    --light:#EAF1FB;
+    --grey:#595959;
+    --green:#2E7D32;
+    --amber:#B8860B;
+    --red:#B03A2E;
+    --bg:#F5F7FA;
+    --card:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg); color:#1a1a1a; line-height:1.5;
+  }
+  nav.topnav{ background:var(--navy); }
+  .topnav-inner{ max-width:1100px; margin:0 auto; padding:0 20px; display:flex; gap:4px; }
+  .topnav-inner a{
+    color:rgba(255,255,255,.75); text-decoration:none; font-size:13.5px; font-weight:700;
+    padding:12px 16px; display:inline-block; border-bottom:3px solid transparent;
+  }
+  .topnav-inner a.active, .topnav-inner a:hover{ color:#fff; border-bottom-color:var(--accent2); }
+  header.hero{
+    background:linear-gradient(135deg,var(--navy),var(--accent));
+    color:#fff; padding:56px 24px 40px; text-align:center;
+  }
+  header.hero h1{margin:0 0 8px; font-size:clamp(28px,4vw,42px); font-weight:800;}
+  header.hero p.sub{margin:0 0 18px; font-size:18px; font-weight:500; opacity:.95;}
+  header.hero p.meta{margin:0; font-size:14px; opacity:.8;}
+  .wrap{max-width:1100px; margin:0 auto; padding:0 20px;}
+  section{padding:40px 0;}
+  h2.section-title{
+    color:var(--navy); font-size:24px; font-weight:800; margin:0 0 18px;
+    border-bottom:3px solid var(--accent2); padding-bottom:8px;
+  }
+  h3.sub-title{color:var(--navy); font-size:18px; font-weight:700; margin:28px 0 10px;}
+  p.lead{color:#333; font-size:15.5px; max-width:920px;}
+  .stat-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin:0 0 8px;
+  }
+  @media (max-width:900px){ .stat-grid{grid-template-columns:repeat(2,1fr);} }
+  .stat-card{
+    background:var(--card); border-radius:14px; padding:22px 18px;
+    box-shadow:0 2px 10px rgba(0,0,0,.06); border-top:4px solid var(--accent);
+    text-align:center;
+  }
+  .stat-card .num{font-size:32px; font-weight:800; color:var(--navy); line-height:1.1;}
+  .stat-card .lbl{font-size:13px; color:var(--grey); font-weight:600; margin-top:6px; text-transform:uppercase; letter-spacing:.03em;}
+  .stat-card .note{font-size:12.5px; color:var(--grey); margin-top:8px;}
+  .callout{
+    background:var(--light); border-left:5px solid var(--accent); border-radius:8px;
+    padding:20px 24px; margin:20px 0;
+  }
+  .callout h4{margin:0 0 8px; color:var(--navy); font-size:16px;}
+  .callout p{margin:6px 0; font-size:14.5px; color:#222;}
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  @media (max-width:900px){ .two-col{grid-template-columns:1fr;} }
+  .chart-card{
+    background:var(--card); border-radius:14px; padding:20px;
+    box-shadow:0 2px 10px rgba(0,0,0,.06);
+  }
+  .chart-card h4{margin:0 0 12px; color:var(--navy); font-size:15px;}
+  table{width:100%; border-collapse:collapse; background:var(--card); border-radius:10px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.06);}
+  th,td{padding:10px 14px; font-size:14px; text-align:left; border-bottom:1px solid #eee;}
+  th{background:var(--navy); color:#fff; font-weight:700;}
+  tr:nth-child(even) td{background:#F7FAFD;}
+  .pill{display:inline-block; padding:3px 10px; border-radius:20px; font-size:12px; font-weight:700;}
+  .pill.high{background:#FDEBEA; color:var(--red);}
+  .pill.medium{background:#FEF6E6; color:var(--amber);}
+  .pill.low{background:#EAF6EC; color:var(--green);}
+  .pillars{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+  @media (max-width:900px){ .pillars{grid-template-columns:repeat(2,1fr);} }
+  .pillar{background:var(--card); border-radius:14px; padding:18px; box-shadow:0 2px 10px rgba(0,0,0,.06);}
+  .pillar .idx{color:var(--accent2); font-weight:800; font-size:13px;}
+  .pillar h4{margin:6px 0 8px; color:var(--navy); font-size:15px;}
+  .pillar p{margin:0; font-size:13px; color:#333;}
+  footer{
+    text-align:center; padding:30px 20px; color:var(--grey); font-size:12.5px;
+    border-top:1px solid #ddd; margin-top:20px;
+  }
+  .gap-badge{
+    display:inline-flex; align-items:center; gap:8px; background:#FFF3E0; color:#B8860B;
+    padding:6px 14px; border-radius:20px; font-size:13px; font-weight:700; margin-top:10px;
+  }
+  .legend-note{font-size:12px; color:var(--grey); margin-top:6px;}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="index.html">Full Report</a>
+    <a href="dashboard.html" class="active">Interactive Dashboard</a>
+  </div>
+</nav>
+<header class="hero">
+  <h1>AI Usage Assessment — NICE UX Team</h1>
+  <p class="sub">How the design team works with AI today, measured in effort — not just quantity</p>
+  <p class="meta">37 respondents · 29 days open · Israel 30% · India 46% · US 24% · Aug 2026</p>
+</header>
+
+<div class="wrap">
+
+  <section id="numbers">
+    <h2 class="section-title">The Headline Numbers</h2>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="num">1.88×</div>
+        <div class="lbl">Faster per task</div>
+        <div class="note">Measured across 4 matched before/after scenarios (44–51% less effort)</div>
+      </div>
+      <div class="stat-card" style="border-top-color:var(--green)">
+        <div class="num">−29%</div>
+        <div class="lbl">Total effort, despite more tasks</div>
+        <div class="note">+34% more tasks, but each costs 47% less effort → net effort is lower than before AI</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">+34%</div>
+        <div class="lbl">Tasks per designer</div>
+        <div class="note">92% report taking on more tasks since adopting AI (estimated magnitude)</div>
+      </div>
+      <div class="stat-card" style="border-top-color:var(--amber)">
+        <div class="num">96%</div>
+        <div class="lbl">of R&amp;D's pace</div>
+        <div class="note">Design velocity (1.88×) vs. R&amp;D's perceived speed-up (1.96×, as estimated by the UX team)</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <h4>Quantity vs. actual effort — why both numbers matter</h4>
+      <p><strong>Counting tasks alone is misleading.</strong> The team is taking on ~34% more tasks — but each task now costs ~47% less effort (1.88× faster). Multiply those together (1.34 × 0.53) and <strong>total effort spent today is only ~71% of pre-AI levels</strong> — a 29% real reduction in workload, even while throughput went up.</p>
+      <p>That leaves an estimated <strong>~40% more headroom</strong> before the team's total effort returns to where it was before AI — capacity that can be deliberately pointed at the Validate/usability-testing gap (see below) rather than absorbed passively.</p>
+    </div>
+  </section>
+
+  <section id="rnd">
+    <h2 class="section-title">Design Velocity vs. R&amp;D</h2>
+    <p class="lead">The survey asked the UX team directly how much faster they perceive R&amp;D to be working since AI. Comparing that perception to the team's own <em>measured</em> velocity shows design has essentially closed the gap.</p>
+    <div class="two-col">
+      <div class="chart-card">
+        <h4>Velocity multiplier: Design (measured) vs. R&amp;D (perceived)</h4>
+        <canvas id="rndChart" height="220"></canvas>
+        <p class="legend-note">R&amp;D figure is the UX team's own estimate (survey Q27), not R&amp;D's self-reported data — treat as directional.</p>
+      </div>
+      <div class="chart-card">
+        <h4>How the UX team rates R&amp;D's speed-up</h4>
+        <canvas id="rndDist" height="220"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <section id="scenarios">
+    <h2 class="section-title">Effort per Task: Before vs. With AI</h2>
+    <p class="lead">Four matched task types, estimated in story points, before AI and with AI today.</p>
+    <div class="chart-card">
+      <canvas id="scenarioChart" height="110"></canvas>
+    </div>
+  </section>
+
+  <section id="adoption">
+    <h2 class="section-title">Adoption &amp; Where AI Helps Most</h2>
+    <div class="two-col">
+      <div class="chart-card">
+        <h4>Which AI tools the team uses</h4>
+        <canvas id="toolChart" height="230"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>AI help by UX stage (share at "moderate" impact or higher)</h4>
+        <canvas id="stageChart" height="230"></canvas>
+        <div class="gap-badge">⚠ Validate (usability testing) lags at 49% — the clearest gap</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="quality">
+    <h2 class="section-title">Quality &amp; Trust</h2>
+    <div class="two-col">
+      <div class="chart-card">
+        <h4>How AI output is reviewed before use</h4>
+        <canvas id="reviewChart" height="220"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>Biggest barriers to using AI more</h4>
+        <canvas id="barrierChart" height="220"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <section id="kpi">
+    <h2 class="section-title">KPI Baseline — Velocity &amp; Quality</h2>
+    <table>
+      <tr><th>KPI</th><th>Baseline (this survey)</th><th>Target</th></tr>
+      <tr><td>Velocity</td><td>1.88× faster per task (avg. 47% less effort); −29% total effort despite +34% tasks</td><td>Sustain 1.9×+ and extend into Validate (49% → 75%+ moderate-use)</td></tr>
+      <tr><td>Quality</td><td>87% report increased output quality; 59% still cite quality as top barrier</td><td>Quality-barrier citation &lt;30%; dev pushback down from 40%</td></tr>
+      <tr><td>Adoption depth</td><td>35% "Pro" skill level; policy clarity only 49%</td><td>50%+ "Pro"; policy clarity 85%+</td></tr>
+    </table>
+  </section>
+
+  <section id="program">
+    <h2 class="section-title">Program: 4 Pillars</h2>
+    <div class="pillars">
+      <div class="pillar"><div class="idx">01</div><h4>Capture &amp; spread</h4><p>Champion interviews → shared prompt/workflow library for the highest-volume tasks.</p></div>
+      <div class="pillar"><div class="idx">02</div><h4>Close the Validate gap</h4><p>Usability testing is 92% automatable but only 49% actually uses AI — the biggest headroom.</p></div>
+      <div class="pillar"><div class="idx">03</div><h4>Build quality trust</h4><p>Lightweight review checklist for AI output before handoff; track dev-pushback quarterly.</p></div>
+      <div class="pillar"><div class="idx">04</div><h4>Remove friction</h4><p>Clarify AI data policy (only 49% find it clear); fund workshops + protected experiment time.</p></div>
+    </div>
+  </section>
+
+  <section id="actions">
+    <h2 class="section-title">Action Items</h2>
+    <table>
+      <tr><th>Action</th><th>Priority</th><th>Owner</th><th>Timeline</th></tr>
+      <tr><td>Shortlist 5–8 AI champions from the Excel export (skill + hours-saved + sharing)</td><td><span class="pill high">High</span></td><td>Lihi</td><td>Week 1</td></tr>
+      <tr><td>Run champion interviews</td><td><span class="pill high">High</span></td><td>Lihi / leads</td><td>Weeks 1–3</td></tr>
+      <tr><td>Build shared prompt/workflow library</td><td><span class="pill high">High</span></td><td>Champions + Lihi</td><td>Weeks 2–4</td></tr>
+      <tr><td>Clarify AI data-usage policy</td><td><span class="pill high">High</span></td><td>Lihi / IT-Legal</td><td>Weeks 1–2</td></tr>
+      <tr><td>Pilot AI-assisted usability-testing synthesis</td><td><span class="pill medium">Medium</span></td><td>Champions</td><td>Weeks 3–6</td></tr>
+      <tr><td>Hands-on workshops + protected experiment time</td><td><span class="pill medium">Medium</span></td><td>Lihi</td><td>Month 2</td></tr>
+      <tr><td>Define AI-output review checklist</td><td><span class="pill medium">Medium</span></td><td>Lihi + champions</td><td>Month 2</td></tr>
+      <tr><td>Re-run scenario + KPI questions</td><td><span class="pill low">Low</span></td><td>Lihi</td><td>Quarter end</td></tr>
+    </table>
+  </section>
+
+</div>
+
+<footer>
+  Source: "AI Usage Assessment — NICE UX Team" survey, Microsoft Forms · 37 responses · Aug 2026 · Percentages are rounded and self-reported.
+</footer>
+
+<script>
+Chart.defaults.font.family = "-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif";
+Chart.defaults.color = "#444";
+
+const navy = "#1F3864", accent = "#2E75B6", accent2 = "#5B9BD5", green="#2E7D32", amber="#B8860B", red="#B03A2E", grey="#BFBFBF";
+
+new Chart(document.getElementById('rndChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Design (measured)', "R&D (UX team's perception)"],
+    datasets: [{
+      data: [1.88, 1.96],
+      backgroundColor: [accent, amber],
+      borderRadius: 8,
+      barThickness: 70
+    }]
+  },
+  options: {
+    plugins:{legend:{display:false}, tooltip:{callbacks:{label:(c)=>c.parsed.y+'×'}}},
+    scales:{ y:{ beginAtZero:true, title:{display:true,text:'Speed multiplier (×)'} } }
+  }
+});
+
+new Chart(document.getElementById('rndDist'), {
+  type: 'doughnut',
+  data: {
+    labels: ['~3x (significantly faster)','~1.5–2x (noticeably faster)','~1x (about the same)','Slower than before'],
+    datasets:[{ data:[27,57,14,3], backgroundColor:[navy,accent,accent2,red] }]
+  },
+  options:{ plugins:{legend:{position:'bottom', labels:{boxWidth:12,font:{size:11}}}} }
+});
+
+new Chart(document.getElementById('scenarioChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Interaction design','Design-system spec handoff','Research synthesis','Usability testing'],
+    datasets: [
+      { label:'Before AI (avg. SP)', data:[5.81,8.05,6.05,6.66], backgroundColor: grey, borderRadius:6 },
+      { label:'With AI (avg. SP)', data:[2.86,4.23,3.34,3.73], backgroundColor: accent, borderRadius:6 }
+    ]
+  },
+  options: {
+    plugins:{ legend:{position:'bottom'} },
+    scales:{ y:{ beginAtZero:true, title:{display:true,text:'Story points (avg.)'} } }
+  }
+});
+
+new Chart(document.getElementById('toolChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Claude','ChatGPT','Figma AI','Gemini','Copilot','Other'],
+    datasets: [{ data:[97,73,54,35,32,27], backgroundColor:[navy,accent,accent2,'#8FB8E0','#B7D1EC','#D9E6F5'], borderRadius:6 }]
+  },
+  options: {
+    indexAxis:'y',
+    plugins:{ legend:{display:false}, tooltip:{callbacks:{label:(c)=>c.parsed.x+'%'}} },
+    scales:{ x:{ beginAtZero:true, max:100, ticks:{callback:v=>v+'%'} } }
+  }
+});
+
+new Chart(document.getElementById('stageChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Design','Synthesis','Define','Handoff','Discovery','Validate'],
+    datasets: [{ data:[89,81,81,78,76,49],
+      backgroundColor: [accent,accent,accent,accent,accent,red]
+    }]
+  },
+  options: {
+    plugins:{ legend:{display:false}, tooltip:{callbacks:{label:(c)=>c.parsed.y+'%'}} },
+    scales:{ y:{ beginAtZero:true, max:100, ticks:{callback:v=>v+'%'} } }
+  }
+});
+
+new Chart(document.getElementById('reviewChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Minor edits before use (65%)','Significant rework (35%)','Use as-is (0%)'],
+    datasets:[{ data:[65,35,0], backgroundColor:[accent,amber,red] }]
+  },
+  options:{ plugins:{legend:{position:'bottom', labels:{boxWidth:12,font:{size:11}}}} }
+});
+
+new Chart(document.getElementById('barrierChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Output quality not good enough','Tokens / usage limits','Not enough time to learn','Company policy restrictions','No access to AI tools'],
+    datasets: [{ data:[59,54,38,24,14], backgroundColor: red, borderRadius:6 }]
+  },
+  options: {
+    indexAxis:'y',
+    plugins:{ legend:{display:false}, tooltip:{callbacks:{label:(c)=>c.parsed.x+'%'}} },
+    scales:{ x:{ beginAtZero:true, max:100, ticks:{callback:v=>v+'%'} } }
+  }
+});
+</script>
+
+</body>
+</html>
