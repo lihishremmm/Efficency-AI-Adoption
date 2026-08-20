@@ -90,6 +90,7 @@
   <div class="topnav-inner">
     <a href="index.html" class="active">Full Report</a>
     <a href="dashboard.html">Interactive Dashboard</a>
+    <a href="results.html">Full Results</a>
   </div>
 </nav>
 
@@ -105,9 +106,11 @@
     <h4>Contents</h4>
     <ol>
       <li><a href="#exec-summary">Executive Summary</a></li>
+      <li><a href="#next-step">Next Step</a></li>
       <li><a href="#snapshot">Survey Snapshot</a></li>
       <li><a href="#findings">Key Findings</a></li>
       <li><a href="#kpi">KPI Baseline</a></li>
+      <li><a href="#what-you-can-do">What You Can Do</a></li>
       <li><a href="#program">Recommended Program</a></li>
       <li><a href="#actions">Action Items</a></li>
     </ol>
@@ -115,6 +118,9 @@
 
   <section id="exec-summary">
     <h2 class="section-title">1. Executive Summary</h2>
+    <div class="callout">
+      <p style="margin-bottom:0;"><strong>Bottom line:</strong> AI already makes the team ~1.9× faster and takes on ~34% more work — with less total effort than before AI, not more. The gap left to close isn't adoption, it's <strong>trust</strong> (quality) and <strong>one blind spot</strong> (usability testing). Fix those two and the team gets faster still.</p>
+    </div>
     <p class="lead"><strong>Why this report exists:</strong> to help the UX team work better and more efficiently with AI — using our own data instead of guesswork, so we know what's actually working, where the gaps are, and what to do next.</p>
     <p>The UX team has moved past experimentation: AI is now a daily part of how design work gets done. 97% of respondents use Claude, 95% use AI daily, and every single respondent (0% "beginner") rates themselves at least mid-level. Across four matched before/after task scenarios, effort dropped 44–51% — consistent enough to treat as a real velocity baseline rather than a few enthusiastic outliers.</p>
     <p>The team also reports the gains are broad, not just "faster": 92% say they now take on more tasks, 89% say overall efficiency increased, and 87% say output quality increased. The open risk is that adoption has outpaced structure — 51% say the AI data-usage policy is only partially clear or unclear, 59% say output quality still isn't good enough to trust as-is, and usability testing / validation remains the one UX stage AI has barely touched (49% moderate-or-higher use vs. 75–89% for every other stage).</p>
@@ -148,8 +154,15 @@
     <p><em class="caveat">Caveat: the "faster" figures are grounded in directly measured before/after estimates. The "more requested" and effort figures are calculated from self-reported category answers — the percentage magnitude is our estimate from category midpoints, not a number the survey asked for directly, and should be read as directional, not exact.</em></p>
   </section>
 
+  <section id="next-step">
+    <h2 class="section-title">2. Next Step</h2>
+    <div class="callout">
+      <p style="margin-bottom:0;"><strong>This week:</strong> pull the Excel export of this survey, shortlist 5–8 people who are "Pro" skill level, save 10+ hours/week, and already share their workflows with others. Sit down with each for 20 minutes and write down exactly what they do. That's the seed for everything else in this report — the shared prompt library, the workshops, the review checklist all come from what they already know.</p>
+    </div>
+  </section>
+
   <section id="snapshot">
-    <h2 class="section-title">2. Survey Snapshot</h2>
+    <h2 class="section-title">3. Survey Snapshot</h2>
     <table>
       <tr><th>Responses</th><th>Avg. completion time</th><th>Duration open</th><th>Regions</th></tr>
       <tr><td>37</td><td>≈ 343 min (self-paced)</td><td>29 days</td><td>India 46% · Israel 30% · US 24%</td></tr>
@@ -158,9 +171,9 @@
   </section>
 
   <section id="findings">
-    <h2 class="section-title">3. Key Findings</h2>
+    <h2 class="section-title">4. Key Findings</h2>
 
-    <h3 class="sub-title" id="f1">3.1 Adoption is universal — and Claude is the default</h3>
+    <h3 class="sub-title" id="f1">4.1 Adoption is universal — and Claude is the default</h3>
     <table>
       <tr><th>Tool</th><th>Currently use</th><th>Tool</th><th>Currently use</th></tr>
       <tr><td>Claude (Anthropic)</td><td>97%</td><td>Figma AI / Figma Make</td><td>54%</td></tr>
@@ -169,7 +182,7 @@
     </table>
     <p>Claude is also the primary tool for every task category asked about (Q22): 89% for wireframes/prototypes, 76% for data analysis/synthesis, 73% for brainstorming, 60% for dev handoff/specs, 57% for research docs, and 49% for UX copy — each the top choice ahead of ChatGPT, Gemini, Copilot, or Figma AI. Top wishlist tools (open text): Notebook LM, Cursor / GitHub Copilot, Lovable, n8n, and specialty research tools (Hotjar, FullStory, Mobbin, Exploding Topics).</p>
 
-    <h3 class="sub-title" id="f2">3.2 Efficiency: consistent 44–51% effort reduction</h3>
+    <h3 class="sub-title" id="f2">4.2 Efficiency: consistent 44–51% effort reduction</h3>
     <p>Four matched "before AI / with AI" scenarios (estimated in story points) were tested — interaction design, design-system spec handoff, qualitative research synthesis, and usability testing:</p>
     <table>
       <tr><th>Scenario</th><th>Before AI (avg. SP)</th><th>With AI (avg. SP)</th><th>Reduction</th></tr>
@@ -181,7 +194,7 @@
     <p><em class="caveat">🧮 How "avg. SP" is calculated: each answer option stands for a point range (XS=1–2, S=3–5, M=5–8, L=8–13, XL=13–21), which we convert to its midpoint (1.5 / 4 / 6.5 / 10.5 / 17), then average those values weighted by how many people picked each option. Example — "Interaction design, before AI": 5 people picked XS, 15 picked S, 11 picked M, 4 picked L, 2 picked XL → weighted average = 5.8 SP.</em></p>
     <p>This lines up with the direct self-report: 65% say AI saves them 6+ hours a week (24% say 10–20 hours); only 8% report AI net-adding time. 84% believe R&amp;D overall is now working faster (27% say ~3x, 57% say ~1.5–2x). Since adopting AI, 92% report taking on more tasks, 89% report higher overall efficiency, and 84% report a higher volume of output — all self-reported gains, but strikingly consistent across the team.</p>
 
-    <h3 class="sub-title" id="f3">3.3 Quality: more trust, but verification is still the norm</h3>
+    <h3 class="sub-title" id="f3">4.3 Quality: more trust, but verification is still the norm</h3>
     <ul class="report-list">
       <li><strong>Review discipline held:</strong> nobody uses AI output as-is — 65% review and lightly edit it, 35% significantly rework it before using it.</li>
       <li><strong>Dev acceptance is mixed:</strong> only 27% report just "minor fixes," 32% get moderate revision rounds, 8% get heavy pushback, and 32% haven't handed AI-generated work to dev yet.</li>
@@ -189,7 +202,7 @@
       <li><strong>But trust is the top blocker:</strong> 59% still cite output quality as the biggest barrier to using AI more — the single most-cited barrier in the survey, ahead of tokens/access (54%) or time to learn (38%).</li>
     </ul>
 
-    <h3 class="sub-title" id="f4">3.4 Where AI helps most — and where it barely shows up</h3>
+    <h3 class="sub-title" id="f4">4.4 Where AI helps most — and where it barely shows up</h3>
     <p>Respondents rated how much AI helps at each UX stage (share at "moderate" impact or higher):</p>
     <table>
       <tr><th>UX stage</th><th>Moderate+ help</th><th>Note</th></tr>
@@ -205,10 +218,10 @@
     </div>
     <p>Workweek allocation (Q10) also shows design work now consumes "most of the week" (50%+) for 43% of respondents — more than any other activity, including meetings (16%) — suggesting AI has freed time for other categories (documentation, task management) while design itself remains the core time sink worth optimizing further.</p>
 
-    <h3 class="sub-title" id="f5">3.5 What the team expects AI to produce</h3>
+    <h3 class="sub-title" id="f5">4.5 What the team expects AI to produce</h3>
     <p>Top purposes for using AI: research &amp; desk research (78%) and design ideation/wireframing (78%), followed by prototyping (62%), data synthesis (51%), writing/UX copy (43%), and documentation/handoff (38%). Expected outputs skew toward substance over polish: written docs/briefs (95%), interactive prototypes (89%), and design specs (86%) are expected far more often than slide decks (62%) or static Figma files (62%) — the team wants AI to produce artifacts that move work forward, not just visuals.</p>
 
-    <h3 class="sub-title" id="f6">3.6 Barriers and support needs</h3>
+    <h3 class="sub-title" id="f6">4.6 Barriers and support needs</h3>
     <table>
       <tr><th>Barrier</th><th>% citing</th><th>Support wanted</th><th>% citing</th></tr>
       <tr><td>Output quality isn't good enough</td><td>59%</td><td>Hands-on workshops / training</td><td>70%</td></tr>
@@ -219,7 +232,7 @@
     </table>
     <p>Policy clarity is a live issue: only 49% say the company policy on using data with AI tools is clear to them; 46% say it's only partially clear and 5% say it isn't clear at all.</p>
 
-    <h3 class="sub-title" id="f7">3.7 Concerns to address openly</h3>
+    <h3 class="sub-title" id="f7">4.7 Concerns to address openly</h3>
     <ul class="report-list">
       <li><strong>In order of frequency:</strong> becoming too dependent on AI (70%), unsure whether AI output meets quality/accuracy standards (62%), data privacy/confidentiality (41%), AI replacing parts of their role (38%), and feeling pressure to use AI even when it's not the right tool (30%). Only 14% report no significant concerns.</li>
     </ul>
@@ -227,7 +240,7 @@
   </section>
 
   <section id="kpi">
-    <h2 class="section-title">4. KPI Baseline — Velocity &amp; Quality</h2>
+    <h2 class="section-title">5. KPI Baseline — Velocity &amp; Quality</h2>
     <p>To track progress toward the stated goal of roughly doubling designer efficiency, use this survey as the baseline (T0) and re-run a shortened version quarterly.</p>
     <table>
       <tr><th>KPI</th><th>Baseline (this survey)</th><th>Target</th><th>How to re-measure</th></tr>
@@ -237,28 +250,41 @@
     </table>
   </section>
 
+  <section id="what-you-can-do">
+    <h2 class="section-title">6. What You Can Do This Month</h2>
+    <p>These aren't leadership-only actions — every designer can start doing these directly, this week, without waiting for a program to launch.</p>
+    <ul class="report-list">
+      <li><strong>Default to Claude for wireframes, research, and dev handoff.</strong> It's already the top choice for these tasks (89% for wireframes, 76% for data analysis, 60% for handoff) — if you're using something else for these, try switching and see if it closes the gap faster.</li>
+      <li><strong>Never ship AI output without at least a quick edit pass.</strong> Nobody in the team uses AI output as-is, and for good reason: 32% still get moderate dev pushback and 8% get heavy pushback on AI-generated work. A 5-minute review catches most of it before it becomes a revision round.</li>
+      <li><strong>If you run a usability test, try AI for the synthesis step.</strong> This is the one stage the team hasn't cracked yet (only 49% use AI here vs. 75–89% everywhere else), even though it's rated just as automatable as the stages that already work well. You could be the one who figures it out for everyone else.</li>
+      <li><strong>Share the prompt, not just the output.</strong> 84% of the team already shares workflows and 81% shares output examples, but only 49% share actual prompts — the most reusable part. Drop your prompt in the team channel next time something works well.</li>
+      <li><strong>If you're unsure about the AI data-usage policy, ask — don't guess.</strong> Half the team (51%) says it's only partially clear or unclear. If you're not sure what's okay to paste into a prompt, you're not alone, and it's worth a two-minute question rather than a policy risk.</li>
+      <li><strong>Protect time to actually experiment.</strong> 70% of the team wants more time to try new things with AI — if you can block even 30 minutes a week for this, you're acting on the single most-requested support item in the survey.</li>
+    </ul>
+  </section>
+
   <section id="program">
-    <h2 class="section-title">5. Recommended Program: Structured AI Adoption for the UX Team</h2>
+    <h2 class="section-title">7. Recommended Program: Structured AI Adoption for the UX Team</h2>
     <p>Our goal: raise design quality and efficiency for all of us through practical AI adoption — meaningfully faster work, without giving up quality. Four pillars, built directly from the findings above:</p>
 
-    <h3 class="sub-title">5.1 Capture &amp; spread what's already working</h3>
+    <h3 class="sub-title">7.1 Capture &amp; spread what's already working</h3>
     <ul class="report-list">
       <li>Shortlist a few high-signal "Pro" users (heavy AI use, minimal rework needed, already sharing workflows) and run short interviews; convert the best workflows into 3–5 shared Claude project templates / prompt patterns for the highest-volume tasks (research synthesis, spec handoff, wireframing).</li>
       <li>Stand up the "curated prompt library for UX tasks" 51% of the team asked for, seeded from those interviews.</li>
     </ul>
 
-    <h3 class="sub-title">5.2 Close the Validate/usability-testing gap</h3>
+    <h3 class="sub-title">7.2 Close the Validate/usability-testing gap</h3>
     <ul class="report-list">
       <li>Usability testing is rated 92% automatable but only 49% actually uses AI at moderate-or-higher levels — the single biggest efficiency headroom identified in the survey. Pilot AI-assisted usability synthesis with 2–3 volunteers and share results.</li>
     </ul>
 
-    <h3 class="sub-title">5.3 Build quality trust, not just speed</h3>
+    <h3 class="sub-title">7.3 Build quality trust, not just speed</h3>
     <ul class="report-list">
       <li>Since 59% still don't trust output quality and 35% significantly rework AI output, define a lightweight review checklist for AI-generated specs/research before handoff, to reduce dev pushback (currently 40% moderate-or-heavy).</li>
       <li>Track the dev-pushback and quality-barrier metrics from Section 4 each quarter as leading indicators of trust, not just usage.</li>
     </ul>
 
-    <h3 class="sub-title">5.4 Remove structural friction</h3>
+    <h3 class="sub-title">7.4 Remove structural friction</h3>
     <ul class="report-list">
       <li>Clarify the AI data-usage policy — only 49% currently find it clear; this is a quick, low-cost fix with outsized trust impact.</li>
       <li>Run the hands-on workshops and protected "experiment time" 70% of the team asked for, rather than adding more passive documentation.</li>
@@ -267,7 +293,7 @@
   </section>
 
   <section id="actions">
-    <h2 class="section-title">6. Action Items</h2>
+    <h2 class="section-title">8. Action Items</h2>
     <p>What we can start doing now to make AI work better for the team — grouped by priority, not by owner or date, so anyone can pick one up as capacity allows.</p>
     <table>
       <tr><th>Action</th><th>Priority</th></tr>
