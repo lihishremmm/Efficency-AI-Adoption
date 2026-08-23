@@ -1,0 +1,10 @@
+# The raw Microsoft Forms export is the project's source of truth (see PURPOSE.md),
+# but it is held OUT of git for now: this repository is public, and the export
+# contains individual responses plus the Q39 name field, which respondents were
+# told would be used for internal follow-up only.
+#
+# Keep the file locally / in OneDrive. To version it, make the repo private first,
+# then remove this rule.
+*.xlsx
+
+.DS_Store

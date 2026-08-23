@@ -41,38 +41,47 @@ nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 12px; fo
 nav a:hover { color: white; border-bottom-color: var(--teal); }
 nav a.active { color: white; border-bottom-color: var(--gold); }
 
-/* ───────────────────────────── HERO ───────────────────────────────── */
-.hero {
-  background: linear-gradient(135deg, var(--navy) 0%, #0E4B6E 60%, var(--teal) 100%);
-  color: white; padding: 72px 40px 64px;
-  position: relative; overflow: hidden;
+/* ─────────────────────────── META STRIP ───────────────────────────── */
+.meta-strip { background: white; border-bottom: 1px solid var(--gray-1); }
+.meta-inner { max-width: 1100px; margin: 0 auto; padding: 11px 24px; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 12px; color: var(--gray-4); }
+.meta-inner strong { color: var(--navy); }
+.meta-dot { color: var(--gray-2); }
+#calc-toggle {
+  margin-left: auto; cursor: pointer; font-family: inherit; font-size: 11.5px; font-weight: 700;
+  background: var(--teal-lt); color: var(--teal); border: 1px solid #A8DCE0;
+  padding: 6px 13px; border-radius: 999px; transition: background 0.15s, color 0.15s;
 }
-.hero::before {
-  content: '';
-  position: absolute; top: -60px; right: -80px;
-  width: 500px; height: 500px;
-  background: rgba(14,124,134,0.15);
-  border-radius: 50%;
-}
-.hero-inner { max-width: 1100px; margin: 0 auto; position: relative; }
-.hero-tag { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 12px; }
-.hero h1 { font-size: clamp(28px, 4vw, 44px); font-weight: 800; line-height: 1.15; margin-bottom: 8px; }
-.hero h1 span { color: #6EE4EC; }
-.hero-sub { font-size: 16px; color: rgba(255,255,255,0.75); margin-bottom: 48px; }
+#calc-toggle:hover { background: var(--teal); color: white; border-color: var(--teal); }
 
-.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; }
-.kpi {
-  background: rgba(255,255,255,0.1); backdrop-filter: blur(4px);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 12px; padding: 20px 16px; text-align: center;
-  transition: background 0.2s;
+/* ────────────────────── CALCULATION DISCLOSURE ────────────────────── */
+details.calc { margin-top: 12px; border: 1px solid var(--gray-1); border-radius: 9px; background: #FBFCFD; overflow: hidden; }
+details.calc > summary {
+  cursor: pointer; list-style: none; padding: 8px 13px;
+  font-size: 11.5px; font-weight: 700; color: var(--gray-3);
+  display: flex; align-items: center; gap: 7px; user-select: none;
+  transition: background 0.15s, color 0.15s;
 }
-.kpi:hover { background: rgba(255,255,255,0.16); }
-.kpi-val { font-size: 36px; font-weight: 900; line-height: 1; color: #6EE4EC; }
-.kpi-label { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 6px; line-height: 1.3; }
+details.calc > summary::-webkit-details-marker { display: none; }
+details.calc > summary::after { content: '▸'; margin-left: auto; font-size: 11px; transition: transform 0.15s; }
+details.calc[open] > summary::after { transform: rotate(90deg); }
+details.calc > summary:hover { background: var(--gray-0); color: var(--navy); }
+details.calc[open] > summary { border-bottom: 1px solid var(--gray-1); color: var(--navy); }
+.calc-body { padding: 13px 15px; font-size: 12.5px; line-height: 1.75; color: var(--gray-4); }
+.calc-body code, .calc-body .formula {
+  display: block; font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 11.5px;
+  background: white; border: 1px solid var(--gray-1); border-radius: 6px;
+  padding: 9px 12px; margin: 7px 0; color: var(--navy); white-space: pre-wrap; line-height: 1.65;
+}
+.calc-body .q { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 0.4px; background: var(--navy); color: white; padding: 2px 7px; border-radius: 999px; margin-right: 6px; }
+.calc-body .warn { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 0.4px; background: var(--gold-lt); color: var(--gold); border: 1px solid #F0D9A0; padding: 2px 7px; border-radius: 999px; margin-right: 6px; }
+.calc-body table { width: 100%; border-collapse: collapse; font-size: 11.5px; margin: 7px 0; }
+.calc-body table th { text-align: left; padding: 5px 8px; background: var(--gray-0); color: var(--navy); font-weight: 700; border-bottom: 1px solid var(--gray-1); }
+.calc-body table td { padding: 5px 8px; border-bottom: 1px solid var(--gray-1); font-variant-numeric: tabular-nums; }
+.calc-body em { color: var(--gray-3); font-style: normal; font-size: 11.5px; }
+@media print { details.calc { break-inside: avoid; } details.calc > summary::after { display: none; } }
 
 /* ───────────────────────────── LAYOUT ─────────────────────────────── */
-.page { max-width: 1100px; margin: 0 auto; padding: 40px 24px 80px; }
+.page { max-width: 1100px; margin: 0 auto; padding: 32px 24px 80px; }
 
 section { margin-bottom: 56px; scroll-margin-top: 60px; }
 .section-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 24px; }
@@ -219,6 +228,71 @@ footer strong { color: white; }
 .concern-label { font-size: 13px; color: var(--gray-4); flex: 1; }
 .concern-bar { width: 80px; height: 6px; background: var(--gray-1); border-radius: 999px; flex-shrink: 0; }
 .concern-fill { height: 100%; border-radius: 999px; background: var(--amber); }
+
+/* ───────────────────────────── TABS ───────────────────────────────── */
+.tab-panel { display: none; }
+.tab-panel.active { display: block; animation: fadeIn 0.25s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+nav button.tab-link {
+  background: none; border: none; cursor: pointer; font-family: inherit;
+  color: rgba(255,255,255,0.7); font-size: 12.5px; font-weight: 700;
+  padding: 18px 18px; border-bottom: 3px solid transparent;
+  transition: color 0.15s, border-color 0.15s; flex-shrink: 0; white-space: nowrap;
+}
+nav button.tab-link:hover { color: white; border-bottom-color: var(--teal); }
+nav button.tab-link.active { color: white; border-bottom-color: var(--gold); }
+nav .tab-soon { font-size: 9px; font-weight: 800; background: rgba(255,255,255,0.18); color: rgba(255,255,255,0.85); padding: 2px 6px; border-radius: 999px; margin-left: 6px; letter-spacing: 0.5px; vertical-align: middle; }
+
+/* Section sub-nav inside the Report tab */
+.subnav { display: flex; flex-wrap: wrap; gap: 4px; background: white; border-radius: 12px; padding: 10px 12px; margin-bottom: 32px; box-shadow: 0 1px 6px rgba(0,0,0,0.07); }
+.subnav a { font-size: 11.5px; font-weight: 600; color: var(--gray-4); text-decoration: none; padding: 6px 11px; border-radius: 999px; transition: background 0.15s, color 0.15s; }
+.subnav a:hover { background: var(--teal-lt); color: var(--navy); }
+
+/* ───────────────────── VELOCITY TAB COMPONENTS ────────────────────── */
+.verdict-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; align-items: stretch; margin-bottom: 28px; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 14px rgba(0,0,0,0.09); }
+.verdict { padding: 28px 26px; background: white; }
+.verdict.speed { background: linear-gradient(135deg, var(--navy) 0%, #0E4B6E 100%); color: white; }
+.verdict-tag { font-size: 10.5px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.65; margin-bottom: 10px; }
+.verdict-num { font-size: 52px; font-weight: 900; line-height: 1; }
+.verdict.speed .verdict-num { color: #6EE4EC; }
+.verdict.real .verdict-num { color: var(--amber); }
+.verdict-cap { font-size: 13px; line-height: 1.5; margin-top: 10px; opacity: 0.85; }
+.verdict-vs { display: flex; align-items: center; justify-content: center; background: var(--gray-0); padding: 0 20px; font-size: 13px; font-weight: 800; color: var(--gray-3); letter-spacing: 1px; }
+@media (max-width: 768px) { .verdict-grid { grid-template-columns: 1fr; } .verdict-vs { padding: 10px; } }
+
+.leak { background: white; border-radius: 14px; box-shadow: 0 1px 6px rgba(0,0,0,0.07); margin-bottom: 20px; overflow: hidden; border-left: 5px solid var(--amber); }
+.leak-head { display: flex; align-items: center; gap: 14px; padding: 18px 22px 14px; }
+.leak-n { width: 34px; height: 34px; border-radius: 50%; background: var(--amber); color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 15px; flex-shrink: 0; }
+.leak-title { font-size: 16px; font-weight: 800; color: var(--navy); }
+.leak-sub { font-size: 12.5px; color: var(--gray-3); margin-top: 2px; }
+.leak-body { padding: 0 22px 20px 70px; font-size: 13.5px; line-height: 1.65; color: var(--gray-4); }
+@media (max-width: 768px) { .leak-body { padding-left: 22px; } }
+
+.newwork-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 16px 0; }
+.newwork { border: 1px solid var(--gray-1); border-radius: 10px; padding: 14px; background: var(--gray-0); }
+.newwork.isnew { background: #FFF3DC; border-color: #F0D9A0; }
+.newwork-val { font-size: 26px; font-weight: 900; color: var(--navy); line-height: 1; }
+.newwork.isnew .newwork-val { color: var(--gold); }
+.newwork-lbl { font-size: 11.5px; color: var(--gray-4); margin-top: 5px; line-height: 1.35; }
+.newwork-tag { display: inline-block; font-size: 9px; font-weight: 800; letter-spacing: 0.5px; padding: 2px 6px; border-radius: 999px; background: var(--gold); color: white; margin-top: 8px; }
+
+.math-row { display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-radius: 9px; font-size: 13.5px; margin-bottom: 7px; background: var(--gray-0); }
+.math-row .op { font-weight: 900; color: var(--gray-3); width: 26px; flex-shrink: 0; font-size: 16px; text-align: center; }
+.math-row .lbl { flex: 1; color: var(--gray-4); }
+.math-row .val { font-weight: 800; color: var(--navy); font-variant-numeric: tabular-nums; flex-shrink: 0; }
+.math-row.total { background: var(--navy); }
+.math-row.total .lbl, .math-row.total .op { color: rgba(255,255,255,0.7); }
+.math-row.total .val { color: #6EE4EC; font-size: 16px; }
+.math-row.unknown { background: #FFF3DC; border: 1px dashed var(--gold); }
+.math-row.unknown .val { color: var(--gold); }
+
+/* Coming soon panel */
+.soon-wrap { background: white; border-radius: 16px; box-shadow: 0 1px 6px rgba(0,0,0,0.07); padding: 72px 40px; text-align: center; }
+.soon-icon { font-size: 46px; margin-bottom: 18px; }
+.soon-wrap h2 { font-size: 24px; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
+.soon-wrap p { font-size: 14px; color: var(--gray-3); max-width: 560px; margin: 0 auto 8px; line-height: 1.6; }
+.soon-pill { display: inline-block; margin-top: 20px; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; background: var(--gold-lt); color: var(--gold); border: 1px solid #F0D9A0; padding: 7px 16px; border-radius: 999px; }
 </style>
 </head>
 <body>
@@ -226,37 +300,514 @@ footer strong { color: white; }
 <!-- ════════════════════════════ NAV ════════════════════════════════ -->
 <nav id="main-nav">
   <span class="nav-brand">NICE UX · AI Report 2026</span>
-  <a href="#adoption">Adoption</a>
-  <a href="#efficiency">Efficiency</a>
-  <a href="#usecases">Use Cases</a>
-  <a href="#workflow">Workflow</a>
-  <a href="#champions">Champions</a>
-  <a href="#collaboration">Collaboration</a>
-  <a href="#barriers">Barriers</a>
-  <a href="#program">Program</a>
-  <a href="#recommendations">Actions</a>
-  <a href="#metrics">Metrics</a>
+  <button class="tab-link active" data-tab="velocity">Velocity vs. Actual Efficiency</button>
+  <button class="tab-link" data-tab="issues">Critical Issues<span class="tab-soon">SOON</span></button>
+  <button class="tab-link" data-tab="report">Report</button>
 </nav>
 
-<!-- ════════════════════════════ HERO ═══════════════════════════════ -->
-<div class="hero">
-  <div class="hero-inner">
-    <div class="hero-tag">Design Operations · AI Usage Assessment · August 2026</div>
-    <h1>The NICE UX Team<br>has <span>adopted AI</span> —<br>now we need to lead with it.</h1>
-    <p class="hero-sub">37 respondents · 39 questions · 29 days · 3 regions</p>
-    <div class="kpi-grid">
-      <div class="kpi"><div class="kpi-val">97%</div><div class="kpi-label">Use Claude daily</div></div>
-      <div class="kpi"><div class="kpi-val">95%</div><div class="kpi-label">Use AI every single day</div></div>
-      <div class="kpi"><div class="kpi-val">65%</div><div class="kpi-label">Save 6–20 hrs/week</div></div>
-      <div class="kpi"><div class="kpi-val">0%</div><div class="kpi-label">Self-identify as Beginner</div></div>
-      <div class="kpi"><div class="kpi-val">65%</div><div class="kpi-label">Pay for AI tools personally</div></div>
-      <div class="kpi"><div class="kpi-val">84%</div><div class="kpi-label">R&D is noticeably faster</div></div>
-    </div>
+<!-- ════════════════════════════ META STRIP ═════════════════════════ -->
+<div class="meta-strip">
+  <div class="meta-inner">
+    <span><strong>AI Usage Assessment</strong> · NICE UX Team · Design Operations</span>
+    <span class="meta-dot">·</span>
+    <span><strong>n = 37</strong> respondents</span>
+    <span class="meta-dot">·</span>
+    <span>39 questions · 29 days · August 2026</span>
+    <span class="meta-dot">·</span>
+    <span>India 17 · Israel 11 · US 9</span>
+    <button id="calc-toggle" title="Expand or collapse every calculation on the page">🧮 Show all calculations</button>
   </div>
 </div>
 
 <!-- ════════════════════════════ PAGE BODY ══════════════════════════ -->
 <div class="page">
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- ══════════ TAB 1 — VELOCITY VS. ACTUAL EFFICIENCY ═══════════════ -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<div class="tab-panel active" id="tab-velocity">
+
+  <section style="margin-bottom:32px;">
+    <div class="section-header">
+      <span class="section-number">The question</span>
+      <span class="section-title">We got faster. Did we get more efficient?</span>
+    </div>
+    <p style="font-size:15px;color:var(--gray-4);max-width:820px;line-height:1.7;">
+      Those are not the same question. <strong>Velocity</strong> is how fast we complete a task we already knew how to do.
+      <strong>Actual efficiency</strong> is what the team is left with once you account for everything that changed around it —
+      a job that grew new categories of work, demand that rose, and a development organisation that also got faster.
+      The first number is impressive. The second one is the one to plan with.
+    </p>
+  </section>
+
+  <div class="verdict-grid">
+    <div class="verdict speed">
+      <div class="verdict-tag">Velocity · measured</div>
+      <div class="verdict-num">1.88×</div>
+      <div class="verdict-cap">Faster per task. Averaged across four matched task scenarios the team sized twice — once as they'd have sized it before AI, once as they'd size it today.</div>
+    </div>
+    <div class="verdict-vs">VS</div>
+    <div class="verdict real">
+      <div class="verdict-tag">Actual efficiency · net</div>
+      <div class="verdict-num">−29%</div>
+      <div class="verdict-cap">Total effort versus before AI — <em>and that is the ceiling</em>. It does not yet subtract the work categories that didn't exist in the baseline at all.</div>
+    </div>
+  </div>
+
+  <details class="calc">
+    <summary>🧮 How both headline numbers are calculated</summary>
+    <div class="calc-body">
+      <p><span class="q">Q13–21</span><strong>1.88× velocity.</strong> Every respondent sized the same four tasks twice — as they'd have sized it before AI, and as they'd size it today. Story-point bands are collapsed to their midpoints, weighted by how many people chose each band, and divided by 37.</p>
+      <div class="formula">Band midpoints:  XS(1–2)=1.5  S(3–5)=4  M(5–8)=6.5  L(8–13)=10.5  XL(13–21)=17
+
+Sum of all four scenarios, before AI:  215 + 298 + 224 + 246.5  =  983.5 SP
+Sum of all four scenarios, with AI:    106 + 156.5 + 123.5 + 138 =  524.0 SP
+
+Velocity   =  983.5 ÷ 524.0  =  1.877  →  1.88×
+Effort/task =  524.0 ÷ 983.5  =  0.533  →  −46.7%  ("about 47% less effort")</div>
+      <p><em>Cross-check: averaging the four individual multipliers instead — (2.03 + 1.90 + 1.81 + 1.79) ÷ 4 = 1.883 — gives the same answer. Per-scenario workings are under the chart below.</em></p>
+
+      <p style="margin-top:14px;"><span class="q">Q13–21 × Q26</span><strong>−29% actual efficiency.</strong> Effort per task fell, but the number of tasks rose. Multiply the two:</p>
+      <div class="formula">Effort per task     =  0.533   (from above)
+Tasks per designer  =  1.34    (+34% — see leak 2 for this figure's derivation)
+
+Total effort today  =  1.34 × 0.533  =  0.714   →  −28.6%  →  −29%</div>
+      <p><span class="warn">CEILING</span>This is the <em>best case</em>. It counts only work that existed before AI. Requests that had no pre-AI equivalent — prototypes, code — are additive on top and are not subtracted here, because no before-and-after measurement of them exists. See leak 1.</p>
+    </div>
+  </details>
+
+  <!-- ── PART 1: THE VELOCITY IS REAL ── -->
+  <section>
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <span class="section-title">The velocity gain is real — and it is consistent</span>
+    </div>
+
+    <div class="card" style="margin-bottom:20px;">
+      <div class="card-header">⚡ Effort per task, before AI vs. today (story points, weighted average)</div>
+      <div class="card-body">
+        <div class="chart-wrap"><canvas id="velScenarioChart"></canvas></div>
+        <table class="data-table" style="margin-top:16px;">
+          <thead>
+            <tr><th>Task scenario</th><th>Before AI</th><th>With AI</th><th>Speed-up</th><th>What compressed</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Interaction design</strong><br><span style="color:var(--gray-3);font-size:12px;">Panel, all states + annotations</span></td><td>5.8 SP</td><td>2.9 SP</td><td><span class="pill pill-green">2.03×</span></td><td>State generation, annotation writing</td></tr>
+            <tr><td><strong>Design-system spec handoff</strong><br><span style="color:var(--gray-3);font-size:12px;">Calendar component</span></td><td>8.1 SP</td><td>4.2 SP</td><td><span class="pill pill-green">1.90×</span></td><td>Variant documentation, spec prose</td></tr>
+            <tr><td><strong>Research synthesis</strong><br><span style="color:var(--gray-3);font-size:12px;">4–6 interviews → themes + report</span></td><td>6.1 SP</td><td>3.3 SP</td><td><span class="pill pill-green">1.81×</span></td><td>Thematic coding, report writing</td></tr>
+            <tr><td><strong>Usability testing</strong><br><span style="color:var(--gray-3);font-size:12px;">Plan + 5 sessions + synthesis</span></td><td>6.7 SP</td><td>3.7 SP</td><td><span class="pill pill-green">1.79×</span></td><td>Screener, guide, synthesis writing</td></tr>
+          </tbody>
+        </table>
+        <details class="calc">
+          <summary>🧮 Every scenario, from raw response counts to multiplier</summary>
+          <div class="calc-body">
+            <p><span class="q">Q13–21</span>Each cell below is the number of people (out of 37) who chose that story-point band. Midpoints: XS 1.5 · S 4 · M 6.5 · L 10.5 · XL 17.</p>
+            <table>
+              <thead><tr><th>Scenario 1 — Interaction design</th><th>XS</th><th>S</th><th>M</th><th>L</th><th>XL</th><th>Σ</th><th>÷37</th></tr></thead>
+              <tbody>
+                <tr><td>Before AI</td><td>5</td><td>15</td><td>11</td><td>4</td><td>2</td><td>215.0</td><td><strong>5.81</strong></td></tr>
+                <tr><td>With AI</td><td>23</td><td>12</td><td>1</td><td>0</td><td>1</td><td>106.0</td><td><strong>2.86</strong></td></tr>
+              </tbody>
+            </table>
+            <div class="formula">Before: (5×1.5)+(15×4)+(11×6.5)+(4×10.5)+(2×17) = 7.5+60+71.5+42+34 = 215.0 → ÷37 = 5.81
+With:   (23×1.5)+(12×4)+(1×6.5)+(0×10.5)+(1×17) = 34.5+48+6.5+0+17 = 106.0 → ÷37 = 2.86
+Speed-up: 5.81 ÷ 2.86 = 2.03×</div>
+
+            <table>
+              <thead><tr><th>Scenario 2 — Design-system spec</th><th>XS</th><th>S</th><th>M</th><th>L</th><th>XL</th><th>Σ</th><th>÷37</th></tr></thead>
+              <tbody>
+                <tr><td>Before AI</td><td>2</td><td>11</td><td>10</td><td>8</td><td>6</td><td>298.0</td><td><strong>8.05</strong></td></tr>
+                <tr><td>With AI</td><td>13</td><td>15</td><td>6</td><td>2</td><td>1</td><td>156.5</td><td><strong>4.23</strong></td></tr>
+              </tbody>
+            </table>
+            <div class="formula">Before: (2×1.5)+(11×4)+(10×6.5)+(8×10.5)+(6×17) = 3+44+65+84+102 = 298.0 → ÷37 = 8.05
+With:   (13×1.5)+(15×4)+(6×6.5)+(2×10.5)+(1×17) = 19.5+60+39+21+17 = 156.5 → ÷37 = 4.23
+Speed-up: 8.05 ÷ 4.23 = 1.90×</div>
+
+            <table>
+              <thead><tr><th>Scenario 3 — Research synthesis</th><th>XS</th><th>S</th><th>M</th><th>L</th><th>XL</th><th>Σ</th><th>÷37</th></tr></thead>
+              <tbody>
+                <tr><td>Before AI</td><td>1</td><td>11</td><td>21</td><td>4</td><td>0</td><td>224.0</td><td><strong>6.05</strong></td></tr>
+                <tr><td>With AI</td><td>17</td><td>17</td><td>2</td><td>0</td><td>1</td><td>123.5</td><td><strong>3.34</strong></td></tr>
+              </tbody>
+            </table>
+            <div class="formula">Before: (1×1.5)+(11×4)+(21×6.5)+(4×10.5)+(0×17) = 1.5+44+136.5+42+0 = 224.0 → ÷37 = 6.05
+With:   (17×1.5)+(17×4)+(2×6.5)+(0×10.5)+(1×17) = 25.5+68+13+0+17 = 123.5 → ÷37 = 3.34
+Speed-up: 6.05 ÷ 3.34 = 1.81×</div>
+
+            <table>
+              <thead><tr><th>Scenario 4 — Usability testing</th><th>XS</th><th>S</th><th>M</th><th>L</th><th>XL</th><th>Σ</th><th>÷37</th></tr></thead>
+              <tbody>
+                <tr><td>Before AI</td><td>1</td><td>11</td><td>17</td><td>7</td><td>1</td><td>246.5</td><td><strong>6.66</strong></td></tr>
+                <tr><td>With AI</td><td>11</td><td>19</td><td>7</td><td>0</td><td>0</td><td>138.0</td><td><strong>3.73</strong></td></tr>
+              </tbody>
+            </table>
+            <div class="formula">Before: (1×1.5)+(11×4)+(17×6.5)+(7×10.5)+(1×17) = 1.5+44+110.5+73.5+17 = 246.5 → ÷37 = 6.66
+With:   (11×1.5)+(19×4)+(7×6.5)+(0×10.5)+(0×17) = 16.5+76+45.5+0+0 = 138.0 → ÷37 = 3.73
+Speed-up: 6.66 ÷ 3.73 = 1.79×</div>
+
+            <p><span class="warn">ASSUMPTION</span>Midpoint weighting assumes an even spread inside each band. It is applied identically to the before and after columns, so it very largely cancels out in the ratio.</p>
+            <p><span class="warn">BIAS</span>The "before AI" column is a retrospective estimate. People tend to over-estimate how long things used to take, so <strong>1.88× is more likely to be an over-statement than an under-statement.</strong></p>
+          </div>
+        </details>
+        <div class="insight" style="margin-top:16px;">
+          <strong>Why this number is trustworthy:</strong> four different task types, four different skill sets, and the answer lands between
+          <strong>1.79× and 2.03×</strong> every single time. That tightness is not enthusiasm — it is a real, stable, roughly-double compression.
+          All four scenarios received all 37 responses.
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header">✅ What compressed</div>
+        <div class="card-body" style="font-size:13px;line-height:1.9;color:var(--gray-4);">
+          Writing specs and variant documentation<br>
+          Generating state inventories<br>
+          Drafting screeners and discussion guides<br>
+          Thematic coding across transcripts<br>
+          Producing report prose<br>
+          Cross-source desk research
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">⛔ What didn't</div>
+        <div class="card-body" style="font-size:13px;line-height:1.9;color:var(--gray-4);">
+          Deciding what the component should do<br>
+          Judging which states matter<br>
+          Running the sessions<br>
+          Reading the raw transcripts yourself<br>
+          Prioritising the recommendations<br>
+          Deciding what the research means
+        </div>
+      </div>
+    </div>
+    <blockquote style="margin-top:16px;">
+      "AI eliminated production time. Thinking time stayed the same. What didn't compress: running sessions, prioritizing recommendations, reading transcripts yourself, making judgment calls."
+    </blockquote>
+  </section>
+
+  <!-- ── PART 2: WHERE IT GOES ── -->
+  <section>
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <span class="section-title">Where the velocity goes — three claims on the same dividend</span>
+    </div>
+    <p style="font-size:14px;color:var(--gray-4);max-width:820px;margin-bottom:24px;line-height:1.7;">
+      A 1.88× speed-up is not 1.88× more free time. Three things absorb it, and only one of them is normally counted.
+    </p>
+
+    <!-- LEAK 1 -->
+    <div class="leak">
+      <div class="leak-head">
+        <div class="leak-n">1</div>
+        <div>
+          <div class="leak-title">Work we never used to be asked for at all</div>
+          <div class="leak-sub">The largest claim on the dividend — and completely invisible in the 1.88×</div>
+        </div>
+      </div>
+      <div class="leak-body">
+        <p style="margin-bottom:14px;">
+          The four scenarios above compare <em>like for like</em>: tasks that existed before AI and still exist today. That is what makes
+          them a fair measurement — and it is also what makes them incomplete. <strong>They cannot see work that had no "before".</strong>
+        </p>
+        <p style="margin-bottom:6px;">Requests that were not previously part of the job:</p>
+        <div class="newwork-grid">
+          <div class="newwork isnew">
+            <div class="newwork-val">59%</div>
+            <div class="newwork-lbl">of designers say their PM now expects a <strong>clickable HTML prototype</strong></div>
+            <div class="newwork-tag">NEW</div>
+          </div>
+          <div class="newwork isnew">
+            <div class="newwork-val">11%</div>
+            <div class="newwork-lbl">are asked for <strong>production-ready code</strong></div>
+            <div class="newwork-tag">NEW</div>
+          </div>
+          <div class="newwork isnew">
+            <div class="newwork-val">8%</div>
+            <div class="newwork-lbl">are asked for <strong>prompts</strong> as a deliverable</div>
+            <div class="newwork-tag">NEW</div>
+          </div>
+          <div class="newwork">
+            <div class="newwork-val">46%</div>
+            <div class="newwork-lbl">static Figma file — the <em>old</em> default, now in fourth place</div>
+          </div>
+        </div>
+        <div class="chart-wrap"><canvas id="velNewWorkChart"></canvas></div>
+        <p style="margin-top:14px;">
+          A clickable HTML prototype is now the <strong>joint most-expected output of a UX task</strong>, tied with the spec document and
+          <strong>ahead of a static Figma file</strong>. Two years ago that expectation would have been unreasonable for most of the team.
+          Asked what they can now produce that they couldn't before, <strong>59% of free-text answers mention prototypes</strong> — and the
+          second theme is cross-source research synthesis at a scale that was previously impractical enough that nobody attempted it.
+        </p>
+        <details class="calc">
+          <summary>🧮 Where these percentages come from</summary>
+          <div class="calc-body">
+            <p><span class="q">Q28</span><em>"What deliverable does your PM typically expect when you complete a design task?"</em> — select all that apply, 37 respondents. Each percentage is simply <strong>count ÷ 37</strong>:</p>
+            <table>
+              <thead><tr><th>Deliverable</th><th>Count</th><th>÷ 37</th><th>Shown</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>HTML prototype (clickable)</td><td>22</td><td>59.5%</td><td>59%</td><td>new category</td></tr>
+                <tr><td>Design spec document</td><td>22</td><td>59.5%</td><td>59%</td><td>existed before</td></tr>
+                <tr><td>Figma file (static)</td><td>17</td><td>45.9%</td><td>46%</td><td>existed before</td></tr>
+                <tr><td>Figma prototype</td><td>14</td><td>37.8%</td><td>38%</td><td>existed before</td></tr>
+                <tr><td>Production-ready code</td><td>4</td><td>10.8%</td><td>11%</td><td>new category</td></tr>
+                <tr><td>Claude prompts</td><td>3</td><td>8.1%</td><td>8%</td><td>new category</td></tr>
+              </tbody>
+            </table>
+            <p><span class="q">Q35</span><strong>"59% mention prototypes."</strong> Free-text question <em>"What can you now produce that you couldn't before AI?"</em> — 37 responses, of which 22 contain the word "prototype" or a direct variant. 22 ÷ 37 = 59.5%.</p>
+            <p><span class="warn">NOT A CALCULATION</span>The <strong>"new category"</strong> labelling is an editorial judgement, not a survey field. The survey did not ask which deliverables are new. We classify HTML prototypes, production code and prompts as new because they have no pre-AI equivalent in the four measured scenarios — that is the claim being made, and it is a claim, not a measurement.</p>
+          </div>
+        </details>
+        <div class="insight">
+          <strong>This is the strategic win and the hidden cost at the same time.</strong> UX gained <em>scope</em>, not just speed —
+          the team now owns work that used to belong to engineering or simply never happened. That is a genuine expansion of the
+          discipline's territory. It also means a meaningful share of the velocity dividend was spent the moment it was earned,
+          on work that no before-and-after measurement will ever show.
+        </div>
+      </div>
+    </div>
+
+    <!-- LEAK 2 -->
+    <div class="leak">
+      <div class="leak-head">
+        <div class="leak-n">2</div>
+        <div>
+          <div class="leak-title">More of everything we already did</div>
+          <div class="leak-sub">+34% tasks per designer</div>
+        </div>
+      </div>
+      <div class="leak-body">
+        <p style="margin-bottom:14px;">
+          <strong>92% of the team takes on more tasks than before AI</strong>, a third of them "significantly". Volume, efficiency and
+          output quality all rose alongside it — this is not a team being degraded by overload. It is a team absorbing its own
+          productivity gain without noticing.
+        </p>
+        <div class="stat-row" style="margin-bottom:6px;">
+          <div class="stat-bar"><span class="stat-bar-label">Number of tasks taken on</span><div class="stat-bar-track"><div class="stat-bar-fill" style="width:91.9%;background:var(--amber)"></div></div><span class="stat-bar-pct">92%</span></div>
+          <div class="stat-bar"><span class="stat-bar-label">Overall efficiency</span><div class="stat-bar-track"><div class="stat-bar-fill" style="width:89.2%;background:var(--teal)"></div></div><span class="stat-bar-pct">89%</span></div>
+          <div class="stat-bar"><span class="stat-bar-label">Quality of output</span><div class="stat-bar-track"><div class="stat-bar-fill" style="width:86.5%;background:var(--teal)"></div></div><span class="stat-bar-pct">87%</span></div>
+          <div class="stat-bar"><span class="stat-bar-label">Volume of work produced</span><div class="stat-bar-track"><div class="stat-bar-fill" style="width:83.8%;background:var(--teal)"></div></div><span class="stat-bar-pct">84%</span></div>
+        </div>
+        <p style="font-size:12px;color:var(--gray-3);margin-top:10px;">
+          Share reporting an increase since using AI.
+        </p>
+        <details class="calc">
+          <summary>🧮 How +34% is derived — and why it is the weakest number here</summary>
+          <div class="calc-body">
+            <p><span class="q">Q26</span><em>"Since using AI, how has each of these changed?"</em> — 37 respondents. The bars above are counts ÷ 37:</p>
+            <table>
+              <thead><tr><th>Metric</th><th>Increased (any)</th><th>…of which "significantly"</th></tr></thead>
+              <tbody>
+                <tr><td>Number of tasks taken on</td><td>34/37 = 91.9%</td><td>12/37 = 32.4%</td></tr>
+                <tr><td>Overall efficiency</td><td>33/37 = 89.2%</td><td>17/37 = 46.0%</td></tr>
+                <tr><td>Quality of output</td><td>32/37 = 86.5%</td><td>15/37 = 40.6%</td></tr>
+                <tr><td>Volume of work produced</td><td>31/37 = 83.8%</td><td>17/37 = 46.0%</td></tr>
+              </tbody>
+            </table>
+            <p>The survey captured <strong>direction and intensity, but not magnitude</strong> — nobody was asked "by how much?". To get a usable number we assign values to the two intensity bands and weight by group size:</p>
+            <div class="formula">"a little"      = 91.9% − 32.4% = 59.5% of the team   ← assigned +25%
+"significantly" =                 32.4% of the team   ← assigned +60%
+
+Task increase = (0.595 × 0.25) + (0.324 × 0.60)
+              = 0.1488 + 0.1944
+              = 0.343   →  +34%</div>
+            <p><span class="warn">ESTIMATE</span><strong>The +25% and +60% are our assumptions, not survey values.</strong> This is the only significant figure on the page that is not a direct response count. Everything downstream of it — the −29%, the 71 effort index, the ~40% headroom — inherits that uncertainty. Treat it as directional, never as a headline.</p>
+            <p><em>Sensitivity: at +15%/+40% the increase is +21% and total effort lands at 65 (−35%). At +35%/+80% it is +47% and effort lands at 78 (−22%). The conclusion — effort down, but far less than the speed-up suggests — holds across that whole range.</em></p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- LEAK 3 -->
+    <div class="leak">
+      <div class="leak-head">
+        <div class="leak-n">3</div>
+        <div>
+          <div class="leak-title">The benchmark moved too</div>
+          <div class="leak-sub">Development is running at roughly the same multiplier we are</div>
+        </div>
+      </div>
+      <div class="leak-body">
+        <p style="margin-bottom:8px;">
+          Efficiency is only ever relative to what everyone else is doing. <strong>84% of the UX team believes R&amp;D is now noticeably or
+          significantly faster</strong>, which weights out to about <strong>1.96×</strong> — almost exactly our own 1.88×.
+        </p>
+        <div class="chart-wrap"><canvas id="velVsDevChart"></canvas></div>
+        <p style="margin-top:8px;">
+          <strong>We are at ~96% of Development's pace.</strong> The good news: the anxiety about UX falling behind is not supported by
+          the data. The sobering news: doubling your speed while the organisation around you also doubles its speed leaves your
+          relative position roughly where it started. Running to stand still still counts as running — but it does not feel like a gain.
+        </p>
+        <details class="calc">
+          <summary>🧮 How 1.96× and "96% of their pace" are derived</summary>
+          <div class="calc-body">
+            <p><span class="q">Q27</span><em>"How much faster do you think R&amp;D is working today compared to before AI?"</em> — 37 respondents, single choice. The question offered speed <em>ranges</em>, so each is collapsed to a single multiplier before weighting:</p>
+            <table>
+              <thead><tr><th>Answer</th><th>Count</th><th>Share</th><th>Assigned ×</th><th>Contribution</th></tr></thead>
+              <tbody>
+                <tr><td>Significantly faster (~3×+)</td><td>10</td><td>27%</td><td>3.00</td><td>0.810</td></tr>
+                <tr><td>Noticeably faster (~1.5–2×)</td><td>21</td><td>57%</td><td>1.75</td><td>0.998</td></tr>
+                <tr><td>About the same</td><td>5</td><td>14%</td><td>1.00</td><td>0.140</td></tr>
+                <tr><td>Slower than before</td><td>1</td><td>3%</td><td>0.80</td><td>0.024</td></tr>
+              </tbody>
+            </table>
+            <div class="formula">R&D multiplier = 0.810 + 0.998 + 0.140 + 0.024 = 1.97  →  reported as ~1.96×
+
+Relative pace  = 1.88 (UX, measured) ÷ 1.96 (R&D, perceived) = 0.959  →  96%</div>
+            <p><strong>"84% noticeably or significantly faster"</strong> = 27% + 57% = 84%, i.e. 31 of 37 people.</p>
+            <p><span class="warn">ESTIMATE</span>The assigned multipliers (3.00 / 1.75 / 1.00 / 0.80) are ours. "~3×+" is open-ended and we cap it at 3.0, which if anything <em>understates</em> R&amp;D's figure.</p>
+            <p><span class="warn">NOT LIKE-FOR-LIKE</span>1.88× comes from re-sizing four fixed tasks. 1.96× comes from one impression question, answered by people outside the team being rated. The two are not methodologically comparable and the 96% should be read as "roughly level", not as a precise ratio.</p>
+          </div>
+        </details>
+        <div class="alert">
+          <strong>Caveat — and the obvious next step.</strong> The 1.96× is <em>the UX team's perception of R&amp;D</em>, not R&amp;D's own data,
+          and the two figures aren't methodologically comparable. Running these same four scenario questions with the Development team
+          would replace the softest number here with a hard one. It costs one survey.
+        </div>
+        <div class="insight" style="border-left-color:var(--red);background:#FEF0F0;border-color:#F5C6CB;">
+          <strong style="color:var(--red);">The real friction isn't speed — it's sequence.</strong> AI made it cheap for Development and Product to
+          produce something that <em>looks</em> finished before UX is involved. Once a stakeholder has seen a working screen, the conversation
+          shifts from "what should this be?" to "can you tidy this up?" Among designers who have actually handed off AI-generated work,
+          <strong>59% hit moderate revision rounds or worse.</strong>
+        </div>
+        <details class="calc">
+          <summary>🧮 Why the pushback rate is 59% and not 40%</summary>
+          <div class="calc-body">
+            <p><span class="q">Q29</span><em>"How much back-and-forth do you get from development on AI-generated work?"</em> — 37 respondents:</p>
+            <table>
+              <thead><tr><th>Answer</th><th>Count</th><th>Share of all 37</th></tr></thead>
+              <tbody>
+                <tr><td>Haven't handed off AI work to dev yet</td><td>12</td><td>32%</td></tr>
+                <tr><td>Moderate — several revision rounds</td><td>12</td><td>32%</td></tr>
+                <tr><td>A little — minor fixes only</td><td>10</td><td>27%</td></tr>
+                <tr><td>A lot of pushback</td><td>3</td><td>8%</td></tr>
+              </tbody>
+            </table>
+            <div class="formula">Across everyone:            (32% + 8%) = 40%          ← the headline KPI
+Among those who actually
+handed off AI work:         40% ÷ (100% − 32%)
+                          = 40 ÷ 68 = 58.8%  →  59%</div>
+            <p>A third of the team has never handed off AI-generated work, so including them in the denominator dilutes the rate. <strong>40% is the right number to track over time</strong> (the denominator stays stable); <strong>59% is the right number to describe today's experience</strong> of AI-assisted handoff.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PART 3: THE MATH ── -->
+  <section>
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <span class="section-title">Putting it together</span>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header">🧮 Total effort, indexed to pre-AI = 100</div>
+        <div class="card-body">
+          <div class="math-row"><span class="op">=</span><span class="lbl">Effort before AI</span><span class="val">100</span></div>
+          <div class="math-row"><span class="op">×</span><span class="lbl">Per-task compression (1.88× faster → 0.53)</span><span class="val">53</span></div>
+          <div class="math-row"><span class="op">×</span><span class="lbl">More tasks (+34%)</span><span class="val">71</span></div>
+          <div class="math-row unknown"><span class="op">+</span><span class="lbl">New work categories — prototypes, code<br><span style="font-size:11.5px;">Not in the baseline. Real, additive, and unmeasured.</span></span><span class="val">?</span></div>
+          <div class="math-row total"><span class="op">≈</span><span class="lbl">Actual effort today</span><span class="val">71 or higher</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">📉 The same thing, as a chart</div>
+        <div class="card-body">
+          <div class="chart-wrap"><canvas id="velEffortChart"></canvas></div>
+          <p style="font-size:12.5px;color:var(--gray-4);line-height:1.6;margin-top:8px;">
+            The team is doing <strong>~34% more work for ~29% less total effort</strong>. There is roughly <strong>40% more task headroom</strong>
+            before total effort returns to pre-AI levels — a finite, one-time asset that is currently being spent by default rather than by decision.
+          </p>
+          <details class="calc">
+            <summary>🧮 The effort index and the "40% headroom" figure</summary>
+            <div class="calc-body">
+              <p>Pre-AI total effort is indexed to <strong>100</strong>. Each step multiplies the previous one:</p>
+              <div class="formula">Start                           100
+× effort per task (0.533)        53      ← 1.88× faster, so 1 ÷ 1.88 = 0.533
+× more tasks (1.34)              71      ← 53 × 1.34 = 71.1
++ new work categories             ?      ← additive, unmeasured</div>
+              <p><strong>Headroom.</strong> Tasks could keep rising until total effort returns to 100:</p>
+              <div class="formula">Max tasks at pre-AI effort = 1 ÷ 0.533       = 1.876× the original volume
+Where the team is today                      = 1.34×  the original volume
+Remaining room             = 1.876 ÷ 1.34    = 1.40   →  ~40% more tasks</div>
+              <p><span class="warn">INHERITS UNCERTAINTY</span>Both the 71 and the 40% depend on the +34% task figure, which is an estimate (see leak 2). The 53 is measured.</p>
+              <p><span class="warn">CEILING</span>The "?" row is real work with no pre-AI baseline. It cannot be quantified from this survey, so the true effort index is <strong>71 or higher</strong> and the true headroom is <strong>40% or less</strong>.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px;">
+      <div class="card-header">🎯 What to say, and what not to say</div>
+      <div class="card-body" style="padding:0;">
+        <table class="data-table">
+          <thead><tr><th style="width:50%">✅ Defensible</th><th>❌ Not defensible</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>"Effort per task fell about <strong>47%</strong> — we're 1.88× faster at the work we already did."</td>
+              <td>"The team is twice as efficient." <span style="color:var(--gray-3);">We're twice as fast at old tasks, which is a different claim.</span></td>
+            </tr>
+            <tr>
+              <td>"Net total effort is down <strong>~29%</strong>, and part of that headroom is already committed."</td>
+              <td>"There's spare capacity, give us more." <span style="color:var(--gray-3);">The 29% is what's left <em>after</em> demand already grew a third.</span></td>
+            </tr>
+            <tr>
+              <td>"UX now delivers prototypes and code that weren't previously in scope."</td>
+              <td>"AI hasn't really helped, we're just busier." <span style="color:var(--gray-3);">Effort per task genuinely halved and quality went up.</span></td>
+            </tr>
+            <tr>
+              <td>"Design is running at roughly Development's AI-driven pace — measured on our side, perceived on theirs."</td>
+              <td>Any speed-up of <strong>3× or more</strong>. <span style="color:var(--gray-3);">The measured range is 1.79–2.03×. Anyone who checks will find it.</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="insight" style="margin-top:20px;font-size:14px;">
+      <strong>The one-sentence version:</strong> the team got about twice as fast at the work it already had, then spent most of that
+      gain on more work, on entirely new categories of work that never existed before, and on keeping pace with a development
+      organisation that got faster at the same time — which is why a 1.88× speed-up feels like roughly nothing at all.
+    </div>
+  </section>
+
+</div><!-- /tab-velocity -->
+
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- ══════════════════ TAB 2 — CRITICAL ISSUES ══════════════════════ -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-issues">
+  <div class="soon-wrap">
+    <div class="soon-icon">🚧</div>
+    <h2>Critical Issues</h2>
+    <p>The blockers, risks and open questions that need a decision — collected here once we've worked through them.</p>
+    <div class="soon-pill">Coming soon</div>
+  </div>
+</div><!-- /tab-issues -->
+
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- ═════════════════════ TAB 3 — FULL REPORT ═══════════════════════ -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-report">
+
+<div class="subnav">
+  <a href="#adoption">01 · Adoption</a>
+  <a href="#efficiency">02 · Efficiency</a>
+  <a href="#usecases">03 · Use Cases</a>
+  <a href="#workflow">04 · Workflow</a>
+  <a href="#champions">05 · Champions</a>
+  <a href="#collaboration">06 · Collaboration</a>
+  <a href="#barriers">07 · Barriers</a>
+  <a href="#program">08 · Program</a>
+  <a href="#recommendations">09 · Actions</a>
+  <a href="#metrics">10 · Metrics</a>
+</div>
 
 <!-- ─────────────────── SECTION 1 — ADOPTION ──────────────────────── -->
 <section id="adoption">
@@ -270,6 +821,24 @@ footer strong { color: white; }
       <div class="card-header">🛠 Tool Usage</div>
       <div class="card-body">
         <div class="chart-wrap"><canvas id="toolChart"></canvas></div>
+        <details class="calc">
+          <summary>🧮 Counts behind these bars</summary>
+          <div class="calc-body">
+            <p><span class="q">Q1</span><em>"Which AI tools do you currently use for work?"</em> — select all that apply, so the column sums past 100%. Each bar is <strong>count ÷ 37</strong>:</p>
+            <table>
+              <thead><tr><th>Tool</th><th>Count</th><th>÷ 37</th><th>Shown</th></tr></thead>
+              <tbody>
+                <tr><td>Claude</td><td>36</td><td>97.3%</td><td>97%</td></tr>
+                <tr><td>ChatGPT</td><td>27</td><td>73.0%</td><td>73%</td></tr>
+                <tr><td>Figma AI / Make</td><td>20</td><td>54.1%</td><td>54%</td></tr>
+                <tr><td>Gemini</td><td>13</td><td>35.1%</td><td>35%</td></tr>
+                <tr><td>MS Copilot</td><td>12</td><td>32.4%</td><td>32%</td></tr>
+                <tr><td>Other</td><td>10</td><td>27.0%</td><td>27%</td></tr>
+              </tbody>
+            </table>
+            <p><span class="warn">READ CAREFULLY</span>This measures <strong>use of the tool at all</strong>, not daily use. Daily <em>AI</em> use is 95% and comes from Q2, a separate question.</p>
+          </div>
+        </details>
       </div>
     </div>
     <div class="card">
@@ -293,6 +862,20 @@ footer strong { color: white; }
           <div class="maturity-seg" style="flex:35;background:var(--navy);">Pro 35%</div>
           <div class="maturity-seg" style="flex:65;background:var(--teal);">Mid-Level 65%</div>
         </div>
+        <details class="calc">
+          <summary>🧮 Frequency and skill-level counts</summary>
+          <div class="calc-body">
+            <p><span class="q">Q2</span><em>"How often do you use AI tools?"</em> — single choice, 37 respondents.</p>
+            <div class="formula">Daily                        35 ÷ 37 = 94.6%  →  95%
+Several times a week          2 ÷ 37 =  5.4%  →   5%
+Once a week / rarely / never  0 ÷ 37 =  0.0%  →   0%</div>
+            <p><span class="q">Q3</span><em>"How would you rate your AI skill level?"</em> — single choice, 37 respondents.</p>
+            <div class="formula">Mid — daily use, simple prompts        24 ÷ 37 = 64.9%  →  65%
+Pro — custom workflows, shares work    13 ÷ 37 = 35.1%  →  35%
+Beginner                                0 ÷ 37 =  0.0%  →   0%</div>
+            <p><span class="warn">SELF-RATED</span>Skill level is self-assessment against the labels shown, not an assessed or tested standard. "0% beginners" means nobody <em>identified</em> as a beginner.</p>
+          </div>
+        </details>
         <div class="insight">
           <strong>Key insight:</strong> Zero Beginners. This team skipped early adoption entirely — the question is no longer whether to use AI, but how to use it at its ceiling.
         </div>
@@ -305,6 +888,24 @@ footer strong { color: white; }
       <div class="card-header">⏱ Weekly Experimentation Time</div>
       <div class="card-body">
         <div class="chart-wrap"><canvas id="expChart"></canvas></div>
+        <details class="calc">
+          <summary>🧮 Counts behind this doughnut</summary>
+          <div class="calc-body">
+            <p><span class="q">Q4</span><em>"How much time do you spend per week learning/experimenting with AI?"</em> — single choice, 37 respondents.</p>
+            <table>
+              <thead><tr><th>Band</th><th>Count</th><th>÷ 37</th><th>Shown</th></tr></thead>
+              <tbody>
+                <tr><td>1–3 hours</td><td>13</td><td>35.1%</td><td>35%</td></tr>
+                <tr><td>3–5 hours</td><td>11</td><td>29.7%</td><td>30%</td></tr>
+                <tr><td>5–10 hours</td><td>8</td><td>21.6%</td><td>22%</td></tr>
+                <tr><td>More than 10 hours</td><td>3</td><td>8.1%</td><td>8%</td></tr>
+                <tr><td>Less than 1 hour</td><td>1</td><td>2.7%</td><td>3%</td></tr>
+                <tr><td>No time for this</td><td>1</td><td>2.7%</td><td>3%</td></tr>
+              </tbody>
+            </table>
+            <p><em>Rounded shares sum to 101% — an artefact of rounding six values, not a data error.</em></p>
+          </div>
+        </details>
       </div>
     </div>
     <div class="card">
@@ -328,6 +929,20 @@ footer strong { color: white; }
             <span class="stat-bar-pct">35%</span>
           </div>
         </div>
+        <details class="calc">
+          <summary>🧮 Region and self-funding counts</summary>
+          <div class="calc-body">
+            <p><span class="q">Q38</span><em>"Which region are you based in?"</em> — the counts are the primary figure here; percentages are derived.</p>
+            <div class="formula">India          17 ÷ 37 = 45.9%  →  46%
+Israel         11 ÷ 37 = 29.7%  →  30%
+United States   9 ÷ 37 = 24.3%  →  24%
+                ──
+                37  ✓ all respondents accounted for</div>
+            <p><span class="q">Q5</span><em>"Are you paying out of pocket for any AI tool?"</em> — single choice.</p>
+            <div class="formula">Yes  24 ÷ 37 = 64.9%  →  65%
+No   13 ÷ 37 = 35.1%  →  35%</div>
+          </div>
+        </details>
         <div class="alert" style="margin-top:14px;">
           65% of the team pays personally for AI tools. The company should fund what its designers already rely on.
         </div>
@@ -350,6 +965,17 @@ footer strong { color: white; }
           <div class="speed-desc" style="color:var(--gray-4)">Regular daily use · Prompt-driven · Getting real gains but limited by awareness of what AI can do · 1–5 hrs experimenting/week</div>
         </div>
       </div>
+      <details class="calc">
+        <summary>🧮 Where 13 and 24 come from</summary>
+        <div class="calc-body">
+          <p><span class="q">Q3 × Q4</span>The headcounts are the raw Q3 answers; the hours ranges describe how those two groups answered Q4.</p>
+          <div class="formula">Pro   13 people  (13 ÷ 37 = 35.1% → 35%)
+Mid   24 people  (24 ÷ 37 = 64.9% → 65%)
+      ──
+      37  ✓</div>
+          <p><span class="warn">DESCRIPTIVE</span>The experimentation-hours ranges on each card ("3–10+ hrs", "1–5 hrs") summarise the bands those groups cluster in. They are a characterisation of the two groups, not a computed cut-off — Q3 and Q4 were answered independently and the bands overlap.</p>
+        </div>
+      </details>
       <div class="insight" style="margin:0">
         <strong>Strategic gap:</strong> This divide will widen without intervention. The goal of the enablement program is to move the 65% toward Pro — not by copying Champions, but by giving them access to what Champions already know.
       </div>
@@ -370,8 +996,31 @@ footer strong { color: white; }
       <div class="card-body">
         <div class="chart-wrap"><canvas id="timeSavedChart"></canvas></div>
         <div class="insight" style="margin-top:12px">
-          <strong>65%</strong> of the team saves 6–20 hours weekly. At a conservative 8 hrs average × 37 people = <strong>~296 designer-hours recovered per week.</strong>
+          <strong>65%</strong> of the team saves 6–20 hours weekly. Blended across the whole distribution — including the 8% for whom AI <em>adds</em> time — the team average is <strong>~7.1 hrs per person</strong>, or <strong>~260 designer-hours recovered per week.</strong>
         </div>
+        <details class="calc">
+          <summary>🧮 How ~7.1 hrs and ~260 team-hours are calculated</summary>
+          <div class="calc-body">
+            <p><span class="q">Q11</span><em>"On average, how many hours per week does AI save you or add to your workload?"</em> — single choice, 37 respondents.</p>
+            <table>
+              <thead><tr><th>Band</th><th>Count</th><th>Share</th><th>Midpoint</th><th>Contribution</th></tr></thead>
+              <tbody>
+                <tr><td>Saves 10–20 hours</td><td>9</td><td>24%</td><td>+15</td><td>+3.60</td></tr>
+                <tr><td>Saves 6–10 hours</td><td>15</td><td>41%</td><td>+8</td><td>+3.28</td></tr>
+                <tr><td>Saves 1–5 hours</td><td>8</td><td>22%</td><td>+3</td><td>+0.66</td></tr>
+                <tr><td>No significant change</td><td>2</td><td>6%</td><td>0</td><td>0.00</td></tr>
+                <tr><td>Adds 1–5 hours</td><td>1</td><td>3%</td><td>−3</td><td>−0.09</td></tr>
+                <tr><td>Adds more than 5 hours</td><td>2</td><td>5%</td><td>−7</td><td>−0.35</td></tr>
+              </tbody>
+            </table>
+            <div class="formula">Team average = 3.60 + 3.28 + 0.66 + 0.00 − 0.09 − 0.35 = 7.10 hrs/person/week
+Team total   = 7.10 × 37 = 262.7  →  ~260 designer-hours/week
+
+"65% save 6–20 hrs" = 24% + 41% = 65%  (9 + 15 = 24 of 37 people)</div>
+            <p><span class="warn">CORRECTED</span>An earlier version of this report multiplied 8 hrs — the midpoint of the 6–20 band that only 65% are in — across all 37 people, giving ~296 hours. That applies the top bands' saving to people who aren't in them and overstates the result by about 13%. The blended figure above is the correct one.</p>
+            <p><span class="warn">DIFFERENT FROM 47%</span>~7.1 hrs is roughly 18% of a 40-hour week, while the scenarios show 47% less effort per task. Both are right: only part of the week is compressible task work (Q10 shows design is "most of the week" for ~43% of the team), meetings and alignment don't compress, and the rest of the gain was reinvested into more tasks.</p>
+          </div>
+        </details>
       </div>
     </div>
     <div class="card">
@@ -381,6 +1030,18 @@ footer strong { color: white; }
         <div class="insight" style="margin-top:12px">
           <strong>0%</strong> use AI output as-is. Minor edits (65%) and significant rework (35%) are the norm — pointing to a need for prompt engineering training and quality standards.
         </div>
+        <details class="calc">
+          <summary>🧮 Counts behind this doughnut</summary>
+          <div class="calc-body">
+            <p><span class="q">Q24</span><em>"How do you typically review AI-generated content before using it?"</em> — single choice, 37 respondents.</p>
+            <div class="formula">Review and make minor edits     24 ÷ 37 = 64.9%  →  65%
+Significantly rework before use  13 ÷ 37 = 35.1%  →  35%
+Use as-is, without reviewing      0 ÷ 37 =  0.0%  →   0%
+                                 ──
+                                 37  ✓</div>
+            <p><em>0% is a true zero — not a rounded-down small number. No respondent selected "use as-is".</em></p>
+          </div>
+        </details>
       </div>
     </div>
   </div>
@@ -395,7 +1056,7 @@ footer strong { color: white; }
               <th>Task Scenario</th>
               <th>Before AI (modal SP)</th>
               <th>After AI (modal SP)</th>
-              <th>Shift</th>
+              <th>Weighted shift</th>
               <th>Primary Driver</th>
               <th>Speedup</th>
             </tr>
@@ -405,37 +1066,56 @@ footer strong { color: white; }
               <td><strong>AI Panel (Interaction Design)</strong><br>All states, annotations</td>
               <td><span class="sp-badge">S</span><br><span class="sp-pct">41% chose S</span></td>
               <td><span class="sp-badge" style="color:var(--green)">XS</span><br><span class="sp-pct">62% chose XS</span></td>
-              <td>S → XS</td>
+              <td>5.8 → 2.9 SP</td>
               <td>State generation, annotation writing</td>
-              <td><span class="pill pill-green">~2×</span></td>
+              <td><span class="pill pill-green">2.03×</span></td>
             </tr>
             <tr>
               <td><strong>Design System Component Spec</strong><br>Variants, interactions, usage</td>
               <td><span class="sp-badge">M–L</span><br><span class="sp-pct">49% M or L</span></td>
               <td><span class="sp-badge" style="color:var(--green)">XS–S</span><br><span class="sp-pct">76% XS or S</span></td>
-              <td>L → S</td>
+              <td>8.1 → 4.2 SP</td>
               <td>Variant documentation, spec writing</td>
-              <td><span class="pill pill-green">~3–4×</span></td>
+              <td><span class="pill pill-green">1.90×</span></td>
             </tr>
             <tr>
               <td><strong>Research Synthesis</strong><br>4–6 interviews → themes + report</td>
               <td><span class="sp-badge">M</span><br><span class="sp-pct">57% chose M</span></td>
               <td><span class="sp-badge" style="color:var(--green)">XS–S</span><br><span class="sp-pct">92% XS or S</span></td>
-              <td>M → XS</td>
+              <td>6.1 → 3.3 SP</td>
               <td>Thematic coding, report writing</td>
-              <td><span class="pill pill-green">~3–5×</span></td>
+              <td><span class="pill pill-green">1.81×</span></td>
             </tr>
             <tr>
               <td><strong>Usability Testing</strong><br>Plan + 5 sessions + synthesis</td>
               <td><span class="sp-badge">M</span><br><span class="sp-pct">46% chose M</span></td>
               <td><span class="sp-badge" style="color:var(--green)">S</span><br><span class="sp-pct">51% chose S</span></td>
-              <td>M → S</td>
+              <td>6.7 → 3.7 SP</td>
               <td>Screener, guide, synthesis writing</td>
-              <td><span class="pill pill-green">~1.5–2×</span></td>
+              <td><span class="pill pill-green">1.79×</span></td>
             </tr>
           </tbody>
         </table>
       </div>
+      <details class="calc">
+        <summary>🧮 The full workings for all four scenarios</summary>
+        <div class="calc-body">
+          <p><span class="q">Q13–21</span>Every respondent sized each task twice. Story-point bands are collapsed to midpoints (XS 1.5 · S 4 · M 6.5 · L 10.5 · XL 17), weighted by response count, divided by 37.</p>
+          <table>
+            <thead><tr><th>Scenario</th><th>Before (SP)</th><th>With AI (SP)</th><th>Ratio</th></tr></thead>
+            <tbody>
+              <tr><td>AI Panel — interaction design</td><td>215.0 ÷ 37 = 5.81</td><td>106.0 ÷ 37 = 2.86</td><td><strong>2.03×</strong></td></tr>
+              <tr><td>Design system component spec</td><td>298.0 ÷ 37 = 8.05</td><td>156.5 ÷ 37 = 4.23</td><td><strong>1.90×</strong></td></tr>
+              <tr><td>Research synthesis</td><td>224.0 ÷ 37 = 6.05</td><td>123.5 ÷ 37 = 3.34</td><td><strong>1.81×</strong></td></tr>
+              <tr><td>Usability testing</td><td>246.5 ÷ 37 = 6.66</td><td>138.0 ÷ 37 = 3.73</td><td><strong>1.79×</strong></td></tr>
+              <tr><td><strong>All four combined</strong></td><td><strong>983.5</strong></td><td><strong>524.0</strong></td><td><strong>1.88×</strong></td></tr>
+            </tbody>
+          </table>
+          <p>The "% chose X" figures in the table are response counts ÷ 37 — e.g. <em>41% chose S</em> = 15 ÷ 37 = 40.5%; <em>92% XS or S</em> = (17 + 17) ÷ 37 = 91.9%.</p>
+          <p>Per-band response counts for each scenario are shown in full on the <strong>Velocity vs. Actual Efficiency</strong> tab.</p>
+          <p><span class="warn">CORRECTED</span>An earlier version of this table showed ~3–4× and ~3–5× for the design-system and research-synthesis rows. Recomputed from the response counts those are <strong>1.90×</strong> and <strong>1.81×</strong>. The figures above are the corrected ones.</p>
+        </div>
+      </details>
       <blockquote style="margin-top:16px;">
         "AI eliminated production time. Thinking time stayed the same. Every scenario compressed for the same reason — screeners, state inventories, spec documentation, report writing — AI does it in minutes. What didn't compress: running sessions, prioritizing recommendations, reading transcripts yourself, making judgment calls."
         <cite>— Yaara Bar Feldman</cite>
@@ -456,6 +1136,26 @@ footer strong { color: white; }
       <div class="card-header">📐 Where AI Is Being Used</div>
       <div class="card-body">
         <div class="chart-wrap"><canvas id="usecaseChart"></canvas></div>
+        <details class="calc">
+          <summary>🧮 Counts behind these bars</summary>
+          <div class="calc-body">
+            <p><span class="q">Q7</span><em>"For what purposes do you mainly use AI?"</em> — select all that apply, so bars sum past 100%.</p>
+            <table>
+              <thead><tr><th>Purpose</th><th>Count</th><th>÷ 37</th><th>Shown</th></tr></thead>
+              <tbody>
+                <tr><td>Research &amp; desk research</td><td>29</td><td>78.4%</td><td>78%</td></tr>
+                <tr><td>Design ideation &amp; wireframing</td><td>29</td><td>78.4%</td><td>78%</td></tr>
+                <tr><td>Prototyping</td><td>23</td><td>62.2%</td><td>62%</td></tr>
+                <tr><td>Data synthesis &amp; analysis</td><td>19</td><td>51.4%</td><td>51%</td></tr>
+                <tr><td>Writing / UX copy</td><td>16</td><td>43.2%</td><td>43%</td></tr>
+                <tr><td>Documentation &amp; handoff specs</td><td>14</td><td>37.8%</td><td>38%</td></tr>
+                <tr><td>A/B testing</td><td>1</td><td>2.7%</td><td>3%</td></tr>
+              </tbody>
+            </table>
+            <p><span class="warn">OMITTED</span>Q7 also had an <strong>"Other" option at 16% (6 people)</strong>, not plotted here because it isn't a nameable use case. Research and ideation are tied because they are literally the same count — 29 people each.</p>
+            <p><em>One respondent = 2.7 percentage points. Any two bars within ~3 points of each other differ by a single person.</em></p>
+          </div>
+        </details>
       </div>
     </div>
     <div class="card">
@@ -463,8 +1163,22 @@ footer strong { color: white; }
       <div class="card-body">
         <div class="chart-wrap"><canvas id="deliverablesChart"></canvas></div>
         <div class="insight" style="margin-top:12px">
-          HTML prototypes & design specs are expected by <strong>59%</strong> of PMs — now tied with Figma files. AI is reshaping the definition of a "UX deliverable."
+          HTML prototypes & design specs are expected by <strong>59%</strong> of PMs — tied with each other and <strong>ahead of a static Figma file (46%)</strong>. AI is reshaping the definition of a "UX deliverable."
         </div>
+        <details class="calc">
+          <summary>🧮 Counts behind these bars</summary>
+          <div class="calc-body">
+            <p><span class="q">Q28</span><em>"What deliverable does your PM typically expect when you complete a design task?"</em> — 37 respondents.</p>
+            <div class="formula">HTML prototype (clickable)   22 ÷ 37 = 59.5%  →  59%
+Design spec document         22 ÷ 37 = 59.5%  →  59%
+Figma file (static)          17 ÷ 37 = 45.9%  →  46%
+Figma prototype              14 ÷ 37 = 37.8%  →  38%
+Production-ready code         4 ÷ 37 = 10.8%  →  11%
+Claude prompts                3 ÷ 37 =  8.1%  →   8%</div>
+            <p><span class="warn">WORDING</span>Strictly this is <strong>59% of designers reporting what their PM expects</strong>, not 59% of PMs surveyed. PMs were not respondents to this survey.</p>
+            <p><span class="warn">CORRECTED</span>An earlier version read "now tied with Figma files". The two 59% bars are tied <em>with each other</em>; the static Figma file sits 13 points lower at 46%.</p>
+          </div>
+        </details>
       </div>
     </div>
   </div>
@@ -477,15 +1191,30 @@ footer strong { color: white; }
           <tr><th>Use Case</th><th>Adoption</th><th>Time Saved</th><th>Quality Impact</th><th>Action</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>Research synthesis & desk research</strong></td><td>78% (29/37)</td><td>Very High (3–5×)</td><td>Broader cross-source coverage</td><td><span class="pill pill-green">Standardize now</span></td></tr>
+          <tr><td><strong>Research synthesis & desk research</strong></td><td>78% (29/37)</td><td>High (1.81× measured)</td><td>Broader cross-source coverage</td><td><span class="pill pill-green">Standardize now</span></td></tr>
           <tr><td><strong>Interactive prototyping (HTML/code)</strong></td><td>62% (23/37)</td><td>New capability unlocked</td><td>Categorical quality leap</td><td><span class="pill pill-green">Standardize now</span></td></tr>
-          <tr><td><strong>Design ideation & wireframing</strong></td><td>78% (29/37)</td><td>High (2–3×)</td><td>More exploration, faster</td><td><span class="pill pill-green">Standardize now</span></td></tr>
-          <tr><td><strong>Documentation & developer handoff</strong></td><td>38% (14/37)</td><td>High (2–4×)</td><td>More consistent specs</td><td><span class="pill pill-orange">Scale immediately</span></td></tr>
-          <tr><td><strong>UX writing & copy</strong></td><td>43% (16/37)</td><td>Moderate (1.5–2×)</td><td>Moderate</td><td><span class="pill pill-blue">Expand adoption</span></td></tr>
-          <tr><td><strong>Data synthesis & analysis</strong></td><td>51% (19/37)</td><td>High (2–3×)</td><td>High — with human validation</td><td><span class="pill pill-orange">Standardize with caveats</span></td></tr>
-          <tr><td><strong>Design system component specs</strong></td><td>Subset</td><td>Very High (XL→S)</td><td>High</td><td><span class="pill pill-blue">Build playbook</span></td></tr>
+          <tr><td><strong>Design ideation & wireframing</strong></td><td>78% (29/37)</td><td>High (~2× est.)</td><td>More exploration, faster</td><td><span class="pill pill-green">Standardize now</span></td></tr>
+          <tr><td><strong>Documentation & developer handoff</strong></td><td>38% (14/37)</td><td>High (1.90× measured)</td><td>More consistent specs</td><td><span class="pill pill-orange">Scale immediately</span></td></tr>
+          <tr><td><strong>UX writing & copy</strong></td><td>43% (16/37)</td><td>Moderate (est.)</td><td>Moderate</td><td><span class="pill pill-blue">Expand adoption</span></td></tr>
+          <tr><td><strong>Data synthesis & analysis</strong></td><td>51% (19/37)</td><td>High (~2× est.)</td><td>High — with human validation</td><td><span class="pill pill-orange">Standardize with caveats</span></td></tr>
+          <tr><td><strong>Design system component specs</strong></td><td>Subset</td><td>High (8.1 → 4.2 SP)</td><td>High</td><td><span class="pill pill-blue">Build playbook</span></td></tr>
         </tbody>
       </table>
+      <details class="calc">
+        <summary>🧮 What is measured here and what is judgement</summary>
+        <div class="calc-body">
+          <p><span class="q">Q7</span><strong>Adoption column — measured.</strong> Direct response counts out of 37, shown in the bracket on each row.</p>
+          <p><span class="q">Q13–21</span><strong>Time Saved — measured only where a scenario exists.</strong> Two rows map onto a measured scenario and carry its exact multiplier:</p>
+          <div class="formula">Research synthesis        1.81×  (6.05 → 3.34 SP)   measured
+Documentation & handoff   1.90×  (8.05 → 4.23 SP)   measured
+Design system specs       1.90×  (same scenario)     measured
+Ideation, UX writing,
+data synthesis            "~2× est."                 NOT measured</div>
+          <p><span class="warn">ESTIMATE</span>Rows marked "est." have <strong>no matching scenario question</strong>. Their multipliers are inferred from the measured range, not computed. They are labelled as estimates in the table for exactly this reason.</p>
+          <p><span class="warn">JUDGEMENT</span>The <strong>Quality Impact</strong> and <strong>Action</strong> columns are editorial recommendations. No survey question produced them.</p>
+          <p><span class="warn">CORRECTED</span>Earlier versions of this table showed "Very High (3–5×)" for research synthesis and "Very High (XL→S)" for design-system specs. Neither is supported: the measured ratios are 1.81× and 1.90×, and the design-system before-AI weighted average is 8.05 SP — the L band, not XL (only 6 of 37 chose XL).</p>
+        </div>
+      </details>
     </div>
   </div>
 </section>
@@ -512,6 +1241,18 @@ footer strong { color: white; }
           </div>
         </div>
         <div>
+          <details class="calc">
+            <summary>🧮 Counts behind these bars</summary>
+            <div class="calc-body">
+              <p><span class="q">Q25</span><em>"What do you typically share with colleagues?"</em> — select all that apply, 37 respondents.</p>
+              <div class="formula">Workflows or processes       31 ÷ 37 = 83.8%  →  84%
+Output examples              30 ÷ 37 = 81.1%  →  81%
+Tool recommendations         26 ÷ 37 = 70.3%  →  70%
+Specific prompts / templates 18 ÷ 37 = 48.6%  →  49%
+Haven't shared anything yet   0 ÷ 37 =  0.0%  →   0%</div>
+              <p><em>0% is a true zero. The gap that matters is the 35-point drop from workflows (84%) to prompts (49%) — the most portable artefact is the least shared.</em></p>
+            </div>
+          </details>
           <div class="insight">
             <strong>0% share nothing</strong> — but sharing happens informally and individually. There is no structured team mechanism. Every person experiments solo.
           </div>
@@ -532,6 +1273,22 @@ footer strong { color: white; }
         <div class="insight" style="margin-top:12px;">
           <strong>84%</strong> say R&D is working noticeably or significantly faster. This is driving rising expectations on the UX side to match pace.
         </div>
+        <details class="calc">
+          <summary>🧮 Counts, and how this becomes 1.96×</summary>
+          <div class="calc-body">
+            <p><span class="q">Q27</span><em>"How much faster do you think R&amp;D is working today compared to before AI?"</em> — single choice, 37 respondents.</p>
+            <div class="formula">Noticeably faster (~1.5–2×)   21 ÷ 37 = 56.8%  →  57%
+Significantly faster (~3×+)   10 ÷ 37 = 27.0%  →  27%
+About the same                 5 ÷ 37 = 13.5%  →  14%
+Slower than before             1 ÷ 37 =  2.7%  →   3%
+                              ──
+                              37  ✓
+
+"84% faster" = 27% + 57% = 84%   (10 + 21 = 31 of 37 people)</div>
+            <p>Weighting these bands into a single multiplier gives <strong>~1.96×</strong>, which is compared against the team's own measured 1.88× on the <strong>Velocity vs. Actual Efficiency</strong> tab. Full working is there.</p>
+            <p><span class="warn">PERCEPTION</span>This is the UX team's estimate of another team's speed. R&amp;D was not surveyed. It is not comparable in method to the 1.88×, which comes from re-sizing fixed tasks.</p>
+          </div>
+        </details>
       </div>
     </div>
     <div class="card">
@@ -541,6 +1298,22 @@ footer strong { color: white; }
         <div class="insight" style="margin-top:12px;">
           <strong>32%</strong> haven't handed off AI-generated work yet — this channel is early and will define future collaboration norms.
         </div>
+        <details class="calc">
+          <summary>🧮 Counts, and the two ways to read the pushback rate</summary>
+          <div class="calc-body">
+            <p><span class="q">Q29</span><em>"How much back-and-forth do you get from development on AI-generated work?"</em> — single choice, 37 respondents.</p>
+            <div class="formula">Haven't handed off yet          12 ÷ 37 = 32.4%  →  32%
+Moderate, several revisions     12 ÷ 37 = 32.4%  →  32%
+A little, minor fixes only      10 ÷ 37 = 27.0%  →  27%
+A lot of pushback                3 ÷ 37 =  8.1%  →   8%
+                                ──
+                                37  ✓
+
+Pushback rate (moderate+), all respondents:  32% + 8%     = 40%
+Pushback rate among those who handed off:    40 ÷ 68      = 59%</div>
+            <p>The <strong>40%</strong> figure is the one used as a KPI baseline in section 10, because its denominator stays stable as more people start handing off AI work. The <strong>59%</strong> describes today's actual experience.</p>
+          </div>
+        </details>
       </div>
     </div>
   </div>
@@ -553,6 +1326,17 @@ footer strong { color: white; }
     <span class="section-title">AI Champions</span>
   </div>
   <p style="font-size:14px;color:var(--gray-4);margin-bottom:24px;max-width:760px;">Champions are identified by depth of AI integration, innovation in workflow, evidence of previously impossible work, and knowledge sharing behavior — not frequency alone.</p>
+
+  <details class="calc" style="margin-bottom:20px;">
+    <summary>🧮 How this shortlist was produced — and why it is not a calculation</summary>
+    <div class="calc-body">
+      <p><span class="warn">NOT A CALCULATION</span>There is <strong>no score and no formula behind this list.</strong> It is an editorial selection, and it should be read as one.</p>
+      <p><span class="q">Q3 · Q4</span>The only measured filters applied: all seven self-rate as <strong>Pro</strong> (13 of 37 people) and all spend <strong>3+ hours/week experimenting</strong> (Q4). Those two filters alone leave roughly 13 candidates — they narrow the field, they don't pick the seven.</p>
+      <p><span class="q">Q25 · Q33–35 · Q37</span>The final selection is a qualitative read of four things: depth of AI integration, innovation in workflow, evidence of previously-impossible output, and sharing behaviour. Region and hours/week on each card come from Q38 and Q4.</p>
+      <p><span class="warn">KNOWN GAP</span><strong>India is under-represented</strong> — one champion from a region that is 46% of the team (17 of 37 people). This is far more likely to reflect visibility than capability, and it should be corrected before the list is treated as final.</p>
+      <p><span class="warn">SELECTION BIAS</span>Six of 13 Pro-level designers are not on this list. The shortlist is a first pass, not a ranking.</p>
+    </div>
+  </details>
 
   <div class="champion-grid">
     <div class="champion-card">
@@ -626,6 +1410,19 @@ footer strong { color: white; }
           <div class="concern-row"><span class="concern-pct">38%</span><span class="concern-label">AI might replace parts of my role</span><div class="concern-bar"><div class="concern-fill" style="width:38%"></div></div></div>
           <div class="concern-row"><span class="concern-pct">30%</span><span class="concern-label">Pressure to use AI even when wrong</span><div class="concern-bar"><div class="concern-fill" style="width:30%"></div></div></div>
           <div class="concern-row"><span class="concern-pct">14%</span><span class="concern-label">No significant concerns</span><div class="concern-bar"><div class="concern-fill" style="width:14%;background:var(--green)"></div></div></div>
+          <details class="calc">
+            <summary>🧮 Counts behind these rows</summary>
+            <div class="calc-body">
+              <p><span class="q">Q36</span><em>"Which concerns, if any, do you have about using AI in your work?"</em> — select all that apply, so these sum to 255%, not 100%.</p>
+              <div class="formula">Becoming too dependent on AI       26 ÷ 37 = 70.3%  →  70%
+Unsure if output meets standards   23 ÷ 37 = 62.2%  →  62%
+Data privacy / confidentiality     15 ÷ 37 = 40.5%  →  41%
+AI might replace part of my role   14 ÷ 37 = 37.8%  →  38%
+Pressure to use AI when wrong tool 11 ÷ 37 = 29.7%  →  30%
+No significant concerns             5 ÷ 37 = 13.5%  →  14%</div>
+              <p><em>Because respondents could pick several, "14% have no concerns" is the meaningful floor: 32 of 37 people flagged at least one.</em></p>
+            </div>
+          </details>
         </div>
         <div>
           <blockquote>
@@ -658,12 +1455,40 @@ footer strong { color: white; }
       <div class="card-header">🚧 What's Holding the Team Back</div>
       <div class="card-body">
         <div class="chart-wrap"><canvas id="barriersChart"></canvas></div>
+        <details class="calc">
+          <summary>🧮 Counts behind these bars</summary>
+          <div class="calc-body">
+            <p><span class="q">Q30</span><em>"What's the biggest barrier to using AI more?"</em> — <strong>select up to 3</strong>, 37 respondents.</p>
+            <div class="formula">Output quality isn't good enough  22 ÷ 37 = 59.5%  →  59%
+Tokens / usage limits             20 ÷ 37 = 54.1%  →  54%
+Not enough time to learn          14 ÷ 37 = 37.8%  →  38%
+Company policy restrictions        9 ÷ 37 = 24.3%  →  24%
+No access to AI tools              5 ÷ 37 = 13.5%  →  14%
+Lack of confidence                 3 ÷ 37 =  8.1%  →   8%
+Don't know where to start          2 ÷ 37 =  5.4%  →   5%</div>
+            <p><span class="warn">OMITTED</span>An <strong>"Other" option at 16% (6 people)</strong> is not plotted.</p>
+            <p><em>Read the bottom of the list as carefully as the top: 5% don't know where to start and 8% lack confidence. This is not a team that needs an introduction to AI.</em></p>
+          </div>
+        </details>
       </div>
     </div>
     <div class="card">
       <div class="card-header">🙋 What Support the Team Wants</div>
       <div class="card-body">
         <div class="chart-wrap"><canvas id="supportChart"></canvas></div>
+        <details class="calc">
+          <summary>🧮 Counts behind these bars</summary>
+          <div class="calc-body">
+            <p><span class="q">Q32</span><em>"What type of support would most help you use AI more?"</em> — <strong>select up to 3</strong>, 37 respondents.</p>
+            <div class="formula">Hands-on workshops / training   26 ÷ 37 = 70.3%  →  70%
+More time to experiment         26 ÷ 37 = 70.3%  →  70%
+Curated prompt library for UX   19 ÷ 37 = 51.4%  →  51%
+Dedicated AI tool budget        11 ÷ 37 = 29.7%  →  30%
+Clear guidelines on tools        7 ÷ 37 = 18.9%  →  19%</div>
+            <p><em>Workshops and time are tied because they are the same count — 26 people each.</em></p>
+            <p><span class="warn">TENSION</span>Only 19% ask for clearer guidelines, yet just 49% find the data policy clear (Q31) and 24% cite policy restrictions as a barrier (Q30). Low demand for policy is not evidence that ambiguity is harmless.</p>
+          </div>
+        </details>
       </div>
     </div>
   </div>
@@ -679,6 +1504,18 @@ footer strong { color: white; }
             <div class="stat-bar"><span class="stat-bar-label">Not clear at all</span><div class="stat-bar-track"><div class="stat-bar-fill" style="width:5%;background:var(--red)"></div></div><span class="stat-bar-pct">5%</span></div>
           </div>
         </div>
+        <details class="calc">
+          <summary>🧮 Counts behind these bars</summary>
+          <div class="calc-body">
+            <p><span class="q">Q31</span><em>"Is the company policy on using data with AI tools clear to you?"</em> — single choice, 37 respondents.</p>
+            <div class="formula">Yes — policy is clear   18 ÷ 37 = 48.6%  →  49%
+Partially clear         17 ÷ 37 = 45.9%  →  46%
+Not clear at all         2 ÷ 37 =  5.4%  →   5%
+                        ──
+                        37  ✓</div>
+            <p><em>The actionable figure is the 51% who are not fully clear — 46% partially plus 5% not at all.</em></p>
+          </div>
+        </details>
         <div class="alert">
           Only <strong>49%</strong> find the company AI data policy clear. Ambiguity causes over-restriction in some, inconsistency across the team. <strong>Fix: publish a one-page AI Tool Policy within 30 days.</strong>
         </div>
@@ -762,6 +1599,25 @@ footer strong { color: white; }
           <tr><td><span class="pill priority-p3">P3</span></td><td><strong>Design System AI Documentation</strong></td><td>AI accuracy, DS compliance</td><td>DesignOps + DS Team</td><td>120 days</td></tr>
         </tbody>
       </table>
+      <details class="calc" style="margin:16px;">
+        <summary>🧮 How these were prioritised</summary>
+        <div class="calc-body">
+          <p><span class="warn">NOT A CALCULATION</span>Priorities, owners and timelines are <strong>decisions, not derivations.</strong> No survey question produced them. What the survey supplies is the <em>problem</em> each one addresses, and those are measured:</p>
+          <table>
+            <thead><tr><th>Action</th><th>Evidence it responds to</th></tr></thead>
+            <tbody>
+              <tr><td>Starter Prompt Library</td><td>Q30 — 59% cite output quality · Q25 — prompts least-shared artefact at 49% vs 84% for workflows</td></tr>
+              <tr><td>AI Tool Policy</td><td>Q31 — only 49% find policy clear · Q30 — 24% blocked by policy restrictions</td></tr>
+              <tr><td>Enterprise Claude access</td><td>Q30 — 54% hit token limits · Q5 — 65% self-funding · Q1 — 97% depend on Claude</td></tr>
+              <tr><td>Prototyping Workshop</td><td>Q28 — 59% PM expectation vs Q7 — 62% capability</td></tr>
+              <tr><td>Dev Handoff Spec Workshop</td><td>Q29 — 59% pushback among those who have handed off</td></tr>
+              <tr><td>Champion Interview Programme</td><td>Q25 — 0% share nothing, but no shared mechanism exists</td></tr>
+              <tr><td>UX Involvement Policy</td><td>Q29 — 40% pushback · free-text reports of rework from build-before-UX</td></tr>
+            </tbody>
+          </table>
+          <p><em>Ordering logic: P0 items are the ones that unblock others (interviews feed the library; the library feeds the playbooks). P1 items require budget or scheduling. This is a judgement about sequencing, and reasonable people could order it differently.</em></p>
+        </div>
+      </details>
     </div>
   </div>
 </section>
@@ -792,6 +1648,28 @@ footer strong { color: white; }
           <tr><td>Dev handoff pushback rate (moderate+)</td><td>40%</td><td><strong>&lt;25%</strong></td><td>Quarterly survey</td></tr>
         </tbody>
       </table>
+      <details class="calc" style="margin:16px;">
+        <summary>🧮 Where every baseline comes from</summary>
+        <div class="calc-body">
+          <table>
+            <thead><tr><th>Metric</th><th>Baseline</th><th>Source &amp; calculation</th></tr></thead>
+            <tbody>
+              <tr><td>Team at Pro skill level</td><td>35%</td><td>Q3 — 13 ÷ 37</td></tr>
+              <tr><td>Hours saved/week (avg)</td><td>~7–8 hrs</td><td>Q11 — blended across all bands = 7.10 hrs (see section 02)</td></tr>
+              <tr><td>Output quality barrier rate</td><td>59%</td><td>Q30 — 22 ÷ 37</td></tr>
+              <tr><td>Token limit barrier rate</td><td>54%</td><td>Q30 — 20 ÷ 37</td></tr>
+              <tr><td>Policy clarity ("Yes")</td><td>49%</td><td>Q31 — 18 ÷ 37</td></tr>
+              <tr><td>% using AI for documentation/handoff</td><td>38%</td><td>Q7 — 14 ÷ 37</td></tr>
+              <tr><td>Shared prompts/agents in library</td><td>0</td><td>No library exists — direct count, not a survey figure</td></tr>
+              <tr><td>Champion interviews completed</td><td>0</td><td>Programme not started — tracking doc</td></tr>
+              <tr><td>AI Workflow Playbooks published</td><td>0</td><td>None published — direct count</td></tr>
+              <tr><td>Dev handoff pushback (moderate+)</td><td>40%</td><td>Q29 — (12 + 3) ÷ 37 = 40.5%</td></tr>
+            </tbody>
+          </table>
+          <p><span class="warn">TARGETS ARE NOT CALCULATED</span>Every figure in the <strong>Target</strong> column is a decision, not a derivation. They were chosen as ambitious-but-reachable against the baseline; no formula produces them.</p>
+          <p><span class="warn">RE-RUN RULES</span>For the six-month comparison to be valid, Q13–21 must be re-asked <strong>word for word</strong>, with the same story-point bands and the same midpoint weighting (1.5 / 4 / 6.5 / 10.5 / 17). Changing the wording breaks comparability irrecoverably. If N is no longer 37, note it — all percentages here are out of 37, where one respondent = 2.7 points.</p>
+        </div>
+      </details>
     </div>
   </div>
 
@@ -835,11 +1713,14 @@ footer strong { color: white; }
   </blockquote>
 </section>
 
+</div><!-- /tab-report -->
+
 </div><!-- /page -->
 
 <footer>
   <strong>NICE UX Team — AI Usage Assessment · August 2026</strong><br>
-  37 respondents · India (46%) · Israel (30%) · US (24%) · Design Operations
+  37 respondents · India (46%) · Israel (30%) · US (24%) · Design Operations<br>
+  <span style="display:inline-block;margin-top:8px;">Every figure on this page shows its own calculation — use <strong>🧮 Show all calculations</strong> at the top.</span>
 </footer>
 
 <!-- ════════════════════════════ CHARTS ════════════════════════════ -->
@@ -858,6 +1739,9 @@ const GREEN = '#27AE60';
 const AMBER = '#E67E22';
 const RED   = '#C0392B';
 const GRAY  = '#D0D3DA';
+
+/* ═══════════════ REPORT TAB CHARTS (lazy — see tab logic below) ═════════════ */
+function initReportCharts() {
 
 // Tool Usage
 new Chart(document.getElementById('toolChart'), {
@@ -902,7 +1786,7 @@ new Chart(document.getElementById('timeSavedChart'), {
     labels: ['10–20 hrs saved', '6–10 hrs saved', '1–5 hrs saved', 'No change', 'Adds 1–5 hrs', 'Adds 5+ hrs'],
     datasets: [{
       label: '% of respondents',
-      data: [24, 41, 22, 3, 3, 5],
+      data: [24, 41, 22, 6, 3, 5],
       backgroundColor: [GREEN, TEAL, TEAL2, GRAY, AMBER, RED],
       borderRadius: 6
     }]
@@ -1046,19 +1930,158 @@ new Chart(document.getElementById('supportChart'), {
   }
 });
 
-// Active nav on scroll
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('nav a');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      navLinks.forEach(l => l.classList.remove('active'));
-      const link = document.querySelector(`nav a[href="#${e.target.id}"]`);
-      if (link) link.classList.add('active');
+} // end initReportCharts
+
+
+/* ═══════════════════ VELOCITY TAB CHARTS (lazy) ═════════════════════ */
+function initVelocityCharts() {
+
+// Effort per task, before vs with AI
+new Chart(document.getElementById('velScenarioChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Interaction\ndesign', 'Design-system\nspec handoff', 'Research\nsynthesis', 'Usability\ntesting'],
+    datasets: [
+      { label: 'Before AI', data: [5.81, 8.05, 6.05, 6.66], backgroundColor: GRAY, borderRadius: 6 },
+      { label: 'With AI',   data: [2.86, 4.23, 3.34, 3.73], backgroundColor: TEAL, borderRadius: 6 }
+    ]
+  },
+  options: {
+    plugins: {
+      tooltip: { callbacks: { label: c => `${c.dataset.label}: ${c.parsed.y} SP` } }
+    },
+    scales: {
+      y: { title: { display: true, text: 'Story points (weighted avg.)' }, grid: { color: '#F0F2F5' } },
+      x: { grid: { display: false } }
     }
+  }
+});
+
+// What the PM expects — new categories highlighted
+new Chart(document.getElementById('velNewWorkChart'), {
+  type: 'bar',
+  data: {
+    labels: ['HTML prototype (clickable)', 'Design spec document', 'Figma file (static)', 'Figma prototype', 'Production-ready code', 'Claude prompts'],
+    datasets: [{
+      label: '% whose PM expects this',
+      data: [59, 59, 46, 38, 11, 8],
+      backgroundColor: [GOLD, NAVY, GRAY, GRAY, GOLD, GOLD],
+      borderRadius: 6
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { afterLabel: c => [0, 4, 5].includes(c.dataIndex) ? 'New category — no pre-AI baseline' : '' } }
+    },
+    scales: {
+      x: { max: 70, ticks: { callback: v => v + '%' }, grid: { color: '#F0F2F5' } },
+      y: { grid: { display: false }, ticks: { font: { size: 11.5 } } }
+    }
+  }
+});
+
+// Design vs Development multiplier
+new Chart(document.getElementById('velVsDevChart'), {
+  type: 'bar',
+  data: {
+    labels: ['UX Design\n(measured)', "Development\n(UX team's perception)"],
+    datasets: [{
+      label: 'Velocity multiplier vs. pre-AI',
+      data: [1.88, 1.96],
+      backgroundColor: [TEAL, NAVY],
+      borderRadius: 6,
+      barPercentage: 0.55
+    }]
+  },
+  options: {
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: c => c.parsed.y + '× faster than before AI' } }
+    },
+    scales: {
+      y: { min: 1, max: 2.2, ticks: { callback: v => v + '×' }, grid: { color: '#F0F2F5' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// Total effort index
+new Chart(document.getElementById('velEffortChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Before AI', 'After 1.88×\ncompression', 'After +34%\nmore tasks'],
+    datasets: [{
+      label: 'Total effort (indexed)',
+      data: [100, 53, 71],
+      backgroundColor: [GRAY, GREEN, AMBER],
+      borderRadius: 6
+    }]
+  },
+  options: {
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { afterLabel: c => c.dataIndex === 2 ? 'Plus new work categories — not in the baseline' : '' } }
+    },
+    scales: {
+      y: { max: 110, title: { display: true, text: 'Effort index (pre-AI = 100)' }, grid: { color: '#F0F2F5' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+} // end initVelocityCharts
+
+
+/* ═════════════════════════ TAB SWITCHING ════════════════════════════ */
+const TAB_INIT = { velocity: initVelocityCharts, report: initReportCharts };
+const tabsReady = {};
+
+function showTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'tab-' + name));
+  document.querySelectorAll('nav button.tab-link').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+
+  // Charts can only size themselves once their panel is visible — init on first view.
+  if (!tabsReady[name] && TAB_INIT[name]) {
+    tabsReady[name] = true;
+    requestAnimationFrame(() => TAB_INIT[name]());
+  }
+  if (location.hash !== '#' + name) history.replaceState(null, '', '#' + name);
+}
+
+document.querySelectorAll('nav button.tab-link').forEach(btn => {
+  btn.addEventListener('click', () => { showTab(btn.dataset.tab); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+});
+
+/* ══════════════ SHOW / HIDE ALL CALCULATIONS ════════════════════════ */
+const calcBtn = document.getElementById('calc-toggle');
+let calcOpen = false;
+calcBtn.addEventListener('click', () => {
+  calcOpen = !calcOpen;
+  document.querySelectorAll('details.calc').forEach(d => { d.open = calcOpen; });
+  calcBtn.textContent = calcOpen ? '🧮 Hide all calculations' : '🧮 Show all calculations';
+});
+
+// Sub-nav inside the Report tab: smooth-scroll without clobbering the tab hash
+document.querySelectorAll('.subnav a').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const el = document.querySelector(a.getAttribute('href'));
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
-}, { rootMargin: '-20% 0px -60% 0px' });
-sections.forEach(s => observer.observe(s));
+});
+
+// Deep-link support: #velocity / #issues / #report, or a report section id (e.g. #champions)
+const HASH = location.hash.replace('#', '');
+if (['velocity', 'issues', 'report'].includes(HASH)) {
+  showTab(HASH);
+} else if (HASH && document.querySelector('#tab-report #' + CSS.escape(HASH))) {
+  showTab('report');
+  requestAnimationFrame(() => document.getElementById(HASH).scrollIntoView());
+} else {
+  showTab('velocity');
+}
 </script>
 
 </body>
