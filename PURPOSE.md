@@ -75,10 +75,22 @@ To keep the project clear, it is worth stating what this is **not**:
 | File | Role |
 |---|---|
 | **`index.html`** | **The main file.** The single page we build and present. Everything the audience sees lives here, organised in tabs. |
-| **`AI Usage Assessment — NICE UX Team(1-37).xlsx`** | **The raw data.** The untouched survey export (37 responses) from Microsoft Forms. Every figure in the report traces back to this file. It is never edited — corrections and derived values live in `index.html`, not here. |
+| **`AI Usage Assessment — NICE UX Team(1-37).xlsx`** | **The raw data.** The untouched survey export (37 responses) from Microsoft Forms. Every figure in the report traces back to this file. It is never edited — corrections and derived values live in `index.html`, not here. ⚠️ **Held outside git** — see [Handling the raw data](#handling-the-raw-data). |
 | `PURPOSE.md` | This file. Why the project exists. |
 
 **`index.html` is the main file.** When something needs to be shown, it goes in `index.html`. Do not create parallel or duplicate HTML pages — earlier copies caused the same content to drift out of sync in three places.
+
+### Handling the raw data
+
+The survey export is the source of truth for every number we publish, but it is **deliberately not committed**. A `.gitignore` rule (`*.xlsx`) keeps it out.
+
+**Why:** this repository is public, and the export carries an `Email` column, a `Name` column and a `Your full name` column next to the free-text answers. Respondents were told those answers were anonymous. A commit cannot be taken back — once pushed, the file remains in history and can be cloned or indexed even after it is deleted.
+
+**Where it lives:** in the project folder on OneDrive, next to the repository, shared with the team the same way the rest of the team's material is.
+
+**If it ever needs to be versioned:** make the repository private *first*, then remove the `*.xlsx` rule. Alternatively commit a copy with the `Email`, `Name` and `Your full name` columns stripped, and keep the full export out.
+
+This rule exists to enforce the anonymity principle below — it is not housekeeping.
 
 ### Show the working
 
@@ -111,7 +123,7 @@ We create that folder when there is a first real finding to put in it, and not b
 | | |
 |---|---|
 | **Source** | *AI Usage Assessment — NICE UX Team* survey (Microsoft Forms) |
-| **Raw data** | `AI Usage Assessment — NICE UX Team(1-37).xlsx` — the survey export, kept as-is in the repository root |
+| **Raw data** | `AI Usage Assessment — NICE UX Team(1-37).xlsx` — the survey export (37 responses). Kept in the OneDrive project folder, **not in git** (see [Handling the raw data](#handling-the-raw-data)) |
 | **Team** | NICE UX — India, Israel, United States |
 | **Owner** | Design Operations |
 | **Repository** | `lihishremmm/Efficency-AI-Adoption` |
@@ -123,4 +135,4 @@ We create that folder when there is a first real finding to put in it, and not b
 | Date | Change |
 |---|---|
 | 2026-08-23 | Initial purpose defined |
-| 2026-08-23 | Raw data file recorded: `AI Usage Assessment — NICE UX Team(1-37).xlsx` |
+| 2026-08-23 | Raw data file recorded: `AI Usage Assessment — NICE UX Team(1-37).xlsx`, held outside git (public repo, export contains names and emails) |
