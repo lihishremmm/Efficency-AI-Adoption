@@ -92,11 +92,29 @@ The survey export is the source of truth for every number we publish, but it is 
 
 This rule exists to enforce the anonymity principle below — it is not housekeeping.
 
-### Show the working
+### Show the working — in two layers
 
-**Every figure displayed must show how it was calculated.** Each chart, table and headline number carries a `🧮` disclosure with the raw response counts, the arithmetic, and an explicit flag when a number is an estimate, a judgement, or not a calculation at all. A **Show all calculations** control at the top of the page expands them all at once.
+The audience is **not data-literate, and should not need to be.** Every figure is therefore presented twice, in this fixed order:
 
-This is a hard rule, not a nicety. The report makes claims about the team's efficiency to an audience that will act on them, and a figure nobody can check is a figure nobody should trust. It also means the underlying per-question data lives inside `index.html` itself, so the page stands alone without a separate raw-results file.
+| Layer | What it is | Visibility |
+|---|---|---|
+| **1. The number** | The figure itself, with a plain one-line meaning. | Always visible |
+| **2. The logic** | *How we got there*, in short steps, **in words — no arithmetic.** What we counted, what we couldn't know, what we assumed. | Always visible |
+
+**Every figure also carries a confidence badge**, and the page explains the three of them once, at the top:
+
+- **Measured** — counted from the 37 answers. Nothing assumed.
+- **Estimated** — the survey gave direction but not size, so we chose a number. Directional only.
+- **Our reading** — not a survey answer at all; our interpretation.
+
+**The arithmetic layer was removed on 2026-08-24** by explicit decision: the collapsed `🧮` blocks (raw response counts and exact sums, one per figure) made the page heavier than the audience needed. Checkability is preserved differently: every figure traces back to the raw survey export (available on request), most arithmetic blocks live in this repository's **git history** (last committed version), and any figure can be recomputed from the export directly. Blocks can be restored per-figure if a claim is ever challenged — the `details.calc` CSS is intentionally kept in `index.html` for that case.
+
+### Say it plainly
+
+Two further rules follow from the audience:
+
+- **No unexplained jargon.** Where a term is unavoidable (*story points*), it is defined in one sentence at the point of use, and the chart is re-described in plain words underneath.
+- **Never show the same figure twice in two formats.** One visual per idea. A second chart of the same numbers is not extra rigour, it is extra reading.
 
 ### Tabs in `index.html`
 
@@ -104,7 +122,9 @@ This is a hard rule, not a nicety. The report makes claims about the team's effi
 |---|---|
 | **Velocity vs. Actual Efficiency** | The core argument: velocity went up, but so did the scope of the job and the pace of the developers — so the real efficiency gain is smaller than the raw speed-up. |
 | **Critical Issues** | *Coming soon.* |
+| **AI Champions** | The seven intensive users, one dossier each, on **three layers**: ① what the survey shows (Measured) · ② interview notes (empty until the interviews happen, shown as empty on purpose) · ③ the decision on how to adapt their suggestion for the whole team. Plus the interview tracker (0/7), a decisions ledger of every suggestion, and the fixed interview guide. |
 | **Report** | The full assessment — adoption, efficiency, use cases, workflow, champions, barriers, programme, actions, metrics. |
+| **Conclusions** | What keeping pace would take: the required speed (~2.7–2.8×, +45–50%) vs. the structural ~2× ceiling (judgement doesn't compress) — so the levers are elsewhere: cut/automate the non-hands-on 40%, and headcount. |
 
 ---
 
@@ -136,3 +156,13 @@ We create that folder when there is a first real finding to put in it, and not b
 |---|---|
 | 2026-08-23 | Initial purpose defined |
 | 2026-08-23 | Raw data file recorded: `AI Usage Assessment — NICE UX Team(1-37).xlsx`, held outside git (public repo, export contains names and emails) |
+| 2026-08-24 | Audience fixed as **non data-literate**. Velocity tab rebuilt on the three-layer rule (number → logic in words → arithmetic), confidence badges added to every figure, and the duplicate effort chart replaced by a single plain-language ladder |
+| 2026-08-24 | Method stated on the face of the speed figure: the 1.88× is an **effort estimation by the designers themselves** (each of the 37 sized four fixed tasks before-AI and today), not a stopwatch — with the resulting optimism bias named at the point of use |
+| 2026-08-24 | "Start here" reframed around the week, not the task: 2× on tasks → diluted by the **60/40 hands-on vs. meetings split** (≈34% of the week in meetings & calls measured, 40% our rounding) → ~1.4× week-level → freed time consumed by **new deliverables** (59% HTML prototypes, 11% production code). The +34%/−29% pair stays in its own section; a NOT-THE-SAME-NUMBER warning separates the two dilutions |
+| 2026-08-24 | Final occupancy figure added (⏱ card, Velocity tab): the reconstructed week costs **≈83 of the pre-AI 100 → ~6.9 hrs/week freed**, which converges to 0.2 hrs with the independently measured **7.1 hrs/week** (Q11) — the report's strongest cross-validation. Occupancy read as *effectively full again* once new deliverables are counted (Our reading) |
+| 2026-08-24 | Dev speed reframed as a **demand engine**, not just a pace to match: developers ~2× faster (84% perceive it, Q27) consume design content at roughly double the old rate, so the volume design must supply rose with them — added as the second consumer of the freed ~7 hrs (leak 3, ⏱ card, Start-here sentence), flagged *Our reading* |
+| 2026-08-24 | "Start here" compressed into a **five-line schematic chain** (2× → 60/40 → ≈7 hrs confirmed twice → consumed by 59%·11%·dev-2× → occupancy full): only the fundamental figures, one line each, badges inline. Keybar cards and the long summary paragraph removed — same figures were shown twice |
+| 2026-08-24 | **All 30 collapsed 🧮 arithmetic blocks removed** from `index.html` on request. The show-the-working rule drops from three layers to two (number + logic in words); checkability now rests on the raw export and git history. See the updated [two-layer rule](#show-the-working--in-two-layers) |
+| 2026-08-24 | Velocity tab slimmed to three sections: the section **"The speed-up is real"** (per-scenario chart + table, took-over/still-takes cards) removed with its chart JS; remaining sections renumbered (01 where the time went · 02 the whole story). The per-scenario detail (1.79–2.03×) survives as one line in the opening chain |
+| 2026-08-24 | **AI Champions tab added**, built on a three-layer rule per champion: ① survey (Measured) → ② interview notes (*Not yet collected* — kept visibly empty, with the questions each interview must answer) → ③ how we adapt the suggestion, with one of four verdicts (**Adopt · Adapt · Pilot · Park**), an owner and a `Proposed` status until the interview confirms it. Adds an interview tracker (**0/7**, the project's P0 gate), a **decisions ledger** of all 11 champion suggestions with the reason each one is reshaped rather than taken as-is, and a fixed 12-question interview guide split *method / inside UX / Product & Dev*. The seven compact cards were **moved out of Report §05** (now a pointer, id `champions-ref`) so champion content has one home and cannot drift; the unused `.champion-*` CSS was removed |
+| 2026-08-24 | **Conclusions tab added**: to keep pace we would need ~2.7–2.8× (+45–50% over 1.88×), but speed has a structural ceiling of ~2× because judgement (~half of every task) doesn't compress — so the levers are cutting/automating the non-hands-on 40% and headcount, not working faster |
