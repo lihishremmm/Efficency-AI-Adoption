@@ -404,6 +404,126 @@ nav .tab-soon { font-size: 9px; font-weight: 800; background: rgba(255,255,255,0
 .soon-wrap h2 { font-size: 24px; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
 .soon-wrap p { font-size: 14px; color: var(--gray-3); max-width: 560px; margin: 0 auto 8px; line-height: 1.6; }
 .soon-pill { display: inline-block; margin-top: 20px; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; background: var(--gold-lt); color: var(--gold); border: 1px solid #F0D9A0; padding: 7px 16px; border-radius: 999px; }
+
+/* ─── BEST PRACTICES TAB STYLES ──────────────────────────────────── */
+/* WORKFLOW CARD */
+.workflow-card {
+  background: white; border-radius: 14px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+  border-top: 4px solid var(--teal);
+  padding: 24px; display: flex; flex-direction: column; gap: 16px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.workflow-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+.workflow-card.gold { border-top-color: var(--gold); }
+.workflow-card.green { border-top-color: var(--green); }
+.workflow-card.amber { border-top-color: var(--amber); }
+.wf-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.wf-title { font-size: 16px; font-weight: 800; color: var(--navy); line-height: 1.3; }
+.wf-owner { font-size: 11px; font-weight: 700; color: var(--teal); background: var(--teal-lt); padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+.wf-card.gold .wf-owner { color: var(--gold); background: var(--gold-lt); }
+.wf-saving { display: flex; gap: 12px; flex-wrap: wrap; }
+.saving-chip { background: var(--gray-0); border-radius: 8px; padding: 8px 14px; text-align: center; }
+.saving-val { font-size: 20px; font-weight: 900; color: var(--navy); }
+.saving-lbl { font-size: 10px; color: var(--gray-3); text-transform: uppercase; letter-spacing: 0.5px; }
+.wf-steps { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.wf-steps li { font-size: 13px; color: var(--gray-4); display: flex; gap: 8px; align-items: flex-start; line-height: 1.4; }
+.wf-steps li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--teal); flex-shrink: 0; margin-top: 6px; }
+.workflow-card.gold .wf-steps li::before { background: var(--gold); }
+.workflow-card.green .wf-steps li::before { background: var(--green); }
+.workflow-card.amber .wf-steps li::before { background: var(--amber); }
+.wf-label { font-size: 11px; font-weight: 700; color: var(--gray-3); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.wf-tools { display: flex; gap: 6px; flex-wrap: wrap; }
+.tool-tag { font-size: 11px; font-weight: 700; background: var(--gray-0); border: 1px solid var(--gray-1); border-radius: 6px; padding: 3px 10px; color: var(--gray-4); }
+
+/* INTERVIEW PLACEHOLDER */
+.placeholder {
+  border: 2px dashed var(--gray-2);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  color: var(--gray-3);
+  font-size: 13px;
+}
+.placeholder strong { display: block; font-size: 14px; color: var(--gray-4); margin-bottom: 6px; }
+.placeholder .badge { display: inline-block; background: var(--gold-lt); color: var(--gold); font-size: 10px; font-weight: 700; padding: 2px 10px; border-radius: 999px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* PROMPT CARD */
+.prompt-card { background: white; border-radius: 12px; box-shadow: 0 1px 6px rgba(0,0,0,0.07); padding: 0; overflow: hidden; }
+.prompt-header { padding: 14px 18px; background: var(--navy); display: flex; align-items: center; justify-content: space-between; }
+.prompt-title { font-size: 13px; font-weight: 700; color: white; }
+.prompt-tag { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 999px; }
+.prompt-body { padding: 16px 18px; }
+.prompt-text {
+  background: var(--gray-0);
+  border: 1px solid var(--gray-1);
+  border-radius: 8px;
+  padding: 14px;
+  font-size: 12.5px;
+  color: var(--gray-4);
+  line-height: 1.7;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  white-space: pre-wrap;
+}
+.prompt-meta { margin-top: 10px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.prompt-author { font-size: 11px; color: var(--gray-3); }
+.prompt-use { font-size: 11px; font-weight: 700; color: var(--teal); }
+.copy-btn {
+  margin-left: auto;
+  font-size: 11px; font-weight: 700;
+  background: var(--teal-lt); color: var(--teal);
+  border: none; border-radius: 6px;
+  padding: 5px 12px; cursor: pointer;
+  transition: background 0.15s;
+}
+.copy-btn:hover { background: #b0dfe3; }
+
+/* DO DONT */
+.do-dont-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 600px) { .do-dont-grid { grid-template-columns: 1fr; } }
+.do-card { background: white; border-radius: 12px; box-shadow: 0 1px 6px rgba(0,0,0,0.07); overflow: hidden; }
+.do-header { padding: 12px 18px; font-size: 13px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+.do-header.do { background: #D4EDDA; color: #155724; }
+.do-header.dont { background: #F8D7DA; color: #721C24; }
+.do-list { padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; }
+.do-item { font-size: 13px; color: var(--gray-4); display: flex; gap: 10px; line-height: 1.45; }
+.do-item .icon { flex-shrink: 0; font-size: 15px; }
+
+/* TOOL STACK */
+.tool-row { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--gray-1); }
+.tool-row:last-child { border-bottom: none; }
+.tool-name { font-weight: 700; font-size: 14px; color: var(--navy); width: 160px; flex-shrink: 0; }
+.tool-bar-track { flex: 1; background: var(--gray-1); border-radius: 999px; height: 10px; }
+.tool-bar-fill { height: 100%; border-radius: 999px; }
+.tool-pct { font-size: 13px; font-weight: 700; color: var(--navy); width: 36px; text-align: right; flex-shrink: 0; }
+.tool-desc { font-size: 12px; color: var(--gray-3); width: 220px; flex-shrink: 0; }
+
+/* INSIGHT / ALERT */
+.insight {
+  background: var(--gold-lt); border: 1px solid #F0D9A0;
+  border-left: 4px solid var(--gold);
+  border-radius: 0 10px 10px 0;
+  padding: 14px 18px; font-size: 13px; line-height: 1.6; margin: 16px 0;
+}
+.insight strong { color: var(--gold); }
+.alert {
+  background: #FEF0F0; border-left: 4px solid var(--red);
+  border-radius: 0 10px 10px 0;
+  padding: 14px 18px; font-size: 13px; line-height: 1.6; margin: 12px 0;
+}
+blockquote {
+  border-left: 4px solid var(--teal); background: #F7FEFF;
+  padding: 14px 18px; border-radius: 0 10px 10px 0;
+  margin: 16px 0; font-style: italic; color: var(--gray-4); font-size: 13.5px; line-height: 1.6;
+}
+blockquote cite { display: block; margin-top: 6px; font-style: normal; font-size: 11px; font-weight: 700; color: var(--teal); }
+
+/* FOOTER */
+footer { background: var(--navy); color: rgba(255,255,255,0.6); text-align: center; padding: 24px; font-size: 12px; }
+footer strong { color: white; }
+footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
+footer a:hover { color: white; }
+
 </style>
 </head>
 <body>
@@ -416,7 +536,7 @@ nav .tab-soon { font-size: 9px; font-weight: 800; background: rgba(255,255,255,0
   <button class="tab-link" data-tab="champions">AI Champions</button>
   <button class="tab-link" data-tab="report">Report</button>
   <button class="tab-link" data-tab="conclusions">Conclusions</button>
-  <a href="best-practices.html" style="color:#6EE4EC;font-weight:800;text-decoration:none;font-size:12px;padding:18px 14px;flex-shrink:0;border-bottom:3px solid transparent;">✦ Best Practices</a>
+  <button class="tab-link" data-tab="best-practices" style="color:#6EE4EC;font-weight:800;">✦ Best Practices</button>
 </nav>
 
 <!-- ════════════════════════════ PAGE BODY ══════════════════════════ -->
@@ -2350,6 +2470,466 @@ Pushback rate among those who handed off:    40 ÷ 68      = 59%</div>
     </div>
   </section>
 </div><!-- /tab-conclusions -->
+
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- ══════════════ TAB 6 — BEST PRACTICES ═══════════════════════════ -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-best-practices">
+
+
+<!-- SECTION 1 — WORKFLOWS -->
+<section id="workflows">
+  <div class="section-header">
+    <span class="section-icon">⚡</span>
+    <span class="section-title">High-Impact Workflows</span>
+    <span class="section-sub">Proven by Champions · Ordered by time saved</span>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:20px;">
+
+    <!-- Workflow 1 -->
+    <div class="workflow-card">
+      <div class="wf-header">
+        <div class="wf-title">Research Synthesis</div>
+        <span class="wf-owner">Yaara Bar Feldman</span>
+      </div>
+      <div class="wf-saving">
+        <div class="saving-chip"><div class="saving-val">3–5×</div><div class="saving-lbl">Faster</div></div>
+        <div class="saving-chip"><div class="saving-val">M→XS</div><div class="saving-lbl">Story points</div></div>
+      </div>
+      <div>
+        <div class="wf-label">Steps</div>
+        <ul class="wf-steps">
+          <li>Export raw notes from Dovetail / Confluence / Jira into Claude</li>
+          <li>Ask Claude to identify themes, patterns, and contradictions across sources</li>
+          <li>Generate structured synthesis document with evidence quotes</li>
+          <li>Read raw transcripts yourself to validate — never skip this</li>
+          <li>Refine and finalize the report with Claude's draft as your base</li>
+        </ul>
+      </div>
+      <div>
+        <div class="wf-label">Tools</div>
+        <div class="wf-tools">
+          <span class="tool-tag">Claude</span>
+          <span class="tool-tag">Dovetail</span>
+          <span class="tool-tag">Confluence</span>
+          <span class="tool-tag">Jira</span>
+        </div>
+      </div>
+      <div class="placeholder">
+        <span class="badge">Coming from interview</span>
+        <strong>Prompt template + full walkthrough</strong>
+        Detailed prompt and video walkthrough added after Champion interview
+      </div>
+    </div>
+
+    <!-- Workflow 2 -->
+    <div class="workflow-card green">
+      <div class="wf-header">
+        <div class="wf-title">Interactive HTML Prototyping</div>
+        <span class="wf-owner" style="color:var(--green);background:#D4EDDA;">Jennie Ryan / Erick Mathews</span>
+      </div>
+      <div class="wf-saving">
+        <div class="saving-chip"><div class="saving-val">New</div><div class="saving-lbl">Capability</div></div>
+        <div class="saving-chip"><div class="saving-val">Days→Hrs</div><div class="saving-lbl">Time</div></div>
+      </div>
+      <div>
+        <div class="wf-label">Steps</div>
+        <ul class="wf-steps">
+          <li>Define the interaction and user flow in natural language</li>
+          <li>Describe UI requirements: components, states, behaviors</li>
+          <li>Generate a full working HTML prototype with Claude</li>
+          <li>Iterate on specific states or edge cases in follow-up prompts</li>
+          <li>Share directly with PM / Dev — no Figma needed for this stage</li>
+        </ul>
+      </div>
+      <div>
+        <div class="wf-label">Tools</div>
+        <div class="wf-tools">
+          <span class="tool-tag">Claude</span>
+          <span class="tool-tag">Browser</span>
+          <span class="tool-tag">VS Code (optional)</span>
+        </div>
+      </div>
+      <div class="placeholder">
+        <span class="badge">Coming from interview</span>
+        <strong>Prompt template + example output</strong>
+        Real prototype example and prompt added after Champion interview
+      </div>
+    </div>
+
+    <!-- Workflow 3 -->
+    <div class="workflow-card gold">
+      <div class="wf-header">
+        <div class="wf-title">Developer Handoff Spec</div>
+        <span class="wf-owner" style="color:var(--gold);background:var(--gold-lt);">Tali Silon-Shacham</span>
+      </div>
+      <div class="wf-saving">
+        <div class="saving-chip"><div class="saving-val">2–4×</div><div class="saving-lbl">Faster</div></div>
+        <div class="saving-chip"><div class="saving-val">L→S</div><div class="saving-lbl">Story points</div></div>
+      </div>
+      <div>
+        <div class="wf-label">Steps</div>
+        <ul class="wf-steps">
+          <li>Describe the component or feature to Claude in design terms</li>
+          <li>Ask Claude to generate a structured .md spec file for developers</li>
+          <li>Include: variants, states, interactions, edge cases, accessibility notes</li>
+          <li>Review and adjust for accuracy — especially edge cases</li>
+          <li>Share the .md file — developers can work independently from it</li>
+        </ul>
+      </div>
+      <div>
+        <div class="wf-label">Tools</div>
+        <div class="wf-tools">
+          <span class="tool-tag">Claude</span>
+          <span class="tool-tag">Markdown</span>
+          <span class="tool-tag">Figma (source)</span>
+        </div>
+      </div>
+      <div class="placeholder">
+        <span class="badge">Coming from interview</span>
+        <strong>Spec template + real example</strong>
+        .md spec template and real example added after Champion interview
+      </div>
+    </div>
+
+    <!-- Workflow 4 -->
+    <div class="workflow-card amber">
+      <div class="wf-header">
+        <div class="wf-title">Design Ideation & Component Specs</div>
+        <span class="wf-owner" style="color:var(--amber);background:#FFF3CD;">Gajanan Rajput</span>
+      </div>
+      <div class="wf-saving">
+        <div class="saving-chip"><div class="saving-val">2–3×</div><div class="saving-lbl">More options</div></div>
+        <div class="saving-chip"><div class="saving-val">XL→S</div><div class="saving-lbl">Story points</div></div>
+      </div>
+      <div>
+        <div class="wf-label">Steps</div>
+        <ul class="wf-steps">
+          <li>Feed Claude the design brief, user goal, and constraints</li>
+          <li>Generate 5–8 distinct design directions — not just variations</li>
+          <li>Use output as a divergence starting point, not a final answer</li>
+          <li>Ask Claude to generate component variants with states and usage rules</li>
+          <li>Use freed bandwidth for edge case analysis and quality review</li>
+        </ul>
+      </div>
+      <div>
+        <div class="wf-label">Tools</div>
+        <div class="wf-tools">
+          <span class="tool-tag">Claude</span>
+          <span class="tool-tag">Figma</span>
+          <span class="tool-tag">Figma AI</span>
+        </div>
+      </div>
+      <div class="placeholder">
+        <span class="badge">Coming from interview</span>
+        <strong>Ideation prompt + component spec template</strong>
+        Real prompt and example added after Champion interview
+      </div>
+    </div>
+
+  </div>
+
+  <div class="card">
+    <div class="card-header">🔬 Multi-Tool Pipeline (Sveta Fomchenko)</div>
+    <div class="card-body">
+      <div class="grid-2">
+        <div>
+          <p style="font-size:13px;color:var(--gray-4);margin-bottom:14px;">Using AI tools to validate each other — not as a single source of truth:</p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
+            <li style="font-size:13px;color:var(--gray-4);display:flex;gap:10px;"><span style="color:var(--teal);font-weight:700;">1.</span> Run research synthesis in Dovetail</li>
+            <li style="font-size:13px;color:var(--gray-4);display:flex;gap:10px;"><span style="color:var(--teal);font-weight:700;">2.</span> Pass Dovetail output to Claude for cross-validation and gap analysis</li>
+            <li style="font-size:13px;color:var(--gray-4);display:flex;gap:10px;"><span style="color:var(--teal);font-weight:700;">3.</span> Use Claude Jira plugin to translate UX findings into developer language</li>
+            <li style="font-size:13px;color:var(--gray-4);display:flex;gap:10px;"><span style="color:var(--teal);font-weight:700;">4.</span> Human reviews discrepancies — AI flags them, you decide</li>
+          </ul>
+        </div>
+        <div>
+          <div class="placeholder">
+            <span class="badge">Coming from interview</span>
+            <strong>Full pipeline documentation</strong>
+            Detailed tool integration steps added after Champion interview
+          </div>
+          <blockquote style="margin-top:12px;">
+            "Each tool validates the other. I never trust just one AI output."
+            <cite>— Sveta Fomchenko</cite>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2 — PROMPT LIBRARY -->
+<section id="prompts">
+  <div class="section-header">
+    <span class="section-icon">📋</span>
+    <span class="section-title">Prompt Library</span>
+    <span class="section-sub">Copy, adapt, and use — add your own after the interview program</span>
+  </div>
+
+  <div class="insight">
+    <strong>How to use this library:</strong> These are starting points, not scripts. Always add your specific context — product area, user type, constraints. The best prompts are the ones you adapt to your situation.
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:16px;">
+
+    <!-- Prompt 1 -->
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span class="prompt-title">Research Synthesis — Multi-Source Themes</span>
+        <span class="prompt-tag">Research</span>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-text">I have [X] sources of user research: [list: interview notes, Jira tickets, Confluence pages, survey data, support tickets].
+
+Analyze all of them and:
+1. Identify the top 5 recurring themes across all sources
+2. For each theme, provide 2–3 direct evidence quotes
+3. Flag any contradictions or gaps between sources
+4. Suggest 3 open questions that still need answers
+
+Output as a structured document with clear section headers.</div>
+        <div class="prompt-meta">
+          <span class="prompt-author">📍 Based on Yaara Bar Feldman's workflow</span>
+          <span class="prompt-use">Best for: research synthesis, cross-source analysis</span>
+          <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-card').querySelector('.prompt-text').textContent);this.textContent='✓ Copied';setTimeout(()=>this.textContent='Copy',2000)">Copy</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prompt 2 -->
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span class="prompt-title">Developer Handoff — Component Spec</span>
+        <span class="prompt-tag">Handoff</span>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-text">Generate a structured developer handoff spec for the following UI component:
+
+Component: [name]
+Purpose: [what it does, user goal]
+Variants: [list variants]
+States: [default, hover, active, disabled, loading, error, empty]
+Interactions: [describe behaviors]
+Content rules: [character limits, placeholder text, validation rules]
+Accessibility: [ARIA labels, keyboard behavior, focus order]
+Edge cases: [what can go wrong, how to handle it]
+
+Output as a clean Markdown document (.md) that a developer can work from without needing to ask follow-up questions.</div>
+        <div class="prompt-meta">
+          <span class="prompt-author">📍 Based on Tali Silon-Shacham's workflow</span>
+          <span class="prompt-use">Best for: dev handoff, spec documentation</span>
+          <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-card').querySelector('.prompt-text').textContent);this.textContent='✓ Copied';setTimeout(()=>this.textContent='Copy',2000)">Copy</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prompt 3 -->
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span class="prompt-title">Design Ideation — Divergent Directions</span>
+        <span class="prompt-tag">Ideation</span>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-text">I'm designing a solution for the following:
+
+User goal: [what the user is trying to accomplish]
+Business constraint: [key limitation or requirement]
+Context: [product area, user type, platform]
+
+Generate 6 distinct design directions. Each should be genuinely different — not just variations of the same approach. For each direction include:
+- Core concept (1 sentence)
+- What makes it different
+- Main tradeoff or risk
+- What type of user it works best for
+
+Do not default to the obvious solution first.</div>
+        <div class="prompt-meta">
+          <span class="prompt-author">📍 Inspired by Gajanan Rajput's ideation workflow</span>
+          <span class="prompt-use">Best for: early exploration, avoiding groupthink</span>
+          <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-card').querySelector('.prompt-text').textContent);this.textContent='✓ Copied';setTimeout(()=>this.textContent='Copy',2000)">Copy</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prompt 4 -->
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span class="prompt-title">UX Writing — Microcopy for UI States</span>
+        <span class="prompt-tag">UX Writing</span>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-text">Write microcopy for the following UI states:
+
+Component: [name]
+Product tone: [e.g., professional, direct, reassuring]
+User context: [what the user just did / is trying to do]
+
+Write copy for:
+- Default label / placeholder
+- Success state
+- Error state (what went wrong + how to fix it)
+- Empty state (no data yet)
+- Loading state
+
+Keep it under [X] characters per state. Avoid generic phrases like "Something went wrong." Be specific to what the user is doing.</div>
+        <div class="prompt-meta">
+          <span class="prompt-author">📍 General — community contributed</span>
+          <span class="prompt-use">Best for: microcopy, UI text, all states</span>
+          <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-card').querySelector('.prompt-text').textContent);this.textContent='✓ Copied';setTimeout(()=>this.textContent='Copy',2000)">Copy</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Placeholder for more -->
+    <div class="placeholder" style="padding:32px;">
+      <span class="badge">Coming from Champion interviews</span>
+      <strong>10+ additional prompts being collected</strong>
+      Prompts for: usability test planning · interview screeners · Figma annotation · competitive analysis · design critique · accessibility review
+    </div>
+
+  </div>
+</section>
+
+<!-- SECTION 3 — TOOL STACK -->
+<section id="tools">
+  <div class="section-header">
+    <span class="section-icon">🛠</span>
+    <span class="section-title">Team Tool Stack</span>
+    <span class="section-sub">What the team uses · Survey data, 37 designers</span>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header">📊 Adoption by Tool</div>
+      <div class="card-body">
+        <div class="tool-row">
+          <span class="tool-name">Claude</span>
+          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:97%;background:var(--teal);height:100%;border-radius:999px;"></div></div>
+          <span class="tool-pct">97%</span>
+        </div>
+        <div class="tool-row">
+          <span class="tool-name">ChatGPT</span>
+          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:73%;background:var(--navy);height:100%;border-radius:999px;"></div></div>
+          <span class="tool-pct">73%</span>
+        </div>
+        <div class="tool-row">
+          <span class="tool-name">Figma AI / Make</span>
+          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:54%;background:#4A90D9;height:100%;border-radius:999px;"></div></div>
+          <span class="tool-pct">54%</span>
+        </div>
+        <div class="tool-row">
+          <span class="tool-name">Gemini</span>
+          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:35%;background:#34A853;height:100%;border-radius:999px;"></div></div>
+          <span class="tool-pct">35%</span>
+        </div>
+        <div class="tool-row">
+          <span class="tool-name">MS Copilot</span>
+          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:32%;background:#0078D4;height:100%;border-radius:999px;"></div></div>
+          <span class="tool-pct">32%</span>
+        </div>
+        <div class="tool-row">
+          <span class="tool-name">Other tools</span>
+          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:27%;background:var(--gray-2);height:100%;border-radius:999px;"></div></div>
+          <span class="tool-pct">27%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">💡 When to Use Which Tool</div>
+      <div class="card-body" style="display:flex;flex-direction:column;gap:14px;">
+        <div style="border-left:3px solid var(--teal);padding-left:12px;">
+          <div style="font-weight:700;font-size:13px;color:var(--navy);">Claude</div>
+          <div style="font-size:12px;color:var(--gray-4);margin-top:3px;">Long context, complex reasoning, research synthesis, spec writing, HTML prototyping, multi-step workflows</div>
+        </div>
+        <div style="border-left:3px solid var(--gray-3);padding-left:12px;">
+          <div style="font-weight:700;font-size:13px;color:var(--navy);">ChatGPT</div>
+          <div style="font-size:12px;color:var(--gray-4);margin-top:3px;">Quick ideation, short-form content, general questions, image generation (DALL-E)</div>
+        </div>
+        <div style="border-left:3px solid #4A90D9;padding-left:12px;">
+          <div style="font-weight:700;font-size:13px;color:var(--navy);">Figma AI / Make</div>
+          <div style="font-size:12px;color:var(--gray-4);margin-top:3px;">In-canvas generation, component variants, auto-layout suggestions, design-to-content</div>
+        </div>
+        <div style="border-left:3px solid #34A853;padding-left:12px;">
+          <div style="font-weight:700;font-size:13px;color:var(--navy);">Gemini</div>
+          <div style="font-size:12px;color:var(--gray-4);margin-top:3px;">Google Workspace integration, slides/docs co-writing, search-augmented answers</div>
+        </div>
+        <div class="placeholder" style="padding:16px;text-align:left;">
+          <span class="badge">Coming from interviews</span>
+          Detailed tool-by-use-case decision guide added after Champion interviews
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:20px;" class="card">
+    <div class="card-header">⚠️ Access & Budget Reality</div>
+    <div class="card-body">
+      <div class="grid-2">
+        <div style="border-left:4px solid var(--amber);padding-left:16px;">
+          <div style="font-weight:700;font-size:14px;color:var(--navy);margin-bottom:6px;">65% self-fund their AI tools</div>
+          <div style="font-size:13px;color:var(--gray-4);">Most of the team pays out of pocket for Claude Pro, ChatGPT Plus, and other subscriptions. Token limits (54%) are the #2 barrier to adoption.</div>
+        </div>
+        <div style="border-left:4px solid var(--teal);padding-left:16px;">
+          <div style="font-weight:700;font-size:14px;color:var(--navy);margin-bottom:6px;">P1 Action: Enterprise Claude Access</div>
+          <div style="font-size:13px;color:var(--gray-4);">Securing team-wide Enterprise Claude access is a priority action within 45 days. This eliminates the token limit barrier for the entire team.</div>
+          <a href="index.html#recommendations" style="font-size:12px;font-weight:700;color:var(--teal);text-decoration:none;margin-top:8px;display:inline-block;">→ See full action plan</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4 — DO'S & DON'TS -->
+<section id="dodont">
+  <div class="section-header">
+    <span class="section-icon">✅</span>
+    <span class="section-title">Do's & Don'ts</span>
+    <span class="section-sub">Based on survey data + Champion experience</span>
+  </div>
+
+  <div class="do-dont-grid">
+    <div class="do-card">
+      <div class="do-header do">✅ Do</div>
+      <div class="do-list">
+        <div class="do-item"><span class="icon">⚡</span><span>Use AI for the <strong>production work</strong> — spec writing, synthesis, annotation, microcopy. These are the highest-ROI tasks.</span></div>
+        <div class="do-item"><span class="icon">📖</span><span><strong>Always read raw transcripts yourself.</strong> AI finds patterns — you find meaning. Never skip the human validation step.</span></div>
+        <div class="do-item"><span class="icon">✏️</span><span><strong>Treat AI output as a first draft.</strong> 65% of outputs need minor edits, 35% need significant rework. Budget time for review.</span></div>
+        <div class="do-item"><span class="icon">🔄</span><span><strong>Use multiple tools to validate each other.</strong> One AI's output checked by another catches errors neither would catch alone.</span></div>
+        <div class="do-item"><span class="icon">📤</span><span><strong>Share what works.</strong> If a prompt saved you 2 hours, add it to the library. Zero people currently share nothing — let's keep it that way.</span></div>
+        <div class="do-item"><span class="icon">🎯</span><span><strong>Give AI specific context.</strong> The more specific the prompt (product, user type, constraint), the less rework you'll need.</span></div>
+      </div>
+    </div>
+
+    <div class="do-card">
+      <div class="do-header dont">❌ Don't</div>
+      <div class="do-list">
+        <div class="do-item"><span class="icon">🚫</span><span><strong>Don't use AI output as-is.</strong> 0% of the team does — and that's right. Always review before sharing externally.</span></div>
+        <div class="do-item"><span class="icon">🚫</span><span><strong>Don't let Dev or PM use AI to build UI before UX is involved.</strong> AI-generated UI without UX input creates irreversible design debt.</span></div>
+        <div class="do-item"><span class="icon">🚫</span><span><strong>Don't paste confidential customer data into public AI tools</strong> without checking the company AI data policy first.</span></div>
+        <div class="do-item"><span class="icon">🚫</span><span><strong>Don't use AI to skip the thinking.</strong> Use it to compress production time. Judgment, prioritization, and decision-making stay human.</span></div>
+        <div class="do-item"><span class="icon">🚫</span><span><strong>Don't work in isolation.</strong> The biggest waste right now is everyone discovering the same things independently. Use the shared library.</span></div>
+        <div class="do-item"><span class="icon">🚫</span><span><strong>Don't ignore quality just because it was fast.</strong> Speed and quality aren't opposites — but AI can make it easy to miss problems at scale.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <blockquote style="margin-top:20px;">
+    "AI eliminated production time. Thinking time stayed the same. What didn't compress: running sessions, prioritizing recommendations, reading transcripts yourself, making judgment calls."
+    <cite>— Yaara Bar Feldman</cite>
+  </blockquote>
+
+  <div style="margin-top:20px;" class="placeholder" style="padding:32px;">
+    <span class="badge">Coming from Champion interviews</span>
+    <strong>Additional do's & don'ts from each Champion's domain</strong>
+    Prototyping · Handoff · Research · Cross-team collaboration — all being documented
+  </div>
+</section>
+
+
+</div><!-- /tab-best-practices -->
 
 </div><!-- /page -->
 
