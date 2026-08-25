@@ -41,35 +41,38 @@ nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 12px; fo
 nav a:hover { color: white; border-bottom-color: var(--teal); }
 nav a.active { color: white; border-bottom-color: var(--gold); }
 
-/* ────────────────────── CALCULATION DISCLOSURE ────────────────────── */
-details.calc { margin-top: 12px; border: 1px solid var(--gray-1); border-radius: 9px; background: #FBFCFD; overflow: hidden; }
-details.calc > summary {
-  cursor: pointer; list-style: none; padding: 8px 13px;
-  font-size: 11.5px; font-weight: 700; color: var(--gray-3);
-  display: flex; align-items: center; gap: 7px; user-select: none;
-  transition: background 0.15s, color 0.15s;
+/* ───────────────────────────── HERO ───────────────────────────────── */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, #0E4B6E 60%, var(--teal) 100%);
+  color: white; padding: 72px 40px 64px;
+  position: relative; overflow: hidden;
 }
-details.calc > summary::-webkit-details-marker { display: none; }
-details.calc > summary::after { content: '▸'; margin-left: auto; font-size: 11px; transition: transform 0.15s; }
-details.calc[open] > summary::after { transform: rotate(90deg); }
-details.calc > summary:hover { background: var(--gray-0); color: var(--navy); }
-details.calc[open] > summary { border-bottom: 1px solid var(--gray-1); color: var(--navy); }
-.calc-body { padding: 13px 15px; font-size: 12.5px; line-height: 1.75; color: var(--gray-4); }
-.calc-body code, .calc-body .formula {
-  display: block; font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 11.5px;
-  background: white; border: 1px solid var(--gray-1); border-radius: 6px;
-  padding: 9px 12px; margin: 7px 0; color: var(--navy); white-space: pre-wrap; line-height: 1.65;
+.hero::before {
+  content: '';
+  position: absolute; top: -60px; right: -80px;
+  width: 500px; height: 500px;
+  background: rgba(14,124,134,0.15);
+  border-radius: 50%;
 }
-.calc-body .q { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 0.4px; background: var(--navy); color: white; padding: 2px 7px; border-radius: 999px; margin-right: 6px; }
-.calc-body .warn { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 0.4px; background: var(--gold-lt); color: var(--gold); border: 1px solid #F0D9A0; padding: 2px 7px; border-radius: 999px; margin-right: 6px; }
-.calc-body table { width: 100%; border-collapse: collapse; font-size: 11.5px; margin: 7px 0; }
-.calc-body table th { text-align: left; padding: 5px 8px; background: var(--gray-0); color: var(--navy); font-weight: 700; border-bottom: 1px solid var(--gray-1); }
-.calc-body table td { padding: 5px 8px; border-bottom: 1px solid var(--gray-1); font-variant-numeric: tabular-nums; }
-.calc-body em { color: var(--gray-3); font-style: normal; font-size: 11.5px; }
-@media print { details.calc { break-inside: avoid; } details.calc > summary::after { display: none; } }
+.hero-inner { max-width: 1100px; margin: 0 auto; position: relative; }
+.hero-tag { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 12px; }
+.hero h1 { font-size: clamp(28px, 4vw, 44px); font-weight: 800; line-height: 1.15; margin-bottom: 8px; }
+.hero h1 span { color: #6EE4EC; }
+.hero-sub { font-size: 16px; color: rgba(255,255,255,0.75); margin-bottom: 48px; }
+
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; }
+.kpi {
+  background: rgba(255,255,255,0.1); backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 12px; padding: 20px 16px; text-align: center;
+  transition: background 0.2s;
+}
+.kpi:hover { background: rgba(255,255,255,0.16); }
+.kpi-val { font-size: 36px; font-weight: 900; line-height: 1; color: #6EE4EC; }
+.kpi-label { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 6px; line-height: 1.3; }
 
 /* ───────────────────────────── LAYOUT ─────────────────────────────── */
-.page { max-width: 1100px; margin: 0 auto; padding: 32px 24px 80px; }
+.page { max-width: 1100px; margin: 0 auto; padding: 40px 24px 80px; }
 
 section { margin-bottom: 56px; scroll-margin-top: 60px; }
 .section-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 24px; }
@@ -92,22 +95,6 @@ section { margin-bottom: 56px; scroll-margin-top: 60px; }
 .stat-bar-track { flex: 1; background: var(--gray-1); border-radius: 999px; height: 10px; position: relative; }
 .stat-bar-fill { height: 100%; border-radius: 999px; transition: width 0.8s ease; }
 .stat-bar-pct { font-size: 13px; font-weight: 700; color: var(--navy); width: 36px; text-align: right; flex-shrink: 0; }
-
-/* ──────────────────── SELF-PERCEPTION MATRIX BARS ─────────────────── */
-.mx { display: flex; flex-direction: column; gap: 12px; }
-.mx-row { display: flex; align-items: center; gap: 12px; }
-.mx-lbl { font-size: 13px; color: var(--gray-4); width: 200px; flex-shrink: 0; line-height: 1.3; }
-.mx-lbl strong { display: block; color: var(--navy); font-size: 13.5px; font-weight: 700; }
-.mx-track { flex: 1; display: flex; height: 22px; border-radius: 6px; overflow: hidden; background: var(--gray-1); min-width: 120px; }
-.mx-seg { height: 100%; display: flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 800; color: white; font-variant-numeric: tabular-nums; overflow: hidden; }
-.mx-tot { font-size: 14px; font-weight: 900; color: var(--navy); width: 42px; text-align: right; flex-shrink: 0; font-variant-numeric: tabular-nums; }
-.mx-key { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 16px; font-size: 11.5px; color: var(--gray-3); }
-.mx-key span { display: flex; align-items: center; gap: 6px; }
-.mx-key i { width: 11px; height: 11px; border-radius: 3px; flex-shrink: 0; }
-@media (max-width: 768px) {
-  .mx-row { flex-wrap: wrap; }
-  .mx-lbl { width: 100%; }
-}
 
 /* ───────────────────────────── QUOTE ──────────────────────────────── */
 blockquote {
@@ -168,8 +155,20 @@ blockquote cite { display: block; margin-top: 6px; font-style: normal; font-size
 .sp-badge { display: inline-block; font-weight: 800; font-size: 20px; color: var(--navy); }
 .sp-pct { font-size: 11px; color: var(--gray-3); margin-top: 2px; }
 
-/* (The old .champion-* card CSS lived here. The compact cards it styled were
-   replaced by the .chp dossiers in the AI Champions tab — see that block below.) */
+/* ───────────────────────────── CHAMPION CARDS ──────────────────────── */
+.champion-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+.champion-card {
+  background: white; border-radius: 12px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+  padding: 20px; border-top: 4px solid var(--teal);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.champion-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+.champion-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--navy); color: white; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 800; margin-bottom: 12px; }
+.champion-name { font-weight: 800; font-size: 15px; color: var(--navy); }
+.champion-title { font-size: 12px; color: var(--teal); font-weight: 700; margin-bottom: 8px; }
+.champion-region { font-size: 11px; color: var(--gray-3); margin-bottom: 10px; }
+.champion-signature { font-size: 12px; color: var(--gray-4); line-height: 1.5; border-top: 1px solid var(--gray-1); padding-top: 10px; margin-top: 10px; }
 
 /* ───────────────────────────── TIMELINE ───────────────────────────── */
 .timeline { position: relative; padding-left: 36px; }
@@ -220,186 +219,6 @@ footer strong { color: white; }
 .concern-label { font-size: 13px; color: var(--gray-4); flex: 1; }
 .concern-bar { width: 80px; height: 6px; background: var(--gray-1); border-radius: 999px; flex-shrink: 0; }
 .concern-fill { height: 100%; border-radius: 999px; background: var(--amber); }
-
-/* ───────────────────────────── TABS ───────────────────────────────── */
-.tab-panel { display: none; }
-.tab-panel.active { display: block; animation: fadeIn 0.25s ease; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
-
-nav button.tab-link {
-  background: none; border: none; cursor: pointer; font-family: inherit;
-  color: rgba(255,255,255,0.7); font-size: 12.5px; font-weight: 700;
-  padding: 18px 18px; border-bottom: 3px solid transparent;
-  transition: color 0.15s, border-color 0.15s; flex-shrink: 0; white-space: nowrap;
-}
-nav button.tab-link:hover { color: white; border-bottom-color: var(--teal); }
-nav button.tab-link.active { color: white; border-bottom-color: var(--gold); }
-nav .tab-soon { font-size: 9px; font-weight: 800; background: rgba(255,255,255,0.18); color: rgba(255,255,255,0.85); padding: 2px 6px; border-radius: 999px; margin-left: 6px; letter-spacing: 0.5px; vertical-align: middle; }
-
-/* Section sub-nav inside the Report tab */
-.subnav { display: flex; flex-wrap: wrap; gap: 4px; background: white; border-radius: 12px; padding: 10px 12px; margin-bottom: 32px; box-shadow: 0 1px 6px rgba(0,0,0,0.07); }
-.subnav a { font-size: 11.5px; font-weight: 600; color: var(--gray-4); text-decoration: none; padding: 6px 11px; border-radius: 999px; transition: background 0.15s, color 0.15s; }
-.subnav a:hover { background: var(--teal-lt); color: var(--navy); }
-
-/* ───────────────────── VELOCITY TAB COMPONENTS ────────────────────── */
-.leak { background: white; border-radius: 14px; box-shadow: 0 1px 6px rgba(0,0,0,0.07); margin-bottom: 20px; overflow: hidden; border-left: 5px solid var(--amber); }
-.leak-head { display: flex; align-items: center; gap: 14px; padding: 18px 22px 14px; }
-.leak-n { width: 34px; height: 34px; border-radius: 50%; background: var(--amber); color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 15px; flex-shrink: 0; }
-.leak-title { font-size: 16px; font-weight: 800; color: var(--navy); }
-.leak-sub { font-size: 12.5px; color: var(--gray-3); margin-top: 2px; }
-.leak-body { padding: 0 22px 20px 70px; font-size: 13.5px; line-height: 1.65; color: var(--gray-4); }
-@media (max-width: 768px) { .leak-body { padding-left: 22px; } }
-
-.newwork-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 16px 0; }
-.newwork { border: 1px solid var(--gray-1); border-radius: 10px; padding: 14px; background: var(--gray-0); }
-.newwork.isnew { background: #FFF3DC; border-color: #F0D9A0; }
-.newwork-val { font-size: 26px; font-weight: 900; color: var(--navy); line-height: 1; }
-.newwork.isnew .newwork-val { color: var(--gold); }
-.newwork-lbl { font-size: 11.5px; color: var(--gray-4); margin-top: 5px; line-height: 1.35; }
-.newwork-tag { display: inline-block; font-size: 9px; font-weight: 800; letter-spacing: 0.5px; padding: 2px 6px; border-radius: 999px; background: var(--gold); color: white; margin-top: 8px; }
-
-/* ══════════ PLAIN-LANGUAGE LAYER ══════════
-   Every figure is shown three times, in this order:
-   1. the number            → .key
-   2. the logic behind it   → .how  (words only, no arithmetic — always visible)
-   (the collapsed details.calc arithmetic layer was removed 2026-08-24; its CSS
-    is kept below in case it returns — the workings live in git history)
-   The .conf badge says which of the three kinds of number it is.          */
-
-/* Confidence badges — one of three, on every figure */
-.conf { display:inline-flex; align-items:center; gap:5px; font-size:9.5px; font-weight:800; letter-spacing:0.7px; text-transform:uppercase; padding:3px 9px; border-radius:999px; white-space:nowrap; vertical-align:middle; }
-.conf-m { background:#D4EDDA; color:#155724; }
-.conf-e { background:var(--gold-lt); color:var(--gold); border:1px solid #F0D9A0; }
-.conf-j { background:var(--gray-1); color:var(--gray-4); }
-
-/* The four numbers you need to know, at the very top */
-.keybar { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:20px; }
-@media (max-width:860px){ .keybar { grid-template-columns:repeat(2,1fr); } }
-@media (max-width:520px){ .keybar { grid-template-columns:1fr; } }
-.key { background:white; border-radius:14px; box-shadow:0 1px 6px rgba(0,0,0,0.07); padding:18px; border-top:4px solid var(--gray-2); display:flex; flex-direction:column; }
-.key.good { border-top-color:var(--green); }
-.key.more { border-top-color:var(--amber); }
-.key.isnew { border-top-color:var(--gold); }
-.key.net  { border-top-color:var(--navy); }
-.key-num { font-size:32px; font-weight:900; color:var(--navy); line-height:1; letter-spacing:-0.5px; }
-.key-lbl { font-size:12.5px; color:var(--gray-4); line-height:1.45; margin:8px 0 12px; flex:1; }
-.key-lbl strong { color:var(--navy); }
-.key-src { font-size:11px; color:var(--gray-3); line-height:1.4; margin-top:9px; padding-top:9px; border-top:1px dashed var(--gray-2); }
-
-/* The message, schematically — one chain at the top of the tab */
-.story { background:white; border-radius:14px; box-shadow:0 1px 6px rgba(0,0,0,0.07); padding:20px 26px; margin-bottom:26px; }
-.story-step { display:grid; grid-template-columns:150px 1fr; gap:18px; align-items:center; padding:8px 0; }
-.story-num { font-size:27px; font-weight:900; color:var(--navy); letter-spacing:-0.5px; line-height:1.05; text-align:right; }
-.story-txt { font-size:13.5px; color:var(--gray-4); line-height:1.55; }
-.story-txt strong { color:var(--navy); }
-.story-join { display:grid; grid-template-columns:150px 1fr; gap:18px; align-items:center; padding:2px 0; }
-.story-join-word { text-align:right; font-size:10.5px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:var(--teal); }
-.story-join-line { height:1px; background:var(--gray-2); }
-.story-step.final { background:var(--teal-lt); border-radius:10px; padding:14px 16px; margin-top:6px; }
-@media (max-width:560px){
-  .story-step, .story-join { grid-template-columns:1fr; gap:4px; }
-  .story-num, .story-join-word { text-align:left; }
-  .story-join-line { display:none; }
-}
-
-/* "How we got here" — the logic, in words, always open */
-.how { background:white; border-radius:14px; box-shadow:0 1px 6px rgba(0,0,0,0.07); border-left:5px solid var(--teal); padding:18px 22px 20px; margin:18px 0; }
-.how-title { font-size:13px; font-weight:800; color:var(--navy); text-transform:uppercase; letter-spacing:0.8px; display:flex; align-items:center; gap:9px; flex-wrap:wrap; margin-bottom:16px; }
-.how-steps { display:flex; align-items:stretch; }
-.how-step { flex:1; padding:0 18px; font-size:13px; line-height:1.55; color:var(--gray-4); }
-.how-step:first-child { padding-left:0; }
-.how-step:last-child { padding-right:0; }
-.how-step + .how-step { border-left:1px solid var(--gray-1); }
-.how-n { width:23px; height:23px; border-radius:50%; background:var(--teal-lt); color:var(--teal); display:flex; align-items:center; justify-content:center; font-size:11.5px; font-weight:900; margin-bottom:9px; }
-.how-step strong { color:var(--navy); }
-.how-step .how-h { display:block; font-size:13.5px; margin-bottom:3px; }   /* the step's lead-in line */
-.how-out { margin-top:16px; background:var(--teal-lt); border-radius:9px; padding:13px 16px; font-size:13.5px; color:var(--navy); line-height:1.6; }
-.how-out .arrow { font-weight:900; color:var(--teal); margin-right:7px; }
-@media (max-width:768px){
-  .how-steps { flex-direction:column; }
-  .how-step { padding:0; }
-  .how-step + .how-step { border-left:none; border-top:1px solid var(--gray-1); padding-top:14px; margin-top:14px; }
-}
-
-/* One-line "why we say this" note, for the smaller claims */
-.why { background:var(--gray-0); border-radius:10px; padding:13px 16px; font-size:13px; line-height:1.6; color:var(--gray-4); margin:14px 0; }
-.why .why-lbl { font-weight:800; color:var(--navy); margin-right:6px; }
-
-/* Jargon explainer */
-.plainnote { border:1px dashed var(--gray-2); border-radius:10px; padding:12px 15px; font-size:12.5px; line-height:1.6; color:var(--gray-4); background:#FCFDFE; margin:14px 0; }
-.plainnote strong { color:var(--navy); }
-
-/* The effort ladder — replaces a second chart of the same thing */
-.ladder { display:flex; flex-direction:column; gap:10px; }
-.rung { display:flex; align-items:center; gap:16px; }
-.rung-bar { height:44px; border-radius:8px; display:flex; align-items:center; justify-content:flex-end; padding:0 13px; color:white; font-weight:900; font-size:17px; flex-shrink:0; font-variant-numeric:tabular-nums; }
-.rung-bar.q { background:repeating-linear-gradient(45deg,var(--gold-lt),var(--gold-lt) 6px,#FFE9C0 6px,#FFE9C0 12px); border:1px dashed var(--gold); color:var(--gold); }
-.rung-txt { font-size:13px; color:var(--gray-4); line-height:1.45; }
-.rung-txt strong { display:block; color:var(--navy); font-size:13.5px; }
-.rung-total { display:flex; align-items:center; gap:14px; background:var(--navy); border-radius:10px; padding:15px 18px; margin-top:6px; }
-.rung-total .rt-num { font-size:26px; font-weight:900; color:#6EE4EC; line-height:1; flex-shrink:0; }
-.rung-total .rt-txt { font-size:13px; color:rgba(255,255,255,0.85); line-height:1.5; }
-.rung-total .rt-txt strong { color:white; }
-@media (max-width:768px){ .rung-bar { font-size:14px; height:38px; } }
-
-/* ═══════════════════ AI CHAMPIONS TAB ═══════════════════
-   Each champion is one dossier with three stacked layers:
-   1. what the survey already shows          → .chp-row (measured)
-   2. what the interview adds                → .chp-empty until collected
-   3. what we decide to do with it           → .chp-dec  (our reading)
-   Layers 2 and 3 are deliberately shown as empty/provisional
-   rather than hidden — the gap is part of the status.        */
-.chp-stack { display:flex; flex-direction:column; gap:20px; }
-.chp { background:white; border-radius:14px; box-shadow:0 1px 6px rgba(0,0,0,0.07); overflow:hidden; border-left:5px solid var(--teal); }
-.chp-head { display:flex; align-items:flex-start; gap:14px; padding:18px 22px 16px; border-bottom:1px solid var(--gray-1); flex-wrap:wrap; }
-.chp-av { width:42px; height:42px; border-radius:50%; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:15px; flex-shrink:0; }
-.chp-id { flex:1; min-width:210px; }
-.chp-name { font-size:16px; font-weight:800; color:var(--navy); line-height:1.3; }
-.chp-role { font-size:12.5px; font-weight:700; color:var(--teal); }
-.chp-meta { font-size:11px; color:var(--gray-3); margin-top:3px; }
-.chp-body { padding:4px 22px 20px; }
-.chp-row { padding:15px 0; border-bottom:1px dashed var(--gray-1); }
-.chp-row:last-child { border-bottom:none; padding-bottom:2px; }
-.chp-lbl { display:flex; align-items:center; gap:8px; font-size:10px; font-weight:800; letter-spacing:1.1px; text-transform:uppercase; color:var(--gray-3); margin-bottom:9px; flex-wrap:wrap; }
-.chp-txt { font-size:13.5px; line-height:1.6; color:var(--gray-4); }
-.chp-txt strong { color:var(--navy); }
-.chp-empty { border:1px dashed var(--gray-2); border-radius:10px; background:#FCFDFE; padding:13px 16px; font-size:12.5px; color:var(--gray-3); line-height:1.7; }
-.chp-empty b { color:var(--gray-4); }
-.chp-empty ul { margin:7px 0 0 0; padding-left:17px; }
-.chp-empty li { margin-bottom:3px; }
-.chp-dec { background:var(--gray-0); border-radius:10px; padding:13px 16px; font-size:13px; line-height:1.6; color:var(--gray-4); }
-.chp-dec strong { color:var(--navy); }
-.chp-dec-foot { display:flex; gap:20px; flex-wrap:wrap; margin-top:11px; padding-top:10px; border-top:1px solid var(--gray-2); font-size:11px; color:var(--gray-3); }
-.chp-dec-foot b { color:var(--gray-4); font-weight:700; }
-
-/* Verdict + status pills (used in the dossiers and in the decisions ledger) */
-.pill-adopt { background:#D4EDDA; color:#155724; }
-.pill-adapt { background:var(--gold-lt); color:var(--gold); border:1px solid #F0D9A0; }
-.pill-pilot { background:#CCE5FF; color:#004085; }
-.pill-park  { background:var(--gray-1); color:var(--gray-4); }
-.pill-open  { background:#F8D7DA; color:#721C24; }
-
-/* Interview progress counter */
-.track-count { display:flex; align-items:center; gap:18px; background:var(--navy); border-radius:12px; padding:16px 20px; margin-bottom:18px; }
-.track-count .tc-num { font-size:28px; font-weight:900; color:#6EE4EC; line-height:1; flex-shrink:0; font-variant-numeric:tabular-nums; }
-.track-count .tc-txt { font-size:13px; color:rgba(255,255,255,0.85); line-height:1.55; }
-.track-count .tc-txt strong { color:white; }
-
-/* Cross-tab pointer button */
-.gobtn { display:inline-flex; align-items:center; gap:8px; background:var(--navy); color:white; text-decoration:none; font-size:12.5px; font-weight:700; padding:10px 16px; border-radius:999px; border:none; cursor:pointer; font-family:inherit; transition:background 0.15s; }
-.gobtn:hover { background:var(--teal); }
-
-/* Interview guide question lists */
-.qguide ol { margin:0; padding-left:19px; font-size:13px; color:var(--gray-4); line-height:1.6; }
-.qguide li { margin-bottom:9px; }
-.qguide li:last-child { margin-bottom:0; }
-
-/* Coming soon panel */
-.soon-wrap { background: white; border-radius: 16px; box-shadow: 0 1px 6px rgba(0,0,0,0.07); padding: 72px 40px; text-align: center; }
-.soon-icon { font-size: 46px; margin-bottom: 18px; }
-.soon-wrap h2 { font-size: 24px; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
-.soon-wrap p { font-size: 14px; color: var(--gray-3); max-width: 560px; margin: 0 auto 8px; line-height: 1.6; }
-.soon-pill { display: inline-block; margin-top: 20px; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; background: var(--gold-lt); color: var(--gold); border: 1px solid #F0D9A0; padding: 7px 16px; border-radius: 999px; }
 </style>
 </head>
 <body>
@@ -407,1162 +226,38 @@ nav .tab-soon { font-size: 9px; font-weight: 800; background: rgba(255,255,255,0
 <!-- ════════════════════════════ NAV ════════════════════════════════ -->
 <nav id="main-nav">
   <span class="nav-brand">NICE UX · AI Report 2026</span>
-  <button class="tab-link active" data-tab="velocity">Velocity vs. Actual Efficiency</button>
-  <button class="tab-link" data-tab="issues">Critical Issues<span class="tab-soon">SOON</span></button>
-  <button class="tab-link" data-tab="champions">AI Champions</button>
-  <button class="tab-link" data-tab="report">Report</button>
-  <button class="tab-link" data-tab="conclusions">Conclusions</button>
+  <a href="#adoption">Adoption</a>
+  <a href="#efficiency">Efficiency</a>
+  <a href="#usecases">Use Cases</a>
+  <a href="#workflow">Workflow</a>
+  <a href="#champions">Champions</a>
+  <a href="#collaboration">Collaboration</a>
+  <a href="#barriers">Barriers</a>
+  <a href="#program">Program</a>
+  <a href="#recommendations">Actions</a>
+  <a href="#metrics">Metrics</a>
+  <a href="best-practices.html" style="color:#6EE4EC;border-bottom-color:transparent;font-weight:800;">✦ Best Practices</a>
 </nav>
+
+<!-- ════════════════════════════ HERO ═══════════════════════════════ -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Design Operations · AI Usage Assessment · August 2026</div>
+    <h1>The NICE UX Team<br>has <span>adopted AI</span> —<br>now we need to lead with it.</h1>
+    <p class="hero-sub">37 respondents · 39 questions · 29 days · 3 regions</p>
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-val">97%</div><div class="kpi-label">Use Claude daily</div></div>
+      <div class="kpi"><div class="kpi-val">95%</div><div class="kpi-label">Use AI every single day</div></div>
+      <div class="kpi"><div class="kpi-val">65%</div><div class="kpi-label">Save 6–20 hrs/week</div></div>
+      <div class="kpi"><div class="kpi-val">0%</div><div class="kpi-label">Self-identify as Beginner</div></div>
+      <div class="kpi"><div class="kpi-val">65%</div><div class="kpi-label">Pay for AI tools personally</div></div>
+      <div class="kpi"><div class="kpi-val">84%</div><div class="kpi-label">R&D is noticeably faster</div></div>
+    </div>
+  </div>
+</div>
 
 <!-- ════════════════════════════ PAGE BODY ══════════════════════════ -->
 <div class="page">
-
-<!-- ══════════════════════════════════════════════════════════════════ -->
-<!-- ══════════ TAB 1 — VELOCITY VS. ACTUAL EFFICIENCY ═══════════════ -->
-<!-- ══════════════════════════════════════════════════════════════════ -->
-<div class="tab-panel active" id="tab-velocity">
-
-  <!-- ── START HERE: the four numbers, and how to read them ── -->
-  <section style="margin-bottom:36px;">
-    <div class="section-header">
-      <span class="section-title">The whole argument, in five lines</span>
-    </div>
-
-    <div class="story">
-      <div class="story-step">
-        <div class="story-num" style="color:var(--green);">2×</div>
-        <div class="story-txt"><strong>A Product Designer completes the same task about twice as fast.</strong> All 37 designers sized four fixed tasks, before-AI vs. today — 1.79× to 2.03× on every one. <span class="conf conf-m">Measured</span></div>
-      </div>
-      <div class="story-join"><div class="story-join-word" style="color:var(--amber);">↓ but</div><div class="story-join-line"></div></div>
-      <div class="story-step">
-        <div class="story-num" style="color:var(--amber);">60 / 40</div>
-        <div class="story-txt">Only <strong>60% of the week is hands-on work</strong> AI can speed up — the other 40% is meetings and coordination (meetings &amp; calls alone: ≈34%, measured). Across a full week, the 2× is worth <strong>~1.4×</strong>. <span class="conf conf-e">Estimated</span></div>
-      </div>
-      <div class="story-join"><div class="story-join-word">↓ which equals</div><div class="story-join-line"></div></div>
-      <div class="story-step">
-        <div class="story-num" style="color:var(--teal);">≈7 hrs</div>
-        <div class="story-txt"><strong>freed per designer, per week — confirmed twice.</strong> Reconstructed from the numbers above: 6.9 hrs. Self-reported by the team: 7.1 hrs. Two independent routes, 0.2 hrs apart. <span class="conf conf-m">Measured</span></div>
-      </div>
-      <div class="story-join"><div class="story-join-word" style="color:var(--gold);">↓ consumed by</div><div class="story-join-line"></div></div>
-      <div class="story-step">
-        <div class="story-num" style="color:var(--gold);font-size:21px;">59% · 11% · 2×</div>
-        <div class="story-txt"><strong>New demands fill the freed hours.</strong> 59% must now deliver HTML prototypes and 11% production code — work with no pre-AI equivalent <span class="conf conf-m">Measured</span> — while developers, about twice as fast themselves, consume design content at double the old rate. <span class="conf conf-j">Our reading</span></div>
-      </div>
-      <div class="story-join"><div class="story-join-word" style="color:var(--navy);">↓ bottom line</div><div class="story-join-line"></div></div>
-      <div class="story-step final">
-        <div class="story-num">Full</div>
-        <div class="story-txt"><strong>Occupancy is back to full.</strong> A designer's week is as busy as before AI — it just delivers about <strong>twice the output</strong>, including kinds of work design never produced before. <span class="conf conf-j">Our reading</span></div>
-      </div>
-    </div>
-    <div class="plainnote" style="margin-bottom:22px;">
-      <strong>What the speed figure is, exactly.</strong> It is an <strong>effort estimation by the designers themselves</strong>: every
-      one of the 37 sized the same four tasks twice — <em>how big this job was before AI</em>, and <em>how big it is today</em> — and the
-      figure is the ratio between the two. It is not a stopwatch and not a time-tracking log. That has one consequence worth stating
-      plainly: people tend to remember the old way as slower than it was, so if this number is wrong, it is far more likely to be
-      <strong>too generous than too harsh</strong>.
-    </div>
-
-    <div class="how" style="border-left-color:var(--amber);">
-      <div class="how-title">🟠 Why “2× on tasks” is not “2× on the week” <span class="conf conf-e">Estimated</span></div>
-      <div class="how-steps">
-        <div class="how-step">
-          <div class="how-n">1</div>
-          <strong class="how-h">The 2× was measured on hands-on work.</strong>
-          The four tasks we sized are all <em>making</em> — designing, specifying, synthesising, testing. The measurement says
-          nothing about the rest of the calendar.
-        </div>
-        <div class="how-step">
-          <div class="how-n">2</div>
-          <strong class="how-h">About 40% of the week isn't hands-on.</strong>
-          Meetings, syncs, reviews, coordination. The survey puts meetings &amp; calls alone at roughly <strong>a third of the
-          week</strong> — and AI removes none of it. You cannot prompt your way out of a meeting.
-        </div>
-        <div class="how-step">
-          <div class="how-n">3</div>
-          <strong class="how-h">So only part of the week compresses.</strong>
-          The hands-on 60 halves to about 32; the untouched 40 stays 40. The same week of work now costs about
-          <strong>72 instead of 100</strong>.
-        </div>
-      </div>
-      <div class="how-out" style="background:var(--gold-lt);color:var(--gray-4);">
-        <span class="arrow" style="color:var(--gold);">→</span> <b style="color:var(--navy);">Across a full week, “twice as fast on tasks”
-        is worth about 1.4×.</b> And that is <em>before</em> the new deliverables — prototypes and code — arrive to fill the time it freed.
-      </div>
-    </div>
-
-
-    <div class="plainnote">
-      <strong>Every number on this page is shown twice</strong>: the number itself, then the logic behind it in plain words — what we
-      counted, what we assumed, and how sure we are. The exact per-question counts live in the survey export, published alongside this
-      page with respondents' names and emails removed — so anyone can recompute any figure here.
-    </div>
-  </section>
-
-  <!-- ── PART 2: WHERE IT GOES ── -->
-  <section>
-    <div class="section-header">
-      <span class="section-number">01</span>
-      <span class="section-title">So where did the saved time go?</span>
-    </div>
-    <p style="font-size:15px;color:var(--gray-4);max-width:840px;margin-bottom:24px;line-height:1.7;">
-      Being twice as fast does not give you twice the free time. The saving was quietly absorbed — and by the one kind of work
-      that never shows up in a productivity number.
-    </p>
-
-    <!-- LEAK 1 -->
-    <div class="leak">
-      <div class="leak-head">
-        <div class="leak-n">1</div>
-        <div>
-          <div class="leak-title">Work nobody used to ask us for</div>
-          <div class="leak-sub">Completely invisible in the “twice as fast” number</div>
-        </div>
-      </div>
-      <div class="leak-body">
-        <p style="margin-bottom:14px;">
-          The four tasks behind the 2× compare <strong>like with like</strong>: work that existed before AI and still exists today. That is exactly
-          what makes the measurement fair — and also what makes it incomplete. <strong>It cannot see work that had no “before”.</strong>
-        </p>
-        <p style="margin-bottom:6px;">Things the team is asked for now that weren't previously part of the job:</p>
-        <div class="newwork-grid">
-          <div class="newwork isnew">
-            <div class="newwork-val">59%</div>
-            <div class="newwork-lbl">of designers say their PM now expects a <strong>clickable HTML prototype</strong></div>
-            <div class="newwork-tag">NEW</div>
-          </div>
-          <div class="newwork isnew">
-            <div class="newwork-val">11%</div>
-            <div class="newwork-lbl">are asked for <strong>production-ready code</strong></div>
-            <div class="newwork-tag">NEW</div>
-          </div>
-          <div class="newwork isnew">
-            <div class="newwork-val">8%</div>
-            <div class="newwork-lbl">are asked for <strong>prompts</strong> as a deliverable</div>
-            <div class="newwork-tag">NEW</div>
-          </div>
-          <div class="newwork">
-            <div class="newwork-val">46%</div>
-            <div class="newwork-lbl">static Figma file — the <em>old</em> default, now in fourth place</div>
-          </div>
-        </div>
-        <div class="chart-wrap"><canvas id="velNewWorkChart"></canvas></div>
-        <p style="margin-top:14px;">
-          A clickable prototype is now the <strong>single most expected thing a designer hands over</strong> — level with the spec document
-          and <strong>ahead of a plain Figma file</strong>. Two years ago, asking most of the team for that would have been unreasonable.
-          And when we asked people what they can now make that they couldn't before, <strong>22 of the 37 answers said “prototypes”</strong>.
-        </p>
-        <div class="why">
-          <span class="why-lbl">How we know:</span> we simply counted. We asked everyone what their PM expects when a design task is done,
-          and counted the answers. Prototypes: 22 people out of 37. No estimating involved.
-          <br><span class="why-lbl">What is a judgement:</span> calling those deliverables <strong>“new”</strong>. The survey never asked
-          “is this new?” — we classified them as new because they have no pre-AI equivalent. That part is our reading, and we flag it as such.
-          <span class="conf conf-j" style="margin-left:4px;">Our reading</span>
-        </div>
-        <div class="insight">
-          <strong>This is the win and the hidden cost, at the same time.</strong> The team didn't just get faster — it got
-          <em>bigger</em>. Work that used to belong to engineering, or simply never happened at all, now belongs to UX. That is a real
-          expansion of what design owns. It also means a large part of the time we saved was spent the moment we earned it, on work
-          that no before-and-after comparison will ever be able to show.
-        </div>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- ── PART 3: THE MATH ── -->
-  <section>
-    <div class="section-header">
-      <span class="section-number">02</span>
-      <span class="section-title">The whole story, in four steps</span>
-    </div>
-
-    <div class="card">
-      <div class="card-header">📉 What the workload costs us now, compared to before AI</div>
-      <div class="card-body">
-        <p style="font-size:13.5px;color:var(--gray-4);line-height:1.65;margin-bottom:18px;max-width:760px;">
-          Read this top to bottom. <strong>The bar is the effort</strong> — shorter is better. We start from what the job used to cost
-          and apply, one at a time, everything that has changed since.
-        </p>
-
-        <div class="ladder">
-          <div class="rung">
-            <div class="rung-bar" style="width:52%;background:var(--gray-3);">100</div>
-            <div class="rung-txt"><strong>Where we started</strong>What the work used to cost us, before AI.</div>
-          </div>
-          <div class="rung">
-            <div class="rung-bar" style="width:27.5%;background:var(--green);">53</div>
-            <div class="rung-txt"><strong>Twice as fast → cost halves</strong>The measured part. <span class="conf conf-m">Measured</span></div>
-          </div>
-          <div class="rung">
-            <div class="rung-bar" style="width:37%;background:var(--amber);">71</div>
-            <div class="rung-txt"><strong>…but a third more tasks → it climbs back</strong>The estimated part — <strong style="display:inline;">91% of the team says it takes on more work</strong> (measured); how much more is our pricing, shown in the card below. <span class="conf conf-e">Estimated</span></div>
-          </div>
-          <div class="rung">
-            <div class="rung-bar q" style="width:18%;">+&nbsp;?</div>
-            <div class="rung-txt"><strong>…plus prototypes and code</strong>Real work, sitting on top. Nobody has measured it, because it has no “before”.</div>
-          </div>
-        </div>
-
-        <div class="rung-total">
-          <div class="rt-num">71 or more</div>
-          <div class="rt-txt">
-            <strong>About 29% less effort than before AI — at best.</strong>
-            Not the 50% that “twice as fast” would suggest. And “or more” matters: the last step is real work we cannot yet put a
-            number on, so the true figure can only move in one direction — up.
-          </div>
-        </div>
-
-        <div class="why" style="margin-top:20px;">
-          <span class="why-lbl">The one thing worth taking away:</span> at today's speed the team could absorb roughly
-          <strong>40% more tasks</strong> before it is working as hard as it did before AI. That cushion is real, it is finite, and it
-          only gets spent once. Right now it is being spent by default rather than by decision — and that is a choice somebody should
-          be making deliberately.
-        </div>
-
-      </div>
-    </div>
-
-    <div class="card" style="margin-top:20px;">
-      <div class="card-header">📊 Where “a third more tasks” comes from — the team's own answer <span class="conf conf-m">Measured</span></div>
-      <div class="card-body">
-        <p style="font-size:13.5px;color:var(--gray-4);line-height:1.65;margin-bottom:18px;max-width:760px;">
-          The second rung of the ladder above — <em>“a third more tasks”</em> — is not a guess pulled from the air. The survey asked
-          all 37 designers to say, for four things about their own work, whether each had <strong>increased or decreased</strong> since
-          AI. Every bar below is one of those four. Read the number on the right as <em>“this went up for this share of the team”</em>.
-        </p>
-
-        <div class="mx">
-          <div class="mx-row">
-            <div class="mx-lbl"><strong>Number of tasks I take on</strong>the rung above</div>
-            <div class="mx-track">
-              <div class="mx-seg" style="width:32.4%;background:var(--navy);">32%</div>
-              <div class="mx-seg" style="width:59.5%;background:var(--teal);">59%</div>
-              <div class="mx-seg" style="width:8.1%;background:var(--gray-2);"></div>
-            </div>
-            <div class="mx-tot">91%</div>
-          </div>
-          <div class="mx-row">
-            <div class="mx-lbl"><strong>Volume of work I produce</strong>how much comes out</div>
-            <div class="mx-track">
-              <div class="mx-seg" style="width:45.9%;background:var(--navy);">46%</div>
-              <div class="mx-seg" style="width:37.8%;background:var(--teal);">38%</div>
-              <div class="mx-seg" style="width:10.8%;background:var(--gray-2);"></div>
-              <div class="mx-seg" style="width:5.4%;background:var(--amber);"></div>
-            </div>
-            <div class="mx-tot">84%</div>
-          </div>
-          <div class="mx-row">
-            <div class="mx-lbl"><strong>Overall efficiency</strong>how well the week runs</div>
-            <div class="mx-track">
-              <div class="mx-seg" style="width:45.9%;background:var(--navy);">46%</div>
-              <div class="mx-seg" style="width:43.2%;background:var(--teal);">43%</div>
-              <div class="mx-seg" style="width:8.1%;background:var(--gray-2);"></div>
-              <div class="mx-seg" style="width:2.7%;background:var(--amber);"></div>
-            </div>
-            <div class="mx-tot">89%</div>
-          </div>
-          <div class="mx-row">
-            <div class="mx-lbl"><strong>Quality of my output</strong>how good it is</div>
-            <div class="mx-track">
-              <div class="mx-seg" style="width:40.5%;background:var(--navy);">41%</div>
-              <div class="mx-seg" style="width:45.9%;background:var(--teal);">46%</div>
-              <div class="mx-seg" style="width:8.1%;background:var(--gray-2);"></div>
-              <div class="mx-seg" style="width:5.4%;background:var(--amber);"></div>
-            </div>
-            <div class="mx-tot">87%</div>
-          </div>
-        </div>
-
-        <div class="mx-key">
-          <span><i style="background:var(--navy);"></i>Increased significantly</span>
-          <span><i style="background:var(--teal);"></i>Increased a little</span>
-          <span><i style="background:var(--gray-2);"></i>No change</span>
-          <span><i style="background:var(--amber);"></i>Decreased</span>
-        </div>
-
-        <div class="insight" style="margin-top:18px;">
-          <strong>Nobody's workload went down.</strong> Not one designer in 37 says they take on fewer tasks than before AI, and
-          <strong>91%</strong> say they take on more. That is the other half of the speed story told in the team's own voice: the work
-          did not shrink to fit the time AI freed — it grew to fill it. Efficiency (89%) and quality (87%) rose too, so this is not a
-          complaint. It is the reason the week doesn't feel any lighter.
-        </div>
-
-        <div class="why">
-          <span class="why-lbl">Why the ladder says “a third” and not “91%”:</span> 91% is <em>how many people</em> took on more work.
-          The ladder needs <em>how much more work</em> — a size, not a headcount. To get one we price the two answers: “a little” as
-          <strong>+25%</strong>, “significantly” as <strong>+50%</strong>. Those two prices are our judgement, not the survey's, and
-          they are the only assumption in the step. <span class="conf conf-j">Our reading</span>
-        </div>
-
-        <details class="calc">
-          <summary>🧮 The arithmetic, in full — recompute it yourself</summary>
-          <div class="calc-body">
-            <span class="q">SURVEY</span> “Number of tasks I take on”, all 37 respondents, no blanks:
-            <table>
-              <tr><th>Answer</th><th>People</th><th>Share</th><th>Priced at</th></tr>
-              <tr><td>Increased significantly</td><td>12</td><td>32.4%</td><td>+50%</td></tr>
-              <tr><td>Increased a little</td><td>22</td><td>59.5%</td><td>+25%</td></tr>
-              <tr><td>No change</td><td>3</td><td>8.1%</td><td>0%</td></tr>
-              <tr><td>Decreased</td><td>0</td><td>0%</td><td>—</td></tr>
-            </table>
-            <span class="formula">(0.324 × 50%) + (0.595 × 25%) + (0.081 × 0%) = 16.2% + 14.9% = <b>+31%</b> ≈ a third more tasks</span>
-            And that is exactly the number the ladder applies:
-            <span class="formula">100 ÷ 1.88 = 53&nbsp;&nbsp;→&nbsp;&nbsp;53 × 1.31 = <b>70</b> (shown as 71, on the unrounded 53.2)</span>
-            <span class="warn">SENSITIVITY</span> Price “a little” at +15% and “significantly” at +40% instead and you get +22%, so the
-            rung lands at 65 rather than 71 — the conclusion (nowhere near the 50% that “twice as fast” implies) survives either way.
-            <em>Source: the published survey export, columns “Number of tasks I take on”, “Volume of work I produce”, “Overall
-            efficiency”, “Quality of my output”.</em>
-          </div>
-        </details>
-      </div>
-    </div>
-
-    <div class="card" style="margin-top:20px;">
-      <div class="card-header">⏱ The final number — how occupied is a designer today?</div>
-      <div class="card-body">
-        <p style="font-size:13.5px;color:var(--gray-4);line-height:1.65;margin-bottom:18px;max-width:760px;">
-          The ladder above counts <strong>task effort</strong>. To answer “how busy are we, really?” you have to put the whole week
-          back together: the meetings that never compressed, the tasks that halved, and the third-more of them we now take on.
-        </p>
-        <div class="rung-total">
-          <div class="rt-num">≈ 7 hrs</div>
-          <div class="rt-txt">
-            <strong>freed per designer per week — everything counted except the brand-new work.</strong>
-            The week that used to cost 100 now costs about <strong>83</strong>; on a 40-hour week that is ~6.9 hours.
-            <span class="conf conf-e">Estimated</span>
-          </div>
-        </div>
-        <div class="insight" style="margin-top:16px;">
-          <strong>And the survey confirms it from the other side.</strong> Asked directly — <em>“how many hours per week does AI save
-          you?”</em> — the team's blended answer is <strong>~7.1 hours</strong> (⏳ Hours Saved, Report tab). A chain of estimates and a
-          direct measurement landing <strong>0.2 hours apart</strong> is the strongest cross-check on this page: the two routes share no
-          data, and they arrive at the same place. <span class="conf conf-m">Measured</span>
-        </div>
-        <div class="why">
-          <span class="why-lbl">So why doesn't the week feel 7 hours lighter?</span> Because those hours are consumed as fast as they
-          appear — by the deliverables that didn't exist before (<strong>59%</strong> are now expected to hand over an HTML prototype,
-          <strong>11%</strong> production code), and by developers who are themselves about <strong>twice as fast</strong> and therefore
-          consume design content at roughly double the old rate. Counting both, a designer today is <strong>effectively as occupied as
-          before AI</strong>. What changed is not how full the week is — it is what comes out of it: close to <strong>double the output,
-          plus kinds of output design never produced before</strong>. That is why “AI saves me 7 hours” and “I have never been busier”
-          are both true at once. <span class="conf conf-j" style="margin-left:4px;">Our reading</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="insight" style="margin-top:20px;font-size:14.5px;line-height:1.7;">
-      <strong>If you only remember one sentence:</strong> the team got about twice as fast at the work it already had — and then spent
-      most of that gain on more work, on entirely new work that didn't exist before, and on keeping up with developers who got faster
-      at exactly the same time. That is why doubling our speed feels like almost nothing at all: the ~7 hours a week AI frees are
-      spent the moment they appear.
-    </div>
-  </section>
-
-</div><!-- /tab-velocity -->
-
-
-<!-- ══════════════════════════════════════════════════════════════════ -->
-<!-- ══════════════════ TAB 2 — CRITICAL ISSUES ══════════════════════ -->
-<!-- ══════════════════════════════════════════════════════════════════ -->
-<div class="tab-panel" id="tab-issues">
-  <div class="soon-wrap">
-    <div class="soon-icon">🚧</div>
-    <h2>Critical Issues</h2>
-    <p>The blockers, risks and open questions that need a decision — collected here once we've worked through them.</p>
-    <div class="soon-pill">Coming soon</div>
-  </div>
-</div><!-- /tab-issues -->
-
-
-<!-- ══════════════════════════════════════════════════════════════════ -->
-<!-- ══════════════════ TAB 3 — AI CHAMPIONS ═════════════════════════ -->
-<!-- ══════════════════════════════════════════════════════════════════ -->
-<div class="tab-panel" id="tab-champions">
-
-<div class="subnav">
-  <a href="#ch-who">01 · Who they are</a>
-  <a href="#ch-track">02 · Interview status</a>
-  <a href="#ch-dossiers">03 · The seven</a>
-  <a href="#ch-ledger">04 · Decisions</a>
-  <a href="#ch-guide">05 · Interview guide</a>
-</div>
-
-<!-- ── OPENING: what this tab is for ── -->
-<section style="margin-bottom:36px;">
-  <div class="section-header">
-    <span class="section-title">AI Champions</span>
-  </div>
-
-  <p style="font-size:14px;color:var(--gray-4);margin-bottom:6px;max-width:820px;">
-    Seven people on this team already work in ways the rest of the team does not. This tab exists to get what they know
-    <strong>out of their heads</strong> — and then to decide, deliberately, how much of it the whole team should copy.
-  </p>
-
-  <div class="how" style="border-left-color:var(--gold);">
-    <div class="how-title">🏆 How to read this tab — three layers per champion</div>
-    <div class="how-steps">
-      <div class="how-step">
-        <div class="how-n">1</div>
-        <strong class="how-h">What the survey shows</strong>
-        Their own answers, already in. This is the only layer that is complete today.
-        <div style="margin-top:9px;"><span class="conf conf-m">Measured</span></div>
-      </div>
-      <div class="how-step">
-        <div class="how-n">2</div>
-        <strong class="how-h">What the interview adds</strong>
-        A 60-minute conversation each. The survey tells us <em>that</em> something works; only the interview tells us
-        <em>how</em> it works. <b>Empty until the interviews happen</b> — and shown as empty on purpose.
-        <div style="margin-top:9px;"><span class="conf conf-j">Not yet collected</span></div>
-      </div>
-      <div class="how-step">
-        <div class="how-n">3</div>
-        <strong class="how-h">What we decide to do with it</strong>
-        A champion's practice is not automatically a team practice. Every suggestion gets an explicit verdict —
-        adopt, adapt, pilot or park — with an owner.
-        <div style="margin-top:9px;"><span class="conf conf-j">Our reading</span></div>
-      </div>
-    </div>
-    <div class="how-out">
-      <span class="arrow">→</span> <b>Nothing in layer 3 is final yet.</b> The decisions below are our proposed reading of what the
-      survey already says. Each one is confirmed, changed or dropped <em>after</em> the interview it depends on.
-    </div>
-  </div>
-
-  <div class="plainnote">
-    <strong>Why the interviews matter more than they sound.</strong> The survey measured <em>outcomes</em> — hours, speed,
-    what people now deliver. It could not capture method: the order of steps, the checks that stop a bad output, the part of
-    the job the champion still refuses to hand to a model. That is the transferable part, and it only comes out in conversation.
-  </div>
-</section>
-
-<!-- ─────────────────── 01 — WHO THEY ARE ─────────────────────────── -->
-<section id="ch-who">
-  <div class="section-header">
-    <span class="section-number">01</span>
-    <span class="section-title">Who counts as a champion — and who doesn't</span>
-  </div>
-
-  <div class="card">
-    <div class="card-header">🎯 The four tests <span class="conf conf-j">Our reading</span></div>
-    <div class="card-body">
-      <p style="font-size:13.5px;color:var(--gray-4);margin-bottom:16px;">
-        Every one of the 37 uses AI, and 95% use it daily — so <strong>frequency selects nobody</strong>. These seven were picked
-        because their open answers showed all four of the following. It is a judgement call on our part, not a survey ranking.
-      </p>
-      <div class="how-steps">
-        <div class="how-step">
-          <div class="how-n">1</div>
-          <strong class="how-h">Depth, not frequency</strong>
-          AI is inside the workflow — multi-step, multi-tool — not a box they visit for a quick answer.
-        </div>
-        <div class="how-step">
-          <div class="how-n">2</div>
-          <strong class="how-h">They built something</strong>
-          A template, a pipeline, a spec format, an agent. They changed how the work is done, not just how fast.
-        </div>
-        <div class="how-step">
-          <div class="how-n">3</div>
-          <strong class="how-h">Previously impossible output</strong>
-          Named work that could not have existed before — a full prototype, a working app, a one-day synthesis.
-        </div>
-        <div class="how-step">
-          <div class="how-n">4</div>
-          <strong class="how-h">They already share</strong>
-          They hand their method to others unprompted. This is what makes them usable as a distribution channel.
-        </div>
-      </div>
-      <div class="insight">
-        <strong>What this is not:</strong> a ranking of the team, and not a statement that the other 30 are behind. All seven are
-        self-rated Pro — but so are 6 others who did not describe a transferable method. The list is about
-        <strong>what can be copied</strong>, not who is best.
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─────────────────── 02 — INTERVIEW STATUS ─────────────────────── -->
-<section id="ch-track">
-  <div class="section-header">
-    <span class="section-number">02</span>
-    <span class="section-title">Interview status</span>
-  </div>
-
-  <div class="track-count">
-    <div class="tc-num">0 / 7</div>
-    <div class="tc-txt">
-      <strong>interviews done.</strong> This is the project's first P0 action and the gate on almost everything else —
-      the playbooks, the prompt library and the workshops are all supposed to be built <em>from</em> these conversations.
-      Target: all seven inside 30 days.
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-body" style="padding:0;">
-      <table class="data-table">
-        <thead>
-          <tr><th style="width:150px;">Champion</th><th>What this interview has to produce</th><th style="width:110px;">Slot</th><th style="width:130px;">Notes captured</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>Yaara Bar Feldman</strong><br><span style="font-size:11px;color:var(--gray-3);">Israel/US</span></td><td>The research-synthesis pipeline, step by step — and the validation check that makes it trustworthy</td><td>—</td><td><span class="pill pill-open">Not scheduled</span></td></tr>
-          <tr><td><strong>Tali Silon-Shacham</strong><br><span style="font-size:11px;color:var(--gray-3);">Israel</span></td><td>The <code style="font-size:11.5px;">.md</code> handoff spec as a reusable template, plus where it must not be used</td><td>—</td><td><span class="pill pill-open">Not scheduled</span></td></tr>
-          <tr><td><strong>Assaf Zinger</strong><br><span style="font-size:11px;color:var(--gray-3);">Israel</span></td><td>A concrete definition of the "shared infrastructure" gap — and the first week of it</td><td>—</td><td><span class="pill pill-open">Not scheduled</span></td></tr>
-          <tr><td><strong>Erick Mathews</strong><br><span style="font-size:11px;color:var(--gray-3);">US</span></td><td>Where solo full-stack design is appropriate — and the boundary that keeps it safe</td><td>—</td><td><span class="pill pill-open">Not scheduled</span></td></tr>
-          <tr><td><strong>Jennie Ryan</strong><br><span style="font-size:11px;color:var(--gray-3);">US</span></td><td>The prototyping run broken into reusable parts — the seed of the shared library</td><td>—</td><td><span class="pill pill-open">Not scheduled</span></td></tr>
-          <tr><td><strong>Sveta Fomchenko</strong><br><span style="font-size:11px;color:var(--gray-3);">Israel</span></td><td>The tool-to-tool validation loop, and what it costs in licences and access</td><td>—</td><td><span class="pill pill-open">Not scheduled</span></td></tr>
-          <tr><td><strong>Gajanan Rajput</strong><br><span style="font-size:11px;color:var(--gray-3);">India</span></td><td>The specific design-system failures AI produces — the list that makes documentation urgent</td><td>—</td><td><span class="pill pill-open">Not scheduled</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="why">
-    <span class="why-lbl">Two things every interview must cover.</span> Per the project purpose: how the champion's way of working changed
-    <strong>inside the UX team</strong>, and how it changed <strong>in collaboration with Product and Development</strong>. The second half is
-    the one usually skipped — and it is where the friction actually is. The fixed question set is in <a href="#ch-guide" style="color:var(--teal);font-weight:700;">05 · Interview guide</a>.
-  </div>
-</section>
-
-<!-- ─────────────────── 03 — THE SEVEN DOSSIERS ───────────────────── -->
-<section id="ch-dossiers">
-  <div class="section-header">
-    <span class="section-number">03</span>
-    <span class="section-title">The seven, one dossier each</span>
-  </div>
-
-  <div class="chp-stack">
-
-    <!-- ── YAARA ── -->
-    <div class="chp">
-      <div class="chp-head">
-        <div class="chp-av">YB</div>
-        <div class="chp-id">
-          <div class="chp-name">Yaara Bar Feldman</div>
-          <div class="chp-role">Research Synthesis Specialist &amp; Critical AI Thinker</div>
-          <div class="chp-meta">🌍 Israel/US · Pro · &gt;10 hrs/week</div>
-        </div>
-        <span class="pill pill-adapt">Adapt</span>
-      </div>
-      <div class="chp-body">
-        <div class="chp-row">
-          <div class="chp-lbl">① What the survey shows <span class="conf conf-m">Measured</span></div>
-          <div class="chp-txt">
-            Cross-source synthesis at scale: Confluence, Jira, Dovetail, competitive data and customer feedback combined into a
-            single unified research foundation <strong>in one day</strong>. Always reads the raw transcripts herself as a validation step.
-          </div>
-        </div>
-        <div class="chp-row">
-          <div class="chp-lbl">② Her suggestion, as she put it <span class="conf conf-m">Measured</span></div>
-          <div class="chp-txt">
-            <em>"We're measuring AI adoption by time saved. We should also be measuring output quality and downstream impact."</em>
-          </div>
-        </div>
-        <div class="chp-row">
-          <div class="chp-lbl">③ Interview notes <span class="conf conf-j">Not yet collected</span></div>
-          <div class="chp-empty">
-            <b>Empty — interview not scheduled.</b> What this conversation has to bring back:
-            <ul>
-              <li>The pipeline in order: which source first, what she does between steps, where a human check is non-negotiable.</li>
-              <li>Her pass/fail test — how she knows a synthesis is good enough to build on.</li>
-              <li>What breaks when a less experienced designer runs the same pipeline.</li>
-              <li>What "downstream impact" would look like as something we could actually count.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="chp-row">
-          <div class="chp-lbl">④ How we'd adapt it <span class="conf conf-j">Our reading · proposed</span></div>
-          <div class="chp-dec">
-            <strong>Adapt, in two separate pieces.</strong> The synthesis pipeline becomes a written <strong>Research Synthesis Playbook</strong>
-            with the raw-transcript check as a mandatory step, not an optional one — a pipeline without her validation habit is the
-            fast version of being wrong. Separately, her measurement point changes what we track: quality and downstream metrics get
-            added to the six-month set, which today is dominated by hours saved.
-            <div class="chp-dec-foot">
-              <span><b>Owner:</b> Yaara + DesignOps</span>
-              <span><b>Links to:</b> P1 Research Synthesis Playbook · Success Metrics</span>
-              <span><b>Status:</b> proposed — confirm at interview</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── TALI ── -->
-    <div class="chp">
-      <div class="chp-head">
-        <div class="chp-av">TS</div>
-        <div class="chp-id">
-          <div class="chp-name">Tali Silon-Shacham</div>
-          <div class="chp-role">Developer Handoff Innovator</div>
-          <div class="chp-meta">🌍 Israel · Pro · 3–5 hrs/week</div>
-        </div>
-        <span class="pill pill-adapt">Adapt</span>
-      </div>
-      <div class="chp-body">
-        <div class="chp-row">
-          <div class="chp-lbl">① What the survey shows <span class="conf conf-m">Measured</span></div>
-          <div class="chp-txt">
-            Created structured <code style="font-size:12px;">.md</code> spec files that let developers work independently on standard
-            tasks. Reframes AI as <strong>handoff infrastructure</strong>, not a design tool.
-          </div>
-        </div>
-        <div class="chp-row">
-          <div class="chp-lbl">② Her suggestion, as she put it <span class="conf conf-m">Measured</span></div>
-          <div class="chp-txt">
-            <em>"When management or dev teams use AI to fast-track initial feature builds before UX is brought in, it leads to massive
-            rework and creates preventable, irreversible damage to the overall user experience."</em>
-          </div>
-        </div>
-        <div class="chp-row">
-          <div class="chp-lbl">③ Interview notes <span class="conf conf-j">Not yet collected</span></div>
-          <div class="chp-empty">
-            <b>Empty — interview not scheduled.</b> What this conversation has to bring back:
-            <ul>
-              <li>The template itself: its sections, its level of detail, and what she deliberately leaves out.</li>
-              <li>Which task types it works for — and the ones where a spec file is actively the wrong answer.</li>
-              <li>What the developers asked her to change after the first attempt.</li>
-              <li>One case where UX arrived after an AI-built feature: what the rework actually cost.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="chp-row">
-          <div class="chp-lbl">④ How we'd adapt it <span class="conf conf-j">Our reading · proposed</span></div>
-          <div class="chp-dec">
-            <strong>Adapt the spec; escalate the policy.</strong> The <code style="font-size:12px;">.md</code> spec becomes a team template —
-            but agreed <em>with Development</em> before we spread it, because a format only they have to read is a format they get to
-            veto. Her second point is not a workflow fix at all: "UX before AI-generated builds" is a rule between functions, so it
-            leaves this tab and becomes a <strong>Critical Issue</strong> needing PM and Engineering agreement.
-            <div class="chp-dec-foot">
-              <span><b>Owner:</b> Tali + Dev leads · policy: Design Lead</span>
-              <span><b>Links to:</b> P1 Dev Handoff Spec Workshop · P2 UX Involvement Policy</span>
-              <span><b>Status:</b> proposed — confirm at interview</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── ASSAF ── -->
-    <div class="chp">
-      <div class="chp-head">
-        <div class="chp-av">AZ</div>
-        <div class="chp-id">
-          <div class="chp-name">Assaf Zinger</div>
-          <div class="chp-role">Workflow Architect &amp; AI Ops Advocate</div>
-          <div class="chp-meta">🌍 Israel · Pro · 5–10 hrs/week</div>
-        </div>
-        <span class="pill pill-pilot">Pilot</span>
-      </div>
-      <div class="chp-body">
-        <div class="chp-row">
-          <div class="chp-lbl">① What the survey shows <span class="conf conf-m">Measured</span></div>
-          <div class="chp-txt">
-            Coined <strong>"AI Ops"</strong> for the team. Built a real working prototype app for NiCE World. Uses AI as a
-            "second brain" with git-based documentation workflows.
-          </div>
-        </div>
-        <div class="chp-row">
-          <div class="chp-lbl">② His suggestion, as he put it <span class="conf conf-m">Measured</span></div>
-          <div class="chp-txt">
-            Shared infrastructure is <strong>the team's most urgent gap</strong> — everyone is building their own setup alone, and
-            nobody owns the shared part.
-          </div>
-        </div>
-        <div class="chp-row">
-          <div class="chp-lbl">③ Interview notes <span class="conf conf-j">Not yet collected</span></div>
-          <div class="chp-empty">
-            <b>Empty — interview not scheduled.</b> What this conversation has to bring back:
-            <ul>
-              <li>What "shared infrastructure" concretely means to him: a repo? agents? documentation? access?</li>
-              <li>How much of his own setup a designer with no git experience could actually run.</li>
-              <li>If he had one week and no permission problems, what he would put in place first.</li>
-              <li>What the AI Ops role would own — and, more usefully, what it would <em>not</em> own.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="chp-row">
-          <div class="chp-lbl">④ How we'd adapt it <span class="conf conf-j">Our reading · proposed</span></div>
-          <div class="chp-dec">
-            <strong>Pilot the practice; escalate the role.</strong> Naming an AI Ops owner is an organisational decision and sits above
-            this project — we put the ask on the table and let it be answered. What we <em>can</em> test now is the practice underneath
-            it: the git-based documentation pattern, run by <strong>three designers who are not technical</strong>. If it survives that,
-            it is infrastructure. If it only works for Assaf, it is a personal setup and we should stop calling it a team gap.
-            <div class="chp-dec-foot">
-              <span><b>Owner:</b> Design Director (role) · DesignOps (pilot)</span>
-              <span><b>Links to:</b> P1 Assign AI Ops Owner · P2 Shared Agent Library</span>
-              <span><b>Status:</b> proposed — confirm at interview</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── ERICK ── -->
-    <div class="chp">
-      <div class="chp-head">
-        <div class="chp-av">EM</div>
-        <div class="chp-id">
-          <div class="chp-name">Erick Mathews</div>
-          <div class="chp-role">Full-Stack AI Designer</div>
-          <div class="chp-meta">🌍 US · Pro · &gt;10 hrs/week</div>
-        </div>
-        <span class="pill pill-park">Park with a boundary</span>
-      </div>
-      <div class="chp-body">
-        <div class="chp-row">
-          <div class="chp-lbl">① What the survey shows <span class="conf conf-m">Measured</span></div>
-          <div class="chp-txt">
-            Designs <em>and</em> develops complete applications entirely solo, using AI. Tracks frontier tools as they land.
-            The sharpest critic on the team of what AI is claimed to deliver.
-          </div>
-        </div>
-        <div class="chp-row">
-          <div class="chp-lbl">② His suggestion, as he put it <span class="conf conf-m">Measured</span></div>
-          <div class="chp-txt">
-            <em>"As any efficiency has been gained we have lost people and expectations have gone up 10X."</em>
-          </div>
-        </div>
-        <div class="chp-row">
-          <div class="chp-lbl">③ Interview notes <span class="conf conf-j">Not yet collected</span></div>
-          <div class="chp-empty">
-            <b>Empty — interview not scheduled.</b> What this conversation has to bring back:
-            <ul>
-              <li>Where solo full-stack genuinely belongs — and where it just produces code nobody will maintain.</li>
-              <li>What he would tell a designer who is suddenly asked to ship production code.</li>
-              <li>Which frontier tools actually changed his output, and which were noise.</li>
-              <li>What he thinks the honest version of the efficiency claim sounds like.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="chp-row">
-          <div class="chp-lbl">④ How we'd adapt it <span class="conf conf-j">Our reading · proposed</span></div>
-          <div class="chp-dec">
-            <strong>Do not spread this one as a norm.</strong> Erick's practice is the most impressive on the team and the most dangerous
-            to generalise: 11% of the team is already producing production code, and that number growing without a boundary is a
-            maintenance problem wearing a productivity costume. What we take instead is his framing — it is already how the
-            <strong>Velocity tab</strong> reports the ~7 freed hours: gains that get consumed, not banked.
-            <div class="chp-dec-foot">
-              <span><b>Owner:</b> Design Lead</span>
-              <span><b>Links to:</b> Velocity tab · Rising Expectations</span>
-              <span><b>Status:</b> proposed — confirm at interview</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── JENNIE ── -->
-    <div class="chp">
-      <div class="chp-head">
-        <div class="chp-av">JR</div>
-        <div class="chp-id">
-          <div class="chp-name">Jennie Ryan</div>
-          <div class="chp-role">Prototyping Specialist</div>
-          <div class="chp-meta">🌍 US · Pro · 5–10 hrs/week</div>
-        </div>
-        <span class="pill pill-adopt">Adopt</span>
-      </div>
-      <div class="chp-body">
-        <div class="chp-row">
-          <div class="chp-lbl">① What the survey shows <span class="conf conf-m">Measured</span></div>
-          <div class="chp-txt">
-            Built a complete product rehaul prototype (GenAI in Expert) <strong>in days</strong> — multi-step, interactive and
-            spec-accurate.
-          </div>
-        </div>
-        <div class="chp-row">
-          <div class="chp-lbl">② Her suggestion, as she put it <span class="conf conf-m">Measured</span></div>
-          <div class="chp-txt">
-            Shared <strong>agents, skills and prompts</strong> across the team is the highest-leverage investment available.
-          </div>
-        </div>
-        <div class="chp-row">
-          <div class="chp-lbl">③ Interview notes <span class="conf conf-j">Not yet collected</span></div>
-          <div class="chp-empty">
-            <b>Empty — interview not scheduled.</b> What this conversation has to bring back:
-            <ul>
-              <li>How she keeps a prototype spec-accurate instead of letting it drift into something plausible but wrong.</li>
-              <li>Which parts of her run are mechanical enough to become an agent — and which are judgement.</li>
-              <li>The first five prompts she would contribute to a shared library, in her words.</li>
-              <li>What she does when the model produces something that looks finished and is not.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="chp-row">
-          <div class="chp-lbl">④ How we'd adapt it <span class="conf conf-j">Our reading · proposed</span></div>
-          <div class="chp-dec">
-            <strong>Adopt — and change where the library comes from.</strong> The prompt library is already a P0, but the plan has it
-            being <em>written</em>. It should be <strong>harvested</strong>: seeded from prompts that have demonstrably produced shipped
-            work, starting with hers. A library of prompts nobody has used is documentation; a library of prompts that built a
-            product rehaul is infrastructure. Her mechanical steps become the first entries of the shared agent library.
-            <div class="chp-dec-foot">
-              <span><b>Owner:</b> Jennie + Champions</span>
-              <span><b>Links to:</b> P0 Starter Prompt Library · P1 Prototyping Workshop</span>
-              <span><b>Status:</b> proposed — confirm at interview</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── SVETA ── -->
-    <div class="chp">
-      <div class="chp-head">
-        <div class="chp-av">SF</div>
-        <div class="chp-id">
-          <div class="chp-name">Sveta Fomchenko</div>
-          <div class="chp-role">Research Tooling Integrator</div>
-          <div class="chp-meta">🌍 Israel · Pro · 5–10 hrs/week</div>
-        </div>
-        <span class="pill pill-adapt">Adapt</span>
-      </div>
-      <div class="chp-body">
-        <div class="chp-row">
-          <div class="chp-lbl">① What the survey shows <span class="conf conf-m">Measured</span></div>
-          <div class="chp-txt">
-            Built a Dovetail + Claude pipeline where <strong>each tool validates the other</strong>. Uses the Claude Jira plugin to write
-            in developer language. Creates tools rather than only using them.
-          </div>
-        </div>
-        <div class="chp-row">
-          <div class="chp-lbl">② Her suggestion, as she put it <span class="conf conf-m">Measured</span></div>
-          <div class="chp-txt">
-            Cross-validate between tools instead of trusting one output — and write for the reader's language, not your own.
-          </div>
-        </div>
-        <div class="chp-row">
-          <div class="chp-lbl">③ Interview notes <span class="conf conf-j">Not yet collected</span></div>
-          <div class="chp-empty">
-            <b>Empty — interview not scheduled.</b> What this conversation has to bring back:
-            <ul>
-              <li>What each tool catches that the other misses — the actual value of the loop.</li>
-              <li>Whether the Jira plugin setup is transferable, or bound to her account and permissions.</li>
-              <li>What the chain costs in licences and access — this may be a purchase, not a practice.</li>
-              <li>How her pipeline differs from Yaara's, and whether they should be one workflow or two.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="chp-row">
-          <div class="chp-lbl">④ How we'd adapt it <span class="conf conf-j">Our reading · proposed</span></div>
-          <div class="chp-dec">
-            <strong>Adapt, and merge — one research workflow, not two.</strong> Sveta and Yaara have arrived at the same instinct from
-            different directions: never trust a single output. That principle transfers for free and should be written into the
-            research playbook once. The <em>tool chain</em> is a different matter — before we recommend it to 37 people, we check what
-            it requires in licences and access, because a practice everyone likes and nobody can run costs us credibility.
-            <div class="chp-dec-foot">
-              <span><b>Owner:</b> Sveta + Yaara · access check: DesignOps</span>
-              <span><b>Links to:</b> P1 Research Synthesis Playbook · P1 Enterprise access</span>
-              <span><b>Status:</b> proposed — confirm at interview</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── GAJANAN ── -->
-    <div class="chp">
-      <div class="chp-head">
-        <div class="chp-av">GR</div>
-        <div class="chp-id">
-          <div class="chp-name">Gajanan Rajput</div>
-          <div class="chp-role">Design Velocity Champion</div>
-          <div class="chp-meta">🌍 India · Pro · 5–10 hrs/week</div>
-        </div>
-        <span class="pill pill-pilot">Pilot</span>
-      </div>
-      <div class="chp-body">
-        <div class="chp-row">
-          <div class="chp-lbl">① What the survey shows <span class="conf conf-m">Measured</span></div>
-          <div class="chp-txt">
-            Produces significantly more design explorations in compressed timeframes, and spends the freed bandwidth on
-            <strong>edge-case analysis</strong>. Co-delivered the NiCE World event designs.
-          </div>
-        </div>
-        <div class="chp-row">
-          <div class="chp-lbl">② His suggestion, as he put it <span class="conf conf-m">Measured</span></div>
-          <div class="chp-txt">
-            <strong>Design system documentation is the primary quality barrier</strong> — AI cannot respect a system it cannot read.
-          </div>
-        </div>
-        <div class="chp-row">
-          <div class="chp-lbl">③ Interview notes <span class="conf conf-j">Not yet collected</span></div>
-          <div class="chp-empty">
-            <b>Empty — interview not scheduled.</b> What this conversation has to bring back:
-            <ul>
-              <li>The specific components where AI output breaks against the design system — names, not categories.</li>
-              <li>What "more explorations" costs downstream in review time: is the gain real or displaced?</li>
-              <li>Whether the India team hits different barriers than Israel and the US.</li>
-              <li>What he does with the explorations that don't get picked.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="chp-row">
-          <div class="chp-lbl">④ How we'd adapt it <span class="conf conf-j">Our reading · proposed</span></div>
-          <div class="chp-dec">
-            <strong>Pilot small, and reconsider the priority.</strong> Design-system documentation sits at P3 today, 120 days out — but if
-            his failure list is concrete, that ordering is wrong: a system AI can read is a <em>precondition</em> for most of the other
-            practices on this page, not a follow-up to them. Proposal: document the <strong>five worst-offending components</strong> first,
-            measure whether AI output improves against them, and let that result decide whether P3 moves up.
-            <div class="chp-dec-foot">
-              <span><b>Owner:</b> DesignOps + Design System team</span>
-              <span><b>Links to:</b> P3 Design System AI Documentation</span>
-              <span><b>Status:</b> proposed — confirm at interview</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ─────────────────── 04 — DECISIONS LEDGER ─────────────────────── -->
-<section id="ch-ledger">
-  <div class="section-header">
-    <span class="section-number">04</span>
-    <span class="section-title">Every suggestion, and what we decide to do with it</span>
-  </div>
-
-  <p style="font-size:14px;color:var(--gray-4);margin-bottom:18px;max-width:820px;">
-    One row per suggestion, including the ones that came from more than one champion. This is the <strong>decision record</strong>:
-    when a suggestion is dropped or reshaped, the reason is written here rather than being lost in a meeting.
-  </p>
-
-  <div class="how" style="border-left-color:var(--navy);margin-top:0;">
-    <div class="how-title">⚖️ The four verdicts — what each one commits us to</div>
-    <div class="how-steps">
-      <div class="how-step">
-        <div class="how-n">A</div>
-        <strong class="how-h"><span class="pill pill-adopt">Adopt</span></strong>
-        Works as it stands. Goes to the whole team, unchanged.
-      </div>
-      <div class="how-step">
-        <div class="how-n">B</div>
-        <strong class="how-h"><span class="pill pill-adapt">Adapt</span></strong>
-        The practice is right, the form isn't. Needs rewriting, agreeing or resourcing before it scales.
-      </div>
-      <div class="how-step">
-        <div class="how-n">C</div>
-        <strong class="how-h"><span class="pill pill-pilot">Pilot</span></strong>
-        Promising, unproven at team scale. Small group, fixed period, explicit pass condition.
-      </div>
-      <div class="how-step">
-        <div class="how-n">D</div>
-        <strong class="how-h"><span class="pill pill-park">Park</span></strong>
-        Real, but blocked on someone else — budget, policy, another function. Recorded so it isn't quietly forgotten.
-      </div>
-    </div>
-    <div class="how-out" style="background:var(--gold-lt);color:var(--gray-4);">
-      <span class="arrow" style="color:var(--gold);">→</span> <b style="color:var(--navy);">"Park" is a decision, not a no.</b>
-      Three of the strongest suggestions on this page need a decision that isn't ours to make. Writing them down is how they stay alive.
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-body" style="padding:0;">
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th style="width:34px;">#</th>
-            <th style="width:200px;">Suggestion</th>
-            <th style="width:130px;">From</th>
-            <th>How we adapt it — and why not as-is</th>
-            <th style="width:110px;">Verdict</th>
-            <th style="width:130px;">Owner</th>
-            <th style="width:110px;">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td><strong>Shared agents, skills and prompts library</strong></td>
-            <td>Jennie · Assaf</td>
-            <td>Harvest it, don't write it: seed the library from prompts that produced shipped work. A written-from-scratch library is documentation nobody opens.</td>
-            <td><span class="pill pill-adopt">Adopt</span></td>
-            <td>Champions</td>
-            <td>Proposed</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td><strong>Someone owns "AI Ops"</strong></td>
-            <td>Assaf</td>
-            <td>Not ours to decide — headcount and mandate. We put the ask forward with a scoped definition of the role once the interview gives us one.</td>
-            <td><span class="pill pill-park">Park</span></td>
-            <td>Design Director</td>
-            <td>Proposed</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td><strong>Structured <code style="font-size:11.5px;">.md</code> dev-handoff spec</strong></td>
-            <td>Tali</td>
-            <td>Template it, but agree the format with Development first. A handoff format only they have to read is a format they get to veto.</td>
-            <td><span class="pill pill-adapt">Adapt</span></td>
-            <td>Tali + Dev leads</td>
-            <td>Proposed</td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td><strong>Measure output quality, not just time saved</strong></td>
-            <td>Yaara</td>
-            <td>Adopt directly — it is the gap in our own metric set. Needs two countable definitions before it means anything; that is the interview's job.</td>
-            <td><span class="pill pill-adopt">Adopt</span></td>
-            <td>Yaara + DesignOps</td>
-            <td>Proposed</td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td><strong>Never trust one output — cross-validate</strong></td>
-            <td>Yaara · Sveta</td>
-            <td>Two champions, same instinct, arrived at independently. Written once into the research playbook as a required step, not a tip.</td>
-            <td><span class="pill pill-adopt">Adopt</span></td>
-            <td>Yaara + Sveta</td>
-            <td>Proposed</td>
-          </tr>
-          <tr>
-            <td>6</td>
-            <td><strong>Dovetail + Claude + Jira tool chain</strong></td>
-            <td>Sveta</td>
-            <td>The principle is free; the chain may not be. Check licences and access before recommending it — a practice nobody can run costs us credibility.</td>
-            <td><span class="pill pill-adapt">Adapt</span></td>
-            <td>DesignOps + IT</td>
-            <td>Proposed</td>
-          </tr>
-          <tr>
-            <td>7</td>
-            <td><strong>Document the design system for AI</strong></td>
-            <td>Gajanan</td>
-            <td>Five worst-offending components first, then measure whether output improves. If it does, this moves up from P3 — it is a precondition, not a follow-up.</td>
-            <td><span class="pill pill-pilot">Pilot</span></td>
-            <td>DesignOps + DS team</td>
-            <td>Proposed</td>
-          </tr>
-          <tr>
-            <td>8</td>
-            <td><strong>Git-based documentation / "second brain"</strong></td>
-            <td>Assaf</td>
-            <td>Three non-technical designers for one month. Pass condition: they keep using it unprompted. If it only works for its author, it is a personal setup, not infrastructure.</td>
-            <td><span class="pill pill-pilot">Pilot</span></td>
-            <td>DesignOps</td>
-            <td>Proposed</td>
-          </tr>
-          <tr>
-            <td>9</td>
-            <td><strong>UX involved before AI-generated builds</strong></td>
-            <td>Tali · Yoav</td>
-            <td>A rule between functions, not a design practice. Needs PM and Engineering at the table — moves to Critical Issues with the rework cost attached.</td>
-            <td><span class="pill pill-park">Park</span></td>
-            <td>Design Lead + CPO</td>
-            <td>Proposed</td>
-          </tr>
-          <tr>
-            <td>10</td>
-            <td><strong>Reset what AI is claimed to deliver</strong></td>
-            <td>Erick</td>
-            <td>Already how the Velocity tab reports the ~7 freed hours — gains consumed, not banked. Adopted as a reporting rule rather than an action item.</td>
-            <td><span class="pill pill-adapt">Adapt</span></td>
-            <td>Design Lead</td>
-            <td>Proposed</td>
-          </tr>
-          <tr>
-            <td>11</td>
-            <td><strong>Solo full-stack delivery by designers</strong></td>
-            <td>Erick</td>
-            <td>Deliberately not spread. 11% already ship production code; growing that without a boundary is a maintenance problem wearing a productivity costume.</td>
-            <td><span class="pill pill-park">Park</span></td>
-            <td>Design Lead</td>
-            <td>Proposed</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="plainnote">
-    <strong>Status is "Proposed" on every row, and that is accurate.</strong> These are our readings of what the survey already says —
-    the point of writing them down before the interviews is to have something specific to be wrong about. Each row becomes
-    <em>Confirmed</em>, <em>Changed</em> or <em>Dropped</em> after the conversation it depends on, with the date and the reason.
-  </div>
-</section>
-
-<!-- ─────────────────── 05 — INTERVIEW GUIDE ──────────────────────── -->
-<section id="ch-guide">
-  <div class="section-header">
-    <span class="section-number">05</span>
-    <span class="section-title">Interview guide — the same questions, seven times</span>
-  </div>
-
-  <p style="font-size:14px;color:var(--gray-4);margin-bottom:18px;max-width:820px;">
-    Seven interviews only add up to something if they answer the same questions. Everything below is fixed; the champion-specific
-    questions live in each dossier above. <strong>60 minutes, three blocks, notes go straight into layer ③.</strong>
-  </p>
-
-  <div class="grid-3">
-    <div class="card qguide">
-      <div class="card-header">🧩 Block A · The method</div>
-      <div class="card-body">
-        <ol>
-          <li>Walk me through your last real piece of work, start to finish. Where does AI enter, and where does it stop?</li>
-          <li>What do you check before you trust an output?</li>
-          <li>What do you still refuse to hand to a model — and why?</li>
-          <li>What took you longest to learn that you could now teach in ten minutes?</li>
-        </ol>
-      </div>
-    </div>
-    <div class="card qguide">
-      <div class="card-header">👥 Block B · Inside the UX team</div>
-      <div class="card-body">
-        <ol start="5">
-          <li>What does your week look like now that it didn't a year ago?</li>
-          <li>What do you produce today that design simply didn't produce before?</li>
-          <li>Who have you already taught this to — and what did they get stuck on?</li>
-          <li>If the whole team copied one thing from you, what should it be? And what should they <em>not</em> copy?</li>
-        </ol>
-      </div>
-    </div>
-    <div class="card qguide">
-      <div class="card-header">🤝 Block C · Product &amp; Development</div>
-      <div class="card-body">
-        <ol start="9">
-          <li>How has working with Development changed? What do they now expect from you?</li>
-          <li>How has working with Product changed?</li>
-          <li>Where does the friction actually sit today — and is it new, or just faster?</li>
-          <li>What would you ask the other two functions to do differently?</li>
-        </ol>
-      </div>
-    </div>
-  </div>
-
-  <div class="why">
-    <span class="why-lbl">One rule for the notes.</span> Record the <strong>method</strong>, not the enthusiasm. "Uses AI for research" is
-    not transferable; "runs Dovetail first, then asks Claude to contradict it, then reads three raw transcripts" is. If a note
-    cannot be handed to another designer as an instruction, it isn't finished.
-  </div>
-
-  <div class="plainnote">
-    <strong>Anonymity note.</strong> Unlike the survey's open answers, these interviews are attributed — the champions are named on this
-    page, and their practices are credited to them. That is intentional and requires their agreement: nothing from an interview is
-    published here without the champion having seen it first.
-  </div>
-</section>
-
-</div><!-- /tab-champions -->
-
-
-<!-- ══════════════════════════════════════════════════════════════════ -->
-<!-- ═════════════════════ TAB 4 — FULL REPORT ═══════════════════════ -->
-<!-- ══════════════════════════════════════════════════════════════════ -->
-<div class="tab-panel" id="tab-report">
-
-<div class="subnav">
-  <a href="#adoption">01 · Adoption</a>
-  <a href="#efficiency">02 · Efficiency</a>
-  <a href="#usecases">03 · Use Cases</a>
-  <a href="#workflow">04 · Workflow</a>
-  <a href="#champions-ref">05 · Champions</a>
-  <a href="#collaboration">06 · Collaboration</a>
-  <a href="#barriers">07 · Barriers</a>
-  <a href="#program">08 · Program</a>
-  <a href="#recommendations">09 · Actions</a>
-  <a href="#metrics">10 · Metrics</a>
-</div>
 
 <!-- ─────────────────── SECTION 1 — ADOPTION ──────────────────────── -->
 <section id="adoption">
@@ -1676,10 +371,7 @@ nav .tab-soon { font-size: 9px; font-weight: 800; background: rgba(255,255,255,0
       <div class="card-body">
         <div class="chart-wrap"><canvas id="timeSavedChart"></canvas></div>
         <div class="insight" style="margin-top:12px">
-          <strong>65%</strong> of the team saves 6–20 hours weekly. Blended across the whole distribution — including the 8% for whom AI <em>adds</em> time — the team average is <strong>~7.1 hrs per person</strong>, or <strong>~260 designer-hours recovered per week.</strong>
-          And it matches — to within 0.2 hrs — the ≈6.9 hrs/week reconstructed on the <strong>Velocity tab</strong> from task speed,
-          meeting share and task growth: two independent routes, one answer. The hours are genuinely saved, and immediately refilled
-          by new work — which is why the week doesn't feel any lighter.
+          <strong>65%</strong> of the team saves 6–20 hours weekly. At a conservative 8 hrs average × 37 people = <strong>~296 designer-hours recovered per week.</strong>
         </div>
       </div>
     </div>
@@ -1704,7 +396,7 @@ nav .tab-soon { font-size: 9px; font-weight: 800; background: rgba(255,255,255,0
               <th>Task Scenario</th>
               <th>Before AI (modal SP)</th>
               <th>After AI (modal SP)</th>
-              <th>Weighted shift</th>
+              <th>Shift</th>
               <th>Primary Driver</th>
               <th>Speedup</th>
             </tr>
@@ -1714,33 +406,33 @@ nav .tab-soon { font-size: 9px; font-weight: 800; background: rgba(255,255,255,0
               <td><strong>AI Panel (Interaction Design)</strong><br>All states, annotations</td>
               <td><span class="sp-badge">S</span><br><span class="sp-pct">41% chose S</span></td>
               <td><span class="sp-badge" style="color:var(--green)">XS</span><br><span class="sp-pct">62% chose XS</span></td>
-              <td>5.8 → 2.9 SP</td>
+              <td>S → XS</td>
               <td>State generation, annotation writing</td>
-              <td><span class="pill pill-green">2.03×</span></td>
+              <td><span class="pill pill-green">~2×</span></td>
             </tr>
             <tr>
               <td><strong>Design System Component Spec</strong><br>Variants, interactions, usage</td>
               <td><span class="sp-badge">M–L</span><br><span class="sp-pct">49% M or L</span></td>
               <td><span class="sp-badge" style="color:var(--green)">XS–S</span><br><span class="sp-pct">76% XS or S</span></td>
-              <td>8.1 → 4.2 SP</td>
+              <td>L → S</td>
               <td>Variant documentation, spec writing</td>
-              <td><span class="pill pill-green">1.90×</span></td>
+              <td><span class="pill pill-green">~3–4×</span></td>
             </tr>
             <tr>
               <td><strong>Research Synthesis</strong><br>4–6 interviews → themes + report</td>
               <td><span class="sp-badge">M</span><br><span class="sp-pct">57% chose M</span></td>
               <td><span class="sp-badge" style="color:var(--green)">XS–S</span><br><span class="sp-pct">92% XS or S</span></td>
-              <td>6.1 → 3.3 SP</td>
+              <td>M → XS</td>
               <td>Thematic coding, report writing</td>
-              <td><span class="pill pill-green">1.81×</span></td>
+              <td><span class="pill pill-green">~3–5×</span></td>
             </tr>
             <tr>
               <td><strong>Usability Testing</strong><br>Plan + 5 sessions + synthesis</td>
               <td><span class="sp-badge">M</span><br><span class="sp-pct">46% chose M</span></td>
               <td><span class="sp-badge" style="color:var(--green)">S</span><br><span class="sp-pct">51% chose S</span></td>
-              <td>6.7 → 3.7 SP</td>
+              <td>M → S</td>
               <td>Screener, guide, synthesis writing</td>
-              <td><span class="pill pill-green">1.79×</span></td>
+              <td><span class="pill pill-green">~1.5–2×</span></td>
             </tr>
           </tbody>
         </table>
@@ -1772,7 +464,7 @@ nav .tab-soon { font-size: 9px; font-weight: 800; background: rgba(255,255,255,0
       <div class="card-body">
         <div class="chart-wrap"><canvas id="deliverablesChart"></canvas></div>
         <div class="insight" style="margin-top:12px">
-          HTML prototypes & design specs are expected by <strong>59%</strong> of PMs — tied with each other and <strong>ahead of a static Figma file (46%)</strong>. AI is reshaping the definition of a "UX deliverable."
+          HTML prototypes & design specs are expected by <strong>59%</strong> of PMs — now tied with Figma files. AI is reshaping the definition of a "UX deliverable."
         </div>
       </div>
     </div>
@@ -1786,13 +478,13 @@ nav .tab-soon { font-size: 9px; font-weight: 800; background: rgba(255,255,255,0
           <tr><th>Use Case</th><th>Adoption</th><th>Time Saved</th><th>Quality Impact</th><th>Action</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>Research synthesis & desk research</strong></td><td>78% (29/37)</td><td>High (1.81× measured)</td><td>Broader cross-source coverage</td><td><span class="pill pill-green">Standardize now</span></td></tr>
+          <tr><td><strong>Research synthesis & desk research</strong></td><td>78% (29/37)</td><td>Very High (3–5×)</td><td>Broader cross-source coverage</td><td><span class="pill pill-green">Standardize now</span></td></tr>
           <tr><td><strong>Interactive prototyping (HTML/code)</strong></td><td>62% (23/37)</td><td>New capability unlocked</td><td>Categorical quality leap</td><td><span class="pill pill-green">Standardize now</span></td></tr>
-          <tr><td><strong>Design ideation & wireframing</strong></td><td>78% (29/37)</td><td>High (~2× est.)</td><td>More exploration, faster</td><td><span class="pill pill-green">Standardize now</span></td></tr>
-          <tr><td><strong>Documentation & developer handoff</strong></td><td>38% (14/37)</td><td>High (1.90× measured)</td><td>More consistent specs</td><td><span class="pill pill-orange">Scale immediately</span></td></tr>
-          <tr><td><strong>UX writing & copy</strong></td><td>43% (16/37)</td><td>Moderate (est.)</td><td>Moderate</td><td><span class="pill pill-blue">Expand adoption</span></td></tr>
-          <tr><td><strong>Data synthesis & analysis</strong></td><td>51% (19/37)</td><td>High (~2× est.)</td><td>High — with human validation</td><td><span class="pill pill-orange">Standardize with caveats</span></td></tr>
-          <tr><td><strong>Design system component specs</strong></td><td>Subset</td><td>High (8.1 → 4.2 SP)</td><td>High</td><td><span class="pill pill-blue">Build playbook</span></td></tr>
+          <tr><td><strong>Design ideation & wireframing</strong></td><td>78% (29/37)</td><td>High (2–3×)</td><td>More exploration, faster</td><td><span class="pill pill-green">Standardize now</span></td></tr>
+          <tr><td><strong>Documentation & developer handoff</strong></td><td>38% (14/37)</td><td>High (2–4×)</td><td>More consistent specs</td><td><span class="pill pill-orange">Scale immediately</span></td></tr>
+          <tr><td><strong>UX writing & copy</strong></td><td>43% (16/37)</td><td>Moderate (1.5–2×)</td><td>Moderate</td><td><span class="pill pill-blue">Expand adoption</span></td></tr>
+          <tr><td><strong>Data synthesis & analysis</strong></td><td>51% (19/37)</td><td>High (2–3×)</td><td>High — with human validation</td><td><span class="pill pill-orange">Standardize with caveats</span></td></tr>
+          <tr><td><strong>Design system component specs</strong></td><td>Subset</td><td>Very High (XL→S)</td><td>High</td><td><span class="pill pill-blue">Build playbook</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -1856,34 +548,65 @@ nav .tab-soon { font-size: 9px; font-weight: 800; background: rgba(255,255,255,0
 </section>
 
 <!-- ─────────────────── SECTION 5 — CHAMPIONS ────────────────────── -->
-<!-- The seven dossiers used to be duplicated here. They now live in the
-     AI Champions tab, together with the interview notes and the decisions —
-     one home per champion, so the two copies cannot drift apart. -->
-<section id="champions-ref">
+<section id="champions">
   <div class="section-header">
     <span class="section-number">05</span>
     <span class="section-title">AI Champions</span>
   </div>
-  <p style="font-size:14px;color:var(--gray-4);margin-bottom:18px;max-width:820px;">Seven people work in ways the rest of the team does not. They are identified by <strong>depth</strong> of AI integration, innovation in workflow, evidence of previously impossible work, and knowledge-sharing behaviour — <strong>not by frequency</strong>, which selects nobody on a team where 95% use AI daily.</p>
+  <p style="font-size:14px;color:var(--gray-4);margin-bottom:24px;max-width:760px;">Champions are identified by depth of AI integration, innovation in workflow, evidence of previously impossible work, and knowledge sharing behavior — not frequency alone.</p>
 
-  <div class="card">
-    <div class="card-header">🏆 The seven <span class="conf conf-j">Our reading</span></div>
-    <div class="card-body">
-      <p style="font-size:13.5px;color:var(--gray-4);line-height:1.7;">
-        <strong>Yaara Bar Feldman</strong> · <strong>Tali Silon-Shacham</strong> · <strong>Assaf Zinger</strong> ·
-        <strong>Erick Mathews</strong> · <strong>Jennie Ryan</strong> · <strong>Sveta Fomchenko</strong> ·
-        <strong>Gajanan Rajput</strong>
-      </p>
-      <div class="insight" style="margin-bottom:18px;">
-        Each one has their own <strong>dossier</strong> in the AI Champions tab: what the survey shows, what we still need from their
-        interview, and the decision on how — or whether — to spread their practice to the rest of the team.
-        <strong>0 of 7 interviews are done</strong>, and almost everything else in the programme is supposed to be built from them.
-      </div>
-      <button class="gobtn" data-goto="champions">🏆 Open the AI Champions tab →</button>
+  <div class="champion-grid">
+    <div class="champion-card">
+      <div class="champion-avatar">YB</div>
+      <div class="champion-name">Yaara Bar Feldman</div>
+      <div class="champion-title">Research Synthesis Specialist & Critical AI Thinker</div>
+      <div class="champion-region">🌍 Israel/US · Pro · >10 hrs/week</div>
+      <div class="champion-signature">Cross-source synthesis at scale: combines Confluence, Jira, Dovetail, competitive data, and customer feedback into unified research foundations in a single day. Always reads raw transcripts as validation step.</div>
+    </div>
+    <div class="champion-card">
+      <div class="champion-avatar">TS</div>
+      <div class="champion-name">Tali Silon-Shacham</div>
+      <div class="champion-title">Developer Handoff Innovator</div>
+      <div class="champion-region">🌍 Israel · Pro · 3–5 hrs/week</div>
+      <div class="champion-signature">Created structured .md spec files enabling developers to work independently on standard tasks. Reframes AI as handoff infrastructure, not just a design tool. Warns: "AI-generated UI without UX causes irreversible damage."</div>
+    </div>
+    <div class="champion-card">
+      <div class="champion-avatar">AZ</div>
+      <div class="champion-name">Assaf Zinger</div>
+      <div class="champion-title">Workflow Architect & AI Ops Advocate</div>
+      <div class="champion-region">🌍 Israel · Pro · 5–10 hrs/week</div>
+      <div class="champion-signature">Coined "AI Ops" for the team. Built a real working prototype app for NICE World. Uses AI as a "second brain" with git-based documentation workflows. Identified shared infrastructure as the team's most urgent gap.</div>
+    </div>
+    <div class="champion-card">
+      <div class="champion-avatar">EM</div>
+      <div class="champion-name">Erick Mathews</div>
+      <div class="champion-title">Full-Stack AI Designer</div>
+      <div class="champion-region">🌍 US · Pro · >10 hrs/week</div>
+      <div class="champion-signature">Designs and develops complete applications entirely solo using AI. Tracks frontier tools (Kimi K3, Claude Fable). Sharp critic of unrealistic efficiency expectations: "Expectations have gone up 10X."</div>
+    </div>
+    <div class="champion-card">
+      <div class="champion-avatar">JR</div>
+      <div class="champion-name">Jennie Ryan</div>
+      <div class="champion-title">Prototyping Specialist</div>
+      <div class="champion-region">🌍 US · Pro · 5–10 hrs/week</div>
+      <div class="champion-signature">Built a complete product rehaul (GenAI in Expert) prototype in days — multi-step, interactive, spec-accurate. Advocates for shared agents, skills, and prompts across the team as the highest-leverage investment.</div>
+    </div>
+    <div class="champion-card">
+      <div class="champion-avatar">SF</div>
+      <div class="champion-name">Sveta Fomchenko</div>
+      <div class="champion-title">Research Tooling Integrator</div>
+      <div class="champion-region">🌍 Israel · Pro · 5–10 hrs/week</div>
+      <div class="champion-signature">Integrated Dovetail + Claude pipeline where each tool validates the other. Uses Claude Jira plugin to write in developer language. Creates tools, not just uses them. Multi-source, cross-tool research workflows at scale.</div>
+    </div>
+    <div class="champion-card">
+      <div class="champion-avatar">GR</div>
+      <div class="champion-name">Gajanan Rajput</div>
+      <div class="champion-title">Design Velocity Champion</div>
+      <div class="champion-region">🌍 India · Pro · 5–10 hrs/week</div>
+      <div class="champion-signature">Uses AI to produce significantly more design explorations in compressed timeframes, freeing bandwidth for edge case analysis. Co-delivered NiCE World event designs. Identified design system documentation as the primary quality barrier.</div>
     </div>
   </div>
 </section>
-
 
 <!-- ─────────────────── SECTION 6 — COLLABORATION ────────────────── -->
 <section id="collaboration">
@@ -2113,258 +836,11 @@ nav .tab-soon { font-size: 9px; font-weight: 800; background: rgba(255,255,255,0
   </blockquote>
 </section>
 
-</div><!-- /tab-report -->
-
-
-<!-- ══════════════════════════════════════════════════════════════════ -->
-<!-- ═════════════════════ TAB 5 — CONCLUSIONS ═══════════════════════ -->
-<!-- ══════════════════════════════════════════════════════════════════ -->
-<div class="tab-panel" id="tab-conclusions">
-
-  <section style="margin-bottom:36px;">
-    <div class="section-header">
-      <span class="section-title">What it would take to keep pace</span>
-    </div>
-
-    <div class="story">
-      <div class="story-step">
-        <div class="story-num" style="color:var(--red);">2.7–2.8×</div>
-        <div class="story-txt"><strong>The task speed we would need.</strong> Developers consume design content at roughly twice the
-        old rate, while prototypes and code keep absorbing ~7 hrs a week. Serving both takes ~2.7–2.8× on tasks —
-        <strong>another +45–50% on top of today's 1.88×</strong>. <span class="conf conf-e">Estimated</span></div>
-      </div>
-      <div class="story-join"><div class="story-join-word" style="color:var(--amber);">↓ but</div><div class="story-join-line"></div></div>
-      <div class="story-step">
-        <div class="story-num" style="color:var(--amber);">~2× max</div>
-        <div class="story-txt"><strong>Speed has a structural ceiling.</strong> AI compressed the <strong>producing</strong>, not the
-        <strong>deciding</strong> — and about half of every design task is judgement, which does not compress. Even with instant
-        production, task speed tops out around 2×. At 1.88×, we already sit at <strong>~94% of that ceiling</strong>.
-        <span class="conf conf-j">Our reading</span>
-        <br><br>The survey says the same thing from a different direction: on <strong>5 of the 7 design activities</strong>, the team
-        already uses AI <em>beyond</em> what it itself rates as automatable. There is no unused room left on the design work.
-        <span class="conf conf-m">Measured</span></div>
-      </div>
-      <div class="story-join"><div class="story-join-word" style="color:var(--navy);">↓ therefore</div><div class="story-join-line"></div></div>
-      <div class="story-step final">
-        <div class="story-num" style="font-size:21px;">Not speed</div>
-        <div class="story-txt"><strong>The gap cannot be closed by working faster.</strong> What keeping pace requires sits above what
-        is physically available. It can only be closed by changing <em>what fills the week</em> — the two levers below.
-        <span class="conf conf-j">Our reading</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="section-header">
-      <span class="section-number">The levers</span>
-      <span class="section-title">Where the missing capacity actually is</span>
-    </div>
-
-    <div class="grid-2">
-      <div class="card">
-        <div class="card-header">✂️ Cut or automate the non-hands-on 40%</div>
-        <div class="card-body" style="font-size:13.5px;line-height:1.7;color:var(--gray-4);">
-          Meetings, design reviews and task management take <strong>17 of the 40 hours</strong> in a week — and AI removes
-          none of it today. For our current speed to be enough, that share has to fall from <strong>~40% to ~24%</strong>:
-          <strong>6.4 hrs a week</strong> to find. <span class="conf conf-m">Measured</span>
-          <br><br>
-          Automating reaches about <strong>3.7 of those 6.4 hrs</strong> — a little over half. The remainder is not an
-          automation problem: it means <strong>fewer meetings</strong>, not faster ones.
-          <span class="conf conf-e">Estimated</span>
-          <br><br><a href="#automate" style="color:var(--teal);font-weight:700;text-decoration:none;">↓ The five targets, in order</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header">👥 More people</div>
-        <div class="card-body" style="font-size:13.5px;line-height:1.7;color:var(--gray-4);">
-          The only lever with <strong>no ceiling</strong>: capacity scales linearly with headcount.
-          <br><br>
-          If demand keeps growing at development's pace while task speed sits at its structural limit, this is the honest
-          remaining answer — a <strong>staffing decision, not an efficiency one</strong>. Doubling down on "work faster" from
-          94% of the ceiling cannot substitute for it.
-          <br><br><span class="conf conf-j">Our reading</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Lever 1 in detail — what to automate ── -->
-  <section id="automate" style="margin-top:36px;">
-    <div class="section-header">
-      <span class="section-number">Lever 1</span>
-      <span class="section-title">What to automate, and in what order</span>
-    </div>
-
-    <!-- A · where the 17 hours are -->
-    <div class="card" style="margin-bottom:20px;">
-      <div class="card-header">① Where the 17 hours sit</div>
-      <div class="card-body">
-        <p style="font-size:13.5px;line-height:1.7;color:var(--gray-4);margin-bottom:14px;">
-          Each person was asked how much of the week every activity takes. Turned into hours of a 40-hour week, three
-          blocks are not design work — and none of them has any AI in it today.
-        </p>
-        <div style="overflow-x:auto;">
-        <table class="data-table">
-          <tr><th>Block</th><th>Hours / week</th><th>AI used there today</th></tr>
-          <tr><td><strong>Meetings &amp; calls</strong></td><td>6.8</td><td>none</td></tr>
-          <tr><td><strong>Design reviews &amp; feedback</strong></td><td>5.7</td><td>none</td></tr>
-          <tr><td><strong>Task management</strong></td><td>4.6</td><td>none</td></tr>
-          <tr><td><strong>Total</strong></td><td><strong>17.1 hrs — 43% of the week</strong></td><td>—</td></tr>
-        </table>
-        </div>
-        <p style="font-size:12.5px;color:var(--gray-3);margin-top:12px;line-height:1.6;">
-          The other 23 hours are design (8.4), research &amp; analysis (5.5), learning (4.6) and writing (4.4).
-          This is the same 60/40 split the report opens with, now measured activity by activity rather than rounded.
-          <span class="conf conf-m">Measured</span>
-        </p>
-        <p style="font-size:12.5px;color:var(--gray-3);margin-top:10px;line-height:1.6;border-top:1px solid var(--gray-1);padding-top:10px;">
-          <strong style="color:var(--gray-4);">How the hours are obtained.</strong> Nobody reported hours directly. Each person
-          chose a band for every activity — <em>rarely</em>, <em>sometimes</em>, <em>often</em>, or <em>most of my week</em>.
-          We take the middle of each band, average it across the 37 answers, and then scale the result so the seven activities
-          add up to one full week — necessary because the bands overlap and would otherwise total about two weeks.
-          It is the same method that produces the <strong>34% for meetings</strong> the report opens with.
-        </p>
-      </div>
-    </div>
-
-    <!-- B · saturation -->
-    <div class="card" style="margin-bottom:20px;">
-      <div class="card-header">② The design work is already squeezed — the overhead is untouched</div>
-      <div class="card-body">
-        <p style="font-size:13.5px;line-height:1.7;color:var(--gray-4);margin-bottom:14px;">
-          Two separate questions, put side by side: <em>what does the team think can be automated</em>, and
-          <em>what does it actually automate today</em>. Both on the same 0–100 scale, where 0 is nobody and 100 is everybody.
-        </p>
-        <div style="overflow-x:auto;">
-        <table class="data-table">
-          <tr><th>Activity</th><th>Team says automatable</th><th>Automated today</th><th>Verdict</th></tr>
-          <tr><td><strong>Meeting notes &amp; summaries</strong></td><td><strong>84</strong></td><td>no AI use case covers it</td><td><span class="pill pill-orange">Wide open</span></td></tr>
-          <tr><td>Usability testing analysis</td><td>55</td><td>37</td><td><span class="pill pill-orange">Room left · +18</span></td></tr>
-          <tr><td>UX writing &amp; copy</td><td>73</td><td>66</td><td><span class="pill pill-orange">Room left · +7</span></td></tr>
-          <tr><td>User research planning</td><td>51</td><td>54</td><td><span class="pill pill-green">Maxed</span></td></tr>
-          <tr><td>User interview synthesis</td><td>59</td><td>64</td><td><span class="pill pill-green">Maxed</span></td></tr>
-          <tr><td>Design specs &amp; handoff</td><td>57</td><td>64</td><td><span class="pill pill-green">Maxed</span></td></tr>
-          <tr><td>Wireframing &amp; prototyping</td><td>51</td><td>66</td><td><span class="pill pill-green">Past it · −14</span></td></tr>
-          <tr><td>Design ideation</td><td>47</td><td>66</td><td><span class="pill pill-green">Past it · −18</span></td></tr>
-        </table>
-        </div>
-        <p style="font-size:13px;color:var(--gray-4);margin-top:14px;line-height:1.7;">
-          <strong>Meeting notes is the strongest agreement in the entire survey:</strong> 25 of 37 called it fully automatable
-          and <strong>not one person</strong> said it couldn't be — the only item in the questionnaire nobody ruled out.
-          It is also the one thing on this list the team does not use AI for at all.
-          <span class="conf conf-m">Measured</span>
-        </p>
-      </div>
-    </div>
-
-    <!-- C · the five targets -->
-    <div class="card" style="margin-bottom:20px;">
-      <div class="card-header">③ The five targets, in order</div>
-      <div class="card-body">
-        <div style="overflow-x:auto;">
-        <table class="data-table">
-          <tr><th style="width:28px;">#</th><th>Automate this</th><th>Comes out of</th><th>Why this one</th><th>Frees</th></tr>
-          <tr>
-            <td><strong>1</strong></td>
-            <td><strong>Meeting notes, summaries and action items</strong> — recorded, written up and pushed into the tracker automatically</td>
-            <td>Meetings · 6.8 hrs</td>
-            <td>Strongest agreement in the survey; zero adoption today</td>
-            <td><strong>~1.4 hrs</strong></td>
-          </tr>
-          <tr>
-            <td><strong>2</strong></td>
-            <td><strong>Status updates and weekly reporting</strong> — generated from the tracker instead of written by hand; incoming requests triaged automatically</td>
-            <td>Task management · 4.6 hrs</td>
-            <td>The one block nobody has examined — no survey question, no use case</td>
-            <td><strong>~1.4 hrs</strong></td>
-          </tr>
-          <tr>
-            <td><strong>3</strong></td>
-            <td><strong>Pre-review checks</strong> — accessibility, design-system consistency and spec completeness verified before the meeting; comments consolidated into one change list after</td>
-            <td>Design reviews · 5.7 hrs</td>
-            <td>The human review starts from a clean baseline instead of catching basics</td>
-            <td><strong>~0.9 hrs</strong></td>
-          </tr>
-          <tr>
-            <td><strong>4</strong></td>
-            <td><strong>Usability session → tagged findings → list ranked by severity</strong></td>
-            <td>Research &amp; analysis · 5.5 hrs</td>
-            <td>The only design activity with measured room left (+18)</td>
-            <td><strong>~0.5–1 hr</strong></td>
-          </tr>
-          <tr>
-            <td><strong>5</strong></td>
-            <td><strong>Spec checked against a "what development asks for" list</strong> before handoff</td>
-            <td>Writing &amp; documentation · 4.4 hrs</td>
-            <td>15 of the 25 who handed off AI work got revision rounds back</td>
-            <td>rework, not hours</td>
-          </tr>
-        </table>
-        </div>
-        <p style="font-size:13px;color:var(--gray-4);margin-top:14px;line-height:1.7;">
-          Hours are <span class="conf conf-e">Estimated</span> — the size of each block is measured, the share of it that
-          automation can take is our judgement. The evidence column is <span class="conf conf-m">Measured</span>.
-        </p>
-        <div style="margin-top:16px;padding:14px 16px;background:var(--gray-0);border-left:4px solid var(--gray-2);border-radius:8px;font-size:13px;line-height:1.7;color:var(--gray-4);">
-          <strong>And what not to do:</strong> stop pushing AI further into <strong>design ideation and wireframing</strong>.
-          The team is already using it past its own ceiling there (−18 and −14). More effort on that side returns nothing.
-          <span class="conf conf-j">Our reading</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- D · the honest arithmetic -->
-    <div class="card" style="margin-bottom:20px;">
-      <div class="card-header">④ It gets us half way — and that is the point</div>
-      <div class="card-body">
-        <div style="overflow-x:auto;">
-        <table class="data-table">
-          <tr><th>&nbsp;</th><th>Hours / week</th></tr>
-          <tr><td>Needed — the overhead block falling from 40% to 24%</td><td><strong>6.4</strong></td></tr>
-          <tr><td>What targets 1–3 recover</td><td><strong>3.7</strong></td></tr>
-          <tr><td><strong>Left over</strong></td><td><strong>2.7 — cannot be automated</strong></td></tr>
-        </table>
-        </div>
-        <p style="font-size:13.5px;line-height:1.7;color:var(--gray-4);margin-top:14px;">
-          The last 2.7 hours are not a tooling problem. They come only from <strong>holding fewer meetings</strong> — a
-          decision about how the team works, not about what it buys. This is precisely why the second lever exists: once
-          automation has been taken as far as it goes, what remains is a <strong>staffing question</strong>.
-          <span class="conf conf-e">Estimated</span>
-        </p>
-      </div>
-    </div>
-
-    <!-- E · preconditions -->
-    <div class="grid-2">
-      <div class="card">
-        <div class="card-header">⚠️ Budget the tokens first</div>
-        <div class="card-body" style="font-size:13.5px;line-height:1.7;color:var(--gray-4);">
-          <strong>54% already name tokens as a barrier</strong> — the second most cited of all. Automating meetings and
-          reporting spends tokens on activities that consume none today, so the ceiling gets closer, not further away.
-          The budget is a precondition for this lever, not an implementation detail.
-          <br><br><span class="conf conf-m">Measured</span>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header">✅ Start where imperfect is cheap</div>
-        <div class="card-body" style="font-size:13.5px;line-height:1.7;color:var(--gray-4);">
-          <strong>59% name output quality as the biggest barrier</strong> — the most cited of all. Targets 1 and 2 are the
-          ones where that matters least: an imperfect meeting summary or status update costs almost nothing to fix,
-          unlike an imperfect spec. The order above is deliberate.
-          <br><br><span class="conf conf-m">Measured</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</div><!-- /tab-conclusions -->
-
 </div><!-- /page -->
 
 <footer>
   <strong>NICE UX Team — AI Usage Assessment · August 2026</strong><br>
-  37 respondents · India 17 · Israel 11 · US 9 · 39 questions · 29 days · Design Operations<br>
-  <span style="display:inline-block;margin-top:8px;">Every figure on this page traces back to the survey export, published alongside this page with names and emails removed.</span>
+  37 respondents · India (46%) · Israel (30%) · US (24%) · Design Operations
 </footer>
 
 <!-- ════════════════════════════ CHARTS ════════════════════════════ -->
@@ -2383,9 +859,6 @@ const GREEN = '#27AE60';
 const AMBER = '#E67E22';
 const RED   = '#C0392B';
 const GRAY  = '#D0D3DA';
-
-/* ═══════════════ REPORT TAB CHARTS (lazy — see tab logic below) ═════════════ */
-function initReportCharts() {
 
 // Tool Usage
 new Chart(document.getElementById('toolChart'), {
@@ -2430,7 +903,7 @@ new Chart(document.getElementById('timeSavedChart'), {
     labels: ['10–20 hrs saved', '6–10 hrs saved', '1–5 hrs saved', 'No change', 'Adds 1–5 hrs', 'Adds 5+ hrs'],
     datasets: [{
       label: '% of respondents',
-      data: [24, 41, 22, 6, 3, 5],
+      data: [24, 41, 22, 3, 3, 5],
       backgroundColor: [GREEN, TEAL, TEAL2, GRAY, AMBER, RED],
       borderRadius: 6
     }]
@@ -2574,96 +1047,19 @@ new Chart(document.getElementById('supportChart'), {
   }
 });
 
-} // end initReportCharts
-
-
-/* ═══════════════════ VELOCITY TAB CHARTS (lazy) ═════════════════════ */
-function initVelocityCharts() {
-
-// What the PM expects — new categories highlighted
-new Chart(document.getElementById('velNewWorkChart'), {
-  type: 'bar',
-  data: {
-    labels: ['HTML prototype (clickable)', 'Design spec document', 'Figma file (static)', 'Figma prototype', 'Production-ready code', 'Claude prompts'],
-    datasets: [{
-      label: '% whose PM expects this',
-      data: [59, 59, 46, 38, 11, 8],
-      backgroundColor: [GOLD, NAVY, GRAY, GRAY, GOLD, GOLD],
-      borderRadius: 6
-    }]
-  },
-  options: {
-    indexAxis: 'y',
-    plugins: {
-      legend: { display: false },
-      tooltip: { callbacks: { afterLabel: c => [0, 4, 5].includes(c.dataIndex) ? 'New category — no pre-AI baseline' : '' } }
-    },
-    scales: {
-      x: { max: 70, ticks: { callback: v => v + '%' }, grid: { color: '#F0F2F5' } },
-      y: { grid: { display: false }, ticks: { font: { size: 11.5 } } }
+// Active nav on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const link = document.querySelector(`nav a[href="#${e.target.id}"]`);
+      if (link) link.classList.add('active');
     }
-  }
-});
-
-// The total-effort figure used to be a second chart here. It is now the plain-language
-// ladder in section 02 — same numbers, no second reading of the same thing.
-
-} // end initVelocityCharts
-
-
-/* ═════════════════════════ TAB SWITCHING ════════════════════════════ */
-const TAB_INIT = { velocity: initVelocityCharts, report: initReportCharts };
-const tabsReady = {};
-
-function showTab(name) {
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'tab-' + name));
-  document.querySelectorAll('nav button.tab-link').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
-
-  // Charts can only size themselves once their panel is visible — init on first view.
-  if (!tabsReady[name] && TAB_INIT[name]) {
-    tabsReady[name] = true;
-    requestAnimationFrame(() => TAB_INIT[name]());
-  }
-  if (location.hash !== '#' + name) history.replaceState(null, '', '#' + name);
-}
-
-document.querySelectorAll('nav button.tab-link').forEach(btn => {
-  btn.addEventListener('click', () => { showTab(btn.dataset.tab); window.scrollTo({ top: 0, behavior: 'smooth' }); });
-});
-
-// Sub-nav inside the Report tab: smooth-scroll without clobbering the tab hash
-document.querySelectorAll('.subnav a').forEach(a => {
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    const el = document.querySelector(a.getAttribute('href'));
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
-});
-
-// Cross-tab pointers inside the page body (e.g. Report §05 → the AI Champions tab)
-document.querySelectorAll('[data-goto]').forEach(el => {
-  el.addEventListener('click', e => {
-    e.preventDefault();
-    showTab(el.dataset.goto);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-});
-
-// Deep-link support: a tab name (#velocity / #issues / #champions / #report / #conclusions),
-// or any section id inside a tab — in which case we open that tab and scroll to it.
-// The tab list is read off the panels, so adding a tab needs no change here.
-const TAB_NAMES = [...document.querySelectorAll('.tab-panel')].map(p => p.id.replace('tab-', ''));
-const HASH = location.hash.replace('#', '');
-const SECTION = HASH && !TAB_NAMES.includes(HASH) ? document.getElementById(HASH) : null;
-const SECTION_PANEL = SECTION && SECTION.closest('.tab-panel');
-if (TAB_NAMES.includes(HASH)) {
-  showTab(HASH);
-} else if (SECTION_PANEL) {
-  showTab(SECTION_PANEL.id.replace('tab-', ''));
-  requestAnimationFrame(() => SECTION.scrollIntoView());
-} else {
-  showTab('velocity');
-}
+}, { rootMargin: '-20% 0px -60% 0px' });
+sections.forEach(s => observer.observe(s));
 </script>
 
 </body>
