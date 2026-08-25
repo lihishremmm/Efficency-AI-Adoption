@@ -93,6 +93,22 @@ section { margin-bottom: 56px; scroll-margin-top: 60px; }
 .stat-bar-fill { height: 100%; border-radius: 999px; transition: width 0.8s ease; }
 .stat-bar-pct { font-size: 13px; font-weight: 700; color: var(--navy); width: 36px; text-align: right; flex-shrink: 0; }
 
+/* ──────────────────── SELF-PERCEPTION MATRIX BARS ─────────────────── */
+.mx { display: flex; flex-direction: column; gap: 12px; }
+.mx-row { display: flex; align-items: center; gap: 12px; }
+.mx-lbl { font-size: 13px; color: var(--gray-4); width: 200px; flex-shrink: 0; line-height: 1.3; }
+.mx-lbl strong { display: block; color: var(--navy); font-size: 13.5px; font-weight: 700; }
+.mx-track { flex: 1; display: flex; height: 22px; border-radius: 6px; overflow: hidden; background: var(--gray-1); min-width: 120px; }
+.mx-seg { height: 100%; display: flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 800; color: white; font-variant-numeric: tabular-nums; overflow: hidden; }
+.mx-tot { font-size: 14px; font-weight: 900; color: var(--navy); width: 42px; text-align: right; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+.mx-key { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 16px; font-size: 11.5px; color: var(--gray-3); }
+.mx-key span { display: flex; align-items: center; gap: 6px; }
+.mx-key i { width: 11px; height: 11px; border-radius: 3px; flex-shrink: 0; }
+@media (max-width: 768px) {
+  .mx-row { flex-wrap: wrap; }
+  .mx-lbl { width: 100%; }
+}
+
 /* ───────────────────────────── QUOTE ──────────────────────────────── */
 blockquote {
   border-left: 4px solid var(--teal);
@@ -579,7 +595,7 @@ nav .tab-soon { font-size: 9px; font-weight: 800; background: rgba(255,255,255,0
           </div>
           <div class="rung">
             <div class="rung-bar" style="width:37%;background:var(--amber);">71</div>
-            <div class="rung-txt"><strong>…but a third more tasks → it climbs back</strong>The estimated part. <span class="conf conf-e">Estimated</span></div>
+            <div class="rung-txt"><strong>…but a third more tasks → it climbs back</strong>The estimated part — <strong style="display:inline;">91% of the team says it takes on more work</strong> (measured); how much more is our pricing, shown in the card below. <span class="conf conf-e">Estimated</span></div>
           </div>
           <div class="rung">
             <div class="rung-bar q" style="width:18%;">+&nbsp;?</div>
@@ -603,6 +619,101 @@ nav .tab-soon { font-size: 9px; font-weight: 800; background: rgba(255,255,255,0
           be making deliberately.
         </div>
 
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px;">
+      <div class="card-header">📊 Where “a third more tasks” comes from — the team's own answer <span class="conf conf-m">Measured</span></div>
+      <div class="card-body">
+        <p style="font-size:13.5px;color:var(--gray-4);line-height:1.65;margin-bottom:18px;max-width:760px;">
+          The second rung of the ladder above — <em>“a third more tasks”</em> — is not a guess pulled from the air. The survey asked
+          all 37 designers to say, for four things about their own work, whether each had <strong>increased or decreased</strong> since
+          AI. Every bar below is one of those four. Read the number on the right as <em>“this went up for this share of the team”</em>.
+        </p>
+
+        <div class="mx">
+          <div class="mx-row">
+            <div class="mx-lbl"><strong>Number of tasks I take on</strong>the rung above</div>
+            <div class="mx-track">
+              <div class="mx-seg" style="width:32.4%;background:var(--navy);">32%</div>
+              <div class="mx-seg" style="width:59.5%;background:var(--teal);">59%</div>
+              <div class="mx-seg" style="width:8.1%;background:var(--gray-2);"></div>
+            </div>
+            <div class="mx-tot">91%</div>
+          </div>
+          <div class="mx-row">
+            <div class="mx-lbl"><strong>Volume of work I produce</strong>how much comes out</div>
+            <div class="mx-track">
+              <div class="mx-seg" style="width:45.9%;background:var(--navy);">46%</div>
+              <div class="mx-seg" style="width:37.8%;background:var(--teal);">38%</div>
+              <div class="mx-seg" style="width:10.8%;background:var(--gray-2);"></div>
+              <div class="mx-seg" style="width:5.4%;background:var(--amber);"></div>
+            </div>
+            <div class="mx-tot">84%</div>
+          </div>
+          <div class="mx-row">
+            <div class="mx-lbl"><strong>Overall efficiency</strong>how well the week runs</div>
+            <div class="mx-track">
+              <div class="mx-seg" style="width:45.9%;background:var(--navy);">46%</div>
+              <div class="mx-seg" style="width:43.2%;background:var(--teal);">43%</div>
+              <div class="mx-seg" style="width:8.1%;background:var(--gray-2);"></div>
+              <div class="mx-seg" style="width:2.7%;background:var(--amber);"></div>
+            </div>
+            <div class="mx-tot">89%</div>
+          </div>
+          <div class="mx-row">
+            <div class="mx-lbl"><strong>Quality of my output</strong>how good it is</div>
+            <div class="mx-track">
+              <div class="mx-seg" style="width:40.5%;background:var(--navy);">41%</div>
+              <div class="mx-seg" style="width:45.9%;background:var(--teal);">46%</div>
+              <div class="mx-seg" style="width:8.1%;background:var(--gray-2);"></div>
+              <div class="mx-seg" style="width:5.4%;background:var(--amber);"></div>
+            </div>
+            <div class="mx-tot">87%</div>
+          </div>
+        </div>
+
+        <div class="mx-key">
+          <span><i style="background:var(--navy);"></i>Increased significantly</span>
+          <span><i style="background:var(--teal);"></i>Increased a little</span>
+          <span><i style="background:var(--gray-2);"></i>No change</span>
+          <span><i style="background:var(--amber);"></i>Decreased</span>
+        </div>
+
+        <div class="insight" style="margin-top:18px;">
+          <strong>Nobody's workload went down.</strong> Not one designer in 37 says they take on fewer tasks than before AI, and
+          <strong>91%</strong> say they take on more. That is the other half of the speed story told in the team's own voice: the work
+          did not shrink to fit the time AI freed — it grew to fill it. Efficiency (89%) and quality (87%) rose too, so this is not a
+          complaint. It is the reason the week doesn't feel any lighter.
+        </div>
+
+        <div class="why">
+          <span class="why-lbl">Why the ladder says “a third” and not “91%”:</span> 91% is <em>how many people</em> took on more work.
+          The ladder needs <em>how much more work</em> — a size, not a headcount. To get one we price the two answers: “a little” as
+          <strong>+25%</strong>, “significantly” as <strong>+50%</strong>. Those two prices are our judgement, not the survey's, and
+          they are the only assumption in the step. <span class="conf conf-j">Our reading</span>
+        </div>
+
+        <details class="calc">
+          <summary>🧮 The arithmetic, in full — recompute it yourself</summary>
+          <div class="calc-body">
+            <span class="q">SURVEY</span> “Number of tasks I take on”, all 37 respondents, no blanks:
+            <table>
+              <tr><th>Answer</th><th>People</th><th>Share</th><th>Priced at</th></tr>
+              <tr><td>Increased significantly</td><td>12</td><td>32.4%</td><td>+50%</td></tr>
+              <tr><td>Increased a little</td><td>22</td><td>59.5%</td><td>+25%</td></tr>
+              <tr><td>No change</td><td>3</td><td>8.1%</td><td>0%</td></tr>
+              <tr><td>Decreased</td><td>0</td><td>0%</td><td>—</td></tr>
+            </table>
+            <span class="formula">(0.324 × 50%) + (0.595 × 25%) + (0.081 × 0%) = 16.2% + 14.9% = <b>+31%</b> ≈ a third more tasks</span>
+            And that is exactly the number the ladder applies:
+            <span class="formula">100 ÷ 1.88 = 53&nbsp;&nbsp;→&nbsp;&nbsp;53 × 1.31 = <b>70</b> (shown as 71, on the unrounded 53.2)</span>
+            <span class="warn">SENSITIVITY</span> Price “a little” at +15% and “significantly” at +40% instead and you get +22%, so the
+            rung lands at 65 rather than 71 — the conclusion (nowhere near the 50% that “twice as fast” implies) survives either way.
+            <em>Source: the published survey export, columns “Number of tasks I take on”, “Volume of work I produce”, “Overall
+            efficiency”, “Quality of my output”.</em>
+          </div>
+        </details>
       </div>
     </div>
 
@@ -2028,7 +2139,10 @@ nav .tab-soon { font-size: 9px; font-weight: 800; background: rgba(255,255,255,0
         <div class="story-txt"><strong>Speed has a structural ceiling.</strong> AI compressed the <strong>producing</strong>, not the
         <strong>deciding</strong> — and about half of every design task is judgement, which does not compress. Even with instant
         production, task speed tops out around 2×. At 1.88×, we already sit at <strong>~94% of that ceiling</strong>.
-        <span class="conf conf-j">Our reading</span></div>
+        <span class="conf conf-j">Our reading</span>
+        <br><br>The survey says the same thing from a different direction: on <strong>5 of the 7 design activities</strong>, the team
+        already uses AI <em>beyond</em> what it itself rates as automatable. There is no unused room left on the design work.
+        <span class="conf conf-m">Measured</span></div>
       </div>
       <div class="story-join"><div class="story-join-word" style="color:var(--navy);">↓ therefore</div><div class="story-join-line"></div></div>
       <div class="story-step final">
@@ -2050,12 +2164,14 @@ nav .tab-soon { font-size: 9px; font-weight: 800; background: rgba(255,255,255,0
       <div class="card">
         <div class="card-header">✂️ Cut or automate the non-hands-on 40%</div>
         <div class="card-body" style="font-size:13.5px;line-height:1.7;color:var(--gray-4);">
-          Meetings, syncs and coordination take about <strong>40% of the week</strong> — and AI currently removes none of it.
-          For today's speed to be enough, that share would need to fall from <strong>~40% to ~24%</strong>.
+          Meetings, design reviews and task management take <strong>17 of the 40 hours</strong> in a week — and AI removes
+          none of it today. For our current speed to be enough, that share has to fall from <strong>~40% to ~24%</strong>:
+          <strong>6.4 hrs a week</strong> to find. <span class="conf conf-m">Measured</span>
           <br><br>
-          Every activity still done <strong>by hand</strong> — status updates, meeting notes, coordination, manual reporting —
-          counts double when automated: it frees hours directly, <em>and</em> it grows the share of the week AI can compress.
-          <br><br><span class="conf conf-e">Estimated</span>
+          Automating reaches about <strong>3.7 of those 6.4 hrs</strong> — a little over half. The remainder is not an
+          automation problem: it means <strong>fewer meetings</strong>, not faster ones.
+          <span class="conf conf-e">Estimated</span>
+          <br><br><a href="#automate" style="color:var(--teal);font-weight:700;text-decoration:none;">↓ The five targets, in order</a>
         </div>
       </div>
       <div class="card">
@@ -2067,6 +2183,175 @@ nav .tab-soon { font-size: 9px; font-weight: 800; background: rgba(255,255,255,0
           remaining answer — a <strong>staffing decision, not an efficiency one</strong>. Doubling down on "work faster" from
           94% of the ceiling cannot substitute for it.
           <br><br><span class="conf conf-j">Our reading</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Lever 1 in detail — what to automate ── -->
+  <section id="automate" style="margin-top:36px;">
+    <div class="section-header">
+      <span class="section-number">Lever 1</span>
+      <span class="section-title">What to automate, and in what order</span>
+    </div>
+
+    <!-- A · where the 17 hours are -->
+    <div class="card" style="margin-bottom:20px;">
+      <div class="card-header">① Where the 17 hours sit</div>
+      <div class="card-body">
+        <p style="font-size:13.5px;line-height:1.7;color:var(--gray-4);margin-bottom:14px;">
+          Each person was asked how much of the week every activity takes. Turned into hours of a 40-hour week, three
+          blocks are not design work — and none of them has any AI in it today.
+        </p>
+        <div style="overflow-x:auto;">
+        <table class="data-table">
+          <tr><th>Block</th><th>Hours / week</th><th>AI used there today</th></tr>
+          <tr><td><strong>Meetings &amp; calls</strong></td><td>6.8</td><td>none</td></tr>
+          <tr><td><strong>Design reviews &amp; feedback</strong></td><td>5.7</td><td>none</td></tr>
+          <tr><td><strong>Task management</strong></td><td>4.6</td><td>none</td></tr>
+          <tr><td><strong>Total</strong></td><td><strong>17.1 hrs — 43% of the week</strong></td><td>—</td></tr>
+        </table>
+        </div>
+        <p style="font-size:12.5px;color:var(--gray-3);margin-top:12px;line-height:1.6;">
+          The other 23 hours are design (8.4), research &amp; analysis (5.5), learning (4.6) and writing (4.4).
+          This is the same 60/40 split the report opens with, now measured activity by activity rather than rounded.
+          <span class="conf conf-m">Measured</span>
+        </p>
+        <p style="font-size:12.5px;color:var(--gray-3);margin-top:10px;line-height:1.6;border-top:1px solid var(--gray-1);padding-top:10px;">
+          <strong style="color:var(--gray-4);">How the hours are obtained.</strong> Nobody reported hours directly. Each person
+          chose a band for every activity — <em>rarely</em>, <em>sometimes</em>, <em>often</em>, or <em>most of my week</em>.
+          We take the middle of each band, average it across the 37 answers, and then scale the result so the seven activities
+          add up to one full week — necessary because the bands overlap and would otherwise total about two weeks.
+          It is the same method that produces the <strong>34% for meetings</strong> the report opens with.
+        </p>
+      </div>
+    </div>
+
+    <!-- B · saturation -->
+    <div class="card" style="margin-bottom:20px;">
+      <div class="card-header">② The design work is already squeezed — the overhead is untouched</div>
+      <div class="card-body">
+        <p style="font-size:13.5px;line-height:1.7;color:var(--gray-4);margin-bottom:14px;">
+          Two separate questions, put side by side: <em>what does the team think can be automated</em>, and
+          <em>what does it actually automate today</em>. Both on the same 0–100 scale, where 0 is nobody and 100 is everybody.
+        </p>
+        <div style="overflow-x:auto;">
+        <table class="data-table">
+          <tr><th>Activity</th><th>Team says automatable</th><th>Automated today</th><th>Verdict</th></tr>
+          <tr><td><strong>Meeting notes &amp; summaries</strong></td><td><strong>84</strong></td><td>no AI use case covers it</td><td><span class="pill pill-orange">Wide open</span></td></tr>
+          <tr><td>Usability testing analysis</td><td>55</td><td>37</td><td><span class="pill pill-orange">Room left · +18</span></td></tr>
+          <tr><td>UX writing &amp; copy</td><td>73</td><td>66</td><td><span class="pill pill-orange">Room left · +7</span></td></tr>
+          <tr><td>User research planning</td><td>51</td><td>54</td><td><span class="pill pill-green">Maxed</span></td></tr>
+          <tr><td>User interview synthesis</td><td>59</td><td>64</td><td><span class="pill pill-green">Maxed</span></td></tr>
+          <tr><td>Design specs &amp; handoff</td><td>57</td><td>64</td><td><span class="pill pill-green">Maxed</span></td></tr>
+          <tr><td>Wireframing &amp; prototyping</td><td>51</td><td>66</td><td><span class="pill pill-green">Past it · −14</span></td></tr>
+          <tr><td>Design ideation</td><td>47</td><td>66</td><td><span class="pill pill-green">Past it · −18</span></td></tr>
+        </table>
+        </div>
+        <p style="font-size:13px;color:var(--gray-4);margin-top:14px;line-height:1.7;">
+          <strong>Meeting notes is the strongest agreement in the entire survey:</strong> 25 of 37 called it fully automatable
+          and <strong>not one person</strong> said it couldn't be — the only item in the questionnaire nobody ruled out.
+          It is also the one thing on this list the team does not use AI for at all.
+          <span class="conf conf-m">Measured</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- C · the five targets -->
+    <div class="card" style="margin-bottom:20px;">
+      <div class="card-header">③ The five targets, in order</div>
+      <div class="card-body">
+        <div style="overflow-x:auto;">
+        <table class="data-table">
+          <tr><th style="width:28px;">#</th><th>Automate this</th><th>Comes out of</th><th>Why this one</th><th>Frees</th></tr>
+          <tr>
+            <td><strong>1</strong></td>
+            <td><strong>Meeting notes, summaries and action items</strong> — recorded, written up and pushed into the tracker automatically</td>
+            <td>Meetings · 6.8 hrs</td>
+            <td>Strongest agreement in the survey; zero adoption today</td>
+            <td><strong>~1.4 hrs</strong></td>
+          </tr>
+          <tr>
+            <td><strong>2</strong></td>
+            <td><strong>Status updates and weekly reporting</strong> — generated from the tracker instead of written by hand; incoming requests triaged automatically</td>
+            <td>Task management · 4.6 hrs</td>
+            <td>The one block nobody has examined — no survey question, no use case</td>
+            <td><strong>~1.4 hrs</strong></td>
+          </tr>
+          <tr>
+            <td><strong>3</strong></td>
+            <td><strong>Pre-review checks</strong> — accessibility, design-system consistency and spec completeness verified before the meeting; comments consolidated into one change list after</td>
+            <td>Design reviews · 5.7 hrs</td>
+            <td>The human review starts from a clean baseline instead of catching basics</td>
+            <td><strong>~0.9 hrs</strong></td>
+          </tr>
+          <tr>
+            <td><strong>4</strong></td>
+            <td><strong>Usability session → tagged findings → list ranked by severity</strong></td>
+            <td>Research &amp; analysis · 5.5 hrs</td>
+            <td>The only design activity with measured room left (+18)</td>
+            <td><strong>~0.5–1 hr</strong></td>
+          </tr>
+          <tr>
+            <td><strong>5</strong></td>
+            <td><strong>Spec checked against a "what development asks for" list</strong> before handoff</td>
+            <td>Writing &amp; documentation · 4.4 hrs</td>
+            <td>15 of the 25 who handed off AI work got revision rounds back</td>
+            <td>rework, not hours</td>
+          </tr>
+        </table>
+        </div>
+        <p style="font-size:13px;color:var(--gray-4);margin-top:14px;line-height:1.7;">
+          Hours are <span class="conf conf-e">Estimated</span> — the size of each block is measured, the share of it that
+          automation can take is our judgement. The evidence column is <span class="conf conf-m">Measured</span>.
+        </p>
+        <div style="margin-top:16px;padding:14px 16px;background:var(--gray-0);border-left:4px solid var(--gray-2);border-radius:8px;font-size:13px;line-height:1.7;color:var(--gray-4);">
+          <strong>And what not to do:</strong> stop pushing AI further into <strong>design ideation and wireframing</strong>.
+          The team is already using it past its own ceiling there (−18 and −14). More effort on that side returns nothing.
+          <span class="conf conf-j">Our reading</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- D · the honest arithmetic -->
+    <div class="card" style="margin-bottom:20px;">
+      <div class="card-header">④ It gets us half way — and that is the point</div>
+      <div class="card-body">
+        <div style="overflow-x:auto;">
+        <table class="data-table">
+          <tr><th>&nbsp;</th><th>Hours / week</th></tr>
+          <tr><td>Needed — the overhead block falling from 40% to 24%</td><td><strong>6.4</strong></td></tr>
+          <tr><td>What targets 1–3 recover</td><td><strong>3.7</strong></td></tr>
+          <tr><td><strong>Left over</strong></td><td><strong>2.7 — cannot be automated</strong></td></tr>
+        </table>
+        </div>
+        <p style="font-size:13.5px;line-height:1.7;color:var(--gray-4);margin-top:14px;">
+          The last 2.7 hours are not a tooling problem. They come only from <strong>holding fewer meetings</strong> — a
+          decision about how the team works, not about what it buys. This is precisely why the second lever exists: once
+          automation has been taken as far as it goes, what remains is a <strong>staffing question</strong>.
+          <span class="conf conf-e">Estimated</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- E · preconditions -->
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header">⚠️ Budget the tokens first</div>
+        <div class="card-body" style="font-size:13.5px;line-height:1.7;color:var(--gray-4);">
+          <strong>54% already name tokens as a barrier</strong> — the second most cited of all. Automating meetings and
+          reporting spends tokens on activities that consume none today, so the ceiling gets closer, not further away.
+          The budget is a precondition for this lever, not an implementation detail.
+          <br><br><span class="conf conf-m">Measured</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">✅ Start where imperfect is cheap</div>
+        <div class="card-body" style="font-size:13.5px;line-height:1.7;color:var(--gray-4);">
+          <strong>59% name output quality as the biggest barrier</strong> — the most cited of all. Targets 1 and 2 are the
+          ones where that matters least: an imperfect meeting summary or status update costs almost nothing to fix,
+          unlike an imperfect spec. The order above is deliberate.
+          <br><br><span class="conf conf-m">Measured</span>
         </div>
       </div>
     </div>

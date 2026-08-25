@@ -119,6 +119,30 @@ The audience is **not data-literate, and should not need to be.** Every figure i
 
 **The arithmetic layer was removed on 2026-08-24** by explicit decision: the collapsed `🧮` blocks (raw response counts and exact sums, one per figure) made the page heavier than the audience needed. Checkability is preserved differently: every figure traces back to the raw survey export — **versioned in this repository since 2026-08-25 as the anonymized copy**, so it can be recomputed without asking anyone — and most arithmetic blocks live in this repository's **git history** (last committed version). Blocks can be restored per-figure if a claim is ever challenged — the `details.calc` CSS is intentionally kept in `index.html` for that case.
 
+**One block has been restored under that exception** (2026-08-25): the "a third more tasks" rung of the ladder, where the challenge was direct — the number appeared on the page with no visible source. It is the only `details.calc` in `index.html`, and it stays the exception, not a reopening of the arithmetic layer.
+
+### How weekly time shares are computed
+
+Several published figures — the 34% for meetings, the 60/40 split, and the seven-activity breakdown in Conclusions — rest on one shared method, stated here once because it is not obvious from the page.
+
+Respondents never reported hours. For each of seven activities they chose a **frequency band**; we take the **midpoint** of the band, average it across the 37 answers, and **normalise** the seven results to 100%.
+
+| Band as asked | Midpoint used |
+|---|---|
+| Rarely (0–10%) | 5% |
+| Sometimes (10–25%) | 17.5% |
+| Often (25–50%) | 37.5% |
+| Most of my week (50%+) | 60% |
+
+**Normalisation is required, not cosmetic:** the bands overlap, so the seven raw averages total ~200% of a week. The published shares are each raw average divided by that total.
+
+Two consequences worth knowing:
+
+- The figures are **Measured** — they come only from answers — but they inherit the coarseness of the bands. Treat them as reliable in *rank order and rough size*, not to the decimal.
+- The open-ended top band (`50%+`) is the weakest point: 60% is our reading of "most of my week", and someone at 80% is recorded as 60%. This compresses **Design**, the activity where the top band was chosen most often (16 of 37) — so if anything, design hours are understated and the non-design share is a *conservative* estimate.
+
+The method is stated in plain words on the page itself, in the first card of the Conclusions "Lever 1" section.
+
 ### Say it plainly
 
 Two further rules follow from the audience:
@@ -134,7 +158,7 @@ Two further rules follow from the audience:
 | **Critical Issues** | *Coming soon.* |
 | **AI Champions** | The seven intensive users, one dossier each, on **three layers**: ① what the survey shows (Measured) · ② interview notes (empty until the interviews happen, shown as empty on purpose) · ③ the decision on how to adapt their suggestion for the whole team. Plus the interview tracker (0/7), a decisions ledger of every suggestion, and the fixed interview guide. |
 | **Report** | The full assessment — adoption, efficiency, use cases, workflow, champions, barriers, programme, actions, metrics. |
-| **Conclusions** | What keeping pace would take: the required speed (~2.7–2.8×, +45–50%) vs. the structural ~2× ceiling (judgement doesn't compress) — so the levers are elsewhere: cut/automate the non-hands-on 40%, and headcount. |
+| **Conclusions** | What keeping pace would take: the required speed (~2.7–2.8×, +45–50%) vs. the structural ~2× ceiling (judgement doesn't compress) — so the levers are elsewhere: cut/automate the non-hands-on 40%, and headcount. Lever 1 is then broken down: where the 17 non-design hours sit, which activities still have room, the five automation targets in order, and the honest admission that automation reaches only half of what is needed. |
 
 ---
 
@@ -176,4 +200,7 @@ We create that folder when there is a first real finding to put in it, and not b
 | 2026-08-24 | Velocity tab slimmed to three sections: the section **"The speed-up is real"** (per-scenario chart + table, took-over/still-takes cards) removed with its chart JS; remaining sections renumbered (01 where the time went · 02 the whole story). The per-scenario detail (1.79–2.03×) survives as one line in the opening chain |
 | 2026-08-24 | **AI Champions tab added**, built on a three-layer rule per champion: ① survey (Measured) → ② interview notes (*Not yet collected* — kept visibly empty, with the questions each interview must answer) → ③ how we adapt the suggestion, with one of four verdicts (**Adopt · Adapt · Pilot · Park**), an owner and a `Proposed` status until the interview confirms it. Adds an interview tracker (**0/7**, the project's P0 gate), a **decisions ledger** of all 11 champion suggestions with the reason each one is reshaped rather than taken as-is, and a fixed 12-question interview guide split *method / inside UX / Product & Dev*. The seven compact cards were **moved out of Report §05** (now a pointer, id `champions-ref`) so champion content has one home and cannot drift; the unused `.champion-*` CSS was removed |
 | 2026-08-24 | **Conclusions tab added**: to keep pace we would need ~2.7–2.8× (+45–50% over 1.88×), but speed has a structural ceiling of ~2× because judgement (~half of every task) doesn't compress — so the levers are cutting/automating the non-hands-on 40% and headcount, not working faster |
+| 2026-08-25 | **Lever 1 broken down in Conclusions** — "cut or automate the non-hands-on 40%" was a slogan with four example activities; it is now five ranked targets. Adds: ① the 17 non-design hours located by activity (meetings 6.8, reviews 5.7, task management 4.6 — 43% of the week, all with zero AI today); ② the survey's **automatable vs. actually-automated** comparison across 8 activities, which shows 5 of 7 design activities already used **past** the team's own automatability judgement (ideation −18, wireframing −14) while **meeting notes scores 84/100 with no use case at all** — 25 of 37 said fully automatable and *nobody* said impossible, the only such item in the questionnaire; ③ the five targets in order (meeting notes · status reporting · pre-review checks · usability analysis · pre-handoff spec check) with what each frees; ④ the admission that automation reaches **3.7 of the 6.4 hrs needed** — the remaining 2.7 can only be *cut*, which is what hands over to the headcount lever; ⑤ the two preconditions the barriers data imposes (tokens 54%, quality 59% — hence starting where imperfect output is cheap). The gap comparison was also added to the "~2× max" step as an **independent confirmation of the ceiling from a different question** |
+| 2026-08-25 | **Weekly-time method documented** — the band-midpoint-and-normalise rule behind the 34%, the 60/40 split and the new seven-activity table was previously unstated anywhere. Now specified in [How weekly time shares are computed](#how-weekly-time-shares-are-computed), with the `50%+` open band named as its weakest assumption (understates Design, so the non-design share is conservative), and restated in plain words on the page itself |
 | 2026-08-25 | **Raw data is now versioned, as an anonymized copy.** `AI Usage Assessment — NICE UX Team(1-37) — anonymized.xlsx` enters the repository: the same 37 responses with `Email`, `Name` and `Your full name` dropped (68 of 71 columns, all 2,451 answer cells verified identical to the export). The full export stays out of git — the `*.xlsx` rule holds and the copy is negated back in. Chosen over making the repository private so the figures stay recomputable from the repository alone. Free text was checked for names, emails, URLs and phone numbers before committing; the submission timestamps are kept and noted as the one residual re-identification route |
+| 2026-08-25 | **The self-perception matrix is published for the first time** (📊 card, Velocity tab). Four survey items that had never appeared anywhere on the page — *Number of tasks I take on* (91% increased, **0 decreased**), *Volume of work I produce* (84%), *Overall efficiency* (89%), *Quality of my output* (87%) — were until now used only implicitly, as the unattributed "a third more tasks" rung of the ladder. The rung is now sourced on its face, and the card separates what the survey says (*how many* people took on more — Measured) from what we add (*how much* more: "a little" priced at +25%, "significantly" at +50% — Our reading), which is the step's only assumption. **One `details.calc` block was restored** for it under the challenged-claim exception in the [two-layer rule](#show-the-working--in-two-layers) — the question "where does a third come from?" was asked and could not be answered from the page — carrying the per-answer counts, the +31% sum, its agreement with the ladder's 53 → 71, and a sensitivity check showing the conclusion holds at +22% too |
