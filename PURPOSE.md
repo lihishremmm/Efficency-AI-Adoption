@@ -76,21 +76,31 @@ To keep the project clear, it is worth stating what this is **not**:
 |---|---|
 | **`index.html`** | **The main file.** The single page we build and present. Everything the audience sees lives here, organised in tabs. |
 | **`AI Usage Assessment — NICE UX Team(1-37).xlsx`** | **The raw data.** The untouched survey export (37 responses) from Microsoft Forms. Every figure in the report traces back to this file. It is never edited — corrections and derived values live in `index.html`, not here. ⚠️ **Held outside git** — see [Handling the raw data](#handling-the-raw-data). |
+| **`AI Usage Assessment — NICE UX Team(1-37) — anonymized.xlsx`** | **The versioned copy of the raw data.** The same 37 responses with the `Email`, `Name` and `Your full name` columns removed — 68 of the original 71 columns, every answer cell identical to the export. This is the file in git, so any figure can be recomputed from the repository alone. Generated from the export, never edited by hand. |
 | `PURPOSE.md` | This file. Why the project exists. |
 
 **`index.html` is the main file.** When something needs to be shown, it goes in `index.html`. Do not create parallel or duplicate HTML pages — earlier copies caused the same content to drift out of sync in three places.
 
 ### Handling the raw data
 
-The survey export is the source of truth for every number we publish, but it is **deliberately not committed**. A `.gitignore` rule (`*.xlsx`) keeps it out.
+The survey export is the source of truth for every number we publish, and the data is versioned — but in two files, not one.
 
-**Why:** this repository is public, and the export carries an `Email` column, a `Name` column and a `Your full name` column next to the free-text answers. Respondents were told those answers were anonymous. A commit cannot be taken back — once pushed, the file remains in history and can be cloned or indexed even after it is deleted.
+| | Full export | Anonymized copy |
+|---|---|---|
+| File | `…NICE UX Team(1-37).xlsx` | `…NICE UX Team(1-37) — anonymized.xlsx` |
+| Columns | 71 | 68 — no `Email`, `Name`, `Your full name` |
+| In git | **No** (`*.xlsx` rule) | **Yes** (negated back in) |
+| Lives in | The OneDrive project folder | This repository |
 
-**Where it lives:** in the project folder on OneDrive, next to the repository, shared with the team the same way the rest of the team's material is.
+**Why the split:** this repository is public, and the export carries an `Email` column, a `Name` column and a `Your full name` column next to the free-text answers. Respondents were told those answers were anonymous. A commit cannot be taken back — once pushed, the file remains in history and can be cloned or indexed even after it is deleted. The anonymized copy carries the answers without the three columns that attach them to a person, so the numbers stay checkable from the repository alone while the identities never enter it.
 
-**If it ever needs to be versioned:** make the repository private *first*, then remove the `*.xlsx` rule. Alternatively commit a copy with the `Email`, `Name` and `Your full name` columns stripped, and keep the full export out.
+**How the copy is produced:** re-exported from the full export — the three identity columns dropped, all 68 remaining columns copied cell-for-cell (verified identical, 2,451 answer cells, 37 rows). It is regenerated from the export, never edited by hand, and never edited to correct data: corrections live in `index.html`.
 
-This rule exists to enforce the anonymity principle below — it is not housekeeping.
+**What the copy still contains, knowingly:** the free-text answers verbatim (checked — no respondent names, emails, URLs or phone numbers appear inside them), the `Start time` / `Completion time` / `Last modified time` stamps, and the region field (IN 17 · IL 11 · US 9). The timestamps are the one residual re-identification route: someone who knows when a colleague filled the form in could match a row. Drop those three columns too if that ever matters.
+
+**If the full export itself ever needs to be versioned:** make the repository private *first*, then remove the `*.xlsx` rule.
+
+These rules exist to enforce the anonymity principle below — they are not housekeeping.
 
 ### Show the working — in two layers
 
@@ -107,7 +117,7 @@ The audience is **not data-literate, and should not need to be.** Every figure i
 - **Estimated** — the survey gave direction but not size, so we chose a number. Directional only.
 - **Our reading** — not a survey answer at all; our interpretation.
 
-**The arithmetic layer was removed on 2026-08-24** by explicit decision: the collapsed `🧮` blocks (raw response counts and exact sums, one per figure) made the page heavier than the audience needed. Checkability is preserved differently: every figure traces back to the raw survey export (available on request), most arithmetic blocks live in this repository's **git history** (last committed version), and any figure can be recomputed from the export directly. Blocks can be restored per-figure if a claim is ever challenged — the `details.calc` CSS is intentionally kept in `index.html` for that case.
+**The arithmetic layer was removed on 2026-08-24** by explicit decision: the collapsed `🧮` blocks (raw response counts and exact sums, one per figure) made the page heavier than the audience needed. Checkability is preserved differently: every figure traces back to the raw survey export — **versioned in this repository since 2026-08-25 as the anonymized copy**, so it can be recomputed without asking anyone — and most arithmetic blocks live in this repository's **git history** (last committed version). Blocks can be restored per-figure if a claim is ever challenged — the `details.calc` CSS is intentionally kept in `index.html` for that case.
 
 ### Say it plainly
 
@@ -143,7 +153,7 @@ We create that folder when there is a first real finding to put in it, and not b
 | | |
 |---|---|
 | **Source** | *AI Usage Assessment — NICE UX Team* survey (Microsoft Forms) |
-| **Raw data** | `AI Usage Assessment — NICE UX Team(1-37).xlsx` — the survey export (37 responses). Kept in the OneDrive project folder, **not in git** (see [Handling the raw data](#handling-the-raw-data)) |
+| **Raw data** | `AI Usage Assessment — NICE UX Team(1-37).xlsx` — the survey export (37 responses). Kept in the OneDrive project folder, **not in git**. The repository carries `…(1-37) — anonymized.xlsx` instead: same answers, identity columns removed (see [Handling the raw data](#handling-the-raw-data)) |
 | **Team** | NICE UX — India, Israel, United States |
 | **Owner** | Design Operations |
 | **Repository** | `lihishremmm/Efficency-AI-Adoption` |
@@ -166,3 +176,4 @@ We create that folder when there is a first real finding to put in it, and not b
 | 2026-08-24 | Velocity tab slimmed to three sections: the section **"The speed-up is real"** (per-scenario chart + table, took-over/still-takes cards) removed with its chart JS; remaining sections renumbered (01 where the time went · 02 the whole story). The per-scenario detail (1.79–2.03×) survives as one line in the opening chain |
 | 2026-08-24 | **AI Champions tab added**, built on a three-layer rule per champion: ① survey (Measured) → ② interview notes (*Not yet collected* — kept visibly empty, with the questions each interview must answer) → ③ how we adapt the suggestion, with one of four verdicts (**Adopt · Adapt · Pilot · Park**), an owner and a `Proposed` status until the interview confirms it. Adds an interview tracker (**0/7**, the project's P0 gate), a **decisions ledger** of all 11 champion suggestions with the reason each one is reshaped rather than taken as-is, and a fixed 12-question interview guide split *method / inside UX / Product & Dev*. The seven compact cards were **moved out of Report §05** (now a pointer, id `champions-ref`) so champion content has one home and cannot drift; the unused `.champion-*` CSS was removed |
 | 2026-08-24 | **Conclusions tab added**: to keep pace we would need ~2.7–2.8× (+45–50% over 1.88×), but speed has a structural ceiling of ~2× because judgement (~half of every task) doesn't compress — so the levers are cutting/automating the non-hands-on 40% and headcount, not working faster |
+| 2026-08-25 | **Raw data is now versioned, as an anonymized copy.** `AI Usage Assessment — NICE UX Team(1-37) — anonymized.xlsx` enters the repository: the same 37 responses with `Email`, `Name` and `Your full name` dropped (68 of 71 columns, all 2,451 answer cells verified identical to the export). The full export stays out of git — the `*.xlsx` rule holds and the copy is negated back in. Chosen over making the repository private so the figures stay recomputable from the repository alone. Free text was checked for names, emails, URLs and phone numbers before committing; the submission timestamps are kept and noted as the one residual re-identification route |

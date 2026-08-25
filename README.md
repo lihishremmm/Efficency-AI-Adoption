@@ -31,3 +31,4 @@ Then enable Pages the same way as step 3 above (Settings → Pages → Deploy fr
 - Both pages are static HTML — no build step, no server needed.
 - `dashboard.html` uses Chart.js loaded from a CDN, so it needs an internet connection to render (true for any visitor, including on GitHub Pages).
 - Data source: Microsoft Forms survey, 37 responses, Aug 2026. All figures are aggregate — no individual names appear on either public page (one illustrative champion example in `index.html` was anonymized for this public version).
+- The survey data is in this repo as **`AI Usage Assessment — NICE UX Team(1-37) — anonymized.xlsx`** — all 37 responses, with the `Email`, `Name` and `Your full name` columns removed, so every figure can be recomputed. The full export keeps those columns and is deliberately **not** committed; a `*.xlsx` rule in `.gitignore` holds it out. See "Handling the raw data" in `PURPOSE.md`.
