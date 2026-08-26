@@ -1,529 +1,657 @@
-https://raw.githubusercontent.com/lihishremmm/Efficency-AI-Adoption/8019923/index.html
-→ https://raw.githubusercontent.com/lihishremmm/Efficency-AI-Adoption/8019923/index.html
-Content-Type: text/plain; charset=utf-8
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NICE UX Team — AI Usage Assessment 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,144,500;0,144,600;0,144,700;1,144,500&family=Inter+Tight:wght@400;500;600;650;700;750;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
-/* ───────────────────────────── RESET & BASE ───────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --navy:    #1B2E4B;
-  --teal:    #0E7C86;
-  --teal-lt: #D0EEF0;
-  --gold:    #C8902A;
-  --gold-lt: #FFF3DC;
-  --green:   #27AE60;
-  --red:     #C0392B;
-  --amber:   #E67E22;
-  --gray-0:  #F4F5F7;
-  --gray-1:  #E8EAED;
-  --gray-2:  #D0D3DA;
-  --gray-3:  #9EA4B0;
-  --gray-4:  #4A4F5C;
-  --text:    #1a2332;
-  --white:   #FFFFFF;
-}
-html { scroll-behavior: smooth; }
-body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #F0F2F5; color: var(--text); font-size: 15px; line-height: 1.6; }
+/* ═══════════════════════════════════════════════════════════════════════
+   VISUAL SYSTEM — "Bone & Signal"
+   An editorial/print language, not a dashboard one: bone paper, pine ink,
+   one signal hue. Square-cut panels, hairline rules, mono micro-labels,
+   a serif display face for voice and a tight grotesque for figures.
 
-/* ───────────────────────────── NAV ───────────────────────────────── */
+   DATA MARKS USE EXACTLY TWO HUES — pine (positive / measured) and
+   vermillion (pressure / negative) — plus a neutral. The diverging pair,
+   both ordinal ramps and every mark colour were validated against the
+   panel surface #FBF8F1 (OKLCH lightness band, chroma floor, protan/deutan
+   ΔE, WCAG contrast) before being used. Do not add a third data hue
+   without re-validating: warm hues collide with the vermillion under CVD.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* ── surfaces & ink ─────────────────────────────────────────────── */
+  --paper:   #EDE8DC;   /* the page plane                              */
+  --card:    #FBF8F1;   /* every panel — and the chart surface         */
+  --white:   #FBF8F1;
+  --gray-0:  #F3EFE5;   /* quiet wash                                  */
+  --gray-1:  #E1DACA;   /* hairline rule                               */
+  --gray-2:  #C7BFAC;   /* neutral data mark                           */
+  --gray-3:  #8C8577;   /* muted ink — labels, captions                */
+  --gray-4:  #4E4A40;   /* body ink                                    */
+  --text:    #1B1A16;   /* full ink                                    */
+
+  /* ── the two data hues ──────────────────────────────────────────── */
+  --teal:    #00805F;   /* pine — the primary mark                     */
+  --navy:    #0A3A32;   /* pine ink — display blocks, darkest step     */
+  --teal-lt: #DCE9E4;   /* pine wash                                   */
+  --green:   #00805F;   /* "positive" is the same pine, deliberately   */
+  --amber:   #C2431C;   /* vermillion — attention, increase, friction  */
+  --red:     #98280C;   /* vermillion, deep — alarm                    */
+  --red-lt:  #FAEBE5;
+  --gold:    #8A6100;   /* ochre — reserved for ESTIMATED, never data  */
+  --gold-lt: #F5E9CF;
+  --gold-br: #E0CDA4;
+
+  /* pine ordinal ramp, light → dark (validated as an ordinal ramp) */
+  --p1: #7FBAAC; --p2: #57A192; --p3: #33887A;
+  --p4: #186F61; --p5: #075549; --p6: #003A31;
+
+  /* ── type ───────────────────────────────────────────────────────── */
+  --serif: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --sans:  'Inter Tight', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono:  'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--gray-4);
+  font-size: 15px; line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+strong, b { color: var(--text); font-weight: 650; }
+::selection { background: var(--teal-lt); }
+
+/* A reusable micro-label: the mono, letterspaced, uppercase tag that
+   marks every secondary layer in this system. */
+.u-tag, .card-header .conf, .mx-key, .newwork-tag, .tl-phase, .chp-role,
+.chp-lbl, .leak-sub, .soon-pill, .conf, .pill, .region-chip .lbl {
+  font-family: var(--mono);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+/* ─────────────────────────────── NAV ──────────────────────────────── */
 nav {
   position: sticky; top: 0; z-index: 100;
-  background: var(--navy); padding: 0 32px;
-  display: flex; align-items: center; gap: 0;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  background: var(--card);
+  border-bottom: 2px solid var(--text);
+  display: flex; align-items: stretch;
+  padding: 0 clamp(14px, 3vw, 34px);
   overflow-x: auto; white-space: nowrap;
+  scrollbar-width: none;
 }
-.nav-brand { color: white; font-weight: 800; font-size: 13px; padding: 16px 20px 16px 0; border-right: 1px solid rgba(255,255,255,0.15); margin-right: 8px; letter-spacing: 0.5px; flex-shrink: 0; }
-nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 12px; font-weight: 600; padding: 18px 14px; transition: color 0.15s, border-color 0.15s; border-bottom: 3px solid transparent; flex-shrink: 0; }
-nav a:hover { color: white; border-bottom-color: var(--teal); }
-nav a.active { color: white; border-bottom-color: var(--gold); }
+nav::-webkit-scrollbar { display: none; }
+.nav-brand {
+  font-family: var(--serif); font-weight: 700; font-size: 15px;
+  letter-spacing: -0.01em; color: var(--text);
+  display: flex; align-items: center; flex-shrink: 0;
+  padding: 13px 20px 13px 0; margin-right: 16px;
+  border-right: 1px solid var(--gray-1);
+}
+nav a, nav button.tab-link {
+  background: none; border: 0; cursor: pointer; font-family: var(--mono);
+  font-size: 10.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gray-3); text-decoration: none;
+  padding: 17px 13px 14px; border-bottom: 3px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+  flex-shrink: 0; white-space: nowrap;
+}
+nav a:hover, nav button.tab-link:hover { color: var(--text); border-bottom-color: var(--gray-2); }
+nav a.active, nav button.tab-link.active { color: var(--text); border-bottom-color: var(--amber); }
+.nav-sep { width: 1px; align-self: center; height: 20px; background: var(--gray-1); margin: 0 4px; flex-shrink: 0; }
+nav .tab-soon {
+  font-family: var(--mono); font-size: 8.5px; font-weight: 700; letter-spacing: 0.12em;
+  border: 1px solid var(--gray-2); color: var(--gray-3);
+  padding: 1px 5px; margin-left: 7px; vertical-align: middle;
+}
+nav .tab-new {
+  font-family: var(--mono); font-size: 8.5px; font-weight: 700; letter-spacing: 0.12em;
+  border: 1px solid var(--amber); color: var(--amber);
+  padding: 1px 5px; margin-left: 7px; vertical-align: middle;
+}
+
+/* ────────────────────────────── LAYOUT ────────────────────────────── */
+.page { max-width: 1100px; margin: 0 auto; padding: 30px clamp(16px, 4vw, 34px) 90px; }
+
+/* Masthead — the page states what it is once, at the top */
+.masthead { border-bottom: 2px solid var(--text); padding-bottom: 20px; margin-bottom: 34px; }
+.mh-kicker {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--amber);
+  margin-bottom: 10px;
+}
+.mh-title {
+  font-family: var(--serif); font-weight: 700;
+  font-size: clamp(30px, 5.6vw, 52px); line-height: 1.02;
+  letter-spacing: -0.025em; color: var(--text);
+}
+.mh-title span { color: var(--teal); }
+.mh-sub { font-size: 14px; color: var(--gray-3); max-width: 620px; margin-top: 10px; line-height: 1.6; }
+.mh-meta {
+  display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 14px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--gray-3);
+}
+.mh-meta span { display: flex; align-items: center; gap: 18px; }
+.mh-meta span + span::before { content: ''; width: 1px; height: 11px; background: var(--gray-2); }
+
+section { margin-bottom: 58px; scroll-margin-top: 66px; }
+.section-header {
+  display: flex; align-items: baseline; flex-wrap: wrap; gap: 14px;
+  border-top: 2px solid var(--text); padding-top: 13px; margin-bottom: 26px;
+}
+.section-number {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber);
+  flex: 0 0 auto; min-width: 68px;
+}
+.section-icon { font-size: 19px; line-height: 1; flex: 0 0 auto; }
+.section-title {
+  font-family: var(--serif); font-size: clamp(23px, 3.4vw, 31px); font-weight: 600;
+  line-height: 1.12; letter-spacing: -0.02em; color: var(--text); flex: 0 1 auto;
+}
+.section-sub {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--gray-3); flex: 0 0 auto; align-self: center;
+}
+
+/* Index bar inside a tab */
+.subnav {
+  display: flex; flex-wrap: wrap;
+  border-top: 1px solid var(--gray-1); border-bottom: 1px solid var(--gray-1);
+  padding: 4px 0; margin-bottom: 34px;
+}
+.subnav a {
+  font-family: var(--mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--gray-3); text-decoration: none;
+  padding: 8px 14px; border-right: 1px solid var(--gray-1);
+  transition: color 0.15s, background 0.15s;
+}
+.subnav a:first-child { padding-left: 0; }
+.subnav a:last-child { border-right: none; }
+.subnav a:hover { color: var(--amber); background: var(--gray-0); }
+
+/* ────────────────────────────── PANELS ────────────────────────────── */
+.card { background: var(--card); border: 1px solid var(--gray-1); }
+.card-header {
+  font-family: var(--serif); font-size: 16.5px; font-weight: 600;
+  letter-spacing: -0.01em; color: var(--text);
+  padding: 15px 20px 13px; border-bottom: 1px solid var(--gray-1);
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+}
+.card-body { padding: 20px; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+@media (max-width: 820px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+/* The four secondary panels, told apart by rule position, not by colour bars */
+.insight {
+  background: var(--teal-lt); border-top: 2px solid var(--teal);
+  padding: 15px 18px; font-size: 13.5px; line-height: 1.65; margin: 16px 0;
+  color: var(--gray-4);
+}
+.insight strong { color: var(--navy); }
+.alert {
+  background: var(--red-lt); border-top: 2px solid var(--amber);
+  padding: 15px 18px; font-size: 13.5px; line-height: 1.65; margin: 14px 0;
+  color: var(--gray-4);
+}
+.alert strong { color: var(--red); }
+.why {
+  background: var(--gray-0); border-left: 2px solid var(--text);
+  padding: 13px 17px; font-size: 13px; line-height: 1.65; margin: 15px 0;
+  color: var(--gray-4);
+}
+.why .why-lbl { font-weight: 700; color: var(--text); margin-right: 6px; }
+.plainnote {
+  border-top: 1px solid var(--gray-2); border-bottom: 1px solid var(--gray-2);
+  padding: 14px 0; margin: 16px 0;
+  font-size: 12.5px; line-height: 1.7; color: var(--gray-4);
+}
+.plainnote strong { color: var(--text); }
+
+blockquote {
+  position: relative; margin: 20px 0; padding: 2px 0 2px 44px;
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  font-size: 16px; line-height: 1.5; color: var(--text);
+}
+blockquote::before {
+  content: '\201C'; position: absolute; left: 0; top: 4px;
+  font-family: var(--serif); font-style: normal; font-weight: 700;
+  font-size: 52px; line-height: 0.7; color: var(--amber);
+}
+blockquote cite {
+  display: block; margin-top: 10px;
+  font-family: var(--mono); font-style: normal; font-size: 10px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-3);
+}
 
 /* ────────────────────── CALCULATION DISCLOSURE ────────────────────── */
-details.calc { margin-top: 12px; border: 1px solid var(--gray-1); border-radius: 9px; background: #FBFCFD; overflow: hidden; }
+details.calc { margin-top: 14px; border: 1px solid var(--gray-1); background: var(--gray-0); }
 details.calc > summary {
-  cursor: pointer; list-style: none; padding: 8px 13px;
-  font-size: 11.5px; font-weight: 700; color: var(--gray-3);
-  display: flex; align-items: center; gap: 7px; user-select: none;
+  cursor: pointer; list-style: none; padding: 9px 14px;
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-3);
+  display: flex; align-items: center; gap: 8px; user-select: none;
   transition: background 0.15s, color 0.15s;
 }
 details.calc > summary::-webkit-details-marker { display: none; }
-details.calc > summary::after { content: '▸'; margin-left: auto; font-size: 11px; transition: transform 0.15s; }
-details.calc[open] > summary::after { transform: rotate(90deg); }
-details.calc > summary:hover { background: var(--gray-0); color: var(--navy); }
-details.calc[open] > summary { border-bottom: 1px solid var(--gray-1); color: var(--navy); }
-.calc-body { padding: 13px 15px; font-size: 12.5px; line-height: 1.75; color: var(--gray-4); }
+details.calc > summary::after { content: '+'; margin-left: auto; font-size: 13px; }
+details.calc[open] > summary::after { content: '\2212'; }
+details.calc > summary:hover { color: var(--text); }
+details.calc[open] > summary { border-bottom: 1px solid var(--gray-1); color: var(--text); }
+.calc-body { padding: 14px 16px; font-size: 12.5px; line-height: 1.75; color: var(--gray-4); background: var(--card); }
 .calc-body code, .calc-body .formula {
-  display: block; font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 11.5px;
-  background: white; border: 1px solid var(--gray-1); border-radius: 6px;
-  padding: 9px 12px; margin: 7px 0; color: var(--navy); white-space: pre-wrap; line-height: 1.65;
+  display: block; font-family: var(--mono); font-size: 11.5px;
+  background: var(--gray-0); border-left: 2px solid var(--gray-2);
+  padding: 10px 13px; margin: 9px 0; color: var(--text);
+  white-space: pre-wrap; line-height: 1.7;
 }
-.calc-body .q { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 0.4px; background: var(--navy); color: white; padding: 2px 7px; border-radius: 999px; margin-right: 6px; }
-.calc-body .warn { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 0.4px; background: var(--gold-lt); color: var(--gold); border: 1px solid #F0D9A0; padding: 2px 7px; border-radius: 999px; margin-right: 6px; }
-.calc-body table { width: 100%; border-collapse: collapse; font-size: 11.5px; margin: 7px 0; }
-.calc-body table th { text-align: left; padding: 5px 8px; background: var(--gray-0); color: var(--navy); font-weight: 700; border-bottom: 1px solid var(--gray-1); }
-.calc-body table td { padding: 5px 8px; border-bottom: 1px solid var(--gray-1); font-variant-numeric: tabular-nums; }
+.calc-body .q, .calc-body .warn {
+  display: inline-block; font-family: var(--mono); font-size: 9px; font-weight: 700;
+  letter-spacing: 0.11em; text-transform: uppercase;
+  padding: 2px 6px; margin-right: 7px; border: 1px solid;
+}
+.calc-body .q    { color: var(--navy); border-color: var(--teal); background: var(--teal-lt); }
+.calc-body .warn { color: var(--gold); border-color: var(--gold-br); background: var(--gold-lt); }
+.calc-body table { width: 100%; border-collapse: collapse; font-size: 11.5px; margin: 9px 0; }
+.calc-body table th {
+  text-align: left; padding: 6px 9px; font-family: var(--mono); font-size: 9.5px;
+  letter-spacing: 0.09em; text-transform: uppercase; color: var(--gray-3);
+  border-bottom: 1px solid var(--text);
+}
+.calc-body table td { padding: 6px 9px; border-bottom: 1px solid var(--gray-1); font-variant-numeric: tabular-nums; }
 .calc-body em { color: var(--gray-3); font-style: normal; font-size: 11.5px; }
+.calc-body p + p { margin-top: 9px; }
 @media print { details.calc { break-inside: avoid; } details.calc > summary::after { display: none; } }
 
-/* ───────────────────────────── LAYOUT ─────────────────────────────── */
-.page { max-width: 1100px; margin: 0 auto; padding: 32px 24px 80px; }
-
-section { margin-bottom: 56px; scroll-margin-top: 60px; }
-.section-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 24px; }
-.section-number { font-size: 11px; font-weight: 800; color: var(--teal); text-transform: uppercase; letter-spacing: 1px; background: var(--teal-lt); padding: 3px 10px; border-radius: 999px; flex-shrink: 0; }
-.section-title { font-size: 22px; font-weight: 800; color: var(--navy); }
-
-/* ───────────────────────────── CARDS ──────────────────────────────── */
-.card { background: white; border-radius: 14px; box-shadow: 0 1px 6px rgba(0,0,0,0.07); overflow: hidden; }
-.card-header { padding: 16px 20px; border-bottom: 1px solid var(--gray-1); font-weight: 700; font-size: 14px; color: var(--navy); display: flex; align-items: center; gap: 8px; }
-.card-body { padding: 20px; }
-
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-@media (max-width: 768px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
-
-/* ───────────────────────────── STAT CHIPS ─────────────────────────── */
-.stat-row { display: flex; flex-direction: column; gap: 10px; }
-.stat-bar { display: flex; align-items: center; gap: 10px; }
-.stat-bar-label { font-size: 13px; color: var(--gray-4); width: 180px; flex-shrink: 0; line-height: 1.3; }
-.stat-bar-track { flex: 1; background: var(--gray-1); border-radius: 999px; height: 10px; position: relative; }
-.stat-bar-fill { height: 100%; border-radius: 999px; transition: width 0.8s ease; }
-.stat-bar-pct { font-size: 13px; font-weight: 700; color: var(--navy); width: 36px; text-align: right; flex-shrink: 0; }
-
-/* ──────────────────── SELF-PERCEPTION MATRIX BARS ─────────────────── */
-.mx { display: flex; flex-direction: column; gap: 12px; }
-.mx-row { display: flex; align-items: center; gap: 12px; }
-.mx-lbl { font-size: 13px; color: var(--gray-4); width: 200px; flex-shrink: 0; line-height: 1.3; }
-.mx-lbl strong { display: block; color: var(--navy); font-size: 13.5px; font-weight: 700; }
-.mx-track { flex: 1; display: flex; height: 22px; border-radius: 6px; overflow: hidden; background: var(--gray-1); min-width: 120px; }
-.mx-seg { height: 100%; display: flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 800; color: white; font-variant-numeric: tabular-nums; overflow: hidden; }
-.mx-tot { font-size: 14px; font-weight: 900; color: var(--navy); width: 42px; text-align: right; flex-shrink: 0; font-variant-numeric: tabular-nums; }
-.mx-key { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 16px; font-size: 11.5px; color: var(--gray-3); }
-.mx-key span { display: flex; align-items: center; gap: 6px; }
-.mx-key i { width: 11px; height: 11px; border-radius: 3px; flex-shrink: 0; }
-@media (max-width: 768px) {
-  .mx-row { flex-wrap: wrap; }
-  .mx-lbl { width: 100%; }
-}
-
-/* ───────────────────────────── QUOTE ──────────────────────────────── */
-blockquote {
-  border-left: 4px solid var(--teal);
-  background: #F7FEFF;
-  padding: 14px 18px;
-  border-radius: 0 10px 10px 0;
-  margin: 16px 0;
-  font-style: italic;
-  color: var(--gray-4);
-  font-size: 14px;
-  line-height: 1.6;
-}
-blockquote cite { display: block; margin-top: 6px; font-style: normal; font-size: 12px; font-weight: 700; color: var(--teal); }
-
-/* ───────────────────────────── INSIGHT BOX ────────────────────────── */
-.insight {
-  background: var(--gold-lt);
-  border: 1px solid #F0D9A0;
-  border-left: 4px solid var(--gold);
-  border-radius: 0 10px 10px 0;
-  padding: 14px 18px;
-  font-size: 13px;
-  line-height: 1.6;
-  margin: 16px 0;
-}
-.insight strong { color: var(--gold); }
-
-.alert {
-  background: #FEF0F0;
-  border-left: 4px solid var(--red);
-  border-radius: 0 10px 10px 0;
-  padding: 14px 18px;
-  font-size: 13px;
-  line-height: 1.6;
-  margin: 12px 0;
-}
-
-/* ───────────────────────────── TABLE ──────────────────────────────── */
+/* ─────────────────────────────── TABLES ───────────────────────────── */
 .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-.data-table th { background: var(--navy); color: white; padding: 10px 14px; text-align: left; font-weight: 600; font-size: 12px; }
-.data-table td { padding: 10px 14px; border-bottom: 1px solid var(--gray-1); line-height: 1.4; vertical-align: top; }
-.data-table tr:nth-child(even) td { background: var(--gray-0); }
-.data-table tr:hover td { background: var(--teal-lt); }
-.pill { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
-.pill-green { background: #D4EDDA; color: #155724; }
-.pill-red { background: #F8D7DA; color: #721C24; }
-.pill-orange { background: #FFF3CD; color: #856404; }
-.pill-blue { background: #CCE5FF; color: #004085; }
+.data-table th {
+  font-family: var(--mono); font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.11em; text-transform: uppercase; color: var(--gray-3);
+  background: transparent; text-align: left; padding: 11px 14px 9px;
+  border-bottom: 2px solid var(--text); vertical-align: bottom;
+}
+.data-table td {
+  padding: 12px 14px; border-bottom: 1px solid var(--gray-1);
+  line-height: 1.5; vertical-align: top; font-variant-numeric: tabular-nums;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tbody tr:hover td { background: var(--gray-0); }
+.data-table code { font-family: var(--mono); background: var(--gray-0); padding: 1px 4px; }
 
-/* ───────────────────────────── SCENARIO TABLE ──────────────────────── */
-.scenario-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 0; border: 1px solid var(--gray-1); border-radius: 12px; overflow: hidden; }
-.sc-header { background: var(--navy); color: white; padding: 10px 14px; font-size: 12px; font-weight: 700; }
-.sc-cell { padding: 14px; border-bottom: 1px solid var(--gray-1); border-right: 1px solid var(--gray-1); font-size: 13px; }
-.sc-cell.before { background: #FEF9F0; }
-.sc-cell.after  { background: #F0FEF4; }
-.sc-cell.shift  { background: #F0F8FF; text-align: center; font-size: 18px; }
-.sp-badge { display: inline-block; font-weight: 800; font-size: 20px; color: var(--navy); }
-.sp-pct { font-size: 11px; color: var(--gray-3); margin-top: 2px; }
+/* Tags: outlined, square-cut, mono — never a filled candy pill */
+.pill {
+  display: inline-block; font-size: 9.5px; font-weight: 700;
+  padding: 3px 7px; border: 1px solid; white-space: nowrap; line-height: 1.5;
+}
+.pill-green, .pill-adopt { color: var(--navy);  border-color: var(--teal);    background: var(--teal-lt); }
+.pill-orange, .pill-adapt { color: var(--gold);  border-color: var(--gold-br); background: var(--gold-lt); }
+.pill-blue, .pill-pilot  { color: var(--gray-4); border-color: var(--gray-2);  background: var(--gray-0); }
+.pill-red, .pill-open    { color: var(--red);    border-color: #E2B9AB;        background: var(--red-lt); }
+.pill-park               { color: var(--gray-3); border-color: var(--gray-2);  background: transparent; }
+.priority-p0 { color: var(--card);   border-color: var(--red);    background: var(--red); }
+.priority-p1 { color: var(--gold);   border-color: var(--gold-br); background: var(--gold-lt); }
+.priority-p2 { color: var(--navy);   border-color: var(--teal);   background: var(--teal-lt); }
+.priority-p3 { color: var(--gray-3); border-color: var(--gray-2); background: transparent; }
 
-/* (The old .champion-* card CSS lived here. The compact cards it styled were
-   replaced by the .chp dossiers in the AI Champions tab — see that block below.) */
+/* Story points, inside the scenario table */
+.sp-badge { display: inline-block; font-family: var(--sans); font-weight: 750; font-size: 20px; letter-spacing: -0.02em; color: var(--text); }
+.sp-pct { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.06em; color: var(--gray-3); margin-top: 3px; }
 
-/* ───────────────────────────── TIMELINE ───────────────────────────── */
-.timeline { position: relative; padding-left: 36px; }
-.timeline::before { content: ''; position: absolute; left: 12px; top: 8px; bottom: 8px; width: 2px; background: var(--gray-2); }
-.tl-item { position: relative; margin-bottom: 24px; }
-.tl-dot { position: absolute; left: -30px; top: 4px; width: 16px; height: 16px; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 2px var(--teal); background: var(--teal); }
-.tl-phase { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--teal); margin-bottom: 4px; }
-.tl-title { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 4px; }
-.tl-desc { font-size: 13px; color: var(--gray-4); line-height: 1.5; }
+/* Confidence badges — one on every figure */
+.conf {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.11em;
+  padding: 2px 6px; border: 1px solid; white-space: nowrap; vertical-align: middle;
+  line-height: 1.6;
+}
+.conf-m { color: var(--navy);   border-color: var(--teal);    background: var(--teal-lt); }
+.conf-e { color: var(--gold);   border-color: var(--gold-br); background: var(--gold-lt); }
+.conf-j { color: var(--gray-3); border-color: var(--gray-2);  background: transparent; }
 
-/* ───────────────────────────── PRIORITY TABLE ──────────────────────── */
-.priority-p0 { background: #FEE2E2; color: #991B1B; }
-.priority-p1 { background: #FEF3C7; color: #92400E; }
-.priority-p2 { background: #DBEAFE; color: #1E40AF; }
-.priority-p3 { background: #D1FAE5; color: #065F46; }
+/* ──────────────────────────── BAR FIGURES ─────────────────────────── */
+/* Flat, square-cut, 3px rounded data-end only — the fill is the only ink. */
+.stat-row { display: flex; flex-direction: column; gap: 11px; }
+.stat-bar { display: flex; align-items: center; gap: 12px; }
+.stat-bar-label { font-size: 13px; color: var(--gray-4); width: 180px; flex-shrink: 0; line-height: 1.35; }
+.stat-bar-track { flex: 1; background: var(--gray-1); height: 12px; position: relative; }
+.stat-bar-fill { height: 100%; border-radius: 0 3px 3px 0; transition: width 0.9s cubic-bezier(.2,.7,.3,1); }
+.stat-bar-pct {
+  font-family: var(--mono); font-size: 12px; font-weight: 700;
+  font-variant-numeric: tabular-nums; color: var(--text);
+  width: 42px; text-align: right; flex-shrink: 0;
+}
 
-/* ───────────────────────────── FOOTER ─────────────────────────────── */
-footer { background: var(--navy); color: rgba(255,255,255,0.6); text-align: center; padding: 24px; font-size: 12px; }
-footer strong { color: white; }
-
-/* ───────────────────────────── CHART CONTAINERS ────────────────────── */
-.chart-wrap { position: relative; padding: 16px 0; }
-.chart-wrap canvas { max-height: 280px; }
+/* Self-perception matrix — a diverging stack: pine arm, neutral, vermillion */
+.mx { display: flex; flex-direction: column; gap: 12px; }
+.mx-row { display: flex; align-items: center; gap: 14px; }
+.mx-lbl { font-size: 12.5px; color: var(--gray-3); width: 200px; flex-shrink: 0; line-height: 1.35; }
+.mx-lbl strong { display: block; color: var(--text); font-size: 13.5px; font-weight: 650; }
+.mx-track { flex: 1; display: flex; height: 24px; background: var(--gray-1); min-width: 120px; }
+.mx-seg {
+  height: 100%; display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 10px; font-weight: 700; color: var(--card);
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.mx-seg + .mx-seg { box-shadow: inset 2px 0 0 var(--card); }   /* the 2px surface gap */
+.mx-tot {
+  font-family: var(--sans); font-size: 16px; font-weight: 750; letter-spacing: -0.02em;
+  color: var(--text); width: 46px; text-align: right; flex-shrink: 0;
+}
+.mx-key { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-top: 18px; padding-top: 12px;
+          border-top: 1px solid var(--gray-1); font-size: 9.5px; color: var(--gray-3); }
+.mx-key span { display: flex; align-items: center; gap: 7px; }
+.mx-key i { width: 10px; height: 10px; flex-shrink: 0; }
+@media (max-width: 768px) { .mx-row { flex-wrap: wrap; } .mx-lbl { width: 100%; } }
 
 /* Maturity meter */
-.maturity-bar { display: flex; height: 32px; border-radius: 8px; overflow: hidden; margin: 16px 0; }
-.maturity-seg { display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: white; transition: flex 0.8s ease; }
-
-/* Region badges */
-.region-grid { display: flex; gap: 12px; flex-wrap: wrap; margin: 12px 0; }
-.region-chip { background: var(--gray-0); border-radius: 8px; padding: 12px 16px; text-align: center; flex: 1; min-width: 120px; }
-.region-chip .val { font-size: 24px; font-weight: 800; color: var(--navy); }
-.region-chip .lbl { font-size: 11px; color: var(--gray-3); margin-top: 2px; }
-
-/* Two speed visual */
-.speed-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
-.speed-card { border-radius: 10px; padding: 16px; }
-.speed-card.pro { background: linear-gradient(135deg, #1B2E4B 0%, #0E4B6E 100%); color: white; }
-.speed-card.mid { background: var(--gray-0); border: 1px solid var(--gray-1); }
-.speed-num { font-size: 40px; font-weight: 900; }
-.speed-label { font-size: 13px; opacity: 0.8; margin-bottom: 10px; }
-.speed-desc { font-size: 12px; opacity: 0.7; line-height: 1.5; }
-
-/* Concern item */
-.concern-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--gray-1); }
-.concern-row:last-child { border-bottom: none; }
-.concern-pct { font-size: 18px; font-weight: 800; color: var(--navy); width: 48px; flex-shrink: 0; }
-.concern-label { font-size: 13px; color: var(--gray-4); flex: 1; }
-.concern-bar { width: 80px; height: 6px; background: var(--gray-1); border-radius: 999px; flex-shrink: 0; }
-.concern-fill { height: 100%; border-radius: 999px; background: var(--amber); }
-
-/* ───────────────────────────── TABS ───────────────────────────────── */
-.tab-panel { display: none; }
-.tab-panel.active { display: block; animation: fadeIn 0.25s ease; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
-
-nav button.tab-link {
-  background: none; border: none; cursor: pointer; font-family: inherit;
-  color: rgba(255,255,255,0.7); font-size: 12.5px; font-weight: 700;
-  padding: 18px 18px; border-bottom: 3px solid transparent;
-  transition: color 0.15s, border-color 0.15s; flex-shrink: 0; white-space: nowrap;
+.maturity-bar { display: flex; height: 30px; margin: 16px 0; background: var(--gray-1); }
+.maturity-seg {
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
+  color: var(--card); transition: flex 0.8s ease;
 }
-nav button.tab-link:hover { color: white; border-bottom-color: var(--teal); }
-nav button.tab-link.active { color: white; border-bottom-color: var(--gold); }
-nav .tab-soon { font-size: 9px; font-weight: 800; background: rgba(255,255,255,0.18); color: rgba(255,255,255,0.85); padding: 2px 6px; border-radius: 999px; margin-left: 6px; letter-spacing: 0.5px; vertical-align: middle; }
+.maturity-seg + .maturity-seg { box-shadow: inset 2px 0 0 var(--card); }
 
-/* Section sub-nav inside the Report tab */
-.subnav { display: flex; flex-wrap: wrap; gap: 4px; background: white; border-radius: 12px; padding: 10px 12px; margin-bottom: 32px; box-shadow: 0 1px 6px rgba(0,0,0,0.07); }
-.subnav a { font-size: 11.5px; font-weight: 600; color: var(--gray-4); text-decoration: none; padding: 6px 11px; border-radius: 999px; transition: background 0.15s, color 0.15s; }
-.subnav a:hover { background: var(--teal-lt); color: var(--navy); }
+/* Region counts */
+.region-grid { display: flex; gap: 0; flex-wrap: wrap; margin: 4px 0 0; border-top: 1px solid var(--gray-1); }
+.region-chip {
+  padding: 14px 18px 14px 0; text-align: left; flex: 1; min-width: 110px;
+  border-right: 1px solid var(--gray-1);
+}
+.region-chip:last-child { border-right: none; }
+.region-chip:not(:first-child) { padding-left: 18px; }
+.region-chip .val { font-family: var(--sans); font-size: 30px; font-weight: 750; letter-spacing: -0.03em; color: var(--text); line-height: 1; }
+.region-chip .lbl { font-size: 9.5px; color: var(--gray-3); margin-top: 7px; }
 
-/* ───────────────────── VELOCITY TAB COMPONENTS ────────────────────── */
-.leak { background: white; border-radius: 14px; box-shadow: 0 1px 6px rgba(0,0,0,0.07); margin-bottom: 20px; overflow: hidden; border-left: 5px solid var(--amber); }
+/* Two-speed team */
+.speed-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin: 4px 0 18px; border: 1px solid var(--gray-1); }
+@media (max-width: 620px) { .speed-grid { grid-template-columns: 1fr; } }
+.speed-card { padding: 20px; }
+.speed-card.pro { background: var(--navy); color: var(--card); }
+.speed-card.mid { background: var(--card); border-left: 1px solid var(--gray-1); }
+.speed-num { font-family: var(--sans); font-size: 46px; font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+.speed-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; margin: 10px 0 12px; }
+.speed-desc { font-size: 12.5px; line-height: 1.6; opacity: 0.78; }
+
+/* Concerns */
+.concern-row { display: flex; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--gray-1); }
+.concern-row:last-child { border-bottom: none; }
+.concern-pct { font-family: var(--sans); font-size: 19px; font-weight: 750; letter-spacing: -0.03em; color: var(--text); width: 50px; flex-shrink: 0; }
+.concern-label { font-size: 13px; color: var(--gray-4); flex: 1; }
+.concern-bar { width: 84px; height: 6px; background: var(--gray-1); flex-shrink: 0; }
+.concern-fill { height: 100%; background: var(--amber); }
+
+/* ─────────────────────────── CHART SURFACE ────────────────────────── */
+.chart-wrap { position: relative; padding: 14px 0 4px; }
+.chart-wrap canvas { max-height: 280px; }
+/* HTML legend for the charts whose bars carry two classes */
+.fig-key {
+  display: flex; flex-wrap: wrap; gap: 9px 20px; margin-top: 10px; padding-top: 11px;
+  border-top: 1px solid var(--gray-1);
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--gray-3);
+}
+.fig-key span { display: flex; align-items: center; gap: 7px; }
+.fig-key i { width: 10px; height: 10px; flex-shrink: 0; }
+
+/* ──────────────────────────── TIMELINE ────────────────────────────── */
+.timeline { position: relative; padding-left: 34px; }
+.timeline::before { content: ''; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 1px; background: var(--gray-2); }
+.tl-item { position: relative; margin-bottom: 26px; }
+.tl-item:last-child { margin-bottom: 0; }
+.tl-dot {
+  position: absolute; left: -34px; top: 4px; width: 11px; height: 11px;
+  background: var(--teal); box-shadow: 0 0 0 4px var(--card);
+}
+.tl-phase { font-size: 9.5px; font-weight: 700; color: var(--amber); margin-bottom: 5px; }
+.tl-title { font-family: var(--serif); font-weight: 600; font-size: 19px; letter-spacing: -0.01em; color: var(--text); margin-bottom: 5px; }
+.tl-desc { font-size: 13px; color: var(--gray-4); line-height: 1.6; }
+
+/* ─────────────────── THE ARGUMENT, AS A SPINE ─────────────────────── */
+.story { background: var(--card); border: 1px solid var(--gray-1); padding: 12px 26px 22px; margin-bottom: 26px; }
+.story-step { display: grid; grid-template-columns: 165px 1fr; gap: 22px; align-items: center; padding: 11px 0; }
+.story-num {
+  font-family: var(--sans); font-size: 34px; font-weight: 800; letter-spacing: -0.04em;
+  color: var(--text); line-height: 1.02; text-align: right;
+}
+.story-txt { font-size: 13.5px; color: var(--gray-4); line-height: 1.6; }
+.story-txt strong { color: var(--text); }
+.story-join { display: grid; grid-template-columns: 165px 1fr; gap: 22px; align-items: center; padding: 3px 0; }
+.story-join-word {
+  text-align: right; font-family: var(--mono); font-size: 9.5px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-3);
+}
+.story-join-line { height: 1px; background: var(--gray-1); }
+.story-step.final { background: var(--teal-lt); border-left: 3px solid var(--teal); padding: 16px 18px; margin-top: 8px; }
+@media (max-width: 620px) {
+  .story-step, .story-join { grid-template-columns: 1fr; gap: 6px; }
+  .story-num, .story-join-word { text-align: left; }
+  .story-join-line { display: none; }
+}
+
+/* ───────────────── "HOW WE GOT HERE" — the logic, in words ────────── */
+.how {
+  background: var(--card); border: 1px solid var(--gray-1);
+  border-left: 3px solid var(--teal); padding: 18px 22px 20px; margin: 18px 0;
+}
+.how-title {
+  font-family: var(--serif); font-size: 17px; font-weight: 600; letter-spacing: -0.01em;
+  color: var(--text); display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  padding-bottom: 14px; margin-bottom: 16px; border-bottom: 1px solid var(--gray-1);
+}
+.how-steps { display: flex; align-items: stretch; }
+.how-step { flex: 1; padding: 0 20px; font-size: 13px; line-height: 1.6; color: var(--gray-4); }
+.how-step:first-child { padding-left: 0; }
+.how-step:last-child { padding-right: 0; }
+.how-step + .how-step { border-left: 1px solid var(--gray-1); }
+.how-n {
+  width: 22px; height: 22px; border: 1px solid var(--teal); color: var(--teal);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 11px; font-weight: 700; margin-bottom: 11px;
+}
+.how-step strong { color: var(--text); }
+.how-step .how-h { display: block; font-size: 13.5px; margin-bottom: 4px; }
+.how-out { margin-top: 18px; background: var(--teal-lt); border-left: 2px solid var(--teal); padding: 14px 17px; font-size: 13.5px; color: var(--navy); line-height: 1.6; }
+.how-out .arrow { font-weight: 800; color: var(--teal); margin-right: 8px; }
+@media (max-width: 768px) {
+  .how-steps { flex-direction: column; }
+  .how-step { padding: 0; }
+  .how-step + .how-step { border-left: none; border-top: 1px solid var(--gray-1); padding-top: 16px; margin-top: 16px; }
+}
+
+/* ───────────────────── LEAKS (velocity tab) ───────────────────────── */
+.leak { background: var(--card); border: 1px solid var(--gray-1); border-top: 3px solid var(--amber); margin-bottom: 22px; }
 .leak-head { display: flex; align-items: center; gap: 14px; padding: 18px 22px 14px; }
-.leak-n { width: 34px; height: 34px; border-radius: 50%; background: var(--amber); color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 15px; flex-shrink: 0; }
-.leak-title { font-size: 16px; font-weight: 800; color: var(--navy); }
-.leak-sub { font-size: 12.5px; color: var(--gray-3); margin-top: 2px; }
-.leak-body { padding: 0 22px 20px 70px; font-size: 13.5px; line-height: 1.65; color: var(--gray-4); }
+.leak-n {
+  width: 32px; height: 32px; border: 1.5px solid var(--amber); color: var(--amber);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-weight: 700; font-size: 14px; flex-shrink: 0;
+}
+.leak-title { font-family: var(--serif); font-size: 20px; font-weight: 600; letter-spacing: -0.015em; color: var(--text); }
+.leak-sub { font-size: 9.5px; color: var(--gray-3); margin-top: 4px; }
+.leak-body { padding: 0 22px 22px 68px; font-size: 13.5px; line-height: 1.7; color: var(--gray-4); }
 @media (max-width: 768px) { .leak-body { padding-left: 22px; } }
 
-.newwork-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 16px 0; }
-.newwork { border: 1px solid var(--gray-1); border-radius: 10px; padding: 14px; background: var(--gray-0); }
-.newwork.isnew { background: #FFF3DC; border-color: #F0D9A0; }
-.newwork-val { font-size: 26px; font-weight: 900; color: var(--navy); line-height: 1; }
-.newwork.isnew .newwork-val { color: var(--gold); }
-.newwork-lbl { font-size: 11.5px; color: var(--gray-4); margin-top: 5px; line-height: 1.35; }
-.newwork-tag { display: inline-block; font-size: 9px; font-weight: 800; letter-spacing: 0.5px; padding: 2px 6px; border-radius: 999px; background: var(--gold); color: white; margin-top: 8px; }
-
-/* ══════════ PLAIN-LANGUAGE LAYER ══════════
-   Every figure is shown three times, in this order:
-   1. the number            → .key
-   2. the logic behind it   → .how  (words only, no arithmetic — always visible)
-   (the collapsed details.calc arithmetic layer was removed 2026-08-24; its CSS
-    is kept below in case it returns — the workings live in git history)
-   The .conf badge says which of the three kinds of number it is.          */
-
-/* Confidence badges — one of three, on every figure */
-.conf { display:inline-flex; align-items:center; gap:5px; font-size:9.5px; font-weight:800; letter-spacing:0.7px; text-transform:uppercase; padding:3px 9px; border-radius:999px; white-space:nowrap; vertical-align:middle; }
-.conf-m { background:#D4EDDA; color:#155724; }
-.conf-e { background:var(--gold-lt); color:var(--gold); border:1px solid #F0D9A0; }
-.conf-j { background:var(--gray-1); color:var(--gray-4); }
-
-/* The four numbers you need to know, at the very top */
-.keybar { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:20px; }
-@media (max-width:860px){ .keybar { grid-template-columns:repeat(2,1fr); } }
-@media (max-width:520px){ .keybar { grid-template-columns:1fr; } }
-.key { background:white; border-radius:14px; box-shadow:0 1px 6px rgba(0,0,0,0.07); padding:18px; border-top:4px solid var(--gray-2); display:flex; flex-direction:column; }
-.key.good { border-top-color:var(--green); }
-.key.more { border-top-color:var(--amber); }
-.key.isnew { border-top-color:var(--gold); }
-.key.net  { border-top-color:var(--navy); }
-.key-num { font-size:32px; font-weight:900; color:var(--navy); line-height:1; letter-spacing:-0.5px; }
-.key-lbl { font-size:12.5px; color:var(--gray-4); line-height:1.45; margin:8px 0 12px; flex:1; }
-.key-lbl strong { color:var(--navy); }
-.key-src { font-size:11px; color:var(--gray-3); line-height:1.4; margin-top:9px; padding-top:9px; border-top:1px dashed var(--gray-2); }
-
-/* The message, schematically — one chain at the top of the tab */
-.story { background:white; border-radius:14px; box-shadow:0 1px 6px rgba(0,0,0,0.07); padding:20px 26px; margin-bottom:26px; }
-.story-step { display:grid; grid-template-columns:150px 1fr; gap:18px; align-items:center; padding:8px 0; }
-.story-num { font-size:27px; font-weight:900; color:var(--navy); letter-spacing:-0.5px; line-height:1.05; text-align:right; }
-.story-txt { font-size:13.5px; color:var(--gray-4); line-height:1.55; }
-.story-txt strong { color:var(--navy); }
-.story-join { display:grid; grid-template-columns:150px 1fr; gap:18px; align-items:center; padding:2px 0; }
-.story-join-word { text-align:right; font-size:10.5px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:var(--teal); }
-.story-join-line { height:1px; background:var(--gray-2); }
-.story-step.final { background:var(--teal-lt); border-radius:10px; padding:14px 16px; margin-top:6px; }
-@media (max-width:560px){
-  .story-step, .story-join { grid-template-columns:1fr; gap:4px; }
-  .story-num, .story-join-word { text-align:left; }
-  .story-join-line { display:none; }
+.newwork-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0; margin: 18px 0; border: 1px solid var(--gray-1); }
+.newwork { padding: 16px; border-right: 1px solid var(--gray-1); }
+.newwork:last-child { border-right: none; }
+.newwork.isnew { background: var(--red-lt); box-shadow: inset 0 3px 0 var(--amber); }
+.newwork-val { font-family: var(--sans); font-size: 30px; font-weight: 800; letter-spacing: -0.04em; color: var(--text); line-height: 1; }
+.newwork.isnew .newwork-val { color: var(--red); }
+.newwork-lbl { font-size: 11.5px; color: var(--gray-4); margin-top: 7px; line-height: 1.45; }
+.newwork-tag {
+  display: inline-block; font-size: 8.5px; font-weight: 700;
+  border: 1px solid var(--amber); color: var(--amber); padding: 1px 5px; margin-top: 10px;
 }
+@media (max-width: 620px) { .newwork { border-right: none; border-bottom: 1px solid var(--gray-1); } }
 
-/* "How we got here" — the logic, in words, always open */
-.how { background:white; border-radius:14px; box-shadow:0 1px 6px rgba(0,0,0,0.07); border-left:5px solid var(--teal); padding:18px 22px 20px; margin:18px 0; }
-.how-title { font-size:13px; font-weight:800; color:var(--navy); text-transform:uppercase; letter-spacing:0.8px; display:flex; align-items:center; gap:9px; flex-wrap:wrap; margin-bottom:16px; }
-.how-steps { display:flex; align-items:stretch; }
-.how-step { flex:1; padding:0 18px; font-size:13px; line-height:1.55; color:var(--gray-4); }
-.how-step:first-child { padding-left:0; }
-.how-step:last-child { padding-right:0; }
-.how-step + .how-step { border-left:1px solid var(--gray-1); }
-.how-n { width:23px; height:23px; border-radius:50%; background:var(--teal-lt); color:var(--teal); display:flex; align-items:center; justify-content:center; font-size:11.5px; font-weight:900; margin-bottom:9px; }
-.how-step strong { color:var(--navy); }
-.how-step .how-h { display:block; font-size:13.5px; margin-bottom:3px; }   /* the step's lead-in line */
-.how-out { margin-top:16px; background:var(--teal-lt); border-radius:9px; padding:13px 16px; font-size:13.5px; color:var(--navy); line-height:1.6; }
-.how-out .arrow { font-weight:900; color:var(--teal); margin-right:7px; }
-@media (max-width:768px){
-  .how-steps { flex-direction:column; }
-  .how-step { padding:0; }
-  .how-step + .how-step { border-left:none; border-top:1px solid var(--gray-1); padding-top:14px; margin-top:14px; }
+/* ──────────────────── THE EFFORT LADDER ───────────────────────────── */
+.ladder { display: flex; flex-direction: column; gap: 11px; }
+.rung { display: flex; align-items: center; gap: 18px; }
+.rung-bar {
+  height: 42px; border-radius: 0 3px 3px 0; display: flex; align-items: center;
+  justify-content: flex-end; padding: 0 13px; color: var(--card);
+  font-family: var(--sans); font-weight: 800; font-size: 17px; letter-spacing: -0.02em;
+  flex-shrink: 0; font-variant-numeric: tabular-nums;
 }
-
-/* One-line "why we say this" note, for the smaller claims */
-.why { background:var(--gray-0); border-radius:10px; padding:13px 16px; font-size:13px; line-height:1.6; color:var(--gray-4); margin:14px 0; }
-.why .why-lbl { font-weight:800; color:var(--navy); margin-right:6px; }
-
-/* Jargon explainer */
-.plainnote { border:1px dashed var(--gray-2); border-radius:10px; padding:12px 15px; font-size:12.5px; line-height:1.6; color:var(--gray-4); background:#FCFDFE; margin:14px 0; }
-.plainnote strong { color:var(--navy); }
-
-/* The effort ladder — replaces a second chart of the same thing */
-.ladder { display:flex; flex-direction:column; gap:10px; }
-.rung { display:flex; align-items:center; gap:16px; }
-.rung-bar { height:44px; border-radius:8px; display:flex; align-items:center; justify-content:flex-end; padding:0 13px; color:white; font-weight:900; font-size:17px; flex-shrink:0; font-variant-numeric:tabular-nums; }
-.rung-bar.q { background:repeating-linear-gradient(45deg,var(--gold-lt),var(--gold-lt) 6px,#FFE9C0 6px,#FFE9C0 12px); border:1px dashed var(--gold); color:var(--gold); }
-.rung-txt { font-size:13px; color:var(--gray-4); line-height:1.45; }
-.rung-txt strong { display:block; color:var(--navy); font-size:13.5px; }
-.rung-total { display:flex; align-items:center; gap:14px; background:var(--navy); border-radius:10px; padding:15px 18px; margin-top:6px; }
-.rung-total .rt-num { font-size:26px; font-weight:900; color:#6EE4EC; line-height:1; flex-shrink:0; }
-.rung-total .rt-txt { font-size:13px; color:rgba(255,255,255,0.85); line-height:1.5; }
-.rung-total .rt-txt strong { color:white; }
-@media (max-width:768px){ .rung-bar { font-size:14px; height:38px; } }
-
-/* ═══════════════════ AI CHAMPIONS TAB ═══════════════════
-   Each champion is one dossier with three stacked layers:
-   1. what the survey already shows          → .chp-row (measured)
-   2. what the interview adds                → .chp-empty until collected
-   3. what we decide to do with it           → .chp-dec  (our reading)
-   Layers 2 and 3 are deliberately shown as empty/provisional
-   rather than hidden — the gap is part of the status.        */
-.chp-stack { display:flex; flex-direction:column; gap:20px; }
-.chp { background:white; border-radius:14px; box-shadow:0 1px 6px rgba(0,0,0,0.07); overflow:hidden; border-left:5px solid var(--teal); }
-.chp-head { display:flex; align-items:flex-start; gap:14px; padding:18px 22px 16px; border-bottom:1px solid var(--gray-1); flex-wrap:wrap; }
-.chp-av { width:42px; height:42px; border-radius:50%; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:15px; flex-shrink:0; }
-.chp-id { flex:1; min-width:210px; }
-.chp-name { font-size:16px; font-weight:800; color:var(--navy); line-height:1.3; }
-.chp-role { font-size:12.5px; font-weight:700; color:var(--teal); }
-.chp-meta { font-size:11px; color:var(--gray-3); margin-top:3px; }
-.chp-body { padding:4px 22px 20px; }
-.chp-row { padding:15px 0; border-bottom:1px dashed var(--gray-1); }
-.chp-row:last-child { border-bottom:none; padding-bottom:2px; }
-.chp-lbl { display:flex; align-items:center; gap:8px; font-size:10px; font-weight:800; letter-spacing:1.1px; text-transform:uppercase; color:var(--gray-3); margin-bottom:9px; flex-wrap:wrap; }
-.chp-txt { font-size:13.5px; line-height:1.6; color:var(--gray-4); }
-.chp-txt strong { color:var(--navy); }
-.chp-empty { border:1px dashed var(--gray-2); border-radius:10px; background:#FCFDFE; padding:13px 16px; font-size:12.5px; color:var(--gray-3); line-height:1.7; }
-.chp-empty b { color:var(--gray-4); }
-.chp-empty ul { margin:7px 0 0 0; padding-left:17px; }
-.chp-empty li { margin-bottom:3px; }
-.chp-dec { background:var(--gray-0); border-radius:10px; padding:13px 16px; font-size:13px; line-height:1.6; color:var(--gray-4); }
-.chp-dec strong { color:var(--navy); }
-.chp-dec-foot { display:flex; gap:20px; flex-wrap:wrap; margin-top:11px; padding-top:10px; border-top:1px solid var(--gray-2); font-size:11px; color:var(--gray-3); }
-.chp-dec-foot b { color:var(--gray-4); font-weight:700; }
-
-/* Verdict + status pills (used in the dossiers and in the decisions ledger) */
-.pill-adopt { background:#D4EDDA; color:#155724; }
-.pill-adapt { background:var(--gold-lt); color:var(--gold); border:1px solid #F0D9A0; }
-.pill-pilot { background:#CCE5FF; color:#004085; }
-.pill-park  { background:var(--gray-1); color:var(--gray-4); }
-.pill-open  { background:#F8D7DA; color:#721C24; }
-
-/* Interview progress counter */
-.track-count { display:flex; align-items:center; gap:18px; background:var(--navy); border-radius:12px; padding:16px 20px; margin-bottom:18px; }
-.track-count .tc-num { font-size:28px; font-weight:900; color:#6EE4EC; line-height:1; flex-shrink:0; font-variant-numeric:tabular-nums; }
-.track-count .tc-txt { font-size:13px; color:rgba(255,255,255,0.85); line-height:1.55; }
-.track-count .tc-txt strong { color:white; }
-
-/* Cross-tab pointer button */
-.gobtn { display:inline-flex; align-items:center; gap:8px; background:var(--navy); color:white; text-decoration:none; font-size:12.5px; font-weight:700; padding:10px 16px; border-radius:999px; border:none; cursor:pointer; font-family:inherit; transition:background 0.15s; }
-.gobtn:hover { background:var(--teal); }
-
-/* Interview guide question lists */
-.qguide ol { margin:0; padding-left:19px; font-size:13px; color:var(--gray-4); line-height:1.6; }
-.qguide li { margin-bottom:9px; }
-.qguide li:last-child { margin-bottom:0; }
-
-/* Coming soon panel */
-.soon-wrap { background: white; border-radius: 16px; box-shadow: 0 1px 6px rgba(0,0,0,0.07); padding: 72px 40px; text-align: center; }
-.soon-icon { font-size: 46px; margin-bottom: 18px; }
-.soon-wrap h2 { font-size: 24px; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
-.soon-wrap p { font-size: 14px; color: var(--gray-3); max-width: 560px; margin: 0 auto 8px; line-height: 1.6; }
-.soon-pill { display: inline-block; margin-top: 20px; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; background: var(--gold-lt); color: var(--gold); border: 1px solid #F0D9A0; padding: 7px 16px; border-radius: 999px; }
-
-/* ─── BEST PRACTICES TAB STYLES ──────────────────────────────────── */
-/* WORKFLOW CARD */
-.workflow-card {
-  background: white; border-radius: 14px;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.07);
-  border-top: 4px solid var(--teal);
-  padding: 24px; display: flex; flex-direction: column; gap: 16px;
-  transition: transform 0.15s, box-shadow 0.15s;
+.rung-bar.q {
+  background: repeating-linear-gradient(135deg, var(--card), var(--card) 5px, var(--gold-lt) 5px, var(--gold-lt) 10px);
+  border: 1px solid var(--gold-br); color: var(--gold);
 }
-.workflow-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
-.workflow-card.gold { border-top-color: var(--gold); }
-.workflow-card.green { border-top-color: var(--green); }
-.workflow-card.amber { border-top-color: var(--amber); }
+.rung-txt { font-size: 13px; color: var(--gray-4); line-height: 1.5; }
+.rung-txt strong { display: block; color: var(--text); font-size: 13.5px; }
+.rung-total { display: flex; align-items: center; gap: 18px; background: var(--navy); padding: 17px 20px; margin-top: 10px; }
+.rung-total .rt-num { font-family: var(--sans); font-size: 26px; font-weight: 800; letter-spacing: -0.03em; color: var(--p1); line-height: 1.05; flex-shrink: 0; }
+.rung-total .rt-txt { font-size: 13px; color: rgba(251,248,241,0.82); line-height: 1.6; }
+.rung-total .rt-txt strong { color: var(--card); }
+@media (max-width: 768px) { .rung-bar { font-size: 14px; height: 36px; } .rung-total { flex-direction: column; align-items: flex-start; gap: 10px; } }
+
+/* ───────────────────── CHAMPION DOSSIERS ──────────────────────────── */
+.chp-stack { display: flex; flex-direction: column; gap: 22px; }
+.chp { background: var(--card); border: 1px solid var(--gray-1); border-left: 3px solid var(--teal); }
+.chp-head { display: flex; align-items: flex-start; gap: 15px; padding: 18px 22px 16px; border-bottom: 1px solid var(--gray-1); flex-wrap: wrap; }
+.chp-av {
+  width: 40px; height: 40px; background: var(--navy); color: var(--card);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-weight: 700; font-size: 13px; flex-shrink: 0;
+}
+.chp-id { flex: 1; min-width: 210px; }
+.chp-name { font-family: var(--serif); font-size: 20px; font-weight: 600; letter-spacing: -0.015em; color: var(--text); line-height: 1.2; }
+.chp-role { font-size: 9.5px; font-weight: 700; color: var(--teal); margin-top: 5px; }
+.chp-meta { font-family: var(--mono); font-size: 10px; color: var(--gray-3); margin-top: 5px; letter-spacing: 0.04em; }
+.chp-body { padding: 4px 22px 20px; }
+.chp-row { padding: 16px 0; border-bottom: 1px solid var(--gray-1); }
+.chp-row:last-child { border-bottom: none; padding-bottom: 2px; }
+.chp-lbl { display: flex; align-items: center; gap: 9px; font-size: 9.5px; font-weight: 700; color: var(--gray-3); margin-bottom: 10px; flex-wrap: wrap; }
+.chp-txt { font-size: 13.5px; line-height: 1.65; color: var(--gray-4); }
+.chp-txt strong { color: var(--text); }
+.chp-empty { border: 1px dashed var(--gray-2); background: var(--gray-0); padding: 14px 17px; font-size: 12.5px; color: var(--gray-3); line-height: 1.75; }
+.chp-empty b { color: var(--gray-4); }
+.chp-empty ul { margin: 8px 0 0; padding-left: 17px; }
+.chp-empty li { margin-bottom: 4px; }
+.chp-dec { background: var(--gray-0); border-left: 2px solid var(--gray-2); padding: 14px 17px; font-size: 13px; line-height: 1.65; color: var(--gray-4); }
+.chp-dec strong { color: var(--text); }
+.chp-dec-foot {
+  display: flex; gap: 8px 22px; flex-wrap: wrap; margin-top: 12px; padding-top: 11px;
+  border-top: 1px solid var(--gray-2); font-family: var(--mono); font-size: 9.5px;
+  letter-spacing: 0.05em; color: var(--gray-3);
+}
+.chp-dec-foot b { color: var(--gray-4); font-weight: 700; }
+
+/* Interview counter */
+.track-count { display: flex; align-items: center; gap: 20px; background: var(--navy); padding: 18px 22px; margin-bottom: 20px; }
+.track-count .tc-num { font-family: var(--sans); font-size: 30px; font-weight: 800; letter-spacing: -0.03em; color: var(--p1); line-height: 1; flex-shrink: 0; }
+.track-count .tc-txt { font-size: 13px; color: rgba(251,248,241,0.82); line-height: 1.6; }
+.track-count .tc-txt strong { color: var(--card); }
+
+/* Cross-tab pointer */
+.gobtn {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--text); color: var(--card); text-decoration: none;
+  font-family: var(--mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.11em; text-transform: uppercase;
+  padding: 12px 18px; border: none; cursor: pointer; transition: background 0.15s;
+}
+.gobtn:hover { background: var(--teal); }
+
+.qguide ol { margin: 0; padding-left: 20px; font-size: 13px; color: var(--gray-4); line-height: 1.65; }
+.qguide li { margin-bottom: 11px; }
+.qguide li::marker { font-family: var(--mono); font-size: 11px; color: var(--amber); }
+.qguide li:last-child { margin-bottom: 0; }
+
+/* Empty tab */
+.soon-wrap { background: var(--card); border: 1px solid var(--gray-1); padding: 88px 40px; text-align: center; }
+.soon-icon { font-size: 40px; margin-bottom: 20px; opacity: 0.5; }
+.soon-wrap h2 { font-family: var(--serif); font-size: 34px; font-weight: 600; letter-spacing: -0.02em; color: var(--text); margin-bottom: 12px; }
+.soon-wrap p { font-size: 14px; color: var(--gray-3); max-width: 540px; margin: 0 auto 8px; line-height: 1.7; }
+.soon-pill { display: inline-block; margin-top: 24px; font-size: 9.5px; font-weight: 700; color: var(--amber); border: 1px solid var(--amber); padding: 6px 14px; }
+
+/* ─── BEST PRACTICES TAB ─────────────────────────────────────────── */
+.workflow-card { background: var(--card); border: 1px solid var(--gray-1); border-top: 3px solid var(--teal); padding: 22px; display: flex; flex-direction: column; gap: 16px; }
 .wf-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-.wf-title { font-size: 16px; font-weight: 800; color: var(--navy); line-height: 1.3; }
-.wf-owner { font-size: 11px; font-weight: 700; color: var(--teal); background: var(--teal-lt); padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
-.wf-card.gold .wf-owner { color: var(--gold); background: var(--gold-lt); }
-.wf-saving { display: flex; gap: 12px; flex-wrap: wrap; }
-.saving-chip { background: var(--gray-0); border-radius: 8px; padding: 8px 14px; text-align: center; }
-.saving-val { font-size: 20px; font-weight: 900; color: var(--navy); }
-.saving-lbl { font-size: 10px; color: var(--gray-3); text-transform: uppercase; letter-spacing: 0.5px; }
-.wf-steps { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-.wf-steps li { font-size: 13px; color: var(--gray-4); display: flex; gap: 8px; align-items: flex-start; line-height: 1.4; }
-.wf-steps li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--teal); flex-shrink: 0; margin-top: 6px; }
-.workflow-card.gold .wf-steps li::before { background: var(--gold); }
-.workflow-card.green .wf-steps li::before { background: var(--green); }
-.workflow-card.amber .wf-steps li::before { background: var(--amber); }
-.wf-label { font-size: 11px; font-weight: 700; color: var(--gray-3); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.wf-title { font-family: var(--serif); font-size: 17px; font-weight: 600; letter-spacing: -0.01em; color: var(--text); line-height: 1.3; }
+.wf-owner { font-family: var(--mono); font-size: 9.5px; font-weight: 700; letter-spacing: 0.05em; color: var(--teal); background: var(--teal-lt); padding: 3px 9px; white-space: nowrap; }
+.wf-saving { display: flex; gap: 10px; flex-wrap: wrap; }
+.saving-chip { background: var(--gray-0); border: 1px solid var(--gray-1); padding: 8px 13px; text-align: center; }
+.saving-val { font-family: var(--sans); font-size: 18px; font-weight: 800; letter-spacing: -0.02em; color: var(--text); line-height: 1; }
+.saving-lbl { font-family: var(--mono); font-size: 9px; color: var(--gray-3); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 3px; }
+.wf-steps { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.wf-steps li { font-size: 13px; color: var(--gray-4); display: flex; gap: 9px; align-items: flex-start; line-height: 1.5; }
+.wf-steps li::before { content: ''; width: 5px; height: 5px; background: var(--teal); flex-shrink: 0; margin-top: 7px; }
+.wf-label { font-family: var(--mono); font-size: 9.5px; font-weight: 700; color: var(--gray-3); letter-spacing: 0.09em; text-transform: uppercase; margin-bottom: 6px; }
 .wf-tools { display: flex; gap: 6px; flex-wrap: wrap; }
-.tool-tag { font-size: 11px; font-weight: 700; background: var(--gray-0); border: 1px solid var(--gray-1); border-radius: 6px; padding: 3px 10px; color: var(--gray-4); }
+.tool-tag { font-family: var(--mono); font-size: 10px; font-weight: 600; border: 1px solid var(--gray-2); padding: 3px 8px; color: var(--gray-4); }
 
-/* INTERVIEW PLACEHOLDER */
-.placeholder {
-  border: 2px dashed var(--gray-2);
-  border-radius: 12px;
-  padding: 24px;
-  text-align: center;
-  color: var(--gray-3);
-  font-size: 13px;
-}
-.placeholder strong { display: block; font-size: 14px; color: var(--gray-4); margin-bottom: 6px; }
-.placeholder .badge { display: inline-block; background: var(--gold-lt); color: var(--gold); font-size: 10px; font-weight: 700; padding: 2px 10px; border-radius: 999px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+.placeholder { border: 1px dashed var(--gray-2); background: var(--gray-0); padding: 16px; text-align: center; color: var(--gray-3); font-size: 12.5px; }
+.placeholder strong { display: block; font-size: 13px; color: var(--gray-4); margin-bottom: 5px; }
+.placeholder .badge { display: inline-block; font-family: var(--mono); font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--gold-br); color: var(--gold); background: var(--gold-lt); padding: 2px 8px; margin-bottom: 8px; }
 
-/* PROMPT CARD */
-.prompt-card { background: white; border-radius: 12px; box-shadow: 0 1px 6px rgba(0,0,0,0.07); padding: 0; overflow: hidden; }
-.prompt-header { padding: 14px 18px; background: var(--navy); display: flex; align-items: center; justify-content: space-between; }
-.prompt-title { font-size: 13px; font-weight: 700; color: white; }
-.prompt-tag { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 999px; }
-.prompt-body { padding: 16px 18px; }
-.prompt-text {
-  background: var(--gray-0);
-  border: 1px solid var(--gray-1);
-  border-radius: 8px;
-  padding: 14px;
-  font-size: 12.5px;
-  color: var(--gray-4);
-  line-height: 1.7;
-  font-family: 'Segoe UI', system-ui, sans-serif;
-  white-space: pre-wrap;
-}
-.prompt-meta { margin-top: 10px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.prompt-card { background: var(--card); border: 1px solid var(--gray-1); }
+.prompt-header { padding: 12px 16px; background: var(--navy); display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.prompt-title { font-family: var(--serif); font-size: 14px; font-weight: 600; color: var(--card); }
+.prompt-tag { font-family: var(--mono); font-size: 9px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(251,248,241,0.7); border: 1px solid rgba(251,248,241,0.25); padding: 2px 7px; }
+.prompt-body { padding: 16px; }
+.prompt-text { background: var(--gray-0); border-left: 2px solid var(--gray-2); padding: 13px; font-family: var(--mono); font-size: 12px; color: var(--gray-4); line-height: 1.7; white-space: pre-wrap; }
+.prompt-meta { margin-top: 11px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 .prompt-author { font-size: 11px; color: var(--gray-3); }
-.prompt-use { font-size: 11px; font-weight: 700; color: var(--teal); }
-.copy-btn {
-  margin-left: auto;
-  font-size: 11px; font-weight: 700;
-  background: var(--teal-lt); color: var(--teal);
-  border: none; border-radius: 6px;
-  padding: 5px 12px; cursor: pointer;
-  transition: background 0.15s;
-}
-.copy-btn:hover { background: #b0dfe3; }
+.prompt-use { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.04em; color: var(--teal); }
+.copy-btn { margin-left: auto; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: transparent; color: var(--teal); border: 1px solid var(--teal); padding: 5px 11px; cursor: pointer; transition: background 0.15s, color 0.15s; }
+.copy-btn:hover { background: var(--teal); color: var(--card); }
 
-/* DO DONT */
-.do-dont-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.do-dont-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 @media (max-width: 600px) { .do-dont-grid { grid-template-columns: 1fr; } }
-.do-card { background: white; border-radius: 12px; box-shadow: 0 1px 6px rgba(0,0,0,0.07); overflow: hidden; }
-.do-header { padding: 12px 18px; font-size: 13px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
-.do-header.do { background: #D4EDDA; color: #155724; }
-.do-header.dont { background: #F8D7DA; color: #721C24; }
-.do-list { padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; }
-.do-item { font-size: 13px; color: var(--gray-4); display: flex; gap: 10px; line-height: 1.45; }
-.do-item .icon { flex-shrink: 0; font-size: 15px; }
+.do-card { background: var(--card); border: 1px solid var(--gray-1); }
+.do-header { padding: 11px 16px; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+.do-header.do { background: var(--teal-lt); color: var(--navy); border-bottom: 2px solid var(--teal); }
+.do-header.dont { background: var(--red-lt); color: var(--red); border-bottom: 2px solid var(--amber); }
+.do-list { padding: 15px 16px; display: flex; flex-direction: column; gap: 11px; }
+.do-item { font-size: 13px; color: var(--gray-4); display: flex; gap: 10px; line-height: 1.5; }
+.do-item .icon { flex-shrink: 0; font-size: 14px; }
 
-/* TOOL STACK */
-.tool-row { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--gray-1); }
+.tool-row { display: flex; align-items: center; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--gray-1); }
 .tool-row:last-child { border-bottom: none; }
-.tool-name { font-weight: 700; font-size: 14px; color: var(--navy); width: 160px; flex-shrink: 0; }
-.tool-bar-track { flex: 1; background: var(--gray-1); border-radius: 999px; height: 10px; }
-.tool-bar-fill { height: 100%; border-radius: 999px; }
-.tool-pct { font-size: 13px; font-weight: 700; color: var(--navy); width: 36px; text-align: right; flex-shrink: 0; }
-.tool-desc { font-size: 12px; color: var(--gray-3); width: 220px; flex-shrink: 0; }
+.tool-name { font-weight: 650; font-size: 13.5px; color: var(--text); width: 150px; flex-shrink: 0; }
+.tool-bar-track { flex: 1; background: var(--gray-1); height: 10px; }
+.tool-bar-fill { height: 100%; border-radius: 0 2px 2px 0; }
+.tool-pct { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--text); width: 38px; text-align: right; flex-shrink: 0; }
+.tool-desc { font-size: 12px; color: var(--gray-3); width: 210px; flex-shrink: 0; }
 
-/* INSIGHT / ALERT */
-.insight {
-  background: var(--gold-lt); border: 1px solid #F0D9A0;
-  border-left: 4px solid var(--gold);
-  border-radius: 0 10px 10px 0;
-  padding: 14px 18px; font-size: 13px; line-height: 1.6; margin: 16px 0;
-}
-.insight strong { color: var(--gold); }
-.alert {
-  background: #FEF0F0; border-left: 4px solid var(--red);
-  border-radius: 0 10px 10px 0;
-  padding: 14px 18px; font-size: 13px; line-height: 1.6; margin: 12px 0;
-}
-blockquote {
-  border-left: 4px solid var(--teal); background: #F7FEFF;
-  padding: 14px 18px; border-radius: 0 10px 10px 0;
-  margin: 16px 0; font-style: italic; color: var(--gray-4); font-size: 13.5px; line-height: 1.6;
-}
-blockquote cite { display: block; margin-top: 6px; font-style: normal; font-size: 11px; font-weight: 700; color: var(--teal); }
+/* ─────────────────────────────── TABS ─────────────────────────────── */
+.tab-panel { display: none; }
+.tab-panel.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
 
-/* FOOTER */
-footer { background: var(--navy); color: rgba(255,255,255,0.6); text-align: center; padding: 24px; font-size: 12px; }
-footer strong { color: white; }
-footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
-footer a:hover { color: white; }
+/* ────────────────────────────── FOOTER ────────────────────────────── */
+footer { background: var(--navy); color: rgba(251,248,241,0.6); text-align: center; padding: 34px 24px; font-size: 12px; line-height: 1.9; }
+footer strong { display: inline-block; font-family: var(--mono); font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--card); margin-bottom: 6px; }
+footer a { color: rgba(251,248,241,0.7); text-decoration: underline; }
+footer a:hover { color: var(--card); }
 
+/* ───────────────────────── MOTION & PRINT ─────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+@media print {
+  body { background: #fff; }
+  nav, .subnav, .gobtn { display: none !important; }
+  .card, .leak, .chp, .story, .how { break-inside: avoid; border-color: #ccc; }
+  .page { padding-top: 0; }
+}
 </style>
 </head>
 <body>
@@ -536,11 +664,22 @@ footer a:hover { color: white; }
   <button class="tab-link" data-tab="champions">AI Champions</button>
   <button class="tab-link" data-tab="report">Report</button>
   <button class="tab-link" data-tab="conclusions">Conclusions</button>
-  <button class="tab-link" data-tab="best-practices" style="color:#6EE4EC;font-weight:800;">✦ Best Practices</button>
+  <button class="tab-link" data-tab="best-practices">✦ Best Practices<span class="tab-new">NEW</span></button>
 </nav>
 
 <!-- ════════════════════════════ PAGE BODY ══════════════════════════ -->
 <div class="page">
+
+<div class="masthead">
+  <div class="mh-kicker">Design Operations · Internal</div>
+  <h1 class="mh-title">AI Usage Assessment</h1>
+  <div class="mh-meta">
+    <span>NICE UX Team</span>
+    <span>37 respondents</span>
+    <span>India 17 · Israel 11 · US 9</span>
+    <span>August 2026</span>
+  </div>
+</div>
 
 <!-- ══════════════════════════════════════════════════════════════════ -->
 <!-- ══════════ TAB 1 — VELOCITY VS. ACTUAL EFFICIENCY ═══════════════ -->
@@ -671,6 +810,7 @@ footer a:hover { color: white; }
           </div>
         </div>
         <div class="chart-wrap"><canvas id="velNewWorkChart"></canvas></div>
+        <div class="fig-key"><span><i style="background:var(--amber);"></i>New — no pre-AI equivalent</span><span><i style="background:var(--gray-2);"></i>Existing deliverable</span></div>
         <p style="margin-top:14px;">
           A clickable prototype is now the <strong>single most expected thing a designer hands over</strong> — level with the spec document
           and <strong>ahead of a plain Figma file</strong>. Two years ago, asking most of the team for that would have been unreasonable.
@@ -1875,6 +2015,7 @@ Mid   24 people  (24 ÷ 37 = 64.9% → 65%)
       <div class="card-header">⏳ Hours Saved Per Week (via AI)</div>
       <div class="card-body">
         <div class="chart-wrap"><canvas id="timeSavedChart"></canvas></div>
+        <div class="fig-key"><span><i style="background:var(--teal);"></i>Saves time</span><span><i style="background:var(--gray-2);"></i>No change</span><span><i style="background:var(--amber);"></i>Costs time</span></div>
         <div class="insight" style="margin-top:12px">
           <strong>65%</strong> of the team saves 6–20 hours weekly. Blended across the whole distribution — including the 8% for whom AI <em>adds</em> time — the team average is <strong>~7.1 hrs per person</strong>, or <strong>~260 designer-hours recovered per week.</strong>
         </div>
@@ -2042,6 +2183,7 @@ Use as-is, without reviewing      0 ÷ 37 =  0.0%  →   0%
       <div class="card-header">📬 What PMs Now Expect as Deliverables</div>
       <div class="card-body">
         <div class="chart-wrap"><canvas id="deliverablesChart"></canvas></div>
+        <div class="fig-key"><span><i style="background:var(--amber);"></i>New — no pre-AI equivalent</span><span><i style="background:var(--gray-2);"></i>Existing deliverable</span></div>
         <div class="insight" style="margin-top:12px">
           HTML prototypes & design specs are expected by <strong>59%</strong> of PMs — tied with each other and <strong>ahead of a static Figma file (46%)</strong>. AI is reshaping the definition of a "UX deliverable."
         </div>
@@ -2200,12 +2342,15 @@ Pushback rate among those who handed off:    40 ÷ 68      = 59%</div>
 </section>
 
 <!-- ─────────────────── SECTION 5 — CHAMPIONS ────────────────────── -->
+<!-- The seven dossiers used to be duplicated here. They now live in the
+     AI Champions tab, together with the interview notes and the decisions —
+     one home per champion, so the two copies cannot drift apart. -->
 <section id="champions">
   <div class="section-header">
     <span class="section-number">05</span>
     <span class="section-title">AI Champions</span>
   </div>
-  <p style="font-size:14px;color:var(--gray-4);margin-bottom:24px;max-width:760px;">Champions are identified by depth of AI integration, innovation in workflow, evidence of previously impossible work, and knowledge sharing behavior — not frequency alone.</p>
+  <p style="font-size:14px;color:var(--gray-4);margin-bottom:18px;max-width:820px;">Seven people work in ways the rest of the team does not. They are identified by <strong>depth</strong> of AI integration, innovation in workflow, evidence of previously impossible work, and knowledge-sharing behaviour — <strong>not by frequency</strong>, which selects nobody on a team where 95% use AI daily.</p>
 
   <details class="calc" style="margin-bottom:20px;">
     <summary>🧮 How this shortlist was produced — and why it is not a calculation</summary>
@@ -2214,63 +2359,28 @@ Pushback rate among those who handed off:    40 ÷ 68      = 59%</div>
       <p><span class="q">Q3 · Q4</span>The only measured filters applied: all seven self-rate as <strong>Pro</strong> (13 of 37 people) and all spend <strong>3+ hours/week experimenting</strong> (Q4). Those two filters alone leave roughly 13 candidates — they narrow the field, they don't pick the seven.</p>
       <p><span class="q">Q25 · Q33–35 · Q37</span>The final selection is a qualitative read of four things: depth of AI integration, innovation in workflow, evidence of previously-impossible output, and sharing behaviour. Region and hours/week on each card come from Q38 and Q4.</p>
       <p><span class="warn">KNOWN GAP</span><strong>India is under-represented</strong> — one champion from a region that is 46% of the team (17 of 37 people). This is far more likely to reflect visibility in the survey data and in who was named in open answers than it is to reflect actual skill distribution.
-              This is a known gap in the shortlist, not a conclusion about the region.
-            </p>
-          </div>
-        </details>
-
-    <div class="champion-grid">
-      <div class="champion-card">
-        <div class="champion-avatar">YB</div>
-        <div class="champion-name">Yaara Bar Feldman</div>
-        <div class="champion-title">Research Synthesis Specialist &amp; Critical AI Thinker</div>
-        <div class="champion-region">🌍 Israel/US · Pro · &gt;10 hrs/week</div>
-        <div class="champion-signature">Cross-source synthesis at scale: combines Confluence, Jira, Dovetail, competitive data, and customer feedback into unified research foundations in a single day. Always reads raw transcripts as validation step.</div>
-      </div>
-      <div class="champion-card">
-        <div class="champion-avatar">TS</div>
-        <div class="champion-name">Tali Silon-Shacham</div>
-        <div class="champion-title">Developer Handoff Innovator</div>
-        <div class="champion-region">🌍 Israel · Pro · 3–5 hrs/week</div>
-        <div class="champion-signature">Created structured .md spec files enabling developers to work independently. Warns: "AI-generated UI without UX causes irreversible damage."</div>
-      </div>
-      <div class="champion-card">
-        <div class="champion-avatar">AZ</div>
-        <div class="champion-name">Assaf Zinger</div>
-        <div class="champion-title">Workflow Architect &amp; AI Ops Advocate</div>
-        <div class="champion-region">🌍 Israel · Pro · 5–10 hrs/week</div>
-        <div class="champion-signature">Coined "AI Ops" for the team. Built a working prototype app for NICE World. Identified shared infrastructure as the team's most urgent gap.</div>
-      </div>
-      <div class="champion-card">
-        <div class="champion-avatar">EM</div>
-        <div class="champion-name">Erick Mathews</div>
-        <div class="champion-title">Full-Stack AI Designer</div>
-        <div class="champion-region">🌍 US · Pro · &gt;10 hrs/week</div>
-        <div class="champion-signature">Designs and develops complete applications entirely solo using AI. Sharp critic of unrealistic efficiency expectations: "Expectations have gone up 10X."</div>
-      </div>
-      <div class="champion-card">
-        <div class="champion-avatar">JR</div>
-        <div class="champion-name">Jennie Ryan</div>
-        <div class="champion-title">Prototyping Specialist</div>
-        <div class="champion-region">🌍 US · Pro · 5–10 hrs/week</div>
-        <div class="champion-signature">Built a complete product rehaul prototype in days. Advocates for shared agents, skills, and prompts as the highest-leverage investment.</div>
-      </div>
-      <div class="champion-card">
-        <div class="champion-avatar">SF</div>
-        <div class="champion-name">Sveta Fomchenko</div>
-        <div class="champion-title">Research Tooling Integrator</div>
-        <div class="champion-region">🌍 Israel · Pro · 5–10 hrs/week</div>
-        <div class="champion-signature">Integrated Dovetail + Claude pipeline where each tool validates the other. Uses Claude Jira plugin to write in developer language.</div>
-      </div>
-      <div class="champion-card">
-        <div class="champion-avatar">GR</div>
-        <div class="champion-name">Gajanan Rajput</div>
-        <div class="champion-title">Design Velocity Champion</div>
-        <div class="champion-region">🌍 India · Pro · 5–10 hrs/week</div>
-        <div class="champion-signature">Uses AI to produce more design explorations in compressed timeframes. Identified design system documentation as the primary quality barrier.</div>
-      </div>
+      This is a known gap in the shortlist, not a conclusion about the region.
+      </p>
     </div>
-  </section>
+  </details>
+
+  <div class="card">
+    <div class="card-header">🏆 The seven <span class="conf conf-j">Our reading</span></div>
+    <div class="card-body">
+      <p style="font-size:13.5px;color:var(--gray-4);line-height:1.7;">
+        <strong>Yaara Bar Feldman</strong> · <strong>Tali Silon-Shacham</strong> · <strong>Assaf Zinger</strong> ·
+        <strong>Erick Mathews</strong> · <strong>Jennie Ryan</strong> · <strong>Sveta Fomchenko</strong> ·
+        <strong>Gajanan Rajput</strong>
+      </p>
+      <div class="insight" style="margin-bottom:18px;">
+        Each one has their own <strong>dossier</strong> in the AI Champions tab: what the survey shows, what we still need from their
+        interview, and the decision on how — or whether — to spread their practice to the rest of the team.
+        <strong>0 of 7 interviews are done</strong>, and almost everything else in the programme is supposed to be built from them.
+      </div>
+      <button class="gobtn" data-goto="champions">🏆 Open the AI Champions tab →</button>
+    </div>
+  </div>
+</section>
 
 <!-- ─────────────────── SECTION 6 — COLLABORATION ────────────────── -->
 <section id="collaboration">
@@ -2431,44 +2541,243 @@ Pushback rate among those who handed off:    40 ÷ 68      = 59%</div>
 <!-- ═══════════════════ TAB 5 — CONCLUSIONS ═════════════════════════ -->
 <!-- ══════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel" id="tab-conclusions">
-  <section>
-    <div class="section-header"><span class="section-title">Conclusions</span></div>
-    <div class="insight" style="margin-bottom:24px;">
-      <strong>The team got twice as fast — and then spent the gain immediately.</strong> The ~7 hours freed per designer per week were absorbed by new deliverables (HTML prototypes, production code), rising PM expectations, and developers who themselves doubled their pace. The week is as full as before AI. What changed is what comes out of it.
+
+  <section style="margin-bottom:36px;">
+    <div class="section-header">
+      <span class="section-title">What it would take to keep pace</span>
     </div>
-    <div class="grid-2" style="margin-bottom:20px;">
-      <div class="card">
-        <div class="card-header">✅ What's Working</div>
-        <div class="card-body">
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
-            <li style="font-size:13px;color:var(--gray-4);">📈 <strong>Adoption is genuine.</strong> 97% use Claude daily — not as a novelty but as core infrastructure.</li>
-            <li style="font-size:13px;color:var(--gray-4);">⚡ <strong>Speed gains are real and measurable.</strong> Research synthesis, spec writing, and prototyping compress by 2–5×.</li>
-            <li style="font-size:13px;color:var(--gray-4);">🤝 <strong>No one works in silence.</strong> 0% share nothing — knowledge transfer is happening, just informally.</li>
-            <li style="font-size:13px;color:var(--gray-4);">🏆 <strong>7 Champions already know what works.</strong> The playbook exists — it's in their heads.</li>
-          </ul>
-        </div>
+
+    <div class="story">
+      <div class="story-step">
+        <div class="story-num" style="color:var(--red);">2.7–2.8×</div>
+        <div class="story-txt"><strong>The task speed we would need.</strong> Developers consume design content at roughly twice the
+        old rate, while prototypes and code keep absorbing ~7 hrs a week. Serving both takes ~2.7–2.8× on tasks —
+        <strong>another +45–50% on top of today's 1.88×</strong>. <span class="conf conf-e">Estimated</span></div>
       </div>
-      <div class="card">
-        <div class="card-header">⚠️ What Needs to Change</div>
-        <div class="card-body">
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
-            <li style="font-size:13px;color:var(--gray-4);">🔒 <strong>Knowledge is siloed.</strong> Champions' methods haven't reached the team. Every person reinvents the wheel.</li>
-            <li style="font-size:13px;color:var(--gray-4);">💸 <strong>65% self-fund.</strong> The team can't build on tools it shouldn't have to pay for personally.</li>
-            <li style="font-size:13px;color:var(--gray-4);">📏 <strong>No quality standard.</strong> "Minor edits" means different things to different people. We need a floor.</li>
-            <li style="font-size:13px;color:var(--gray-4);">🚫 <strong>UX is being skipped.</strong> Dev and PM teams use AI to build UI without UX involvement — this is urgent.</li>
-          </ul>
-        </div>
+      <div class="story-join"><div class="story-join-word" style="color:var(--amber);">↓ but</div><div class="story-join-line"></div></div>
+      <div class="story-step">
+        <div class="story-num" style="color:var(--amber);">~2× max</div>
+        <div class="story-txt"><strong>Speed has a structural ceiling.</strong> AI compressed the <strong>producing</strong>, not the
+        <strong>deciding</strong> — and about half of every design task is judgement, which does not compress. Even with instant
+        production, task speed tops out around 2×. At 1.88×, we already sit at <strong>~94% of that ceiling</strong>.
+        <span class="conf conf-j">Our reading</span>
+        <br><br>The survey says the same thing from a different direction: on <strong>5 of the 7 design activities</strong>, the team
+        already uses AI <em>beyond</em> what it itself rates as automatable. There is no unused room left on the design work.
+        <span class="conf conf-m">Measured</span></div>
       </div>
-    </div>
-    <div class="card">
-      <div class="card-header">🎯 The Three Decisions That Matter Most</div>
-      <div class="card-body" style="display:flex;flex-direction:column;gap:16px;">
-        <div style="border-left:4px solid var(--teal);padding-left:16px;"><strong style="color:var(--navy);">1. Extract the Champions' knowledge — now.</strong><div style="font-size:13px;color:var(--gray-4);margin-top:4px;">7 interviews, 30 days. Everything else in the program depends on this. The playbooks, the prompt library, the workshops — all built from these conversations.</div></div>
-        <div style="border-left:4px solid var(--gold);padding-left:16px;"><strong style="color:var(--navy);">2. Secure Enterprise Claude for the whole team.</strong><div style="font-size:13px;color:var(--gray-4);margin-top:4px;">65% pay out of pocket. Token limits block 54%. This is a structural problem with a structural solution. 45-day action.</div></div>
-        <div style="border-left:4px solid var(--amber);padding-left:16px;"><strong style="color:var(--navy);">3. Define a UX Involvement Policy before the next AI-generated UI ships.</strong><div style="font-size:13px;color:var(--gray-4);margin-top:4px;">The damage from AI-generated UI without UX is described as "irreversible" by those who've seen it. This policy protects the user and the team's role.</div></div>
+      <div class="story-join"><div class="story-join-word" style="color:var(--navy);">↓ therefore</div><div class="story-join-line"></div></div>
+      <div class="story-step final">
+        <div class="story-num" style="font-size:21px;">Not speed</div>
+        <div class="story-txt"><strong>The gap cannot be closed by working faster.</strong> What keeping pace requires sits above what
+        is physically available. It can only be closed by changing <em>what fills the week</em> — the two levers below.
+        <span class="conf conf-j">Our reading</span></div>
       </div>
     </div>
   </section>
+
+  <section>
+    <div class="section-header">
+      <span class="section-number">The levers</span>
+      <span class="section-title">Where the missing capacity actually is</span>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header">✂️ Cut or automate the non-hands-on 40%</div>
+        <div class="card-body" style="font-size:13.5px;line-height:1.7;color:var(--gray-4);">
+          Meetings, design reviews and task management take <strong>17 of the 40 hours</strong> in a week — and AI removes
+          none of it today. For our current speed to be enough, that share has to fall from <strong>~40% to ~24%</strong>:
+          <strong>6.4 hrs a week</strong> to find. <span class="conf conf-m">Measured</span>
+          <br><br>
+          Automating reaches about <strong>3.7 of those 6.4 hrs</strong> — a little over half. The remainder is not an
+          automation problem: it means <strong>fewer meetings</strong>, not faster ones.
+          <span class="conf conf-e">Estimated</span>
+          <br><br><a href="#automate" style="color:var(--teal);font-weight:700;text-decoration:none;">↓ The five targets, in order</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">👥 More people</div>
+        <div class="card-body" style="font-size:13.5px;line-height:1.7;color:var(--gray-4);">
+          The only lever with <strong>no ceiling</strong>: capacity scales linearly with headcount.
+          <br><br>
+          If demand keeps growing at development's pace while task speed sits at its structural limit, this is the honest
+          remaining answer — a <strong>staffing decision, not an efficiency one</strong>. Doubling down on "work faster" from
+          94% of the ceiling cannot substitute for it.
+          <br><br><span class="conf conf-j">Our reading</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Lever 1 in detail — what to automate ── -->
+  <section id="automate" style="margin-top:36px;">
+    <div class="section-header">
+      <span class="section-number">Lever 1</span>
+      <span class="section-title">What to automate, and in what order</span>
+    </div>
+
+    <!-- A · where the 17 hours are -->
+    <div class="card" style="margin-bottom:20px;">
+      <div class="card-header">① Where the 17 hours sit</div>
+      <div class="card-body">
+        <p style="font-size:13.5px;line-height:1.7;color:var(--gray-4);margin-bottom:14px;">
+          Each person was asked how much of the week every activity takes. Turned into hours of a 40-hour week, three
+          blocks are not design work — and none of them has any AI in it today.
+        </p>
+        <div style="overflow-x:auto;">
+        <table class="data-table">
+          <tr><th>Block</th><th>Hours / week</th><th>AI used there today</th></tr>
+          <tr><td><strong>Meetings &amp; calls</strong></td><td>6.8</td><td>none</td></tr>
+          <tr><td><strong>Design reviews &amp; feedback</strong></td><td>5.7</td><td>none</td></tr>
+          <tr><td><strong>Task management</strong></td><td>4.6</td><td>none</td></tr>
+          <tr><td><strong>Total</strong></td><td><strong>17.1 hrs — 43% of the week</strong></td><td>—</td></tr>
+        </table>
+        </div>
+        <p style="font-size:12.5px;color:var(--gray-3);margin-top:12px;line-height:1.6;">
+          The other 23 hours are design (8.4), research &amp; analysis (5.5), learning (4.6) and writing (4.4).
+          This is the same 60/40 split the report opens with, now measured activity by activity rather than rounded.
+          <span class="conf conf-m">Measured</span>
+        </p>
+        <p style="font-size:12.5px;color:var(--gray-3);margin-top:10px;line-height:1.6;border-top:1px solid var(--gray-1);padding-top:10px;">
+          <strong style="color:var(--gray-4);">How the hours are obtained.</strong> Nobody reported hours directly. Each person
+          chose a band for every activity — <em>rarely</em>, <em>sometimes</em>, <em>often</em>, or <em>most of my week</em>.
+          We take the middle of each band, average it across the 37 answers, and then scale the result so the seven activities
+          add up to one full week — necessary because the bands overlap and would otherwise total about two weeks.
+          It is the same method that produces the <strong>34% for meetings</strong> the report opens with.
+        </p>
+      </div>
+    </div>
+
+    <!-- B · saturation -->
+    <div class="card" style="margin-bottom:20px;">
+      <div class="card-header">② The design work is already squeezed — the overhead is untouched</div>
+      <div class="card-body">
+        <p style="font-size:13.5px;line-height:1.7;color:var(--gray-4);margin-bottom:14px;">
+          Two separate questions, put side by side: <em>what does the team think can be automated</em>, and
+          <em>what does it actually automate today</em>. Both on the same 0–100 scale, where 0 is nobody and 100 is everybody.
+        </p>
+        <div style="overflow-x:auto;">
+        <table class="data-table">
+          <tr><th>Activity</th><th>Team says automatable</th><th>Automated today</th><th>Verdict</th></tr>
+          <tr><td><strong>Meeting notes &amp; summaries</strong></td><td><strong>84</strong></td><td>no AI use case covers it</td><td><span class="pill pill-orange">Wide open</span></td></tr>
+          <tr><td>Usability testing analysis</td><td>55</td><td>37</td><td><span class="pill pill-orange">Room left · +18</span></td></tr>
+          <tr><td>UX writing &amp; copy</td><td>73</td><td>66</td><td><span class="pill pill-orange">Room left · +7</span></td></tr>
+          <tr><td>User research planning</td><td>51</td><td>54</td><td><span class="pill pill-green">Maxed</span></td></tr>
+          <tr><td>User interview synthesis</td><td>59</td><td>64</td><td><span class="pill pill-green">Maxed</span></td></tr>
+          <tr><td>Design specs &amp; handoff</td><td>57</td><td>64</td><td><span class="pill pill-green">Maxed</span></td></tr>
+          <tr><td>Wireframing &amp; prototyping</td><td>51</td><td>66</td><td><span class="pill pill-green">Past it · −14</span></td></tr>
+          <tr><td>Design ideation</td><td>47</td><td>66</td><td><span class="pill pill-green">Past it · −18</span></td></tr>
+        </table>
+        </div>
+        <p style="font-size:13px;color:var(--gray-4);margin-top:14px;line-height:1.7;">
+          <strong>Meeting notes is the strongest agreement in the entire survey:</strong> 25 of 37 called it fully automatable
+          and <strong>not one person</strong> said it couldn't be — the only item in the questionnaire nobody ruled out.
+          It is also the one thing on this list the team does not use AI for at all.
+          <span class="conf conf-m">Measured</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- C · the five targets -->
+    <div class="card" style="margin-bottom:20px;">
+      <div class="card-header">③ The five targets, in order</div>
+      <div class="card-body">
+        <div style="overflow-x:auto;">
+        <table class="data-table">
+          <tr><th style="width:28px;">#</th><th>Automate this</th><th>Comes out of</th><th>Why this one</th><th>Frees</th></tr>
+          <tr>
+            <td><strong>1</strong></td>
+            <td><strong>Meeting notes, summaries and action items</strong> — recorded, written up and pushed into the tracker automatically</td>
+            <td>Meetings · 6.8 hrs</td>
+            <td>Strongest agreement in the survey; zero adoption today</td>
+            <td><strong>~1.4 hrs</strong></td>
+          </tr>
+          <tr>
+            <td><strong>2</strong></td>
+            <td><strong>Status updates and weekly reporting</strong> — generated from the tracker instead of written by hand; incoming requests triaged automatically</td>
+            <td>Task management · 4.6 hrs</td>
+            <td>The one block nobody has examined — no survey question, no use case</td>
+            <td><strong>~1.4 hrs</strong></td>
+          </tr>
+          <tr>
+            <td><strong>3</strong></td>
+            <td><strong>Pre-review checks</strong> — accessibility, design-system consistency and spec completeness verified before the meeting; comments consolidated into one change list after</td>
+            <td>Design reviews · 5.7 hrs</td>
+            <td>The human review starts from a clean baseline instead of catching basics</td>
+            <td><strong>~0.9 hrs</strong></td>
+          </tr>
+          <tr>
+            <td><strong>4</strong></td>
+            <td><strong>Usability session → tagged findings → list ranked by severity</strong></td>
+            <td>Research &amp; analysis · 5.5 hrs</td>
+            <td>The only design activity with measured room left (+18)</td>
+            <td><strong>~0.5–1 hr</strong></td>
+          </tr>
+          <tr>
+            <td><strong>5</strong></td>
+            <td><strong>Spec checked against a "what development asks for" list</strong> before handoff</td>
+            <td>Writing &amp; documentation · 4.4 hrs</td>
+            <td>15 of the 25 who handed off AI work got revision rounds back</td>
+            <td>rework, not hours</td>
+          </tr>
+        </table>
+        </div>
+        <p style="font-size:13px;color:var(--gray-4);margin-top:14px;line-height:1.7;">
+          Hours are <span class="conf conf-e">Estimated</span> — the size of each block is measured, the share of it that
+          automation can take is our judgement. The evidence column is <span class="conf conf-m">Measured</span>.
+        </p>
+        <div style="margin-top:16px;padding:14px 16px;background:var(--gray-0);border-left:4px solid var(--gray-2);border-radius:8px;font-size:13px;line-height:1.7;color:var(--gray-4);">
+          <strong>And what not to do:</strong> stop pushing AI further into <strong>design ideation and wireframing</strong>.
+          The team is already using it past its own ceiling there (−18 and −14). More effort on that side returns nothing.
+          <span class="conf conf-j">Our reading</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- D · the honest arithmetic -->
+    <div class="card" style="margin-bottom:20px;">
+      <div class="card-header">④ It gets us half way — and that is the point</div>
+      <div class="card-body">
+        <div style="overflow-x:auto;">
+        <table class="data-table">
+          <tr><th>&nbsp;</th><th>Hours / week</th></tr>
+          <tr><td>Needed — the overhead block falling from 40% to 24%</td><td><strong>6.4</strong></td></tr>
+          <tr><td>What targets 1–3 recover</td><td><strong>3.7</strong></td></tr>
+          <tr><td><strong>Left over</strong></td><td><strong>2.7 — cannot be automated</strong></td></tr>
+        </table>
+        </div>
+        <p style="font-size:13.5px;line-height:1.7;color:var(--gray-4);margin-top:14px;">
+          The last 2.7 hours are not a tooling problem. They come only from <strong>holding fewer meetings</strong> — a
+          decision about how the team works, not about what it buys. This is precisely why the second lever exists: once
+          automation has been taken as far as it goes, what remains is a <strong>staffing question</strong>.
+          <span class="conf conf-e">Estimated</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- E · preconditions -->
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header">⚠️ Budget the tokens first</div>
+        <div class="card-body" style="font-size:13.5px;line-height:1.7;color:var(--gray-4);">
+          <strong>54% already name tokens as a barrier</strong> — the second most cited of all. Automating meetings and
+          reporting spends tokens on activities that consume none today, so the ceiling gets closer, not further away.
+          The budget is a precondition for this lever, not an implementation detail.
+          <br><br><span class="conf conf-m">Measured</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">✅ Start where imperfect is cheap</div>
+        <div class="card-body" style="font-size:13.5px;line-height:1.7;color:var(--gray-4);">
+          <strong>59% name output quality as the biggest barrier</strong> — the most cited of all. Targets 1 and 2 are the
+          ones where that matters least: an imperfect meeting summary or status update costs almost nothing to fix,
+          unlike an imperfect spec. The order above is deliberate.
+          <br><br><span class="conf conf-m">Measured</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </div><!-- /tab-conclusions -->
 
 
@@ -2528,7 +2837,7 @@ Pushback rate among those who handed off:    40 ÷ 68      = 59%</div>
     <div class="workflow-card green">
       <div class="wf-header">
         <div class="wf-title">Interactive HTML Prototyping</div>
-        <span class="wf-owner" style="color:var(--green);background:#D4EDDA;">Jennie Ryan / Erick Mathews</span>
+        <span class="wf-owner">Jennie Ryan / Erick Mathews</span>
       </div>
       <div class="wf-saving">
         <div class="saving-chip"><div class="saving-val">New</div><div class="saving-lbl">Capability</div></div>
@@ -2563,7 +2872,7 @@ Pushback rate among those who handed off:    40 ÷ 68      = 59%</div>
     <div class="workflow-card gold">
       <div class="wf-header">
         <div class="wf-title">Developer Handoff Spec</div>
-        <span class="wf-owner" style="color:var(--gold);background:var(--gold-lt);">Tali Silon-Shacham</span>
+        <span class="wf-owner">Tali Silon-Shacham</span>
       </div>
       <div class="wf-saving">
         <div class="saving-chip"><div class="saving-val">2–4×</div><div class="saving-lbl">Faster</div></div>
@@ -2598,7 +2907,7 @@ Pushback rate among those who handed off:    40 ÷ 68      = 59%</div>
     <div class="workflow-card amber">
       <div class="wf-header">
         <div class="wf-title">Design Ideation & Component Specs</div>
-        <span class="wf-owner" style="color:var(--amber);background:#FFF3CD;">Gajanan Rajput</span>
+        <span class="wf-owner">Gajanan Rajput</span>
       </div>
       <div class="wf-saving">
         <div class="saving-chip"><div class="saving-val">2–3×</div><div class="saving-lbl">More options</div></div>
@@ -2806,32 +3115,32 @@ Keep it under [X] characters per state. Avoid generic phrases like "Something we
       <div class="card-body">
         <div class="tool-row">
           <span class="tool-name">Claude</span>
-          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:97%;background:var(--teal);height:100%;border-radius:999px;"></div></div>
+          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:97%;background:var(--teal);"></div></div>
           <span class="tool-pct">97%</span>
         </div>
         <div class="tool-row">
           <span class="tool-name">ChatGPT</span>
-          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:73%;background:var(--navy);height:100%;border-radius:999px;"></div></div>
+          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:73%;background:var(--teal);"></div></div>
           <span class="tool-pct">73%</span>
         </div>
         <div class="tool-row">
           <span class="tool-name">Figma AI / Make</span>
-          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:54%;background:#4A90D9;height:100%;border-radius:999px;"></div></div>
+          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:54%;background:var(--teal);"></div></div>
           <span class="tool-pct">54%</span>
         </div>
         <div class="tool-row">
           <span class="tool-name">Gemini</span>
-          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:35%;background:#34A853;height:100%;border-radius:999px;"></div></div>
+          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:35%;background:var(--teal);"></div></div>
           <span class="tool-pct">35%</span>
         </div>
         <div class="tool-row">
           <span class="tool-name">MS Copilot</span>
-          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:32%;background:#0078D4;height:100%;border-radius:999px;"></div></div>
+          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:32%;background:var(--teal);"></div></div>
           <span class="tool-pct">32%</span>
         </div>
         <div class="tool-row">
           <span class="tool-name">Other tools</span>
-          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:27%;background:var(--gray-2);height:100%;border-radius:999px;"></div></div>
+          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:27%;background:var(--teal);"></div></div>
           <span class="tool-pct">27%</span>
         </div>
       </div>
@@ -2844,15 +3153,15 @@ Keep it under [X] characters per state. Avoid generic phrases like "Something we
           <div style="font-weight:700;font-size:13px;color:var(--navy);">Claude</div>
           <div style="font-size:12px;color:var(--gray-4);margin-top:3px;">Long context, complex reasoning, research synthesis, spec writing, HTML prototyping, multi-step workflows</div>
         </div>
-        <div style="border-left:3px solid var(--gray-3);padding-left:12px;">
+        <div style="border-left:3px solid var(--teal);padding-left:12px;">
           <div style="font-weight:700;font-size:13px;color:var(--navy);">ChatGPT</div>
           <div style="font-size:12px;color:var(--gray-4);margin-top:3px;">Quick ideation, short-form content, general questions, image generation (DALL-E)</div>
         </div>
-        <div style="border-left:3px solid #4A90D9;padding-left:12px;">
+        <div style="border-left:3px solid var(--teal);padding-left:12px;">
           <div style="font-weight:700;font-size:13px;color:var(--navy);">Figma AI / Make</div>
           <div style="font-size:12px;color:var(--gray-4);margin-top:3px;">In-canvas generation, component variants, auto-layout suggestions, design-to-content</div>
         </div>
-        <div style="border-left:3px solid #34A853;padding-left:12px;">
+        <div style="border-left:3px solid var(--teal);padding-left:12px;">
           <div style="font-weight:700;font-size:13px;color:var(--navy);">Gemini</div>
           <div style="font-size:12px;color:var(--gray-4);margin-top:3px;">Google Workspace integration, slides/docs co-writing, search-augmented answers</div>
         </div>
@@ -2921,7 +3230,7 @@ Keep it under [X] characters per state. Avoid generic phrases like "Something we
     <cite>— Yaara Bar Feldman</cite>
   </blockquote>
 
-  <div style="margin-top:20px;" class="placeholder" style="padding:32px;">
+  <div class="placeholder" style="margin-top:20px;padding:32px;">
     <span class="badge">Coming from Champion interviews</span>
     <strong>Additional do's & don'ts from each Champion's domain</strong>
     Prototyping · Handoff · Research · Cross-team collaboration — all being documented
@@ -2939,56 +3248,241 @@ Keep it under [X] characters per state. Avoid generic phrases like "Something we
 </footer>
 
 <script>
-/* ── TAB SWITCHING ──────────────────────────────────────────────── */
-document.querySelectorAll('button.tab-link').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('button.tab-link').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    const panel = document.getElementById('tab-' + btn.dataset.tab);
-    if (panel) panel.classList.add('active');
+/* Two data hues only — pine (measured/positive) and vermillion (friction/negative) —
+   plus neutral gray, exactly as validated in the CSS palette above. A single-series
+   bar chart gets ONE flat colour (never a rainbow of per-category hues); an ordered
+   magnitude gets the pine ordinal ramp; a diverging or good/bad split gets pine vs.
+   vermillion with gray at the "nothing" point. See the CSS header comment. */
+Chart.defaults.font.family = "'Inter Tight', system-ui, -apple-system, 'Segoe UI', sans-serif";
+Chart.defaults.color = '#8C8577';
+Chart.defaults.borderColor = '#E1DACA';
+Chart.defaults.plugins.legend.position = 'bottom';
+Chart.defaults.plugins.legend.labels.boxWidth = 10;
+Chart.defaults.plugins.legend.labels.padding = 16;
+Chart.defaults.plugins.legend.labels.font = { family: "'JetBrains Mono', monospace", size: 10, weight: '600' };
+Chart.defaults.plugins.legend.labels.color = '#8C8577';
+Chart.defaults.plugins.tooltip.backgroundColor = '#1B1A16';
+Chart.defaults.plugins.tooltip.titleFont = { family: "'JetBrains Mono', monospace", size: 10, weight: '700' };
+Chart.defaults.plugins.tooltip.bodyFont = { family: "'Inter Tight', sans-serif", size: 12.5, weight: '600' };
+Chart.defaults.plugins.tooltip.padding = 10;
+Chart.defaults.plugins.tooltip.cornerRadius = 0;
+Chart.defaults.plugins.tooltip.displayColors = false;
+
+const INK   = '#1B1A16';   // full ink — axis ticks, category labels
+const MUTED = '#8C8577';   // muted ink — secondary ticks
+const GRID  = '#E1DACA';   // hairline gridline
+const NAVY  = '#0A3A32';   // pine ink — darkest
+const TEAL  = '#00805F';   // pine — the primary mark
+const GRAY  = '#C7BFAC';   // neutral — "no change" / unknown
+const AMBER = '#C2431C';   // vermillion — friction, "new", caution
+const RED   = '#98280C';   // vermillion, deep — alarm
+// pine ordinal ramp, light → dark
+const P1 = '#7FBAAC', P2 = '#57A192', P3 = '#33887A', P4 = '#186F61', P5 = '#075549', P6 = '#003A31';
+
+const GRID_OPT = { color: GRID, drawTicks: false };
+const HBAR_X = (max) => ({ max, ticks: { callback: v => v + '%', color: MUTED }, grid: GRID_OPT, border: { display: false } });
+const HBAR_Y = (size) => ({ grid: { display: false }, ticks: { color: INK, font: { size: size || 12.5 } }, border: { color: INK } });
+const FLAT_BAR = { borderRadius: { topLeft: 0, bottomLeft: 0, topRight: 3, bottomRight: 3 }, borderSkipped: false, barThickness: 20 };
+
+/* ═══════════════ REPORT TAB CHARTS (lazy — see tab logic below) ═════════════ */
+function initReportCharts() {
+
+// Tool usage — one series, one metric: flat pine throughout
+new Chart(document.getElementById('toolChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Claude', 'ChatGPT', 'Figma AI / Make', 'Gemini', 'MS Copilot', 'Other tools'],
+    datasets: [{ label: '% of team using tool', data: [97, 73, 54, 35, 32, 27], backgroundColor: TEAL, ...FLAT_BAR }]
+  },
+  options: { indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: HBAR_X(100), y: HBAR_Y() } }
+});
+
+// Experimentation hours — ordinal engagement bins: pine ramp, "no time" breaks out as gray
+new Chart(document.getElementById('expChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['>10 hrs/week', '5–10 hrs/week', '3–5 hrs/week', '1–3 hrs/week', '<1 hr/week', 'No time'],
+    datasets: [{ data: [8, 22, 30, 35, 3, 3], backgroundColor: [P6, P5, P4, P3, P2, GRAY], borderColor: '#FBF8F1', borderWidth: 2, hoverOffset: 4 }]
+  },
+  options: { cutout: '62%' }
+});
+
+// Time saved — a genuine diverging scale: pine = saves time, gray = no change, vermillion = costs time
+new Chart(document.getElementById('timeSavedChart'), {
+  type: 'bar',
+  data: {
+    labels: ['10–20 hrs saved', '6–10 hrs saved', '1–5 hrs saved', 'No change', 'Adds 1–5 hrs', 'Adds 5+ hrs'],
+    datasets: [{
+      label: '% of respondents', data: [24, 41, 22, 6, 3, 5],
+      backgroundColor: [P6, P4, P2, GRAY, AMBER, RED],
+      borderRadius: { topLeft: 3, topRight: 3, bottomLeft: 0, bottomRight: 0 }, borderSkipped: 'bottom', barThickness: 34
+    }]
+  },
+  options: {
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { max: 50, ticks: { callback: v => v + '%', color: MUTED }, grid: GRID_OPT, border: { display: false } },
+      x: { grid: { display: false }, ticks: { color: INK, font: { size: 11 } }, border: { color: INK } }
+    }
+  }
+});
+
+// Output quality — pine (low friction) vs. vermillion (more rework)
+new Chart(document.getElementById('qualityChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Minor edits only', 'Significantly reworked', 'Used as-is'],
+    datasets: [{ data: [65, 35, 0], backgroundColor: [TEAL, AMBER, GRAY], borderColor: '#FBF8F1', borderWidth: 2, hoverOffset: 4 }]
+  },
+  options: { cutout: '62%' }
+});
+
+// Use cases — one series, one metric: flat pine
+new Chart(document.getElementById('usecaseChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Research & Desk Research', 'Design Ideation & Wireframing', 'Prototyping', 'Data Synthesis & Analysis', 'UX Writing & Copy', 'Documentation & Handoff', 'A/B Testing'],
+    datasets: [{ label: '% of team using AI here', data: [78, 78, 62, 51, 43, 38, 3], backgroundColor: TEAL, ...FLAT_BAR }]
+  },
+  options: { indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: HBAR_X(100), y: HBAR_Y(12) } }
+});
+
+// Deliverables — new-vs-existing split (see the fig-key under this chart)
+new Chart(document.getElementById('deliverablesChart'), {
+  type: 'bar',
+  data: {
+    labels: ['HTML Prototype', 'Design Spec Doc', 'Figma File', 'Figma Prototype', 'Production Code', 'Claude Prompts'],
+    datasets: [{ label: '% of PMs expecting this', data: [59, 59, 46, 38, 11, 8], backgroundColor: [AMBER, GRAY, GRAY, GRAY, AMBER, AMBER], ...FLAT_BAR }]
+  },
+  options: {
+    indexAxis: 'y',
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { afterLabel: c => [0, 4, 5].includes(c.dataIndex) ? 'New — no pre-AI equivalent' : 'Existing deliverable' } }
+    },
+    scales: { x: HBAR_X(70), y: HBAR_Y() }
+  }
+});
+
+// R&D speed — pine ramp for faster, gray for same, vermillion for slower
+new Chart(document.getElementById('rdSpeedChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Significantly faster (3×+)', 'Noticeably faster (1.5–2×)', 'About the same', 'Slower'],
+    datasets: [{ data: [27, 57, 14, 3], backgroundColor: [P6, P3, GRAY, RED], borderColor: '#FBF8F1', borderWidth: 2, hoverOffset: 4 }]
+  },
+  options: { cutout: '62%' }
+});
+
+// Handoff — pine (minor fixes, good) / gray (unknown) / vermillion x2 (revision, pushback)
+new Chart(document.getElementById('handoffChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ["Haven't handed off yet", 'Moderate revision rounds', 'Minor fixes only', 'Lots of pushback'],
+    datasets: [{ data: [32, 32, 27, 8], backgroundColor: [GRAY, AMBER, TEAL, RED], borderColor: '#FBF8F1', borderWidth: 2, hoverOffset: 4 }]
+  },
+  options: { cutout: '62%' }
+});
+
+// Barriers — all friction, one flat vermillion
+new Chart(document.getElementById('barriersChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Output quality not good enough', 'Token / context limits', 'Not enough time to learn', 'Company policy restrictions', 'No access to AI tools', 'Lack of confidence', "Don't know where to start"],
+    datasets: [{ label: '% citing this barrier', data: [59, 54, 38, 24, 14, 8, 5], backgroundColor: AMBER, ...FLAT_BAR }]
+  },
+  options: { indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: HBAR_X(70), y: HBAR_Y(12) } }
+});
+
+// Support wanted — all a positive ask, one flat pine
+new Chart(document.getElementById('supportChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Hands-on workshops', 'Time to experiment', 'Prompt library', 'Tool budget / subscriptions', 'Clear AI guidelines'],
+    datasets: [{ label: '% who want this', data: [70, 70, 51, 30, 19], backgroundColor: TEAL, ...FLAT_BAR }]
+  },
+  options: { indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: HBAR_X(80), y: HBAR_Y(12) } }
+});
+
+} // end initReportCharts
+
+
+/* ═══════════════════ VELOCITY TAB CHARTS (lazy) ═════════════════════ */
+function initVelocityCharts() {
+
+// What the PM expects — new-vs-existing split (see the fig-key under this chart)
+new Chart(document.getElementById('velNewWorkChart'), {
+  type: 'bar',
+  data: {
+    labels: ['HTML prototype (clickable)', 'Design spec document', 'Figma file (static)', 'Figma prototype', 'Production-ready code', 'Claude prompts'],
+    datasets: [{ label: '% whose PM expects this', data: [59, 59, 46, 38, 11, 8], backgroundColor: [AMBER, GRAY, GRAY, GRAY, AMBER, AMBER], ...FLAT_BAR }]
+  },
+  options: {
+    indexAxis: 'y',
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { afterLabel: c => [0, 4, 5].includes(c.dataIndex) ? 'New category — no pre-AI baseline' : 'Existing deliverable' } }
+    },
+    scales: { x: HBAR_X(70), y: HBAR_Y(11.5) }
+  }
+});
+
+} // end initVelocityCharts
+
+
+/* ═════════════════════════ TAB SWITCHING ════════════════════════════ */
+const TAB_INIT = { velocity: initVelocityCharts, report: initReportCharts };
+const tabsReady = {};
+
+function showTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'tab-' + name));
+  document.querySelectorAll('nav button.tab-link').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+
+  // Charts can only size themselves once their panel is visible — init on first view.
+  if (!tabsReady[name] && TAB_INIT[name]) {
+    tabsReady[name] = true;
+    requestAnimationFrame(() => TAB_INIT[name]());
+  }
+  if (location.hash !== '#' + name) history.replaceState(null, '', '#' + name);
+}
+
+document.querySelectorAll('nav button.tab-link').forEach(btn => {
+  btn.addEventListener('click', () => { showTab(btn.dataset.tab); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+});
+
+// Sub-nav inside the Report/Champions tabs: smooth-scroll without clobbering the tab hash
+document.querySelectorAll('.subnav a').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const el = document.querySelector(a.getAttribute('href'));
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
 
-/* ── CHARTS (Report tab) ─────────────────────────────────────────── */
-Chart.defaults.font.family = "'Segoe UI', system-ui, sans-serif";
-Chart.defaults.color = '#4A4F5C';
-Chart.defaults.plugins.legend.position = 'bottom';
-Chart.defaults.plugins.legend.labels.boxWidth = 12;
-Chart.defaults.plugins.legend.labels.padding = 14;
-
-const NAVY='#1B2E4B',TEAL='#0E7C86',TEAL2='#5DC4CC',GOLD='#C8902A',GREEN='#27AE60',AMBER='#E67E22',RED='#C0392B',GRAY='#D0D3DA';
-
-function makeChart(id, type, labels, data, colors, opts) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  new Chart(el, {
-    type,
-    data: { labels, datasets: [{ label: '', data, backgroundColor: colors, borderRadius: type==='bar'?6:0, hoverOffset: type==='doughnut'?6:0 }] },
-    options: Object.assign({ plugins: { legend: { display: type!=='bar' } }, scales: type==='bar' ? { x: { grid:{display:false} }, y: { grid:{color:'#F0F2F5'}, ticks:{callback:v=>v+'%'} } } : {} }, opts||{})
+// Cross-tab pointers inside the page body (e.g. Report §05 → the AI Champions tab)
+document.querySelectorAll('[data-goto]').forEach(el => {
+  el.addEventListener('click', e => {
+    e.preventDefault();
+    showTab(el.dataset.goto);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+});
+
+// Deep-link support: a tab name (#velocity / #issues / #champions / #report / #conclusions /
+// #best-practices), or any section id inside a tab — in which case we open that tab and
+// scroll to it. The tab list is read off the panels, so adding a tab needs no change here.
+const TAB_NAMES = [...document.querySelectorAll('.tab-panel')].map(p => p.id.replace('tab-', ''));
+const HASH = location.hash.replace('#', '');
+const SECTION = HASH && !TAB_NAMES.includes(HASH) ? document.getElementById(HASH) : null;
+const SECTION_PANEL = SECTION && SECTION.closest('.tab-panel');
+if (TAB_NAMES.includes(HASH)) {
+  showTab(HASH);
+} else if (SECTION_PANEL) {
+  showTab(SECTION_PANEL.id.replace('tab-', ''));
+  requestAnimationFrame(() => SECTION.scrollIntoView());
+} else {
+  showTab('velocity');
 }
-
-makeChart('toolChart','bar',['Claude','ChatGPT','Figma AI / Make','Gemini','MS Copilot','Other'],[97,73,54,35,32,27],[TEAL,NAVY,'#4A90D9','#34A853','#0078D4',GRAY],{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{max:100,ticks:{callback:v=>v+'%'},grid:{color:'#F0F2F5'}},y:{grid:{display:false}}}});
-
-new Chart(document.getElementById('expChart')||document.createElement('canvas'), {type:'doughnut',data:{labels:['>10 hrs/week','5–10 hrs/week','3–5 hrs/week','1–3 hrs/week','<1 hr/week','No time'],datasets:[{data:[8,22,30,35,3,3],backgroundColor:[NAVY,TEAL,TEAL2,GOLD,AMBER,GRAY],hoverOffset:6}]},options:{cutout:'58%'}});
-
-makeChart('timeSavedChart','bar',['10–20 hrs saved','6–10 hrs saved','1–5 hrs saved','No change','Adds 1–5 hrs','Adds 5+ hrs'],[24,41,22,3,3,5],[GREEN,TEAL,TEAL2,GRAY,AMBER,RED],{plugins:{legend:{display:false}},scales:{y:{max:50,ticks:{callback:v=>v+'%'},grid:{color:'#F0F2F5'}},x:{grid:{display:false}}}});
-
-new Chart(document.getElementById('qualityChart')||document.createElement('canvas'), {type:'doughnut',data:{labels:['Minor edits only','Significantly reworked','Used as-is'],datasets:[{data:[65,35,0],backgroundColor:[TEAL,AMBER,GREEN],hoverOffset:6}]},options:{cutout:'58%'}});
-
-makeChart('usecaseChart','bar',['Research & Desk Research','Design Ideation & Wireframing','Prototyping','Data Synthesis & Analysis','UX Writing & Copy','Documentation & Handoff','A/B Testing'],[78,78,62,51,43,38,3],[TEAL,TEAL,TEAL2,GOLD,GOLD,AMBER,GRAY],{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{max:100,ticks:{callback:v=>v+'%'},grid:{color:'#F0F2F5'}},y:{grid:{display:false},ticks:{font:{size:12}}}}});
-
-makeChart('deliverablesChart','bar',['HTML Prototype','Design Spec Doc','Figma File','Figma Prototype','Production Code','Claude Prompts'],[59,59,46,38,11,8],[NAVY,NAVY,TEAL,TEAL,GRAY,GOLD],{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{max:70,ticks:{callback:v=>v+'%'},grid:{color:'#F0F2F5'}},y:{grid:{display:false}}}});
-
-new Chart(document.getElementById('rdSpeedChart')||document.createElement('canvas'), {type:'doughnut',data:{labels:['Significantly faster (3×+)','Noticeably faster (1.5–2×)','About the same','Slower'],datasets:[{data:[27,57,14,3],backgroundColor:[GREEN,TEAL,GRAY,RED],hoverOffset:6}]},options:{cutout:'58%'}});
-
-new Chart(document.getElementById('handoffChart')||document.createElement('canvas'), {type:'doughnut',data:{labels:["Haven't handed off yet",'Moderate revision rounds','Minor fixes only','Lots of pushback'],datasets:[{data:[32,32,27,8],backgroundColor:[GRAY,AMBER,GREEN,RED],hoverOffset:6}]},options:{cutout:'58%'}});
-
-makeChart('barriersChart','bar',['Output quality not good enough','Token / context limits','Not enough time to learn','Company policy restrictions','No access to AI tools','Lack of confidence',"Don't know where to start"],[59,54,38,24,14,8,5],[RED,RED,AMBER,AMBER,GRAY,GRAY,GRAY],{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{max:70,ticks:{callback:v=>v+'%'},grid:{color:'#F0F2F5'}},y:{grid:{display:false},ticks:{font:{size:12}}}}});
-
-makeChart('supportChart','bar',['Hands-on workshops','Time to experiment','Prompt library','Tool budget / subscriptions','Clear AI guidelines'],[70,70,51,30,19],[GREEN,GREEN,TEAL,TEAL2,GRAY],{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{max:80,ticks:{callback:v=>v+'%'},grid:{color:'#F0F2F5'}},y:{grid:{display:false},ticks:{font:{size:12}}}}});
-
 </script>
 </body>
 </html>

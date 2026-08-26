@@ -4,194 +4,199 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NICE UX Team — AI Best Practices</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,144,500;0,144,600;0,144,700;1,144,500&family=Inter+Tight:wght@400;500;600;650;700;750;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
+/* ═══════════════════════════════════════════════════════════════════════
+   VISUAL SYSTEM — "Bone & Signal" — same system as index.html.
+   Kept as its own copy because this is a second, standalone HTML file;
+   see the note in index.html's PURPOSE.md about parallel pages.
+   ═══════════════════════════════════════════════════════════════════════ */
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
 :root {
-  --navy:    #1B2E4B;
-  --teal:    #0E7C86;
-  --teal-lt: #D0EEF0;
-  --gold:    #C8902A;
-  --gold-lt: #FFF3DC;
-  --green:   #27AE60;
-  --red:     #C0392B;
-  --amber:   #E67E22;
-  --gray-0:  #F4F5F7;
-  --gray-1:  #E8EAED;
-  --gray-2:  #D0D3DA;
-  --gray-3:  #9EA4B0;
-  --gray-4:  #4A4F5C;
-  --text:    #1a2332;
-  --white:   #FFFFFF;
+  --paper:   #EDE8DC;
+  --card:    #FBF8F1;
+  --white:   #FBF8F1;
+  --gray-0:  #F3EFE5;
+  --gray-1:  #E1DACA;
+  --gray-2:  #C7BFAC;
+  --gray-3:  #8C8577;
+  --gray-4:  #4E4A40;
+  --text:    #1B1A16;
+
+  --teal:    #00805F;
+  --navy:    #0A3A32;
+  --teal-lt: #DCE9E4;
+  --green:   #00805F;
+  --amber:   #C2431C;
+  --red:     #98280C;
+  --red-lt:  #FAEBE5;
+  --gold:    #8A6100;
+  --gold-lt: #F5E9CF;
+  --gold-br: #E0CDA4;
+
+  --p1: #7FBAAC; --p2: #57A192; --p3: #33887A;
+  --p4: #186F61; --p5: #075549; --p6: #003A31;
+
+  --serif: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --sans:  'Inter Tight', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono:  'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 }
+
 html { scroll-behavior: smooth; }
-body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #F0F2F5; color: var(--text); font-size: 15px; line-height: 1.6; }
+body {
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--gray-4);
+  font-size: 15px; line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+strong, b { color: var(--text); font-weight: 650; }
+::selection { background: var(--teal-lt); }
 
 /* NAV */
 nav {
   position: sticky; top: 0; z-index: 100;
-  background: var(--navy); padding: 0 32px;
-  display: flex; align-items: center; gap: 0;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  background: var(--card);
+  border-bottom: 2px solid var(--text);
+  display: flex; align-items: stretch;
+  padding: 0 clamp(14px, 3vw, 34px);
   overflow-x: auto; white-space: nowrap;
+  scrollbar-width: none;
 }
-.nav-brand { color: white; font-weight: 800; font-size: 13px; padding: 16px 20px 16px 0; border-right: 1px solid rgba(255,255,255,0.15); margin-right: 8px; letter-spacing: 0.5px; flex-shrink: 0; }
-nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 12px; font-weight: 600; padding: 18px 14px; transition: color 0.15s, border-color 0.15s; border-bottom: 3px solid transparent; flex-shrink: 0; }
-nav a:hover { color: white; border-bottom-color: var(--teal); }
-nav a.active { color: white; border-bottom-color: var(--gold); }
-.nav-sep { width: 1px; background: rgba(255,255,255,0.15); height: 24px; margin: 0 8px; flex-shrink: 0; }
+nav::-webkit-scrollbar { display: none; }
+.nav-brand {
+  font-family: var(--serif); font-weight: 700; font-size: 15px;
+  letter-spacing: -0.01em; color: var(--text);
+  display: flex; align-items: center; flex-shrink: 0;
+  padding: 13px 20px 13px 0; margin-right: 16px;
+  border-right: 1px solid var(--gray-1);
+}
+nav a {
+  color: var(--gray-3); text-decoration: none; font-family: var(--mono);
+  font-size: 10.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 17px 13px 14px; transition: color 0.15s, border-color 0.15s;
+  border-bottom: 3px solid transparent; flex-shrink: 0;
+}
+nav a:hover { color: var(--text); border-bottom-color: var(--gray-2); }
+nav a.active { color: var(--text); border-bottom-color: var(--amber); }
+.nav-sep { width: 1px; align-self: center; height: 20px; background: var(--gray-1); margin: 0 4px; flex-shrink: 0; }
 
-/* HERO */
-.hero {
-  background: linear-gradient(135deg, var(--navy) 0%, #0E4B6E 60%, var(--teal) 100%);
-  color: white; padding: 56px 40px 48px;
-  position: relative; overflow: hidden;
+/* MASTHEAD */
+.masthead { border-bottom: 2px solid var(--text); padding-bottom: 20px; margin-bottom: 34px; }
+.mh-kicker {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--amber);
+  margin-bottom: 10px;
 }
-.hero::before {
-  content: '';
-  position: absolute; top: -60px; right: -80px;
-  width: 500px; height: 500px;
-  background: rgba(14,124,134,0.15);
-  border-radius: 50%;
+.mh-title {
+  font-family: var(--serif); font-weight: 700;
+  font-size: clamp(28px, 5vw, 46px); line-height: 1.06;
+  letter-spacing: -0.02em; color: var(--text);
 }
-.hero-inner { max-width: 1100px; margin: 0 auto; position: relative; }
-.hero-tag { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 12px; }
-.hero h1 { font-size: clamp(24px, 3.5vw, 38px); font-weight: 800; line-height: 1.2; margin-bottom: 10px; }
-.hero h1 span { color: #6EE4EC; }
-.hero-sub { font-size: 15px; color: rgba(255,255,255,0.7); max-width: 640px; }
+.mh-title span { color: var(--teal); }
+.mh-sub { font-size: 14px; color: var(--gray-3); max-width: 620px; margin-top: 10px; line-height: 1.6; }
 
 /* LAYOUT */
-.page { max-width: 1100px; margin: 0 auto; padding: 40px 24px 80px; }
-section { margin-bottom: 56px; scroll-margin-top: 68px; }
-.section-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 24px; }
-.section-icon { font-size: 20px; }
-.section-title { font-size: 22px; font-weight: 800; color: var(--navy); }
-.section-sub { font-size: 13px; color: var(--gray-3); margin-left: 4px; font-weight: 400; }
+.page { max-width: 1100px; margin: 0 auto; padding: 30px clamp(16px, 4vw, 34px) 90px; }
+section { margin-bottom: 58px; scroll-margin-top: 66px; }
+.section-header { display: flex; align-items: baseline; flex-wrap: wrap; gap: 14px; border-top: 2px solid var(--text); padding-top: 13px; margin-bottom: 26px; }
+.section-icon { font-size: 19px; line-height: 1; flex: 0 0 auto; }
+.section-title { font-family: var(--serif); font-size: clamp(23px, 3.4vw, 31px); font-weight: 600; line-height: 1.12; letter-spacing: -0.02em; color: var(--text); flex: 0 1 auto; }
+.section-sub { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--gray-3); flex: 0 0 auto; align-self: center; }
 
 /* CARDS */
-.card { background: white; border-radius: 14px; box-shadow: 0 1px 6px rgba(0,0,0,0.07); overflow: hidden; }
-.card-header { padding: 14px 20px; border-bottom: 1px solid var(--gray-1); font-weight: 700; font-size: 14px; color: var(--navy); display: flex; align-items: center; gap: 8px; }
+.card { background: var(--card); border: 1px solid var(--gray-1); }
+.card-header { font-family: var(--serif); font-size: 16.5px; font-weight: 600; letter-spacing: -0.01em; color: var(--text); padding: 15px 20px 13px; border-bottom: 1px solid var(--gray-1); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .card-body { padding: 20px; }
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-@media (max-width: 768px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+@media (max-width: 820px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
 
 /* WORKFLOW CARD */
-.workflow-card {
-  background: white; border-radius: 14px;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.07);
-  border-top: 4px solid var(--teal);
-  padding: 24px; display: flex; flex-direction: column; gap: 16px;
-  transition: transform 0.15s, box-shadow 0.15s;
-}
-.workflow-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
-.workflow-card.gold { border-top-color: var(--gold); }
-.workflow-card.green { border-top-color: var(--green); }
-.workflow-card.amber { border-top-color: var(--amber); }
+.workflow-card { background: var(--card); border: 1px solid var(--gray-1); border-top: 3px solid var(--teal); padding: 22px; display: flex; flex-direction: column; gap: 16px; }
 .wf-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-.wf-title { font-size: 16px; font-weight: 800; color: var(--navy); line-height: 1.3; }
-.wf-owner { font-size: 11px; font-weight: 700; color: var(--teal); background: var(--teal-lt); padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
-.wf-card.gold .wf-owner { color: var(--gold); background: var(--gold-lt); }
-.wf-saving { display: flex; gap: 12px; flex-wrap: wrap; }
-.saving-chip { background: var(--gray-0); border-radius: 8px; padding: 8px 14px; text-align: center; }
-.saving-val { font-size: 20px; font-weight: 900; color: var(--navy); }
-.saving-lbl { font-size: 10px; color: var(--gray-3); text-transform: uppercase; letter-spacing: 0.5px; }
-.wf-steps { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-.wf-steps li { font-size: 13px; color: var(--gray-4); display: flex; gap: 8px; align-items: flex-start; line-height: 1.4; }
-.wf-steps li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--teal); flex-shrink: 0; margin-top: 6px; }
-.workflow-card.gold .wf-steps li::before { background: var(--gold); }
-.workflow-card.green .wf-steps li::before { background: var(--green); }
-.workflow-card.amber .wf-steps li::before { background: var(--amber); }
-.wf-label { font-size: 11px; font-weight: 700; color: var(--gray-3); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.wf-title { font-family: var(--serif); font-size: 17px; font-weight: 600; letter-spacing: -0.01em; color: var(--text); line-height: 1.3; }
+.wf-owner { font-family: var(--mono); font-size: 9.5px; font-weight: 700; letter-spacing: 0.05em; color: var(--teal); background: var(--teal-lt); padding: 3px 9px; white-space: nowrap; }
+.wf-saving { display: flex; gap: 10px; flex-wrap: wrap; }
+.saving-chip { background: var(--gray-0); border: 1px solid var(--gray-1); padding: 8px 13px; text-align: center; }
+.saving-val { font-family: var(--sans); font-size: 18px; font-weight: 800; letter-spacing: -0.02em; color: var(--text); line-height: 1; }
+.saving-lbl { font-family: var(--mono); font-size: 9px; color: var(--gray-3); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 3px; }
+.wf-steps { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.wf-steps li { font-size: 13px; color: var(--gray-4); display: flex; gap: 9px; align-items: flex-start; line-height: 1.5; }
+.wf-steps li::before { content: ''; width: 5px; height: 5px; background: var(--teal); flex-shrink: 0; margin-top: 7px; }
+.wf-label { font-family: var(--mono); font-size: 9.5px; font-weight: 700; color: var(--gray-3); letter-spacing: 0.09em; text-transform: uppercase; margin-bottom: 6px; }
 .wf-tools { display: flex; gap: 6px; flex-wrap: wrap; }
-.tool-tag { font-size: 11px; font-weight: 700; background: var(--gray-0); border: 1px solid var(--gray-1); border-radius: 6px; padding: 3px 10px; color: var(--gray-4); }
+.tool-tag { font-family: var(--mono); font-size: 10px; font-weight: 600; border: 1px solid var(--gray-2); padding: 3px 8px; color: var(--gray-4); }
 
-/* INTERVIEW PLACEHOLDER */
-.placeholder {
-  border: 2px dashed var(--gray-2);
-  border-radius: 12px;
-  padding: 24px;
-  text-align: center;
-  color: var(--gray-3);
-  font-size: 13px;
-}
-.placeholder strong { display: block; font-size: 14px; color: var(--gray-4); margin-bottom: 6px; }
-.placeholder .badge { display: inline-block; background: var(--gold-lt); color: var(--gold); font-size: 10px; font-weight: 700; padding: 2px 10px; border-radius: 999px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+/* PLACEHOLDER */
+.placeholder { border: 1px dashed var(--gray-2); background: var(--gray-0); padding: 16px; text-align: center; color: var(--gray-3); font-size: 12.5px; }
+.placeholder strong { display: block; font-size: 13px; color: var(--gray-4); margin-bottom: 5px; }
+.placeholder .badge { display: inline-block; font-family: var(--mono); font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--gold-br); color: var(--gold); background: var(--gold-lt); padding: 2px 8px; margin-bottom: 8px; }
 
 /* PROMPT CARD */
-.prompt-card { background: white; border-radius: 12px; box-shadow: 0 1px 6px rgba(0,0,0,0.07); padding: 0; overflow: hidden; }
-.prompt-header { padding: 14px 18px; background: var(--navy); display: flex; align-items: center; justify-content: space-between; }
-.prompt-title { font-size: 13px; font-weight: 700; color: white; }
-.prompt-tag { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 999px; }
-.prompt-body { padding: 16px 18px; }
-.prompt-text {
-  background: var(--gray-0);
-  border: 1px solid var(--gray-1);
-  border-radius: 8px;
-  padding: 14px;
-  font-size: 12.5px;
-  color: var(--gray-4);
-  line-height: 1.7;
-  font-family: 'Segoe UI', system-ui, sans-serif;
-  white-space: pre-wrap;
-}
-.prompt-meta { margin-top: 10px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.prompt-card { background: var(--card); border: 1px solid var(--gray-1); }
+.prompt-header { padding: 12px 16px; background: var(--navy); display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.prompt-title { font-family: var(--serif); font-size: 14px; font-weight: 600; color: var(--card); }
+.prompt-tag { font-family: var(--mono); font-size: 9px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(251,248,241,0.7); border: 1px solid rgba(251,248,241,0.25); padding: 2px 7px; }
+.prompt-body { padding: 16px; }
+.prompt-text { background: var(--gray-0); border-left: 2px solid var(--gray-2); padding: 13px; font-family: var(--mono); font-size: 12px; color: var(--gray-4); line-height: 1.7; white-space: pre-wrap; }
+.prompt-meta { margin-top: 11px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 .prompt-author { font-size: 11px; color: var(--gray-3); }
-.prompt-use { font-size: 11px; font-weight: 700; color: var(--teal); }
-.copy-btn {
-  margin-left: auto;
-  font-size: 11px; font-weight: 700;
-  background: var(--teal-lt); color: var(--teal);
-  border: none; border-radius: 6px;
-  padding: 5px 12px; cursor: pointer;
-  transition: background 0.15s;
-}
-.copy-btn:hover { background: #b0dfe3; }
+.prompt-use { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.04em; color: var(--teal); }
+.copy-btn { margin-left: auto; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: transparent; color: var(--teal); border: 1px solid var(--teal); padding: 5px 11px; cursor: pointer; transition: background 0.15s, color 0.15s; }
+.copy-btn:hover { background: var(--teal); color: var(--card); }
 
-/* DO DONT */
-.do-dont-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+/* DO / DONT */
+.do-dont-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 @media (max-width: 600px) { .do-dont-grid { grid-template-columns: 1fr; } }
-.do-card { background: white; border-radius: 12px; box-shadow: 0 1px 6px rgba(0,0,0,0.07); overflow: hidden; }
-.do-header { padding: 12px 18px; font-size: 13px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
-.do-header.do { background: #D4EDDA; color: #155724; }
-.do-header.dont { background: #F8D7DA; color: #721C24; }
-.do-list { padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; }
-.do-item { font-size: 13px; color: var(--gray-4); display: flex; gap: 10px; line-height: 1.45; }
-.do-item .icon { flex-shrink: 0; font-size: 15px; }
+.do-card { background: var(--card); border: 1px solid var(--gray-1); }
+.do-header { padding: 11px 16px; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+.do-header.do { background: var(--teal-lt); color: var(--navy); border-bottom: 2px solid var(--teal); }
+.do-header.dont { background: var(--red-lt); color: var(--red); border-bottom: 2px solid var(--amber); }
+.do-list { padding: 15px 16px; display: flex; flex-direction: column; gap: 11px; }
+.do-item { font-size: 13px; color: var(--gray-4); display: flex; gap: 10px; line-height: 1.5; }
+.do-item .icon { flex-shrink: 0; font-size: 14px; }
 
 /* TOOL STACK */
-.tool-row { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--gray-1); }
+.tool-row { display: flex; align-items: center; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--gray-1); }
 .tool-row:last-child { border-bottom: none; }
-.tool-name { font-weight: 700; font-size: 14px; color: var(--navy); width: 160px; flex-shrink: 0; }
-.tool-bar-track { flex: 1; background: var(--gray-1); border-radius: 999px; height: 10px; }
-.tool-bar-fill { height: 100%; border-radius: 999px; }
-.tool-pct { font-size: 13px; font-weight: 700; color: var(--navy); width: 36px; text-align: right; flex-shrink: 0; }
-.tool-desc { font-size: 12px; color: var(--gray-3); width: 220px; flex-shrink: 0; }
+.tool-name { font-weight: 650; font-size: 13.5px; color: var(--text); width: 150px; flex-shrink: 0; }
+.tool-bar-track { flex: 1; background: var(--gray-1); height: 10px; }
+.tool-bar-fill { height: 100%; border-radius: 0 2px 2px 0; }
+.tool-pct { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--text); width: 38px; text-align: right; flex-shrink: 0; }
+.tool-desc { font-size: 12px; color: var(--gray-3); width: 210px; flex-shrink: 0; }
 
-/* INSIGHT / ALERT */
-.insight {
-  background: var(--gold-lt); border: 1px solid #F0D9A0;
-  border-left: 4px solid var(--gold);
-  border-radius: 0 10px 10px 0;
-  padding: 14px 18px; font-size: 13px; line-height: 1.6; margin: 16px 0;
-}
-.insight strong { color: var(--gold); }
-.alert {
-  background: #FEF0F0; border-left: 4px solid var(--red);
-  border-radius: 0 10px 10px 0;
-  padding: 14px 18px; font-size: 13px; line-height: 1.6; margin: 12px 0;
-}
+/* INSIGHT / ALERT / QUOTE */
+.insight { background: var(--teal-lt); border-top: 2px solid var(--teal); padding: 15px 18px; font-size: 13.5px; line-height: 1.65; margin: 16px 0; color: var(--gray-4); }
+.insight strong { color: var(--navy); }
+.alert { background: var(--red-lt); border-top: 2px solid var(--amber); padding: 15px 18px; font-size: 13.5px; line-height: 1.65; margin: 14px 0; color: var(--gray-4); }
+.alert strong { color: var(--red); }
 blockquote {
-  border-left: 4px solid var(--teal); background: #F7FEFF;
-  padding: 14px 18px; border-radius: 0 10px 10px 0;
-  margin: 16px 0; font-style: italic; color: var(--gray-4); font-size: 13.5px; line-height: 1.6;
+  position: relative; margin: 20px 0; padding: 2px 0 2px 44px;
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  font-size: 15.5px; line-height: 1.5; color: var(--text);
 }
-blockquote cite { display: block; margin-top: 6px; font-style: normal; font-size: 11px; font-weight: 700; color: var(--teal); }
+blockquote::before {
+  content: '\201C'; position: absolute; left: 0; top: 2px;
+  font-family: var(--serif); font-style: normal; font-weight: 700;
+  font-size: 48px; line-height: 0.7; color: var(--amber);
+}
+blockquote cite { display: block; margin-top: 10px; font-style: normal; font-family: var(--mono); font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-3); }
 
 /* FOOTER */
-footer { background: var(--navy); color: rgba(255,255,255,0.6); text-align: center; padding: 24px; font-size: 12px; }
-footer strong { color: white; }
-footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
-footer a:hover { color: white; }
+footer { background: var(--navy); color: rgba(251,248,241,0.6); text-align: center; padding: 34px 24px; font-size: 12px; line-height: 1.9; }
+footer strong { display: inline-block; font-family: var(--mono); font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--card); margin-bottom: 6px; }
+footer a { color: rgba(251,248,241,0.7); text-decoration: underline; }
+footer a:hover { color: var(--card); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
 </style>
 </head>
 <body>
@@ -207,16 +212,12 @@ footer a:hover { color: white; }
   <a href="#dodont">Do's & Don'ts</a>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-inner">
-    <div class="hero-tag">NICE UX Team · AI Best Practices · August 2026</div>
-    <h1>What <span>actually works</span> —<br>packaged for the entire team.</h1>
-    <p class="hero-sub">Built from survey data of 37 designers and in-depth interviews with 7 AI Champions. Updated continuously as we learn more.</p>
-  </div>
-</div>
-
 <div class="page">
+<div class="masthead">
+  <div class="mh-kicker">NICE UX Team · August 2026</div>
+  <h1 class="mh-title">What <span>actually works</span> — packaged for the entire team.</h1>
+  <p class="mh-sub">Built from survey data of 37 designers and in-depth interviews with 7 AI Champions. Updated continuously as we learn more.</p>
+</div>
 
 <!-- SECTION 1 — WORKFLOWS -->
 <section id="workflows">
@@ -268,7 +269,7 @@ footer a:hover { color: white; }
     <div class="workflow-card green">
       <div class="wf-header">
         <div class="wf-title">Interactive HTML Prototyping</div>
-        <span class="wf-owner" style="color:var(--green);background:#D4EDDA;">Jennie Ryan / Erick Mathews</span>
+        <span class="wf-owner">Jennie Ryan / Erick Mathews</span>
       </div>
       <div class="wf-saving">
         <div class="saving-chip"><div class="saving-val">New</div><div class="saving-lbl">Capability</div></div>
@@ -303,7 +304,7 @@ footer a:hover { color: white; }
     <div class="workflow-card gold">
       <div class="wf-header">
         <div class="wf-title">Developer Handoff Spec</div>
-        <span class="wf-owner" style="color:var(--gold);background:var(--gold-lt);">Tali Silon-Shacham</span>
+        <span class="wf-owner">Tali Silon-Shacham</span>
       </div>
       <div class="wf-saving">
         <div class="saving-chip"><div class="saving-val">2–4×</div><div class="saving-lbl">Faster</div></div>
@@ -338,7 +339,7 @@ footer a:hover { color: white; }
     <div class="workflow-card amber">
       <div class="wf-header">
         <div class="wf-title">Design Ideation & Component Specs</div>
-        <span class="wf-owner" style="color:var(--amber);background:#FFF3CD;">Gajanan Rajput</span>
+        <span class="wf-owner">Gajanan Rajput</span>
       </div>
       <div class="wf-saving">
         <div class="saving-chip"><div class="saving-val">2–3×</div><div class="saving-lbl">More options</div></div>
@@ -546,32 +547,32 @@ Keep it under [X] characters per state. Avoid generic phrases like "Something we
       <div class="card-body">
         <div class="tool-row">
           <span class="tool-name">Claude</span>
-          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:97%;background:var(--teal);height:100%;border-radius:999px;"></div></div>
+          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:97%;background:var(--teal);"></div></div>
           <span class="tool-pct">97%</span>
         </div>
         <div class="tool-row">
           <span class="tool-name">ChatGPT</span>
-          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:73%;background:var(--navy);height:100%;border-radius:999px;"></div></div>
+          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:73%;background:var(--teal);"></div></div>
           <span class="tool-pct">73%</span>
         </div>
         <div class="tool-row">
           <span class="tool-name">Figma AI / Make</span>
-          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:54%;background:#4A90D9;height:100%;border-radius:999px;"></div></div>
+          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:54%;background:var(--teal);"></div></div>
           <span class="tool-pct">54%</span>
         </div>
         <div class="tool-row">
           <span class="tool-name">Gemini</span>
-          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:35%;background:#34A853;height:100%;border-radius:999px;"></div></div>
+          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:35%;background:var(--teal);"></div></div>
           <span class="tool-pct">35%</span>
         </div>
         <div class="tool-row">
           <span class="tool-name">MS Copilot</span>
-          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:32%;background:#0078D4;height:100%;border-radius:999px;"></div></div>
+          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:32%;background:var(--teal);"></div></div>
           <span class="tool-pct">32%</span>
         </div>
         <div class="tool-row">
           <span class="tool-name">Other tools</span>
-          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:27%;background:var(--gray-2);height:100%;border-radius:999px;"></div></div>
+          <div class="tool-bar-track"><div class="tool-bar-fill" style="width:27%;background:var(--teal);"></div></div>
           <span class="tool-pct">27%</span>
         </div>
       </div>
@@ -584,15 +585,15 @@ Keep it under [X] characters per state. Avoid generic phrases like "Something we
           <div style="font-weight:700;font-size:13px;color:var(--navy);">Claude</div>
           <div style="font-size:12px;color:var(--gray-4);margin-top:3px;">Long context, complex reasoning, research synthesis, spec writing, HTML prototyping, multi-step workflows</div>
         </div>
-        <div style="border-left:3px solid var(--gray-3);padding-left:12px;">
+        <div style="border-left:3px solid var(--teal);padding-left:12px;">
           <div style="font-weight:700;font-size:13px;color:var(--navy);">ChatGPT</div>
           <div style="font-size:12px;color:var(--gray-4);margin-top:3px;">Quick ideation, short-form content, general questions, image generation (DALL-E)</div>
         </div>
-        <div style="border-left:3px solid #4A90D9;padding-left:12px;">
+        <div style="border-left:3px solid var(--teal);padding-left:12px;">
           <div style="font-weight:700;font-size:13px;color:var(--navy);">Figma AI / Make</div>
           <div style="font-size:12px;color:var(--gray-4);margin-top:3px;">In-canvas generation, component variants, auto-layout suggestions, design-to-content</div>
         </div>
-        <div style="border-left:3px solid #34A853;padding-left:12px;">
+        <div style="border-left:3px solid var(--teal);padding-left:12px;">
           <div style="font-weight:700;font-size:13px;color:var(--navy);">Gemini</div>
           <div style="font-size:12px;color:var(--gray-4);margin-top:3px;">Google Workspace integration, slides/docs co-writing, search-augmented answers</div>
         </div>
@@ -661,7 +662,7 @@ Keep it under [X] characters per state. Avoid generic phrases like "Something we
     <cite>— Yaara Bar Feldman</cite>
   </blockquote>
 
-  <div style="margin-top:20px;" class="placeholder" style="padding:32px;">
+  <div class="placeholder" style="margin-top:20px;padding:32px;">
     <span class="badge">Coming from Champion interviews</span>
     <strong>Additional do's & don'ts from each Champion's domain</strong>
     Prototyping · Handoff · Research · Cross-team collaboration — all being documented
