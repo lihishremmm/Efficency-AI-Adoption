@@ -79,35 +79,46 @@ strong, b { color: var(--text); font-weight: 650; }
   text-transform: uppercase;
 }
 
-/* ─────────────────────────────── NAV ──────────────────────────────── */
-nav {
-  position: sticky; top: 0; z-index: 100;
-  background: var(--card);
-  border-bottom: 2px solid var(--text);
-  display: flex; align-items: stretch;
-  padding: 0 clamp(14px, 3vw, 34px);
-  overflow-x: auto; white-space: nowrap;
-  scrollbar-width: none;
+/* ─────────────────────────────── NAV ──────────────────────────────────
+   Shared chrome — the identical component (structure + look) also used on
+   best-practices.html, so the two files read as one product with two
+   sections rather than two sites. Each file's copy points at the other
+   file for the destinations that live there. */
+nav.topnav {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(237,232,220,0.92); backdrop-filter: saturate(140%) blur(10px);
+  border-bottom: 1px solid var(--gray-1);
+  transition: box-shadow 0.25s;
 }
-nav::-webkit-scrollbar { display: none; }
-.nav-brand {
-  font-family: var(--serif); font-weight: 700; font-size: 15px;
-  letter-spacing: -0.01em; color: var(--text);
-  display: flex; align-items: center; flex-shrink: 0;
-  padding: 13px 20px 13px 0; margin-right: 16px;
-  border-right: 1px solid var(--gray-1);
+nav.topnav.scrolled { box-shadow: 0 1px 2px rgba(23,22,14,0.05); }
+.topnav-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 clamp(14px, 3vw, 34px);
+  display: flex; align-items: center; gap: 24px; height: 60px;
 }
+.brand {
+  display: flex; align-items: center; gap: 9px; flex-shrink: 0;
+  font-family: var(--serif); font-weight: 700; font-size: 15.5px; color: var(--text);
+  text-decoration: none; letter-spacing: -0.01em;
+}
+.brand-mark { width: 18px; height: 18px; flex-shrink: 0; color: var(--teal); }
+.nav-links {
+  display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none;
+  flex: 1; min-width: 0;
+  -webkit-mask-image: linear-gradient(to right, black calc(100% - 28px), transparent 100%);
+  mask-image: linear-gradient(to right, black calc(100% - 28px), transparent 100%);
+}
+.nav-links::-webkit-scrollbar { display: none; }
 nav a, nav button.tab-link {
   background: none; border: 0; cursor: pointer; font-family: var(--mono);
   font-size: 10.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--gray-3); text-decoration: none;
-  padding: 17px 13px 14px; border-bottom: 3px solid transparent;
+  padding: 19px 12px; border-bottom: 3px solid transparent;
   transition: color 0.15s, border-color 0.15s;
   flex-shrink: 0; white-space: nowrap;
 }
 nav a:hover, nav button.tab-link:hover { color: var(--text); border-bottom-color: var(--gray-2); }
-nav a.active, nav button.tab-link.active { color: var(--text); border-bottom-color: var(--amber); }
-.nav-sep { width: 1px; align-self: center; height: 20px; background: var(--gray-1); margin: 0 4px; flex-shrink: 0; }
+nav a.active, nav button.tab-link.active { color: var(--text); border-bottom-color: var(--teal); }
+.nav-sep { width: 1px; align-self: center; height: 20px; background: var(--gray-2); margin: 0 6px; flex-shrink: 0; }
 nav .tab-soon {
   font-family: var(--mono); font-size: 8.5px; font-weight: 700; letter-spacing: 0.12em;
   border: 1px solid var(--gray-2); color: var(--gray-3);
@@ -115,9 +126,11 @@ nav .tab-soon {
 }
 nav .tab-new {
   font-family: var(--mono); font-size: 8.5px; font-weight: 700; letter-spacing: 0.12em;
-  border: 1px solid var(--amber); color: var(--amber);
+  border: 1px solid var(--teal); color: var(--teal);
   padding: 1px 5px; margin-left: 7px; vertical-align: middle;
 }
+@media (max-width: 900px) { nav a, nav button.tab-link { padding: 19px 9px; font-size: 10px; } .topnav-inner { gap: 14px; } }
+@media (max-width: 560px) { .brand span.brand-text { display: none; } }
 
 /* ────────────────────────────── LAYOUT ────────────────────────────── */
 .page { max-width: 1100px; margin: 0 auto; padding: 30px clamp(16px, 4vw, 34px) 90px; }
@@ -656,15 +669,29 @@ footer a:hover { color: var(--card); }
 </head>
 <body>
 
-<!-- ════════════════════════════ NAV ════════════════════════════════ -->
-<nav id="main-nav">
-  <span class="nav-brand">NICE UX · AI Report 2026</span>
-  <button class="tab-link active" data-tab="velocity">Velocity vs. Actual Efficiency</button>
-  <button class="tab-link" data-tab="issues">Critical Issues<span class="tab-soon">SOON</span></button>
-  <button class="tab-link" data-tab="champions">AI Champions</button>
-  <button class="tab-link" data-tab="report">Report</button>
-  <button class="tab-link" data-tab="conclusions">Conclusions</button>
-  <button class="tab-link" data-tab="best-practices">✦ Best Practices<span class="tab-new">NEW</span></button>
+<!-- ════════════════════════════ NAV ════════════════════════════════
+     Shared with best-practices.html — same structure on both files, so
+     every destination in either file is one click away from the other. -->
+<nav class="topnav" id="topnav">
+  <div class="topnav-inner">
+    <a href="#velocity" class="brand" data-tab="velocity">
+      <svg class="brand-mark" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 4 L19 13 L28 16 L19 19 L16 28 L13 19 L4 16 L13 13 Z"/></svg>
+      <span class="brand-text">NICE UX · AI</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#velocity" data-tab="velocity" class="active">Velocity</a>
+      <a href="#issues" data-tab="issues">Issues<span class="tab-soon">SOON</span></a>
+      <a href="#champions" data-tab="champions">Champions</a>
+      <a href="#report" data-tab="report">Report</a>
+      <a href="#conclusions" data-tab="conclusions">Conclusions</a>
+      <span class="nav-sep"></span>
+      <a href="best-practices.html#practices">Best Practices<span class="tab-new">NEW</span></a>
+      <a href="best-practices.html#workflows">Workflows</a>
+      <a href="best-practices.html#champions">Champions</a>
+      <a href="best-practices.html#examples">Examples</a>
+      <a href="best-practices.html#resources">Resources</a>
+    </div>
+  </div>
 </nav>
 
 <!-- ════════════════════════════ PAGE BODY ══════════════════════════ -->
@@ -2781,56 +2808,8 @@ Pushback rate among those who handed off:    40 ÷ 68      = 59%</div>
 </div><!-- /tab-conclusions -->
 
 
-<!-- ══════════════════════════════════════════════════════════════════ -->
-<!-- ══════════════ TAB 6 — BEST PRACTICES ═══════════════════════════ -->
-<!-- ══════════════════════════════════════════════════════════════════ -->
-<div class="tab-panel" id="tab-best-practices">
-
-<section id="best-practices-pointer" style="padding-top:8px;">
-  <div class="section-header">
-    <span class="section-icon">✦</span>
-    <span class="section-title">Best Practices moved to its own hub</span>
-    <span class="section-sub">Redesigned as a standalone product, August 2026</span>
-  </div>
-
-  <div class="insight" style="margin-top:0;">
-    This tab used to hold a full copy of the Best Practices content, kept in sync by hand with a second file. It has been rebuilt as its own product — a browsable, searchable, filterable hub — and this tab now points to it instead of duplicating it, so the two can never drift out of sync again.
-  </div>
-
-  <div class="card" style="margin-bottom:20px;">
-    <div class="card-header">✦ What's in the new hub</div>
-    <div class="card-body">
-      <div class="grid-3">
-        <div>
-          <div style="font-weight:700;font-size:13.5px;color:var(--text);margin-bottom:5px;">📊 Where We Stand + Maturity Model</div>
-          <div style="font-size:12.5px;color:var(--gray-4);line-height:1.6;">The Pro-vs-Mid behavior crosstabs and a 4-level maturity model, so you can find your own next step.</div>
-        </div>
-        <div>
-          <div style="font-weight:700;font-size:13.5px;color:var(--text);margin-bottom:5px;">📚 Practice Library</div>
-          <div style="font-size:12.5px;color:var(--gray-4);line-height:1.6;">11 evidence-graded practices — searchable, filterable by tier/level, bookmarkable — each with a workflow, example and cited evidence.</div>
-        </div>
-        <div>
-          <div style="font-weight:700;font-size:13.5px;color:var(--text);margin-bottom:5px;">⚡ Workflows, Champions &amp; Examples</div>
-          <div style="font-size:12.5px;color:var(--gray-4);line-height:1.6;">The five named champion workflows with Before→After→Result, profile cards, and copyable prompts for each.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" style="margin-bottom:20px;">
-    <div class="card-header">🏆 AI Champions — still live here too</div>
-    <div class="card-body">
-      <p style="font-size:13.5px;color:var(--gray-4);line-height:1.7;">
-        The seven Champions, their dossiers, the <strong>0/7</strong> interview tracker and the decisions ledger stay on <strong>this</strong> tab — that content didn't move. The new hub's Champions section is a lighter, at-a-glance version that links back here for the full picture.
-      </p>
-      <button class="gobtn" data-goto="champions">🏆 Open the full AI Champions tab →</button>
-    </div>
-  </div>
-
-  <a href="best-practices.html" class="gobtn" style="font-size:12px;padding:16px 26px;">✦ Open the AI Best Practices Hub →</a>
-</section>
-
-</div><!-- /tab-best-practices -->
+<!-- Best Practices now lives at best-practices.html and is reachable directly
+     from the shared nav above (no in-page tab/pointer needed any more). -->
 
 </div><!-- /page -->
 
@@ -3028,7 +3007,7 @@ const tabsReady = {};
 
 function showTab(name) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'tab-' + name));
-  document.querySelectorAll('nav button.tab-link').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+  document.querySelectorAll('nav [data-tab]').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
 
   // Charts can only size themselves once their panel is visible — init on first view.
   if (!tabsReady[name] && TAB_INIT[name]) {
@@ -3038,9 +3017,22 @@ function showTab(name) {
   if (location.hash !== '#' + name) history.replaceState(null, '', '#' + name);
 }
 
-document.querySelectorAll('nav button.tab-link').forEach(btn => {
-  btn.addEventListener('click', () => { showTab(btn.dataset.tab); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+// Cluster A of the shared nav (Velocity/Issues/Champions/Report/Conclusions + brand)
+// switches tabs in-page. Cluster B (Best Practices/Workflows/.../Resources) are real
+// links to best-practices.html and need no handler here.
+document.querySelectorAll('nav [data-tab]').forEach(el => {
+  el.addEventListener('click', e => {
+    e.preventDefault();
+    showTab(el.dataset.tab);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 });
+
+// Sticky-nav shadow once the page has scrolled past the top
+(function(){
+  var navEl = document.getElementById('topnav');
+  window.addEventListener('scroll', function(){ navEl.classList.toggle('scrolled', window.scrollY > 8); }, { passive: true });
+})();
 
 // Sub-nav inside the Report/Champions tabs: smooth-scroll without clobbering the tab hash
 document.querySelectorAll('.subnav a').forEach(a => {
@@ -3060,9 +3052,10 @@ document.querySelectorAll('[data-goto]').forEach(el => {
   });
 });
 
-// Deep-link support: a tab name (#velocity / #issues / #champions / #report / #conclusions /
-// #best-practices), or any section id inside a tab — in which case we open that tab and
-// scroll to it. The tab list is read off the panels, so adding a tab needs no change here.
+// Deep-link support: a tab name (#velocity / #issues / #champions / #report / #conclusions),
+// or any section id inside a tab — in which case we open that tab and scroll to it. The tab
+// list is read off the panels, so adding a tab needs no change here. (Best Practices lives at
+// best-practices.html now — reached via the shared nav, not an in-page tab.)
 const TAB_NAMES = [...document.querySelectorAll('.tab-panel')].map(p => p.id.replace('tab-', ''));
 const HASH = location.hash.replace('#', '');
 const SECTION = HASH && !TAB_NAMES.includes(HASH) ? document.getElementById(HASH) : null;
