@@ -57,6 +57,15 @@
   --serif: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
   --sans:  'Inter Tight', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --mono:  'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* ── depth & radius — shared with best-practices.html, so panels read as
+     one family across both files. Hues above are untouched (see the note
+     at the top of this stylesheet): only shape and shadow move here. ── */
+  --r-sm: 8px; --r-md: 14px; --r-lg: 20px; --r-pill: 999px;
+  --sh-1: 0 1px 2px rgba(27,26,22,0.05);
+  --sh-2: 0 6px 20px -8px rgba(27,26,22,0.14), 0 2px 6px -2px rgba(27,26,22,0.07);
+  --sh-3: 0 20px 48px -16px rgba(27,26,22,0.22), 0 6px 16px -6px rgba(27,26,22,0.10);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 html { scroll-behavior: smooth; }
@@ -136,7 +145,11 @@ nav .tab-new {
 .page { max-width: 1100px; margin: 0 auto; padding: 30px clamp(16px, 4vw, 34px) 90px; }
 
 /* Masthead — the page states what it is once, at the top */
-.masthead { border-bottom: 2px solid var(--text); padding-bottom: 20px; margin-bottom: 34px; }
+.masthead {
+  border-bottom: 2px solid var(--text); padding: 36px 0 26px; margin: -1px calc(-1 * clamp(16px, 4vw, 34px)) 34px;
+  padding-left: clamp(16px, 4vw, 34px); padding-right: clamp(16px, 4vw, 34px);
+  background: radial-gradient(ellipse 800px 380px at 88% -20%, var(--teal-lt), transparent 60%);
+}
 .mh-kicker {
   font-family: var(--mono); font-size: 10px; font-weight: 700;
   letter-spacing: 0.16em; text-transform: uppercase; color: var(--amber);
@@ -160,7 +173,7 @@ nav .tab-new {
 section { margin-bottom: 58px; scroll-margin-top: 66px; }
 .section-header {
   display: flex; align-items: baseline; flex-wrap: wrap; gap: 14px;
-  border-top: 2px solid var(--text); padding-top: 13px; margin-bottom: 26px;
+  border-top: 2px solid var(--text); padding-top: 16px; margin-bottom: 30px;
 }
 .section-number {
   font-family: var(--mono); font-size: 10px; font-weight: 700;
@@ -169,7 +182,7 @@ section { margin-bottom: 58px; scroll-margin-top: 66px; }
 }
 .section-icon { font-size: 19px; line-height: 1; flex: 0 0 auto; }
 .section-title {
-  font-family: var(--serif); font-size: clamp(23px, 3.4vw, 31px); font-weight: 600;
+  font-family: var(--serif); font-size: clamp(25px, 3.8vw, 34px); font-weight: 650;
   line-height: 1.12; letter-spacing: -0.02em; color: var(--text); flex: 0 1 auto;
 }
 .section-sub {
@@ -195,14 +208,17 @@ section { margin-bottom: 58px; scroll-margin-top: 66px; }
 .subnav a:hover { color: var(--amber); background: var(--gray-0); }
 
 /* ────────────────────────────── PANELS ────────────────────────────── */
-.card { background: var(--card); border: 1px solid var(--gray-1); }
+.card {
+  background: var(--card); border: 1px solid var(--gray-1);
+  border-radius: var(--r-lg); box-shadow: var(--sh-1); overflow: hidden;
+}
 .card-header {
-  font-family: var(--serif); font-size: 16.5px; font-weight: 600;
+  font-family: var(--serif); font-size: 17px; font-weight: 650;
   letter-spacing: -0.01em; color: var(--text);
-  padding: 15px 20px 13px; border-bottom: 1px solid var(--gray-1);
+  padding: 17px 22px 15px; border-bottom: 1px solid var(--gray-1);
   display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
 }
-.card-body { padding: 20px; }
+.card-body { padding: 22px; }
 
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
@@ -212,19 +228,19 @@ section { margin-bottom: 58px; scroll-margin-top: 66px; }
 .insight {
   background: var(--teal-lt); border-top: 2px solid var(--teal);
   padding: 15px 18px; font-size: 13.5px; line-height: 1.65; margin: 16px 0;
-  color: var(--gray-4);
+  color: var(--gray-4); border-radius: 0 0 var(--r-md) var(--r-md); box-shadow: var(--sh-1);
 }
 .insight strong { color: var(--navy); }
 .alert {
   background: var(--red-lt); border-top: 2px solid var(--amber);
   padding: 15px 18px; font-size: 13.5px; line-height: 1.65; margin: 14px 0;
-  color: var(--gray-4);
+  color: var(--gray-4); border-radius: 0 0 var(--r-md) var(--r-md); box-shadow: var(--sh-1);
 }
 .alert strong { color: var(--red); }
 .why {
   background: var(--gray-0); border-left: 2px solid var(--text);
   padding: 13px 17px; font-size: 13px; line-height: 1.65; margin: 15px 0;
-  color: var(--gray-4);
+  color: var(--gray-4); border-radius: 0 var(--r-md) var(--r-md) 0;
 }
 .why .why-lbl { font-weight: 700; color: var(--text); margin-right: 6px; }
 .plainnote {
@@ -449,7 +465,7 @@ details.calc[open] > summary { border-bottom: 1px solid var(--gray-1); color: va
   letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-3);
 }
 .story-join-line { height: 1px; background: var(--gray-1); }
-.story-step.final { background: var(--teal-lt); border-left: 3px solid var(--teal); padding: 16px 18px; margin-top: 8px; }
+.story-step.final { background: var(--teal-lt); border-left: 3px solid var(--teal); padding: 16px 18px; margin-top: 8px; border-radius: 0 var(--r-md) var(--r-md) 0; }
 @media (max-width: 620px) {
   .story-step, .story-join { grid-template-columns: 1fr; gap: 6px; }
   .story-num, .story-join-word { text-align: left; }
@@ -535,7 +551,7 @@ details.calc[open] > summary { border-bottom: 1px solid var(--gray-1); color: va
 
 /* ───────────────────── CHAMPION DOSSIERS ──────────────────────────── */
 .chp-stack { display: flex; flex-direction: column; gap: 22px; }
-.chp { background: var(--card); border: 1px solid var(--gray-1); border-left: 3px solid var(--teal); }
+.chp { background: var(--card); border: 1px solid var(--gray-1); border-left: 3px solid var(--teal); border-radius: 0 var(--r-lg) var(--r-lg) 0; box-shadow: var(--sh-1); overflow: hidden; }
 .chp-head { display: flex; align-items: flex-start; gap: 15px; padding: 18px 22px 16px; border-bottom: 1px solid var(--gray-1); flex-wrap: wrap; }
 .chp-av {
   width: 40px; height: 40px; background: var(--navy); color: var(--card);
@@ -552,7 +568,7 @@ details.calc[open] > summary { border-bottom: 1px solid var(--gray-1); color: va
 .chp-lbl { display: flex; align-items: center; gap: 9px; font-size: 9.5px; font-weight: 700; color: var(--gray-3); margin-bottom: 10px; flex-wrap: wrap; }
 .chp-txt { font-size: 13.5px; line-height: 1.65; color: var(--gray-4); }
 .chp-txt strong { color: var(--text); }
-.chp-empty { border: 1px dashed var(--gray-2); background: var(--gray-0); padding: 14px 17px; font-size: 12.5px; color: var(--gray-3); line-height: 1.75; }
+.chp-empty { border: 1px dashed var(--gray-2); background: var(--gray-0); padding: 14px 17px; font-size: 12.5px; color: var(--gray-3); line-height: 1.75; border-radius: var(--r-sm); }
 .chp-empty b { color: var(--gray-4); }
 .chp-empty ul { margin: 8px 0 0; padding-left: 17px; }
 .chp-empty li { margin-bottom: 4px; }
@@ -566,7 +582,7 @@ details.calc[open] > summary { border-bottom: 1px solid var(--gray-1); color: va
 .chp-dec-foot b { color: var(--gray-4); font-weight: 700; }
 
 /* Interview counter */
-.track-count { display: flex; align-items: center; gap: 20px; background: var(--navy); padding: 18px 22px; margin-bottom: 20px; }
+.track-count { display: flex; align-items: center; gap: 20px; background: var(--navy); padding: 18px 22px; margin-bottom: 20px; border-radius: var(--r-md); box-shadow: var(--sh-1); }
 .track-count .tc-num { font-family: var(--sans); font-size: 30px; font-weight: 800; letter-spacing: -0.03em; color: var(--p1); line-height: 1; flex-shrink: 0; }
 .track-count .tc-txt { font-size: 13px; color: rgba(251,248,241,0.82); line-height: 1.6; }
 .track-count .tc-txt strong { color: var(--card); }
@@ -577,9 +593,10 @@ details.calc[open] > summary { border-bottom: 1px solid var(--gray-1); color: va
   background: var(--text); color: var(--card); text-decoration: none;
   font-family: var(--mono); font-size: 10px; font-weight: 600;
   letter-spacing: 0.11em; text-transform: uppercase;
-  padding: 12px 18px; border: none; cursor: pointer; transition: background 0.15s;
+  padding: 13px 22px; border: none; cursor: pointer; border-radius: var(--r-pill);
+  transition: background 0.15s, transform 0.15s var(--ease), box-shadow 0.15s var(--ease);
 }
-.gobtn:hover { background: var(--teal); }
+.gobtn:hover { background: var(--teal); box-shadow: var(--sh-2); transform: translateY(-1px); }
 
 .qguide ol { margin: 0; padding-left: 20px; font-size: 13px; color: var(--gray-4); line-height: 1.65; }
 .qguide li { margin-bottom: 11px; }
