@@ -58,9 +58,10 @@
   --sans:  'Inter Tight', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --mono:  'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 
-  /* ── depth & radius — shared with best-practices.html, so panels read as
-     one family across both files. Hues above are untouched (see the note
-     at the top of this stylesheet): only shape and shadow move here. ── */
+  /* ── depth & radius — used for the softer, rounded panel style added
+     for the Best Practices tab (see #tab-best-practices below). Hues
+     above are untouched (see the note at the top of this stylesheet):
+     only shape and shadow move here. ── */
   --r-sm: 8px; --r-md: 14px; --r-lg: 20px; --r-pill: 999px;
   --sh-1: 0 1px 2px rgba(27,26,22,0.05);
   --sh-2: 0 6px 20px -8px rgba(27,26,22,0.14), 0 2px 6px -2px rgba(27,26,22,0.07);
@@ -88,11 +89,7 @@ strong, b { color: var(--text); font-weight: 650; }
   text-transform: uppercase;
 }
 
-/* ─────────────────────────────── NAV ──────────────────────────────────
-   Shared chrome — the identical component (structure + look) also used on
-   best-practices.html, so the two files read as one product with two
-   sections rather than two sites. Each file's copy points at the other
-   file for the destinations that live there. */
+/* ─────────────────────────────── NAV ─────────────────────────────────── */
 nav.topnav {
   position: sticky; top: 0; z-index: 200;
   background: rgba(237,232,220,0.92); backdrop-filter: saturate(140%) blur(10px);
@@ -610,56 +607,6 @@ details.calc[open] > summary { border-bottom: 1px solid var(--gray-1); color: va
 .soon-wrap p { font-size: 14px; color: var(--gray-3); max-width: 540px; margin: 0 auto 8px; line-height: 1.7; }
 .soon-pill { display: inline-block; margin-top: 24px; font-size: 9.5px; font-weight: 700; color: var(--amber); border: 1px solid var(--amber); padding: 6px 14px; }
 
-/* ─── BEST PRACTICES TAB ─────────────────────────────────────────── */
-.workflow-card { background: var(--card); border: 1px solid var(--gray-1); border-top: 3px solid var(--teal); padding: 22px; display: flex; flex-direction: column; gap: 16px; }
-.wf-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-.wf-title { font-family: var(--serif); font-size: 17px; font-weight: 600; letter-spacing: -0.01em; color: var(--text); line-height: 1.3; }
-.wf-owner { font-family: var(--mono); font-size: 9.5px; font-weight: 700; letter-spacing: 0.05em; color: var(--teal); background: var(--teal-lt); padding: 3px 9px; white-space: nowrap; }
-.wf-saving { display: flex; gap: 10px; flex-wrap: wrap; }
-.saving-chip { background: var(--gray-0); border: 1px solid var(--gray-1); padding: 8px 13px; text-align: center; }
-.saving-val { font-family: var(--sans); font-size: 18px; font-weight: 800; letter-spacing: -0.02em; color: var(--text); line-height: 1; }
-.saving-lbl { font-family: var(--mono); font-size: 9px; color: var(--gray-3); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 3px; }
-.wf-steps { list-style: none; display: flex; flex-direction: column; gap: 7px; }
-.wf-steps li { font-size: 13px; color: var(--gray-4); display: flex; gap: 9px; align-items: flex-start; line-height: 1.5; }
-.wf-steps li::before { content: ''; width: 5px; height: 5px; background: var(--teal); flex-shrink: 0; margin-top: 7px; }
-.wf-label { font-family: var(--mono); font-size: 9.5px; font-weight: 700; color: var(--gray-3); letter-spacing: 0.09em; text-transform: uppercase; margin-bottom: 6px; }
-.wf-tools { display: flex; gap: 6px; flex-wrap: wrap; }
-.tool-tag { font-family: var(--mono); font-size: 10px; font-weight: 600; border: 1px solid var(--gray-2); padding: 3px 8px; color: var(--gray-4); }
-
-.placeholder { border: 1px dashed var(--gray-2); background: var(--gray-0); padding: 16px; text-align: center; color: var(--gray-3); font-size: 12.5px; }
-.placeholder strong { display: block; font-size: 13px; color: var(--gray-4); margin-bottom: 5px; }
-.placeholder .badge { display: inline-block; font-family: var(--mono); font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--gold-br); color: var(--gold); background: var(--gold-lt); padding: 2px 8px; margin-bottom: 8px; }
-
-.prompt-card { background: var(--card); border: 1px solid var(--gray-1); }
-.prompt-header { padding: 12px 16px; background: var(--navy); display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.prompt-title { font-family: var(--serif); font-size: 14px; font-weight: 600; color: var(--card); }
-.prompt-tag { font-family: var(--mono); font-size: 9px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(251,248,241,0.7); border: 1px solid rgba(251,248,241,0.25); padding: 2px 7px; }
-.prompt-body { padding: 16px; }
-.prompt-text { background: var(--gray-0); border-left: 2px solid var(--gray-2); padding: 13px; font-family: var(--mono); font-size: 12px; color: var(--gray-4); line-height: 1.7; white-space: pre-wrap; }
-.prompt-meta { margin-top: 11px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
-.prompt-author { font-size: 11px; color: var(--gray-3); }
-.prompt-use { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.04em; color: var(--teal); }
-.copy-btn { margin-left: auto; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: transparent; color: var(--teal); border: 1px solid var(--teal); padding: 5px 11px; cursor: pointer; transition: background 0.15s, color 0.15s; }
-.copy-btn:hover { background: var(--teal); color: var(--card); }
-
-.do-dont-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-@media (max-width: 600px) { .do-dont-grid { grid-template-columns: 1fr; } }
-.do-card { background: var(--card); border: 1px solid var(--gray-1); }
-.do-header { padding: 11px 16px; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
-.do-header.do { background: var(--teal-lt); color: var(--navy); border-bottom: 2px solid var(--teal); }
-.do-header.dont { background: var(--red-lt); color: var(--red); border-bottom: 2px solid var(--amber); }
-.do-list { padding: 15px 16px; display: flex; flex-direction: column; gap: 11px; }
-.do-item { font-size: 13px; color: var(--gray-4); display: flex; gap: 10px; line-height: 1.5; }
-.do-item .icon { flex-shrink: 0; font-size: 14px; }
-
-.tool-row { display: flex; align-items: center; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--gray-1); }
-.tool-row:last-child { border-bottom: none; }
-.tool-name { font-weight: 650; font-size: 13.5px; color: var(--text); width: 150px; flex-shrink: 0; }
-.tool-bar-track { flex: 1; background: var(--gray-1); height: 10px; }
-.tool-bar-fill { height: 100%; border-radius: 0 2px 2px 0; }
-.tool-pct { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--text); width: 38px; text-align: right; flex-shrink: 0; }
-.tool-desc { font-size: 12px; color: var(--gray-3); width: 210px; flex-shrink: 0; }
-
 /* ─────────────────────────────── TABS ─────────────────────────────── */
 .tab-panel { display: none; }
 .tab-panel.active { display: block; animation: fadeIn 0.3s ease; }
@@ -670,6 +617,277 @@ footer { background: var(--navy); color: rgba(251,248,241,0.6); text-align: cent
 footer strong { display: inline-block; font-family: var(--mono); font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--card); margin-bottom: 6px; }
 footer a { color: rgba(251,248,241,0.7); text-decoration: underline; }
 footer a:hover { color: var(--card); }
+
+/* ─────────────────── BEST PRACTICES TAB (merged from the hub) ───────────────────
+   Scoped under #tab-best-practices so it can reuse class names like .card
+   without colliding with the rest of the report. Variable aliases below map
+   the hub's token names onto this file's own validated palette, so nothing
+   here introduces a second color system. */
+#tab-best-practices {
+  --paper-alt: var(--gray-0);
+  --surface: var(--card);
+  --surface-2: var(--gray-0);
+  --line: var(--gray-1);
+  --line-2: var(--gray-2);
+  --ink: var(--text);
+  --ink-2: var(--gray-4);
+  --ink-3: var(--gray-3);
+  --ink-4: var(--gray-2);
+  --accent: var(--teal);
+  --accent-ink: var(--navy);
+  --accent-soft: var(--teal-lt);
+  --accent-line: var(--teal);
+  --accent-tint: var(--teal-lt);
+  --amber: var(--gold);
+  --amber-soft: var(--gold-lt);
+  --amber-line: var(--gold-br);
+  --gold-soft: var(--gold-lt);
+  --red-soft: var(--red-lt);
+  --red-line: #E2B9AB;
+}
+#tab-best-practices .container { max-width: 1100px; margin: 0 auto; }
+#tab-best-practices .btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--sans); font-weight: 650; font-size: 14.5px;
+  padding: 12px 22px; border-radius: var(--r-pill); border: 1.5px solid transparent;
+  cursor: pointer; text-decoration: none; transition: transform 0.15s var(--ease), box-shadow 0.15s var(--ease), background 0.15s, border-color 0.15s, color 0.15s;
+  line-height: 1.3;
+}
+#tab-best-practices .btn-primary { background: var(--accent); color: #fff; }
+#tab-best-practices .btn-primary:hover { background: var(--accent-ink); box-shadow: var(--sh-2); transform: translateY(-1px); }
+#tab-best-practices .btn-ghost { background: transparent; border-color: var(--line-2); color: var(--ink); }
+#tab-best-practices .btn-ghost:hover { border-color: var(--accent); color: var(--accent-ink); background: var(--accent-tint); }
+
+#tab-best-practices .chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--mono); font-size: 10.5px; font-weight: 700; letter-spacing: 0.04em;
+  padding: 4px 10px; border-radius: var(--r-pill); border: 1px solid var(--line-2);
+  color: var(--ink-2); background: var(--surface); white-space: nowrap;
+}
+#tab-best-practices .chip-cat { color: var(--ink-3); background: var(--surface-2); border-color: var(--line); text-transform: uppercase; letter-spacing: 0.06em; }
+#tab-best-practices .chip-level { color: var(--accent-ink); background: var(--accent-tint); border-color: var(--accent-line); }
+#tab-best-practices .chip-status-working { color: var(--accent-ink); background: var(--accent-soft); border-color: var(--accent-line); }
+#tab-best-practices .chip-status-opportunity { color: var(--amber); background: var(--amber-soft); border-color: var(--amber-line); }
+#tab-best-practices .chip-status-experiment { color: var(--ink-3); background: var(--surface-2); border-color: var(--line-2); }
+#tab-best-practices .chip-quickwin { color: var(--gold); background: var(--gold-soft); border-color: var(--gold-br); }
+#tab-best-practices .chip-conf-m { color: var(--accent-ink); background: var(--accent-soft); border-color: var(--accent-line); }
+#tab-best-practices .chip-conf-e { color: var(--gold); background: var(--gold-soft); border-color: var(--gold-br); }
+#tab-best-practices .chip-conf-j { color: var(--ink-3); background: transparent; border-color: var(--line-2); }
+
+#tab-best-practices button.filter-chip {
+  font-family: var(--sans); font-size: 13.5px; font-weight: 600;
+  padding: 8px 15px; border-radius: var(--r-pill); border: 1.5px solid var(--line-2);
+  background: var(--surface); color: var(--ink-2); cursor: pointer; white-space: nowrap;
+  transition: all 0.15s var(--ease); flex-shrink: 0;
+}
+#tab-best-practices button.filter-chip:hover { border-color: var(--accent-line); background: var(--accent-tint); }
+#tab-best-practices button.filter-chip[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+#tab-best-practices .hero {
+  position: relative; padding: clamp(40px, 6vw, 64px) 0 clamp(40px, 6vw, 56px);
+  border-bottom: 1px solid var(--line); margin: 0 -34px 40px; padding-left: 34px; padding-right: 34px;
+  background: radial-gradient(ellipse 800px 400px at 85% -10%, var(--accent-tint), transparent 60%), var(--paper-alt);
+  overflow: hidden;
+}
+#tab-best-practices .hero-kicker {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--accent-ink);
+  background: var(--accent-soft); border: 1px solid var(--accent-line);
+  padding: 6px 13px; border-radius: var(--r-pill); margin-bottom: 20px;
+}
+#tab-best-practices .hero h1 {
+  font-family: var(--serif); font-weight: 700; font-size: clamp(30px, 4.6vw, 50px); line-height: 1.05;
+  letter-spacing: -0.02em; max-width: 18ch; color: var(--text);
+}
+#tab-best-practices .hero h1 span { color: var(--accent); font-style: italic; font-weight: 600; }
+#tab-best-practices .hero-sub { font-size: clamp(14.5px, 1.6vw, 16.5px); color: var(--ink-2); max-width: 640px; margin-top: 16px; line-height: 1.6; }
+#tab-best-practices .hero-actions { display: flex; gap: 14px; margin-top: 26px; flex-wrap: wrap; }
+#tab-best-practices .hero-stats { display: flex; gap: clamp(24px, 4vw, 44px); margin-top: 34px; flex-wrap: wrap; padding-top: 24px; border-top: 1px solid var(--line); }
+#tab-best-practices .hero-stat-num { font-family: var(--sans); font-weight: 800; font-size: clamp(26px, 3vw, 36px); letter-spacing: -0.02em; color: var(--text); line-height: 1; }
+#tab-best-practices .hero-stat-lbl { font-size: 12.5px; color: var(--ink-3); margin-top: 5px; max-width: 22ch; line-height: 1.4; }
+
+#tab-best-practices section.page-section { padding: 40px 0; scroll-margin-top: 66px; margin-bottom: 0; }
+#tab-best-practices section.page-section.alt { background: var(--paper-alt); margin: 0 -34px; padding-left: 34px; padding-right: 34px; }
+#tab-best-practices .section-head { max-width: 720px; margin-bottom: 30px; }
+#tab-best-practices .section-eyebrow { font-family: var(--mono); font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 10px; display: block; }
+#tab-best-practices .section-head h2 { font-family: var(--serif); font-size: clamp(24px, 3vw, 32px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; color: var(--text); }
+#tab-best-practices .section-head p { font-size: 14.5px; color: var(--ink-3); margin-top: 12px; line-height: 1.6; }
+
+#tab-best-practices .insight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+#tab-best-practices .insight-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 22px 20px; box-shadow: var(--sh-1); transition: box-shadow 0.2s var(--ease), transform 0.2s var(--ease); }
+#tab-best-practices .insight-card:hover { box-shadow: var(--sh-2); transform: translateY(-2px); }
+#tab-best-practices .insight-stat { font-family: var(--sans); font-weight: 800; font-size: 32px; letter-spacing: -0.02em; color: var(--text); line-height: 1; }
+#tab-best-practices .insight-headline { font-size: 14px; font-weight: 650; color: var(--text); margin-top: 9px; line-height: 1.4; }
+#tab-best-practices .insight-body { font-size: 12.5px; color: var(--ink-3); margin-top: 7px; line-height: 1.5; }
+#tab-best-practices .insight-meaning { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line-2); font-size: 12.5px; color: var(--accent-ink); font-weight: 600; line-height: 1.5; }
+#tab-best-practices .insight-meaning span.arrow { color: var(--accent); }
+@media (max-width: 980px) { #tab-best-practices .insight-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 620px) { #tab-best-practices .insight-grid { grid-template-columns: 1fr; } }
+
+#tab-best-practices .maturity-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--line); border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--line); }
+#tab-best-practices .maturity-seg {
+  /* full reset — a bare .maturity-seg already exists elsewhere (an unrelated
+     proportion-bar component) and sets display/align/font/color/transition,
+     so every one of those needs to be re-declared here, not just the new ones */
+  display: block; align-items: initial; justify-content: initial;
+  font-family: inherit; font-size: inherit; font-weight: inherit; letter-spacing: normal;
+  transition: none; color: inherit;
+  background: var(--surface); padding: 20px 18px; position: relative;
+}
+#tab-best-practices .maturity-seg.current::before {
+  content: 'YOUR TEAM, MOSTLY HERE'; position: absolute; top: -1px; left: 0; right: 0;
+  transform: translateY(-100%); font-family: var(--mono); font-size: 9px; font-weight: 700;
+  letter-spacing: 0.08em; text-align: center; color: var(--accent-ink); background: var(--accent-soft);
+  padding: 5px 0; border: 1px solid var(--accent-line); border-bottom: none; border-radius: 8px 8px 0 0;
+}
+#tab-best-practices .maturity-seg .m-num { font-family: var(--mono); font-size: 9.5px; font-weight: 700; color: var(--ink-4); letter-spacing: 0.08em; }
+#tab-best-practices .maturity-seg .m-name { font-family: var(--serif); font-size: 18px; font-weight: 650; margin: 5px 0 7px; color: var(--text); }
+#tab-best-practices .maturity-seg .m-desc { font-size: 12px; color: var(--ink-3); line-height: 1.5; }
+#tab-best-practices .maturity-seg .m-pct { font-family: var(--sans); font-weight: 800; font-size: 20px; color: var(--accent-ink); margin-top: 9px; }
+@media (max-width: 900px) { #tab-best-practices .maturity-strip { grid-template-columns: 1fr; } #tab-best-practices .maturity-seg.current::before { position: static; transform: none; border-radius: 8px; margin-bottom: 10px; display: inline-block; } }
+
+#tab-best-practices .featured-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+#tab-best-practices .featured-card { background: var(--text); color: var(--paper); border-radius: var(--r-lg); padding: 24px 22px; position: relative; overflow: hidden; box-shadow: var(--sh-2); transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease); }
+#tab-best-practices .featured-card:hover { transform: translateY(-4px); box-shadow: var(--sh-3); }
+#tab-best-practices .featured-num { font-family: var(--serif); font-style: italic; font-size: 40px; color: rgba(251,248,241,0.18); position: absolute; top: 8px; right: 18px; line-height: 1; font-weight: 700; }
+#tab-best-practices .featured-cat { font-family: var(--mono); font-size: 9.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--p1); }
+#tab-best-practices .featured-title { font-family: var(--serif); font-size: 19px; font-weight: 650; margin: 9px 0 7px; line-height: 1.25; color: #fff; }
+#tab-best-practices .featured-body { font-size: 13px; color: rgba(251,248,241,0.72); line-height: 1.5; }
+#tab-best-practices .featured-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; font-size: 12.5px; font-weight: 700; color: #fff; text-decoration: none; }
+#tab-best-practices .featured-link:hover { color: var(--p1); }
+@media (max-width: 900px) { #tab-best-practices .featured-grid { grid-template-columns: 1fr; } }
+
+#tab-best-practices .lib-toolbar { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 14px 16px; margin-bottom: 24px; box-shadow: var(--sh-1); }
+#tab-best-practices .search-row { display: flex; gap: 10px; align-items: center; margin-bottom: 12px; }
+#tab-best-practices .search-box { position: relative; flex: 1; }
+#tab-best-practices .search-box svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--ink-4); width: 16px; height: 16px; }
+#tab-best-practices .search-box input { width: 100%; font-family: var(--sans); font-size: 14px; padding: 10px 14px 10px 38px; border-radius: var(--r-pill); border: 1.5px solid var(--line-2); background: var(--surface); color: var(--text); }
+#tab-best-practices .search-box input:focus { border-color: var(--accent); outline: none; }
+#tab-best-practices .results-count { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); white-space: nowrap; letter-spacing: 0.04em; }
+#tab-best-practices .filter-row { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+#tab-best-practices .filter-row::-webkit-scrollbar { display: none; }
+#tab-best-practices .filter-group-sep { width: 1px; background: var(--line-2); flex-shrink: 0; margin: 4px 4px; }
+
+#tab-best-practices .practice-grid { display: flex; flex-direction: column; gap: 12px; }
+#tab-best-practices .practice-item { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); transition: border-color 0.2s, box-shadow 0.2s; overflow: hidden; }
+#tab-best-practices .practice-item:hover { border-color: var(--line-2); box-shadow: var(--sh-1); }
+#tab-best-practices .practice-item[hidden] { display: none; }
+#tab-best-practices .practice-item summary { list-style: none; cursor: pointer; padding: 18px 20px; display: flex; gap: 16px; align-items: flex-start; justify-content: space-between; }
+#tab-best-practices .practice-item summary::-webkit-details-marker { display: none; }
+#tab-best-practices .practice-item summary:focus-visible { outline-offset: -2px; }
+#tab-best-practices .p-summary-main { flex: 1; min-width: 0; }
+#tab-best-practices .p-tags-row { display: flex; gap: 7px; align-items: center; flex-wrap: wrap; margin-bottom: 9px; }
+#tab-best-practices .p-title { font-family: var(--serif); font-size: 18px; font-weight: 650; color: var(--text); line-height: 1.3; }
+#tab-best-practices .p-oneline { font-size: 13px; color: var(--ink-3); margin-top: 5px; line-height: 1.5; max-width: 62ch; }
+#tab-best-practices .p-side { display: flex; align-items: center; gap: 14px; flex-shrink: 0; padding-top: 2px; }
+#tab-best-practices .impact-dots { display: flex; gap: 3px; align-items: center; }
+#tab-best-practices .impact-dots span { display: block; }
+#tab-best-practices .impact-label { font-family: var(--mono); font-size: 9px; color: var(--ink-4); letter-spacing: 0.06em; text-transform: uppercase; margin-right: 3px; }
+#tab-best-practices .impact-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--line-2); }
+#tab-best-practices .impact-dot.on { background: var(--accent); }
+#tab-best-practices .bookmark-btn { width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--line-2); background: var(--surface); color: var(--ink-3); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; flex-shrink: 0; }
+#tab-best-practices .bookmark-btn:hover { border-color: var(--gold); color: var(--gold); }
+#tab-best-practices .bookmark-btn[aria-pressed="true"] { background: var(--gold-soft); border-color: var(--gold); color: var(--gold); }
+#tab-best-practices .expand-chevron { color: var(--ink-4); flex-shrink: 0; transition: transform 0.25s var(--ease); margin-top: 3px; }
+#tab-best-practices .practice-item[open] .expand-chevron { transform: rotate(180deg); }
+
+#tab-best-practices .p-body { padding: 0 20px 24px; border-top: 1px solid var(--line); }
+#tab-best-practices .p-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 26px; margin-top: 18px; }
+#tab-best-practices .p-main p, #tab-best-practices .p-main li { font-size: 13px; color: var(--gray-4); line-height: 1.6; }
+#tab-best-practices .p-main ol, #tab-best-practices .p-main ul { padding-left: 18px; }
+#tab-best-practices .p-block { margin-bottom: 15px; }
+#tab-best-practices .p-block:last-child { margin-bottom: 0; }
+#tab-best-practices .p-lbl { font-family: var(--mono); font-size: 9.5px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-4); margin-bottom: 6px; display: block; }
+#tab-best-practices .ba-strip { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: stretch; margin-top: 6px; }
+#tab-best-practices .ba-box { padding: 11px 12px; border-radius: var(--r-sm); font-size: 12px; line-height: 1.5; color: var(--gray-4); }
+#tab-best-practices .ba-before { background: var(--red-soft); border: 1px solid var(--red-line); }
+#tab-best-practices .ba-after { background: var(--accent-soft); border: 1px solid var(--accent-line); }
+#tab-best-practices .ba-box b { display: block; font-family: var(--mono); font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; color: var(--ink-3); }
+#tab-best-practices .ba-arrow { display: flex; align-items: center; color: var(--ink-4); }
+#tab-best-practices .p-side-col { display: flex; flex-direction: column; gap: 12px; }
+#tab-best-practices .p-side-block { background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 11px 13px; }
+#tab-best-practices .p-side-block.tip { background: var(--gold-soft); border-color: var(--gold-br); }
+#tab-best-practices .p-side-block.anti { background: var(--red-soft); border-color: var(--red-line); }
+#tab-best-practices .p-side-block p { font-size: 12px; line-height: 1.5; }
+#tab-best-practices .p-tools-row { display: flex; gap: 6px; flex-wrap: wrap; }
+#tab-best-practices .copy-btn { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; background: transparent; color: var(--accent-ink); border: 1px solid var(--accent-line); padding: 6px 12px; cursor: pointer; border-radius: var(--r-pill); transition: background 0.15s, color 0.15s; }
+#tab-best-practices .copy-btn:hover { background: var(--accent); color: #fff; }
+#tab-best-practices .no-results { text-align: center; padding: 56px 20px; color: var(--ink-3); }
+#tab-best-practices .no-results svg { color: var(--ink-4); margin-bottom: 12px; }
+
+#tab-best-practices .workflow-cards { display: flex; flex-direction: column; gap: 18px; }
+#tab-best-practices .workflow-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 24px; box-shadow: var(--sh-1); }
+#tab-best-practices .wf-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
+#tab-best-practices .wf-title { font-family: var(--serif); font-size: 21px; font-weight: 650; color: var(--text); }
+#tab-best-practices .wf-owner { display: flex; align-items: center; gap: 8px; }
+#tab-best-practices .wf-avatar { width: 28px; height: 28px; border-radius: 50%; background: var(--accent-soft); color: var(--accent-ink); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-weight: 700; font-size: 11px; flex-shrink: 0; }
+#tab-best-practices .wf-owner-name { font-size: 12.5px; font-weight: 650; color: var(--gray-4); }
+#tab-best-practices .wf-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 26px; }
+#tab-best-practices .wf-steps-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+#tab-best-practices .wf-steps-list li { font-size: 13px; color: var(--gray-4); display: flex; gap: 10px; line-height: 1.5; }
+#tab-best-practices .wf-steps-list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 6px; }
+@media (max-width: 900px) { #tab-best-practices .wf-grid { grid-template-columns: 1fr; } }
+
+#tab-best-practices .champ-tracker { display: flex; align-items: center; gap: 14px; background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r-md); padding: 15px 18px; margin-bottom: 28px; flex-wrap: wrap; }
+#tab-best-practices .champ-tracker-num { font-family: var(--sans); font-weight: 800; font-size: 24px; color: var(--gold); }
+#tab-best-practices .champ-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+#tab-best-practices .champ-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 22px; box-shadow: var(--sh-1); transition: box-shadow 0.2s, transform 0.2s; }
+#tab-best-practices .champ-card:hover { box-shadow: var(--sh-2); transform: translateY(-2px); }
+#tab-best-practices .champ-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+#tab-best-practices .champ-avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--navy); color: var(--card); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-weight: 700; font-size: 15px; flex-shrink: 0; }
+#tab-best-practices .champ-name { font-family: var(--serif); font-size: 16px; font-weight: 650; color: var(--text); line-height: 1.2; }
+#tab-best-practices .champ-role { font-size: 11.5px; color: var(--accent-ink); font-weight: 650; margin-top: 2px; }
+#tab-best-practices .champ-good-at { font-size: 12.5px; color: var(--gray-4); line-height: 1.5; margin-bottom: 13px; }
+#tab-best-practices .champ-learn { background: var(--accent-tint); border-left: 3px solid var(--accent); padding: 10px 12px; border-radius: 0 var(--r-sm) var(--r-sm) 0; font-size: 12px; color: var(--accent-ink); line-height: 1.5; }
+@media (max-width: 980px) { #tab-best-practices .champ-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 620px) { #tab-best-practices .champ-grid { grid-template-columns: 1fr; } }
+
+#tab-best-practices .example-cards { display: flex; flex-direction: column; gap: 14px; }
+#tab-best-practices .example-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--sh-1); }
+#tab-best-practices .ex-head { padding: 14px 18px; background: var(--navy); display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+#tab-best-practices .ex-title { font-family: var(--serif); font-size: 14.5px; font-weight: 650; color: #fff; }
+#tab-best-practices .ex-body { padding: 16px 18px; }
+#tab-best-practices .ex-text { background: var(--surface-2); border-left: 2px solid var(--line-2); border-radius: 0 var(--r-sm) var(--r-sm) 0; padding: 13px 15px; font-family: var(--mono); font-size: 12px; color: var(--gray-4); line-height: 1.65; white-space: pre-wrap; }
+#tab-best-practices .ex-meta { margin-top: 11px; display: flex; gap: 13px; align-items: center; flex-wrap: wrap; }
+#tab-best-practices .ex-author { font-size: 11.5px; color: var(--ink-3); }
+#tab-best-practices .ex-use { font-family: var(--mono); font-size: 10px; font-weight: 700; color: var(--accent-ink); }
+
+#tab-best-practices .res-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+#tab-best-practices .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--sh-1); overflow: hidden; }
+#tab-best-practices .card-head { font-family: var(--serif); font-size: 16px; font-weight: 650; color: var(--text); padding: 16px 20px 14px; border-bottom: 1px solid var(--line); }
+#tab-best-practices .card-body { padding: 18px 20px; }
+#tab-best-practices .tool-row { display: flex; align-items: center; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+#tab-best-practices .tool-row:last-child { border-bottom: none; }
+#tab-best-practices .tool-name { font-weight: 650; font-size: 13px; color: var(--text); width: 120px; flex-shrink: 0; }
+#tab-best-practices .tool-bar-track { flex: 1; background: var(--line); height: 8px; border-radius: 4px; overflow: hidden; }
+#tab-best-practices .tool-bar-fill { height: 100%; background: var(--accent); border-radius: 4px; }
+#tab-best-practices .tool-pct { font-family: var(--mono); font-size: 11.5px; font-weight: 700; color: var(--text); width: 34px; text-align: right; flex-shrink: 0; }
+
+#tab-best-practices .dodont-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+#tab-best-practices .dodont-card { border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--line); }
+#tab-best-practices .dodont-head { padding: 13px 18px; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; }
+#tab-best-practices .dodont-head.do { background: var(--accent-soft); color: var(--accent-ink); }
+#tab-best-practices .dodont-head.dont { background: var(--red-soft); color: var(--red); }
+#tab-best-practices .dodont-list { background: var(--surface); padding: 16px 18px; display: flex; flex-direction: column; gap: 13px; }
+#tab-best-practices .dodont-item { font-size: 13px; color: var(--gray-4); display: flex; gap: 10px; line-height: 1.5; }
+#tab-best-practices .dodont-item .icon { flex-shrink: 0; font-size: 14px; margin-top: 1px; }
+@media (max-width: 800px) { #tab-best-practices .dodont-grid, #tab-best-practices .res-grid-2 { grid-template-columns: 1fr; } }
+
+#tab-best-practices .share-cta { background: var(--navy); border-radius: var(--r-lg); padding: 30px 34px; color: var(--card); display: flex; align-items: center; justify-content: space-between; gap: 22px; flex-wrap: wrap; margin-top: 6px; }
+#tab-best-practices .share-cta h3 { font-family: var(--serif); color: #fff; font-size: 20px; margin-bottom: 7px; }
+#tab-best-practices .share-cta p { color: rgba(251,248,241,0.7); font-size: 13.5px; max-width: 46ch; line-height: 1.5; }
+
+#tab-best-practices blockquote { position: relative; margin: 0; padding: 4px 0 4px 36px; font-family: var(--serif); font-style: italic; font-weight: 450; font-size: 15.5px; line-height: 1.55; color: var(--text); }
+#tab-best-practices blockquote::before { content: '\201C'; position: absolute; left: 0; top: 0; font-family: var(--serif); font-style: normal; font-weight: 700; font-size: 42px; line-height: 0.9; color: var(--accent); }
+#tab-best-practices blockquote cite { display: block; margin-top: 9px; font-style: normal; font-family: var(--mono); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+
+@media (max-width: 700px) {
+  #tab-best-practices .p-grid { grid-template-columns: 1fr; }
+  #tab-best-practices .ba-strip { grid-template-columns: 1fr; }
+  #tab-best-practices .ba-arrow { transform: rotate(90deg); justify-content: center; padding: 2px 0; }
+  #tab-best-practices .wf-grid { grid-template-columns: 1fr; }
+}
 
 /* ───────────────────────── MOTION & PRINT ─────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
@@ -687,8 +905,7 @@ footer a:hover { color: var(--card); }
 <body>
 
 <!-- ════════════════════════════ NAV ════════════════════════════════
-     Shared with best-practices.html — same structure on both files, so
-     every destination in either file is one click away from the other. -->
+     One page, one tab set — switching tabs swaps the visible panel below. -->
 <nav class="topnav" id="topnav">
   <div class="topnav-inner">
     <a href="#velocity" class="brand" data-tab="velocity">
@@ -700,13 +917,8 @@ footer a:hover { color: var(--card); }
       <a href="#issues" data-tab="issues">Issues<span class="tab-soon">SOON</span></a>
       <a href="#champions" data-tab="champions">Champions</a>
       <a href="#report" data-tab="report">Report</a>
+      <a href="#best-practices" data-tab="best-practices">Best Practices<span class="tab-new">NEW</span></a>
       <a href="#conclusions" data-tab="conclusions">Conclusions</a>
-      <span class="nav-sep"></span>
-      <a href="best-practices.html#practices">Best Practices<span class="tab-new">NEW</span></a>
-      <a href="best-practices.html#workflows">Workflows</a>
-      <a href="best-practices.html#champions">Champions</a>
-      <a href="best-practices.html#examples">Examples</a>
-      <a href="best-practices.html#resources">Resources</a>
     </div>
   </div>
 </nav>
@@ -2582,6 +2794,1155 @@ Pushback rate among those who handed off:    40 ÷ 68      = 59%</div>
 </div><!-- /tab-report -->
 
 <!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════ TAB — BEST PRACTICES (merged from the hub) ═══════ -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-best-practices">
+
+<div class="subnav">
+  <a href="#bp-overview">Overview</a>
+  <a href="#bp-practices">Practice Library</a>
+  <a href="#bp-workflows">Workflows</a>
+  <a href="#bp-champions">Champions</a>
+  <a href="#bp-examples">Examples</a>
+  <a href="#bp-resources">Resources</a>
+</div>
+
+<header class="hero" id="bp-overview">
+  <div class="container">
+    <span class="hero-kicker">📊 Built from 37 real survey responses — not opinions</span>
+    <h1>How this team actually <span>works</span> with AI.</h1>
+    <p class="hero-sub">Not a framework a consultant would recommend. What already happened when 37 designers started sizing tasks in Claude, writing specs AI could hand to dev, and quietly discovering — one at a time — what wastes their time. This is that knowledge, in one place.</p>
+    <div class="hero-actions">
+      <a href="#bp-practices" class="btn btn-primary">Explore the Practice Library →</a>
+      <a href="#bp-champions" class="btn btn-ghost">Meet the AI Champions</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">89%</div>
+        <div class="hero-stat-lbl">say AI made them meaningfully more efficient</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">97%</div>
+        <div class="hero-stat-lbl">use Claude daily — but skill depth still varies a lot</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">35%</div>
+        <div class="hero-stat-lbl">have reached "Pro" workflows — see what separates them</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-section" id="bp-insights">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">What the data actually shows</span>
+      <h2>Five things worth knowing before you read further</h2>
+      <p>Not a dashboard — just the handful of findings that changed what belongs in this library, and why.</p>
+    </div>
+
+    <div class="insight-grid">
+      <div class="insight-card">
+        <div class="insight-stat">84<span style="font-size:20px;">/100</span></div>
+        <div class="insight-headline">Meeting notes: the most agreed-on automatable task, almost never automated</div>
+        <div class="insight-body">25 of 37 called it fully automatable — nobody said impossible. Yet it's the one task on the list with zero current AI use.</div>
+        <div class="insight-meaning"><span class="arrow">→</span> The highest-leverage place to start isn't glamorous. See Practice 01.</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-stat">−18<span style="font-size:20px;"> pts</span></div>
+        <div class="insight-headline">Design ideation is already used past its own "automatable" ceiling</div>
+        <div class="insight-body">The team rates ideation 47/100 automatable but uses AI there at 66/100 — already past their own comfort line.</div>
+        <div class="insight-meaning"><span class="arrow">→</span> The risk isn't too little AI in design work — it's too little divergence discipline.</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-stat">5<span style="font-size:20px;"> / 17</span></div>
+        <div class="insight-headline">One in three open comments asked for the exact same fix</div>
+        <div class="insight-body">Unprompted, in near-identical language: "shared prompt library," "official shareable skills," "an SOP."</div>
+        <div class="insight-meaning"><span class="arrow">→</span> Knowledge is trapped in individuals, not missing. See Examples &amp; Resources.</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-stat">10–20<span style="font-size:18px;"> hrs</span></div>
+        <div class="insight-headline">Pro-skill users save 2–3× more time than Mid-skill users</div>
+        <div class="insight-body">54% of Pro users save 10–20 hrs/week; most Mid users save 6–10. Tool count barely differs between them.</div>
+        <div class="insight-meaning"><span class="arrow">→</span> The gap is review discipline and context, not access. See the Maturity Model below.</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-stat">15+</div>
+        <div class="insight-headline">Interactive HTML prototyping is the #1 "couldn't do this before" answer</div>
+        <div class="insight-body">Volunteered unprompted by 15+ of 37 respondents — the single most-cited new capability in the whole survey.</div>
+        <div class="insight-meaning"><span class="arrow">→</span> Already a team norm, not an experiment. See Workflows.</div>
+      </div>
+      <div class="insight-card" style="background:var(--accent-tint);border-color:var(--accent-line);">
+        <div class="insight-stat" style="color:var(--accent-ink);">65%</div>
+        <div class="insight-headline">Self-fund their own AI subscription</div>
+        <div class="insight-body">Token limits are the #2 barrier to going further. Enterprise access is a P0 action on the full report.</div>
+        <div class="insight-meaning"><span class="arrow">→</span> <a href="#" data-goto="report" style="color:var(--accent-ink);">See the full action plan in the Report tab →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page-section alt" id="bp-maturity">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">Where you might fit</span>
+      <h2>Four ways this team works with AI today</h2>
+      <p>Not a scorecard — a way to find which practices below are your next step, not your tenth.</p>
+    </div>
+    <div class="maturity-strip">
+      <div class="maturity-seg">
+        <span class="m-num">Level 1</span>
+        <div class="m-name">Exploring</div>
+        <div class="m-desc">Single-shot prompts, one tool. Output usually needs significant rework.</div>
+      </div>
+      <div class="maturity-seg current">
+        <span class="m-num">Level 2 · most of us</span>
+        <div class="m-name">Using</div>
+        <div class="m-desc">Daily user, single tasks — but no context carried between sessions.</div>
+        <div class="m-pct">65%</div>
+      </div>
+      <div class="maturity-seg">
+        <span class="m-num">Level 3</span>
+        <div class="m-name">Integrating</div>
+        <div class="m-desc">Chains tasks into a workflow. Reviews with minor edits, not full rework.</div>
+      </div>
+      <div class="maturity-seg">
+        <span class="m-num">Level 4 · ~7 identified</span>
+        <div class="m-name">Optimizing</div>
+        <div class="m-desc">Multi-tool pipelines that cross-check each other. Saves 10–20 hrs/week.</div>
+        <div class="m-pct" style="color:var(--gold);">35%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page-section" id="bp-start-here">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">If you read nothing else</span>
+      <h2>Start here</h2>
+      <p>The three highest-impact, easiest-to-adopt practices — backed by the strongest evidence in the survey.</p>
+    </div>
+    <div class="featured-grid">
+      <div class="featured-card">
+        <span class="featured-num">01</span>
+        <span class="featured-cat">AI Workflow &amp; Automation</span>
+        <div class="featured-title">Automate meeting notes → action items</div>
+        <p class="featured-body">Nobody in the survey said this can't be automated. Nobody automates it either. The single largest unclaimed win on the whole list.</p>
+        <a href="#practice-1" class="featured-link">See the workflow →</a>
+      </div>
+      <div class="featured-card">
+        <span class="featured-num">02</span>
+        <span class="featured-cat">Prompting &amp; Context</span>
+        <div class="featured-title">Feed the design system before you ask for UI</div>
+        <p class="featured-body">The single most-repeated cause of wasted time in the whole survey — named directly by 8+ respondents.</p>
+        <a href="#practice-2" class="featured-link">See the workflow →</a>
+      </div>
+      <div class="featured-card">
+        <span class="featured-num">03</span>
+        <span class="featured-cat">Quality &amp; Validation</span>
+        <div class="featured-title">Read the raw source before you trust the synthesis</div>
+        <p class="featured-body">What separates the people who saved the most time from the people who saved the least, in their own words.</p>
+        <a href="#practice-3" class="featured-link">See the workflow →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page-section alt" id="bp-practices">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">The library</span>
+      <h2>Best Practices</h2>
+      <p>Eleven practices, not fifty tips. Every one is here because the survey shows either the evidence <em>for</em> it, or the evidence <em>of the gap</em> it closes. Click any card to expand the full workflow, example and evidence.</p>
+    </div>
+
+    <div class="lib-toolbar">
+      <div class="search-row">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input type="text" id="practiceSearch" placeholder="Search practices — try “design system” or “meeting”" aria-label="Search practices">
+        </div>
+        <span class="results-count" id="resultsCount">11 of 11</span>
+      </div>
+      <div class="filter-row" id="filterRow">
+        <button class="filter-chip" data-filter-group="tier" data-filter-value="all" aria-pressed="true">All tiers</button>
+        <button class="filter-chip" data-filter-group="tier" data-filter-value="top">🌟 Top</button>
+        <button class="filter-chip" data-filter-group="tier" data-filter-value="quick">⚡ Quick win</button>
+        <button class="filter-chip" data-filter-group="tier" data-filter-value="scale">📈 Scale</button>
+        <button class="filter-chip" data-filter-group="tier" data-filter-value="advanced">🎓 Advanced</button>
+        <button class="filter-chip" data-filter-group="tier" data-filter-value="experiment">🧪 Experiment</button>
+        <div class="filter-group-sep"></div>
+        <button class="filter-chip" data-filter-group="level" data-filter-value="all" aria-pressed="true">All levels</button>
+        <button class="filter-chip" data-filter-group="level" data-filter-value="beginner">Beginner</button>
+        <button class="filter-chip" data-filter-group="level" data-filter-value="intermediate">Intermediate</button>
+        <button class="filter-chip" data-filter-group="level" data-filter-value="advanced">Advanced</button>
+        <div class="filter-group-sep"></div>
+        <button class="filter-chip" id="savedFilter" data-filter-group="saved" data-filter-value="saved">☆ Saved only</button>
+      </div>
+    </div>
+
+    <div class="practice-grid" id="practiceGrid">
+
+      <!-- Practice 1 -->
+      <details class="practice-item" id="practice-1" data-tier="top quick" data-level="beginner" data-category="automation" data-search="automate meeting notes action items workflow automation">
+        <summary>
+          <div class="p-summary-main">
+            <div class="p-tags-row">
+              <span class="chip chip-quickwin">⚡ Quick win</span>
+              <span class="chip chip-status-opportunity">Recommended opportunity</span>
+              <span class="chip chip-level">Beginner</span>
+            </div>
+            <div class="p-title">Automate meeting notes → action items, end to end</div>
+            <p class="p-oneline">Record, transcribe, summarize and push action items into the tracker automatically — the single biggest unclaimed win in the whole survey.</p>
+          </div>
+          <div class="p-side">
+            <div class="impact-dots" aria-label="Impact: 5 of 5"><span class="impact-label">Impact</span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot on"></span></div>
+            <button class="bookmark-btn" data-bookmark="practice-1" aria-pressed="false" aria-label="Save this practice">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            </button>
+            <svg class="expand-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+        </summary>
+        <div class="p-body">
+          <div class="p-grid">
+            <div class="p-main">
+              <div class="p-block"><span class="p-lbl">Why it matters</span><p>Meetings &amp; calls eat 6.8 hrs of a 40-hour week (17%) — and today none of it touches AI. This is the largest untouched block on the schedule.</p></div>
+              <div class="p-block"><span class="p-lbl">Recommended workflow</span>
+                <ol>
+                  <li>Record with your calling tool's built-in transcript (Teams Premium, etc.)</li>
+                  <li>Drop the transcript into Claude with a fixed prompt: summarize, extract decisions, extract action items with owners</li>
+                  <li>Push the action items straight into Jira / your tracker</li>
+                  <li>Skim once for anything the transcript-bot mis-heard — don't re-read the whole thing</li>
+                </ol>
+              </div>
+              <div class="p-block"><span class="p-lbl">UX example</span><p>A design review with PM + 2 devs generates 6 action items across 3 owners. Instead of writing them up after, the summary + tagged owners lands in Jira within 5 minutes of the call ending.</p></div>
+              <div class="p-block"><span class="p-lbl">Before → With AI</span>
+                <div class="ba-strip">
+                  <div class="ba-box ba-before"><b>Before</b>15–20 min per meeting writing up notes, often the next day, often incomplete.</div>
+                  <div class="ba-arrow"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+                  <div class="ba-box ba-after"><b>With AI</b>Summary and action items ready before you've closed the call window.</div>
+                </div>
+              </div>
+            </div>
+            <div class="p-side-col">
+              <div class="p-side-block"><span class="p-lbl">Expected benefit</span><p>⚡ ~1.4 hrs/week freed, per the report's Lever-1 estimate</p></div>
+              <div class="p-side-block"><span class="p-lbl">Tools</span><div class="p-tools-row"><span class="chip">Claude</span><span class="chip">Teams Premium</span><span class="chip">Jira</span></div></div>
+              <div class="p-side-block tip"><span class="p-lbl">Tip</span><p>Fix the prompt once and reuse it every time — don't re-invent the structure per meeting.</p></div>
+              <div class="p-side-block anti"><span class="p-lbl">Anti-pattern</span><p>Treating it as "nice to have." It's the one activity where nobody — 0 of 37 — said it can't be automated.</p></div>
+              <div class="p-side-block"><span class="p-lbl">Evidence</span><p style="font-size:12px;color:var(--ink-3);">25 of 37 rated meeting notes fully automatable (84/100) — the strongest agreement in the survey — yet use here is effectively zero. <span class="chip chip-conf-m">Measured</span></p></div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- Practice 2 -->
+      <details class="practice-item" id="practice-2" data-tier="top" data-level="beginner" data-category="prompting" data-search="design system context ui prompting figma lyra tokens">
+        <summary>
+          <div class="p-summary-main">
+            <div class="p-tags-row">
+              <span class="chip chip-status-opportunity">Recommended opportunity</span>
+              <span class="chip chip-level">Beginner → Intermediate</span>
+              <span class="chip chip-cat">Prompting &amp; Context</span>
+            </div>
+            <div class="p-title">Feed the design system before you ask for UI</div>
+            <p class="p-oneline">Before asking AI to design or redesign a screen, hand it the design-system rules, existing patterns and constraints — not just the user goal.</p>
+          </div>
+          <div class="p-side">
+            <div class="impact-dots" aria-label="Impact: 5 of 5"><span class="impact-label">Impact</span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot on"></span></div>
+            <button class="bookmark-btn" data-bookmark="practice-2" aria-pressed="false" aria-label="Save this practice">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            </button>
+            <svg class="expand-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+        </summary>
+        <div class="p-body">
+          <div class="p-grid">
+            <div class="p-main">
+              <div class="p-block"><span class="p-lbl">Why it matters</span><p>The single most-repeated cause of wasted time in the whole survey — more than eight people independently named "AI ignored our design system / Lyra standards" as their biggest time-sink, not hallucination or bugs.</p></div>
+              <div class="p-block"><span class="p-lbl">Recommended workflow</span>
+                <ol>
+                  <li>Before any UI-generation prompt, paste in: the user goal, the business constraint, the relevant design-system components/tokens, and what "out of bounds" looks like</li>
+                  <li>Ask for the component/pattern by name where one already exists — don't let AI invent a new one</li>
+                  <li>Treat the first output as a layout sketch, not a final surface — expect one context-correction pass</li>
+                </ol>
+              </div>
+              <div class="p-block"><span class="p-lbl">UX example</span><p>Instead of "design a settings screen with role-based views," specify: "using the Lyra Tabs and Table components, primary/BCP tenant distinction must stay visually explicit per our region-mapping rules, admin/regular-user/guest each map to this permission matrix: [table]."</p></div>
+              <div class="p-block"><span class="p-lbl">Before → With AI</span>
+                <div class="ba-strip">
+                  <div class="ba-box ba-before"><b>Without context</b>Clean-looking flow that ignores tenant/region rules — more time revising than modeling the matrix up front would've taken.</div>
+                  <div class="ba-arrow"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+                  <div class="ba-box ba-after"><b>With context</b>First draft respects the constraint; correction pass is cosmetic, not structural.</div>
+                </div>
+              </div>
+            </div>
+            <div class="p-side-col">
+              <div class="p-side-block"><span class="p-lbl">Expected benefit</span><p>✓ Fewer rework cycles, fewer dev pushbacks</p></div>
+              <div class="p-side-block"><span class="p-lbl">Tools</span><div class="p-tools-row"><span class="chip">Claude</span><span class="chip">Figma AI</span><span class="chip">Design-system docs</span></div></div>
+              <div class="p-side-block tip"><span class="p-lbl">Tip</span><p>Save the context block as a template/skill you paste in every time — don't retype it per session.</p></div>
+              <div class="p-side-block anti"><span class="p-lbl">Anti-pattern</span><p>Prompting repeatedly to fix small deviations instead of fixing the missing context that caused them.</p></div>
+              <div class="p-side-block"><span class="p-lbl">Evidence</span><p style="font-size:12px;color:var(--ink-3);">Named directly by at least 8 respondents as their top AI time-waster. <span class="chip chip-conf-m">Measured</span></p></div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- Practice 3 -->
+      <details class="practice-item" id="practice-3" data-tier="top" data-level="beginner" data-category="quality" data-search="validation raw source synthesis transcripts read quality">
+        <summary>
+          <div class="p-summary-main">
+            <div class="p-tags-row">
+              <span class="chip chip-status-working">Already working well — advanced users</span>
+              <span class="chip chip-level">All levels</span>
+              <span class="chip chip-cat">Quality &amp; Validation</span>
+            </div>
+            <div class="p-title">Read the raw source before you trust the synthesis</div>
+            <p class="p-oneline">AI finds patterns; you find meaning and catch what it missed. Never let a synthesis go out the door unread against its source.</p>
+          </div>
+          <div class="p-side">
+            <div class="impact-dots" aria-label="Impact: 5 of 5"><span class="impact-label">Impact</span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot on"></span></div>
+            <button class="bookmark-btn" data-bookmark="practice-3" aria-pressed="false" aria-label="Save this practice">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            </button>
+            <svg class="expand-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+        </summary>
+        <div class="p-body">
+          <div class="p-grid">
+            <div class="p-main">
+              <div class="p-block"><span class="p-lbl">Why it matters</span><p>One respondent's synthesis missed a subtle but critical pain point that only showed up indirectly across sessions — they'd accepted the AI output without checking, and a stakeholder caught it in the room. Re-doing it cost more time than reading the transcripts up front would have.</p></div>
+              <div class="p-block"><span class="p-lbl">Recommended workflow</span>
+                <ol>
+                  <li>Let AI produce the first-pass themes, quotes and structure</li>
+                  <li>Read the raw transcripts / notes yourself — in full, not skimmed</li>
+                  <li>Specifically hunt for anything contradictory, emotionally loaded, or mentioned by only one person — these are what AI under-weights</li>
+                  <li>Only then finalize</li>
+                </ol>
+              </div>
+              <div class="p-block"><span class="p-lbl">Before → With AI</span>
+                <div class="ba-strip">
+                  <div class="ba-box ba-before"><b>Skipping validation</b>Fast, but ships a shallow read — the cost surfaces downstream, where it's most expensive to fix.</div>
+                  <div class="ba-arrow"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+                  <div class="ba-box ba-after"><b>With validation</b>Same production speed, plus a deliberate re-read pass: "AI drafts, I always read the raw transcripts."</div>
+                </div>
+              </div>
+            </div>
+            <div class="p-side-col">
+              <div class="p-side-block"><span class="p-lbl">Expected benefit</span><p>✓ Avoids costly late-stage corrections</p></div>
+              <div class="p-side-block"><span class="p-lbl">Tools</span><div class="p-tools-row"><span class="chip">Claude</span><span class="chip">Dovetail</span></div></div>
+              <div class="p-side-block tip"><span class="p-lbl">Tip</span><p>"Frequency isn't importance" — ask AI what it saw only once or twice, not just what repeated.</p></div>
+              <div class="p-side-block anti"><span class="p-lbl">Anti-pattern</span><p>Treating heavy correction as the validation step, instead of actually reading the source.</p></div>
+              <div class="p-side-block"><span class="p-lbl">Evidence</span><p style="font-size:12px;color:var(--ink-3);">"The researchers who saved the most time were senior enough to know when AI was wrong; the ones who saved the least had to verify everything." <span class="chip chip-conf-m">Measured</span></p></div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- Practice 4 -->
+      <details class="practice-item" id="practice-4" data-tier="scale" data-level="advanced" data-category="analysis" data-search="cross check tools dovetail chatgpt validation analysis synthesis">
+        <summary>
+          <div class="p-summary-main">
+            <div class="p-tags-row">
+              <span class="chip chip-status-opportunity">Recommended opportunity</span>
+              <span class="chip chip-level">Advanced</span>
+              <span class="chip chip-cat">Analysis &amp; Synthesis</span>
+            </div>
+            <div class="p-title">Cross-check one AI tool's output with another</div>
+            <p class="p-oneline">Run the same analysis through two tools and let the disagreement point you at what needs a human decision.</p>
+          </div>
+          <div class="p-side">
+            <div class="impact-dots" aria-label="Impact: 4 of 5"><span class="impact-label">Impact</span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot"></span></div>
+            <button class="bookmark-btn" data-bookmark="practice-4" aria-pressed="false" aria-label="Save this practice">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            </button>
+            <svg class="expand-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+        </summary>
+        <div class="p-body">
+          <div class="p-grid">
+            <div class="p-main">
+              <div class="p-block"><span class="p-lbl">Why it matters</span><p>A single AI output can be confidently wrong. Two independent passes rarely fail in the same place — the gap between them is where your judgment is actually needed.</p></div>
+              <div class="p-block"><span class="p-lbl">Recommended workflow</span>
+                <ol>
+                  <li>Run research synthesis in Dovetail (or a second tool)</li>
+                  <li>Pass its output to Claude for cross-validation and gap analysis</li>
+                  <li>Wherever the two disagree, that's the item a human reviews — not the items they agree on</li>
+                </ol>
+              </div>
+              <div class="p-block"><span class="p-lbl">UX example</span><p>One respondent moved from Dovetail-only synthesis to a Dovetail + Claude pairing specifically because Dovetail alone "did a lousy job" on its own — the second pass caught what the first missed.</p></div>
+            </div>
+            <div class="p-side-col">
+              <div class="p-side-block"><span class="p-lbl">Expected benefit</span><p>✓ Catches errors neither tool alone would surface</p></div>
+              <div class="p-side-block"><span class="p-lbl">Tools</span><div class="p-tools-row"><span class="chip">Claude</span><span class="chip">Dovetail</span><span class="chip">ChatGPT</span></div></div>
+              <div class="p-side-block tip"><span class="p-lbl">Tip</span><p>Don't cross-check everything — reserve it for ambiguous, high-stakes or domain-specific decisions.</p></div>
+              <div class="p-side-block anti"><span class="p-lbl">Anti-pattern</span><p>Running two tools and picking whichever output is more convenient, instead of investigating the disagreement.</p></div>
+              <div class="p-side-block"><span class="p-lbl">Evidence</span><p style="font-size:12px;color:var(--ink-3);">Documented practice for one respondent; the underlying pairing echoed by a second. Rare today. <span class="chip chip-conf-e">Estimated</span></p></div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- Practice 5 -->
+      <details class="practice-item" id="practice-5" data-tier="scale" data-level="intermediate" data-category="design" data-search="html prototype interactive figma prototyping design exploration">
+        <summary>
+          <div class="p-summary-main">
+            <div class="p-tags-row">
+              <span class="chip chip-status-working">Already working well — team norm</span>
+              <span class="chip chip-level">Intermediate</span>
+              <span class="chip chip-cat">Design Exploration</span>
+            </div>
+            <div class="p-title">Default to an interactive HTML prototype, not a static Figma flow</div>
+            <p class="p-oneline">For anything time-boxed or behavior-heavy, build a clickable HTML prototype with AI instead of static screens.</p>
+          </div>
+          <div class="p-side">
+            <div class="impact-dots" aria-label="Impact: 4 of 5"><span class="impact-label">Impact</span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot"></span></div>
+            <button class="bookmark-btn" data-bookmark="practice-5" aria-pressed="false" aria-label="Save this practice">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            </button>
+            <svg class="expand-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+        </summary>
+        <div class="p-body">
+          <div class="p-grid">
+            <div class="p-main">
+              <div class="p-block"><span class="p-lbl">Why it matters</span><p>Interactive HTML prototyping is the most-cited "couldn't do this before AI" capability in the entire survey — 15+ of 37 respondents named it unprompted.</p></div>
+              <div class="p-block"><span class="p-lbl">Recommended workflow</span>
+                <ol>
+                  <li>Define the flow and states in natural language, including edge cases and permission/role variants</li>
+                  <li>Describe components, states and behaviors explicitly (feed the design system first — Practice 02)</li>
+                  <li>Generate the working prototype, then iterate on specific states in follow-up prompts</li>
+                  <li>Share the link directly with PM/dev — no Figma round-trip needed at this stage</li>
+                </ol>
+              </div>
+              <div class="p-block"><span class="p-lbl">Before → With AI</span>
+                <div class="ba-strip">
+                  <div class="ba-box ba-before"><b>Before</b>Static screens per state, verbal walkthroughs, multiple clarifying rounds before dev understood the behavior.</div>
+                  <div class="ba-arrow"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+                  <div class="ba-box ba-after"><b>With AI</b>A full flow with live filters and real-time state changes people could click through and understand immediately.</div>
+                </div>
+              </div>
+            </div>
+            <div class="p-side-col">
+              <div class="p-side-block"><span class="p-lbl">Expected benefit</span><p>⚡ Days → hours · fewer handoff rounds</p></div>
+              <div class="p-side-block"><span class="p-lbl">Tools</span><div class="p-tools-row"><span class="chip">Claude</span><span class="chip">Browser</span><span class="chip">VS Code</span></div></div>
+              <div class="p-side-block tip"><span class="p-lbl">Tip</span><p>Don't chase pixel-perfect fidelity — the prototype's job is to prove behavior, not replace the final visual pass.</p></div>
+              <div class="p-side-block anti"><span class="p-lbl">Anti-pattern</span><p>Endless micro-adjustments via prompting when the same fix would take seconds by hand.</p></div>
+              <div class="p-side-block"><span class="p-lbl">Evidence</span><p style="font-size:12px;color:var(--ink-3);">Now the #1/#2 most-expected PM deliverable in open answers. <span class="chip chip-conf-m">Measured</span></p></div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- Practice 6 -->
+      <details class="practice-item" id="practice-6" data-tier="scale" data-level="intermediate" data-category="handoff" data-search="markdown spec developer handoff documentation dev collaboration">
+        <summary>
+          <div class="p-summary-main">
+            <div class="p-tags-row">
+              <span class="chip chip-status-working">Already working well — Pro-skill users</span>
+              <span class="chip chip-level">Intermediate → Advanced</span>
+              <span class="chip chip-cat">Dev Collaboration</span>
+            </div>
+            <div class="p-title">Hand off a structured .md spec, not just an annotated Figma file</div>
+            <p class="p-oneline">Generate a Markdown spec covering variants, states, interactions and edge cases developers can build from without follow-up questions.</p>
+          </div>
+          <div class="p-side">
+            <div class="impact-dots" aria-label="Impact: 4 of 5"><span class="impact-label">Impact</span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot"></span></div>
+            <button class="bookmark-btn" data-bookmark="practice-6" aria-pressed="false" aria-label="Save this practice">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            </button>
+            <svg class="expand-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+        </summary>
+        <div class="p-body">
+          <div class="p-grid">
+            <div class="p-main">
+              <div class="p-block"><span class="p-lbl">Why it matters</span><p>Development velocity has outpaced design's ability to keep every ticket detailed by hand — a written spec lets developers move independently on standard work.</p></div>
+              <div class="p-block"><span class="p-lbl">Recommended workflow</span>
+                <ol>
+                  <li>Describe the component/feature to AI in design terms: purpose, variants, states, interactions, content rules, accessibility, edge cases</li>
+                  <li>Generate the .md spec structured for developers, not designers</li>
+                  <li>Review for accuracy — especially edge cases, where AI most often gets it wrong</li>
+                  <li>Share the .md directly; developers work from it independently</li>
+                </ol>
+              </div>
+            </div>
+            <div class="p-side-col">
+              <div class="p-side-block"><span class="p-lbl">Expected benefit</span><p>⚡ 2–4× faster · fewer dev round-trips</p></div>
+              <div class="p-side-block"><span class="p-lbl">Tools</span><div class="p-tools-row"><span class="chip">Claude</span><span class="chip">Markdown</span><span class="chip">Figma (source)</span></div></div>
+              <div class="p-side-block tip"><span class="p-lbl">Tip</span><p>Write it so a developer could build from it with zero follow-up questions — that's the real quality bar.</p></div>
+              <div class="p-side-block anti"><span class="p-lbl">Anti-pattern</span><p>Skipping the edge-case review because the happy path reads cleanly.</p></div>
+              <div class="p-side-block"><span class="p-lbl">Evidence</span><p style="font-size:12px;color:var(--ink-3);">Matches artifacts described as "not possible for one person to sustain alone" before AI. <span class="chip chip-conf-e">Estimated</span></p></div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- Practice 7 -->
+      <details class="practice-item" id="practice-7" data-tier="quick" data-level="beginner" data-category="sharing" data-search="share prompt library knowledge sharing standardize workflow">
+        <summary>
+          <div class="p-summary-main">
+            <div class="p-tags-row">
+              <span class="chip chip-quickwin">⚡ Quick win</span>
+              <span class="chip chip-status-opportunity">Recommended opportunity</span>
+              <span class="chip chip-level">All levels</span>
+            </div>
+            <div class="p-title">Post your prompt the same day it saves you real time</div>
+            <p class="p-oneline">The moment a prompt or workflow saves you hours, put it in the shared library — before it becomes "the thing you meant to write down."</p>
+          </div>
+          <div class="p-side">
+            <div class="impact-dots" aria-label="Impact: 4 of 5"><span class="impact-label">Impact</span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot"></span></div>
+            <button class="bookmark-btn" data-bookmark="practice-7" aria-pressed="false" aria-label="Save this practice">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            </button>
+            <svg class="expand-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+        </summary>
+        <div class="p-body">
+          <div class="p-grid">
+            <div class="p-main">
+              <div class="p-block"><span class="p-lbl">Why it matters</span><p>The team is discovering the same fixes independently, over and over. 5 of 17 open comments asked for exactly this, unprompted, in near-identical language.</p></div>
+              <div class="p-block"><span class="p-lbl">Recommended workflow</span>
+                <ol>
+                  <li>Whenever a prompt/workflow clearly saves time, copy it into the shared library that same day</li>
+                  <li>Tag it by category (see Examples below) and note what it's best for</li>
+                  <li>Let the next person adapt it rather than starting from a blank prompt</li>
+                </ol>
+              </div>
+            </div>
+            <div class="p-side-col">
+              <div class="p-side-block"><span class="p-lbl">Expected benefit</span><p>↻ Less duplicated discovery, faster ramp-up</p></div>
+              <div class="p-side-block"><span class="p-lbl">Tools</span><div class="p-tools-row"><span class="chip">This page</span><span class="chip">Confluence</span></div></div>
+              <div class="p-side-block tip"><span class="p-lbl">Tip</span><p>Share the workflow and the prompt, not just the output — the output alone can't be adapted.</p></div>
+              <div class="p-side-block anti"><span class="p-lbl">Anti-pattern</span><p>"I'll write it up properly later" — the exact gap the survey caught.</p></div>
+              <div class="p-side-block"><span class="p-lbl">Evidence</span><p style="font-size:12px;color:var(--ink-3);">5 of 17 substantive Q66 answers independently proposed the same fix. <span class="chip chip-conf-m">Measured</span></p></div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- Practice 8 -->
+      <details class="practice-item" id="practice-8" data-tier="quick" data-level="beginner" data-category="quality" data-search="review budget draft validation quality">
+        <summary>
+          <div class="p-summary-main">
+            <div class="p-tags-row">
+              <span class="chip chip-quickwin">⚡ Quick win</span>
+              <span class="chip chip-status-working">Already working well — partially</span>
+              <span class="chip chip-level">Beginner → Intermediate</span>
+            </div>
+            <div class="p-title">Budget review time on purpose — never ship the first draft</div>
+            <p class="p-oneline">Plan for a review pass on every AI output before it goes anywhere, instead of discovering the rework mid-task.</p>
+          </div>
+          <div class="p-side">
+            <div class="impact-dots" aria-label="Impact: 4 of 5"><span class="impact-label">Impact</span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot"></span></div>
+            <button class="bookmark-btn" data-bookmark="practice-8" aria-pressed="false" aria-label="Save this practice">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            </button>
+            <svg class="expand-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+        </summary>
+        <div class="p-body">
+          <div class="p-grid">
+            <div class="p-main">
+              <div class="p-block"><span class="p-lbl">Why it matters</span><p>65% already review with minor edits, 35% still significantly rework — either way, 100% of the team edits before shipping. Making that time explicit prevents it from silently eating a deadline.</p></div>
+              <div class="p-block"><span class="p-lbl">Recommended workflow</span>
+                <ol>
+                  <li>When estimating a task, name the review pass as its own step, not a buffer</li>
+                  <li>Fact-check anything shown to a stakeholder or shipped to dev before it leaves your hands</li>
+                  <li>If a task keeps needing "just one more prompt," switch to manual</li>
+                </ol>
+              </div>
+            </div>
+            <div class="p-side-col">
+              <div class="p-side-block"><span class="p-lbl">Expected benefit</span><p>✓ Fewer late-stage surprises</p></div>
+              <div class="p-side-block"><span class="p-lbl">Tools</span><div class="p-tools-row"><span class="chip">Claude</span><span class="chip">Any AI tool</span></div></div>
+              <div class="p-side-block tip"><span class="p-lbl">Tip</span><p>"AI creates a draft — you still own the judgment." Say it out loud on estimation calls.</p></div>
+              <div class="p-side-block anti"><span class="p-lbl">Anti-pattern</span><p>Estimating as if AI output is ready to ship, then absorbing review time as overrun.</p></div>
+              <div class="p-side-block"><span class="p-lbl">Evidence</span><p style="font-size:12px;color:var(--ink-3);">65%/35% review-vs-rework split. <span class="chip chip-conf-m">Measured</span></p></div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- Practice 9 -->
+      <details class="practice-item" id="practice-9" data-tier="advanced" data-level="advanced" data-category="ideation" data-search="divergent ideation directions brainstorming design">
+        <summary>
+          <div class="p-summary-main">
+            <div class="p-tags-row">
+              <span class="chip chip-status-working">Already working well — advanced users</span>
+              <span class="chip chip-level">Advanced</span>
+              <span class="chip chip-cat">UX Ideation</span>
+            </div>
+            <div class="p-title">Force genuinely divergent directions, not five variations of one idea</div>
+            <p class="p-oneline">Ask explicitly for options that differ in approach, not just styling — don't let AI default to the obvious answer.</p>
+          </div>
+          <div class="p-side">
+            <div class="impact-dots" aria-label="Impact: 3 of 5"><span class="impact-label">Impact</span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot"></span><span class="impact-dot"></span></div>
+            <button class="bookmark-btn" data-bookmark="practice-9" aria-pressed="false" aria-label="Save this practice">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            </button>
+            <svg class="expand-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+        </summary>
+        <div class="p-body">
+          <div class="p-grid">
+            <div class="p-main">
+              <div class="p-block"><span class="p-lbl">Why it matters</span><p>Design ideation is already used AI <em>beyond</em> the team's own self-rated automatable ceiling (−18) — the risk isn't too little AI, it's convergent AI without a forcing function for real divergence.</p></div>
+              <div class="p-block"><span class="p-lbl">Recommended workflow</span>
+                <ol>
+                  <li>Feed the design brief, user goal and constraint</li>
+                  <li>Explicitly request 5–8 <em>distinct</em> directions, each with its core concept, what makes it different, and its tradeoff</li>
+                  <li>Use the output as a divergence starting point, then generate component variants for the chosen direction</li>
+                </ol>
+              </div>
+            </div>
+            <div class="p-side-col">
+              <div class="p-side-block"><span class="p-lbl">Expected benefit</span><p>↑ 2–3× more directions considered</p></div>
+              <div class="p-side-block"><span class="p-lbl">Tools</span><div class="p-tools-row"><span class="chip">Claude</span><span class="chip">Figma</span><span class="chip">Figma AI</span></div></div>
+              <div class="p-side-block tip"><span class="p-lbl">Tip</span><p>Explicitly instruct "do not default to the obvious solution first" — naming the failure mode reduces it.</p></div>
+              <div class="p-side-block anti"><span class="p-lbl">Anti-pattern</span><p>Five near-identical layouts mistaken for real exploration.</p></div>
+              <div class="p-side-block"><span class="p-lbl">Evidence</span><p style="font-size:12px;color:var(--ink-3);">Ideation used past its self-rated automatable ceiling. <span class="chip chip-conf-m">Measured</span></p></div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- Practice 10 -->
+      <details class="practice-item" id="practice-10" data-tier="advanced" data-level="advanced" data-category="research" data-search="research synthesis multi source confluence jira dovetail">
+        <summary>
+          <div class="p-summary-main">
+            <div class="p-tags-row">
+              <span class="chip chip-status-working">Already working well — rare</span>
+              <span class="chip chip-level">Advanced</span>
+              <span class="chip chip-cat">Research &amp; Discovery</span>
+            </div>
+            <div class="p-title">Synthesize every research signal in one sitting, not one source at a time</div>
+            <p class="p-oneline">Pull Confluence, Jira, Dovetail, competitive analysis and customer feedback into one unified pass instead of a week of source-by-source review.</p>
+          </div>
+          <div class="p-side">
+            <div class="impact-dots" aria-label="Impact: 3 of 5"><span class="impact-label">Impact</span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot"></span><span class="impact-dot"></span></div>
+            <button class="bookmark-btn" data-bookmark="practice-10" aria-pressed="false" aria-label="Save this practice">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            </button>
+            <svg class="expand-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+        </summary>
+        <div class="p-body">
+          <div class="p-grid">
+            <div class="p-main">
+              <div class="p-block"><span class="p-lbl">Why it matters</span><p>Decisions used to get made on partial information because full synthesis across every source "rarely happened" in a week — now realistic in a day, so nothing gets deprioritized for lack of time.</p></div>
+              <div class="p-block"><span class="p-lbl">Recommended workflow</span>
+                <ol>
+                  <li>Export the relevant slice from each source: Confluence, Jira, Dovetail, competitive notes, customer feedback</li>
+                  <li>Feed them into one AI session and ask for a unified view — themes across all sources, not source-by-source summaries</li>
+                  <li>During usability testing, start structuring findings between sessions rather than waiting for the last one to end</li>
+                </ol>
+              </div>
+            </div>
+            <div class="p-side-col">
+              <div class="p-side-block"><span class="p-lbl">Expected benefit</span><p>⚡ A week of synthesis → a day</p></div>
+              <div class="p-side-block"><span class="p-lbl">Tools</span><div class="p-tools-row"><span class="chip">Claude</span><span class="chip">Confluence</span><span class="chip">Jira</span><span class="chip">Dovetail</span></div></div>
+              <div class="p-side-block tip"><span class="p-lbl">Tip</span><p>Ask specifically for contradictions between sources — that's where the real decisions usually are.</p></div>
+              <div class="p-side-block anti"><span class="p-lbl">Anti-pattern</span><p>Synthesizing sources one at a time then manually stitching the summaries — the old bottleneck, just faster per-piece.</p></div>
+              <div class="p-side-block"><span class="p-lbl">Evidence</span><p style="font-size:12px;color:var(--ink-3);">Described in detail, unprompted, as the biggest shift AI made possible. <span class="chip chip-conf-e">Estimated</span></p></div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- Practice 11 -->
+      <details class="practice-item" id="practice-11" data-tier="experiment" data-level="intermediate" data-category="analysis" data-search="usability testing analysis pilot experiment underused">
+        <summary>
+          <div class="p-summary-main">
+            <div class="p-tags-row">
+              <span class="chip chip-status-experiment">Future experiment</span>
+              <span class="chip chip-level">Intermediate</span>
+              <span class="chip chip-cat">Analysis · Underused</span>
+            </div>
+            <div class="p-title">Pilot AI-assisted usability-test analysis</div>
+            <p class="p-oneline">Of six UX phases, Validate is where the team uses AI least — and the one measured gap where "automatable" still outpaces "automated."</p>
+          </div>
+          <div class="p-side">
+            <div class="impact-dots" aria-label="Impact: 2 of 5"><span class="impact-label">Impact</span><span class="impact-dot on"></span><span class="impact-dot on"></span><span class="impact-dot"></span><span class="impact-dot"></span><span class="impact-dot"></span></div>
+            <button class="bookmark-btn" data-bookmark="practice-11" aria-pressed="false" aria-label="Save this practice">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            </button>
+            <svg class="expand-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+        </summary>
+        <div class="p-body">
+          <div class="p-grid">
+            <div class="p-main">
+              <div class="p-block"><span class="p-lbl">Why it matters</span><p>Validate is the phase where the fewest people apply AI significantly — and the only design activity in the automatable-vs-used table with measured room left (+18).</p></div>
+              <div class="p-block"><span class="p-lbl">Recommended workflow (to pilot)</span>
+                <ol>
+                  <li>Record sessions and get transcripts</li>
+                  <li>Ask AI to tag findings by theme and severity, and produce a ranked list</li>
+                  <li>A human still runs the session and makes the call on ambiguous moments — AI can't read faces or tone</li>
+                  <li>Compare time spent against your current manual process and report back</li>
+                </ol>
+              </div>
+            </div>
+            <div class="p-side-col">
+              <div class="p-side-block"><span class="p-lbl">Expected benefit</span><p>⚡ ~0.5–1 hr/week, hypothesized</p></div>
+              <div class="p-side-block"><span class="p-lbl">Tools</span><div class="p-tools-row"><span class="chip">Claude</span><span class="chip">Session recordings</span></div></div>
+              <div class="p-side-block tip"><span class="p-lbl">Tip</span><p>Start with severity-tagging only — leave synthesis-level judgment to the researcher until proven.</p></div>
+              <div class="p-side-block anti"><span class="p-lbl">Anti-pattern</span><p>Assuming this generalizes from Practice 03 — usability analysis needs things AI can't observe.</p></div>
+              <div class="p-side-block"><span class="p-lbl">Evidence</span><p style="font-size:12px;color:var(--ink-3);">Lowest current-use phase measured; +18 gap from the Conclusions tab. <span class="chip chip-conf-m">Measured</span> Workflow itself is a hypothesis. <span class="chip chip-conf-j">Our reading</span></p></div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+    </div>
+    <div class="no-results" id="noResults" hidden>
+      <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <p>No practices match that search or filter combination. Try clearing a filter.</p>
+    </div>
+  </div>
+</section>
+
+<section class="page-section" id="bp-workflows">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">Proven in the wild</span>
+      <h2>High-Impact Workflows</h2>
+      <p>Five workflows already run by name, ordered by time saved — each independently confirmed in the open-text answers, not just claimed by its owner.</p>
+    </div>
+    <div class="workflow-cards">
+
+      <div class="workflow-card">
+        <div class="wf-top">
+          <div>
+            <div class="wf-title">Research Synthesis</div>
+          </div>
+          <div class="wf-owner"><div class="wf-avatar">YB</div><span class="wf-owner-name">Yaara Bar Feldman</span></div>
+        </div>
+        <div class="wf-grid">
+          <div>
+            <div class="p-lbl">Steps</div>
+            <ul class="wf-steps-list">
+              <li>Export raw notes from Dovetail / Confluence / Jira into Claude</li>
+              <li>Ask Claude to identify themes, patterns and contradictions across sources</li>
+              <li>Generate a structured synthesis document with evidence quotes</li>
+              <li>Read raw transcripts yourself to validate — never skip this</li>
+              <li>Refine and finalize with Claude's draft as your base</li>
+            </ul>
+            <div class="p-tools-row" style="margin-top:14px;"><span class="chip">Claude</span><span class="chip">Dovetail</span><span class="chip">Confluence</span><span class="chip">Jira</span></div>
+          </div>
+          <div>
+            <div class="p-lbl">Before → With AI → Result</div>
+            <div class="ba-strip" style="grid-template-columns:1fr auto 1fr auto 1fr;">
+              <div class="ba-box ba-before"><b>Before</b>Reading scattered exports one source at a time</div>
+              <div class="ba-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+              <div class="ba-box ba-after"><b>With AI</b>Themes + evidence synthesized in one pass, validated against raw transcripts</div>
+              <div class="ba-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+              <div class="ba-box" style="background:var(--surface-2);border:1px solid var(--line);"><b>Result</b>3–5× faster · M → XS story points</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="workflow-card">
+        <div class="wf-top">
+          <div><div class="wf-title">Interactive HTML Prototyping</div></div>
+          <div class="wf-owner"><div class="wf-avatar">JE</div><span class="wf-owner-name">Jennie Ryan / Erick Mathews</span></div>
+        </div>
+        <div class="wf-grid">
+          <div>
+            <div class="p-lbl">Steps</div>
+            <ul class="wf-steps-list">
+              <li>Define the interaction and user flow in natural language</li>
+              <li>Describe UI requirements: components, states, behaviors</li>
+              <li>Generate a full working HTML prototype with Claude</li>
+              <li>Iterate on specific states or edge cases in follow-up prompts</li>
+              <li>Share directly with PM / Dev — no Figma needed for this stage</li>
+            </ul>
+            <div class="p-tools-row" style="margin-top:14px;"><span class="chip">Claude</span><span class="chip">Browser</span><span class="chip">VS Code (optional)</span></div>
+          </div>
+          <div>
+            <div class="p-lbl">Before → With AI → Result</div>
+            <div class="ba-strip" style="grid-template-columns:1fr auto 1fr auto 1fr;">
+              <div class="ba-box ba-before"><b>Before</b>Static screens + a verbal walkthrough to explain the logic</div>
+              <div class="ba-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+              <div class="ba-box ba-after"><b>With AI</b>A working, clickable prototype with real states, shared as a link</div>
+              <div class="ba-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+              <div class="ba-box" style="background:var(--surface-2);border:1px solid var(--line);"><b>Result</b>Days → hours · a genuinely new capability</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="workflow-card">
+        <div class="wf-top">
+          <div><div class="wf-title">Developer Handoff Spec</div></div>
+          <div class="wf-owner"><div class="wf-avatar">TS</div><span class="wf-owner-name">Tali Silon-Shacham</span></div>
+        </div>
+        <div class="wf-grid">
+          <div>
+            <div class="p-lbl">Steps</div>
+            <ul class="wf-steps-list">
+              <li>Describe the component or feature to Claude in design terms</li>
+              <li>Ask Claude to generate a structured .md spec file for developers</li>
+              <li>Include: variants, states, interactions, edge cases, accessibility notes</li>
+              <li>Review and adjust for accuracy — especially edge cases</li>
+              <li>Share the .md file — developers can work independently from it</li>
+            </ul>
+            <div class="p-tools-row" style="margin-top:14px;"><span class="chip">Claude</span><span class="chip">Markdown</span><span class="chip">Figma (source)</span></div>
+          </div>
+          <div>
+            <div class="p-lbl">Before → With AI → Result</div>
+            <div class="ba-strip" style="grid-template-columns:1fr auto 1fr auto 1fr;">
+              <div class="ba-box ba-before"><b>Before</b>Annotated Figma file + a live call to fill the gaps</div>
+              <div class="ba-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+              <div class="ba-box ba-after"><b>With AI</b>A structured .md spec dev builds from independently</div>
+              <div class="ba-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+              <div class="ba-box" style="background:var(--surface-2);border:1px solid var(--line);"><b>Result</b>2–4× faster · L → S story points</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="workflow-card">
+        <div class="wf-top">
+          <div><div class="wf-title">Design Ideation &amp; Component Specs</div></div>
+          <div class="wf-owner"><div class="wf-avatar">GR</div><span class="wf-owner-name">Gajanan Rajput</span></div>
+        </div>
+        <div class="wf-grid">
+          <div>
+            <div class="p-lbl">Steps</div>
+            <ul class="wf-steps-list">
+              <li>Feed Claude the design brief, user goal, and constraints</li>
+              <li>Generate 5–8 distinct design directions — not just variations</li>
+              <li>Use output as a divergence starting point, not a final answer</li>
+              <li>Ask Claude to generate component variants with states and usage rules</li>
+              <li>Use freed bandwidth for edge-case analysis and quality review</li>
+            </ul>
+            <div class="p-tools-row" style="margin-top:14px;"><span class="chip">Claude</span><span class="chip">Figma</span><span class="chip">Figma AI</span></div>
+          </div>
+          <div>
+            <div class="p-lbl">Before → With AI → Result</div>
+            <div class="ba-strip" style="grid-template-columns:1fr auto 1fr auto 1fr;">
+              <div class="ba-box ba-before"><b>Before</b>2–3 directions, mostly variations of the first idea</div>
+              <div class="ba-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+              <div class="ba-box ba-after"><b>With AI</b>5–8 genuinely distinct directions, then component variants</div>
+              <div class="ba-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+              <div class="ba-box" style="background:var(--surface-2);border:1px solid var(--line);"><b>Result</b>2–3× more options · XL → S story points</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="workflow-card">
+        <div class="wf-top">
+          <div><div class="wf-title">Multi-Tool Pipeline</div></div>
+          <div class="wf-owner"><div class="wf-avatar">SF</div><span class="wf-owner-name">Sveta Fomchenko</span></div>
+        </div>
+        <div class="wf-grid">
+          <div>
+            <div class="p-lbl">Steps</div>
+            <ul class="wf-steps-list">
+              <li>Run research synthesis in Dovetail</li>
+              <li>Pass Dovetail's output to Claude for cross-validation and gap analysis</li>
+              <li>Use Claude's Jira plugin to translate UX findings into developer language</li>
+              <li>Human reviews discrepancies — AI flags them, you decide</li>
+            </ul>
+            <div class="p-tools-row" style="margin-top:14px;"><span class="chip">Claude</span><span class="chip">Dovetail</span><span class="chip">Jira</span></div>
+            <blockquote style="margin-top:16px;font-size:14px;">"Each tool validates the other. I never trust just one AI output."<cite>— Sveta Fomchenko</cite></blockquote>
+          </div>
+          <div>
+            <div class="p-lbl">Before → With AI → Result</div>
+            <div class="ba-strip" style="grid-template-columns:1fr auto 1fr auto 1fr;">
+              <div class="ba-box ba-before"><b>Before</b>One tool's synthesis, trusted as the final read</div>
+              <div class="ba-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+              <div class="ba-box ba-after"><b>With AI</b>Two tools cross-check; a human resolves only the disagreements</div>
+              <div class="ba-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+              <div class="ba-box" style="background:var(--surface-2);border:1px solid var(--line);"><b>Result</b>Fewer blind spots, not just more speed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="page-section alt" id="bp-champions">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">Knowledge sharing, not ranking</span>
+      <h2>AI Champions — a lighter view</h2>
+      <p>The people whose workflows already appear on this page, by name — not because they're "the best," but because their way of working is the transferable part. For the full dossiers, interview tracker and decisions ledger, see the <a href="#" data-goto="champions" style="color:var(--accent-ink);font-weight:650;">Champions tab</a>.</p>
+    </div>
+
+    <div class="champ-tracker">
+      <div class="champ-tracker-num">0/7</div>
+      <div>
+        <div style="font-weight:650;font-size:14px;color:var(--text);">Champion interviews completed</div>
+        <div style="font-size:12.5px;color:var(--ink-3);">Everything below is what the survey shows. The interviews will add what isn't written down yet — see the full <a href="#" data-goto="champions" style="color:var(--accent-ink);font-weight:650;">dossier &amp; tracker in the Champions tab →</a></div>
+      </div>
+    </div>
+
+    <div class="champ-grid">
+      <div class="champ-card">
+        <div class="champ-head"><div class="champ-avatar">YB</div><div><div class="champ-name">Yaara Bar Feldman</div><div class="champ-role">Research Synthesis</div></div></div>
+        <div class="champ-good-at">Turning scattered research into structured, evidence-backed synthesis fast — without losing the parts AI tends to smooth over.</div>
+        <div class="champ-learn">💡 What we can learn: never skip reading the raw transcripts, even when the synthesis looks complete.</div>
+      </div>
+      <div class="champ-card">
+        <div class="champ-head"><div class="champ-avatar">JE</div><div><div class="champ-name">Jennie Ryan &amp; Erick Mathews</div><div class="champ-role">Interactive HTML Prototyping</div></div></div>
+        <div class="champ-good-at">Making behavior tangible instead of describing it — full flows people can click through, not just imagine from a deck.</div>
+        <div class="champ-learn">💡 What we can learn: prototype the flow first, not the pixels — fidelity is a later step.</div>
+      </div>
+      <div class="champ-card">
+        <div class="champ-head"><div class="champ-avatar">TS</div><div><div class="champ-name">Tali Silon-Shacham</div><div class="champ-role">Developer Handoff</div></div></div>
+        <div class="champ-good-at">Writing specs developers can build from without a follow-up call — precise on variants, states and edge cases.</div>
+        <div class="champ-learn">💡 What we can learn: write for the reader who wasn't in the room.</div>
+      </div>
+      <div class="champ-card">
+        <div class="champ-head"><div class="champ-avatar">GR</div><div><div class="champ-name">Gajanan Rajput</div><div class="champ-role">Design Ideation</div></div></div>
+        <div class="champ-good-at">Forcing real divergence before converging — 5–8 genuinely different directions, not five variations of one.</div>
+        <div class="champ-learn">💡 What we can learn: ask AI for what's <em>different</em>, not just for "options."</div>
+      </div>
+      <div class="champ-card">
+        <div class="champ-head"><div class="champ-avatar">SF</div><div><div class="champ-name">Sveta Fomchenko</div><div class="champ-role">Multi-Tool Validation</div></div></div>
+        <div class="champ-good-at">Never trusting a single AI output — running the same analysis through two tools and reviewing only where they disagree.</div>
+        <div class="champ-learn">💡 What we can learn: the disagreement between two tools is where your judgment is actually needed.</div>
+      </div>
+      <div class="champ-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:var(--surface-2);border-style:dashed;">
+        <div class="champ-avatar" style="margin-bottom:10px;background:var(--surface-2);color:var(--ink-3);border:1.5px dashed var(--line-2);">AZ</div>
+        <div style="font-family:var(--serif);font-size:17px;font-weight:650;color:var(--text);margin-bottom:6px;">Assaf Zinger</div>
+        <div style="font-size:12.5px;color:var(--ink-3);line-height:1.6;">The 7th Champion — no workflow documented here yet. Dossier and interview status in the Champions tab.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page-section" id="bp-examples">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">Copy, adapt, use</span>
+      <h2>Examples</h2>
+      <p>Real prompts behind the practices above. Starting points, not scripts — always add your product area, user type and constraints.</p>
+    </div>
+    <div class="example-cards">
+
+      <div class="example-card">
+        <div class="ex-head"><span class="ex-title">Meeting → Action Items, Fully Automated</span><span class="chip" style="background:transparent;border-color:rgba(255,255,255,0.3);color:rgba(255,255,255,0.85);">Automation</span></div>
+        <div class="ex-body">
+          <div class="ex-text">Here is the transcript of a meeting: [paste transcript].
+
+From it, produce:
+1. A 3–5 sentence summary of what was discussed
+2. Every decision that was made, listed plainly
+3. Every action item, with: what needs to happen, who owns it (use the names in the transcript), and any due date mentioned
+4. Open questions that came up but weren't resolved
+
+Format the action items so they can be pasted directly into Jira as separate tickets (title + one-line description each).</div>
+          <div class="ex-meta"><span class="ex-author">📍 Operationalizes Practice 01</span><span class="ex-use">Best for: any recorded meeting, standups, design reviews</span><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+        </div>
+      </div>
+
+      <div class="example-card">
+        <div class="ex-head"><span class="ex-title">Design-System Context Brief</span><span class="chip" style="background:transparent;border-color:rgba(255,255,255,0.3);color:rgba(255,255,255,0.85);">Prompting</span></div>
+        <div class="ex-body">
+          <div class="ex-text">Before generating any screen or component, here is the context you must respect:
+
+User goal: [what the user is trying to accomplish]
+Business constraint: [key limitation or requirement]
+Design system: use only [component library name] components — specifically [list relevant components/tokens]
+Out of bounds: [patterns, colors, or layouts that must NOT be introduced]
+Accessibility requirements: [ARIA / keyboard / contrast rules that apply]
+
+Confirm you understood these constraints before generating anything. If a requirement conflicts with an existing component, flag it — do not silently invent a new one.</div>
+          <div class="ex-meta"><span class="ex-author">📍 Operationalizes Practice 02</span><span class="ex-use">Best for: any AI-generated wireframe, prototype, or component</span><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+        </div>
+      </div>
+
+      <div class="example-card">
+        <div class="ex-head"><span class="ex-title">Research Synthesis — Multi-Source Themes</span><span class="chip" style="background:transparent;border-color:rgba(255,255,255,0.3);color:rgba(255,255,255,0.85);">Research</span></div>
+        <div class="ex-body">
+          <div class="ex-text">I have [X] sources of user research: [list: interview notes, Jira tickets, Confluence pages, survey data, support tickets].
+
+Analyze all of them and:
+1. Identify the top 5 recurring themes across all sources
+2. For each theme, provide 2–3 direct evidence quotes
+3. Flag any contradictions or gaps between sources
+4. Suggest 3 open questions that still need answers
+
+Output as a structured document with clear section headers.</div>
+          <div class="ex-meta"><span class="ex-author">📍 Based on Yaara Bar Feldman's workflow</span><span class="ex-use">Best for: research synthesis, cross-source analysis</span><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+        </div>
+      </div>
+
+      <div class="example-card">
+        <div class="ex-head"><span class="ex-title">Developer Handoff — Component Spec</span><span class="chip" style="background:transparent;border-color:rgba(255,255,255,0.3);color:rgba(255,255,255,0.85);">Handoff</span></div>
+        <div class="ex-body">
+          <div class="ex-text">Generate a structured developer handoff spec for the following UI component:
+
+Component: [name]
+Purpose: [what it does, user goal]
+Variants: [list variants]
+States: [default, hover, active, disabled, loading, error, empty]
+Interactions: [describe behaviors]
+Content rules: [character limits, placeholder text, validation rules]
+Accessibility: [ARIA labels, keyboard behavior, focus order]
+Edge cases: [what can go wrong, how to handle it]
+
+Output as a clean Markdown document (.md) that a developer can work from without needing to ask follow-up questions.</div>
+          <div class="ex-meta"><span class="ex-author">📍 Based on Tali Silon-Shacham's workflow</span><span class="ex-use">Best for: dev handoff, spec documentation</span><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+        </div>
+      </div>
+
+      <div class="example-card">
+        <div class="ex-head"><span class="ex-title">Design Ideation — Divergent Directions</span><span class="chip" style="background:transparent;border-color:rgba(255,255,255,0.3);color:rgba(255,255,255,0.85);">Ideation</span></div>
+        <div class="ex-body">
+          <div class="ex-text">I'm designing a solution for the following:
+
+User goal: [what the user is trying to accomplish]
+Business constraint: [key limitation or requirement]
+Context: [product area, user type, platform]
+
+Generate 6 distinct design directions. Each should be genuinely different — not just variations of the same approach. For each direction include:
+- Core concept (1 sentence)
+- What makes it different
+- Main tradeoff or risk
+- What type of user it works best for
+
+Do not default to the obvious solution first.</div>
+          <div class="ex-meta"><span class="ex-author">📍 Inspired by Gajanan Rajput's ideation workflow</span><span class="ex-use">Best for: early exploration, avoiding groupthink</span><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+        </div>
+      </div>
+
+      <div class="example-card">
+        <div class="ex-head"><span class="ex-title">UX Writing — Microcopy for UI States</span><span class="chip" style="background:transparent;border-color:rgba(255,255,255,0.3);color:rgba(255,255,255,0.85);">UX Writing</span></div>
+        <div class="ex-body">
+          <div class="ex-text">Write microcopy for the following UI states:
+
+Component: [name]
+Product tone: [e.g., professional, direct, reassuring]
+User context: [what the user just did / is trying to do]
+
+Write copy for:
+- Default label / placeholder
+- Success state
+- Error state (what went wrong + how to fix it)
+- Empty state (no data yet)
+- Loading state
+
+Keep it under [X] characters per state. Avoid generic phrases like "Something went wrong." Be specific to what the user is doing.</div>
+          <div class="ex-meta"><span class="ex-author">📍 General — community contributed</span><span class="ex-use">Best for: microcopy, UI text, all states</span><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="page-section alt" id="bp-resources">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">Reference &amp; next steps</span>
+      <h2>Resources</h2>
+      <p>The tool stack, the ground rules, and how individual knowledge becomes team knowledge.</p>
+    </div>
+
+    <div class="res-grid-2" style="margin-bottom:20px;">
+      <div class="card">
+        <div class="card-head">📊 Adoption by tool</div>
+        <div class="card-body">
+          <div class="tool-row"><span class="tool-name">Claude</span><div class="tool-bar-track"><div class="tool-bar-fill" style="width:97%;"></div></div><span class="tool-pct">97%</span></div>
+          <div class="tool-row"><span class="tool-name">ChatGPT</span><div class="tool-bar-track"><div class="tool-bar-fill" style="width:73%;"></div></div><span class="tool-pct">73%</span></div>
+          <div class="tool-row"><span class="tool-name">Figma AI</span><div class="tool-bar-track"><div class="tool-bar-fill" style="width:54%;"></div></div><span class="tool-pct">54%</span></div>
+          <div class="tool-row"><span class="tool-name">Gemini</span><div class="tool-bar-track"><div class="tool-bar-fill" style="width:35%;"></div></div><span class="tool-pct">35%</span></div>
+          <div class="tool-row"><span class="tool-name">MS Copilot</span><div class="tool-bar-track"><div class="tool-bar-fill" style="width:32%;"></div></div><span class="tool-pct">32%</span></div>
+          <div class="tool-row"><span class="tool-name">Other tools</span><div class="tool-bar-track"><div class="tool-bar-fill" style="width:27%;"></div></div><span class="tool-pct">27%</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head">💡 When to use which tool</div>
+        <div class="card-body" style="display:flex;flex-direction:column;gap:13px;">
+          <div style="border-left:3px solid var(--accent);padding-left:12px;"><div style="font-weight:650;font-size:13px;color:var(--text);">Claude</div><div style="font-size:12px;color:var(--ink-3);margin-top:2px;">Long context, reasoning, research synthesis, spec writing, HTML prototyping</div></div>
+          <div style="border-left:3px solid var(--accent);padding-left:12px;"><div style="font-weight:650;font-size:13px;color:var(--text);">ChatGPT</div><div style="font-size:12px;color:var(--ink-3);margin-top:2px;">Quick ideation, short-form content, general questions, image generation</div></div>
+          <div style="border-left:3px solid var(--accent);padding-left:12px;"><div style="font-weight:650;font-size:13px;color:var(--text);">Figma AI / Make</div><div style="font-size:12px;color:var(--ink-3);margin-top:2px;">In-canvas generation, component variants, auto-layout suggestions</div></div>
+          <div style="border-left:3px solid var(--accent);padding-left:12px;"><div style="font-weight:650;font-size:13px;color:var(--text);">Gemini</div><div style="font-size:12px;color:var(--ink-3);margin-top:2px;">Google Workspace integration, slides/docs co-writing</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:20px;">
+      <div class="card-head">⚠️ Access &amp; budget reality</div>
+      <div class="card-body">
+        <div class="res-grid-2">
+          <div style="border-left:4px solid var(--amber);padding-left:16px;"><div style="font-weight:650;font-size:14px;color:var(--text);margin-bottom:5px;">65% self-fund their AI tools</div><div style="font-size:13px;color:var(--ink-3);">Most pay out of pocket for Claude Pro, ChatGPT Plus and similar. Token limits (54%) are the #2 barrier to going further.</div></div>
+          <div style="border-left:4px solid var(--accent);padding-left:16px;"><div style="font-weight:650;font-size:14px;color:var(--text);margin-bottom:5px;">P1: Enterprise Claude access</div><div style="font-size:13px;color:var(--ink-3);">Securing team-wide access is a priority within 45 days — removes the token barrier for everyone. <a href="#" data-goto="report" style="color:var(--accent-ink);font-weight:650;">Full action plan →</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dodont-grid" style="margin-bottom:32px;">
+      <div class="dodont-card">
+        <div class="dodont-head do">✅ Do</div>
+        <div class="dodont-list">
+          <div class="dodont-item"><span class="icon">⚡</span><span>Use AI for <strong>production work</strong> — spec writing, synthesis, annotation, microcopy. The highest-ROI tasks.</span></div>
+          <div class="dodont-item"><span class="icon">📖</span><span><strong>Always read raw transcripts yourself.</strong> AI finds patterns — you find meaning.</span></div>
+          <div class="dodont-item"><span class="icon">✏️</span><span><strong>Treat AI output as a first draft.</strong> 65% need minor edits, 35% need significant rework.</span></div>
+          <div class="dodont-item"><span class="icon">🧩</span><span><strong>Feed the design system before any UI prompt.</strong> The single most-named cause of wasted time.</span></div>
+          <div class="dodont-item"><span class="icon">🔄</span><span><strong>Use multiple tools to validate each other.</strong> Catches errors neither would catch alone.</span></div>
+          <div class="dodont-item"><span class="icon">📤</span><span><strong>Share what works, the same day.</strong> If a prompt saved you 2 hours, add it to Examples.</span></div>
+        </div>
+      </div>
+      <div class="dodont-card">
+        <div class="dodont-head dont">❌ Don't</div>
+        <div class="dodont-list">
+          <div class="dodont-item"><span class="icon">🚫</span><span><strong>Don't use AI output as-is.</strong> 0% of the team does — and that's right.</span></div>
+          <div class="dodont-item"><span class="icon">🚫</span><span><strong>Don't let AI build UI before UX is involved.</strong> Creates irreversible design debt.</span></div>
+          <div class="dodont-item"><span class="icon">🚫</span><span><strong>Don't paste confidential data into public AI tools</strong> without checking policy first.</span></div>
+          <div class="dodont-item"><span class="icon">🚫</span><span><strong>Don't use AI to skip the thinking.</strong> Judgment and prioritization stay human.</span></div>
+          <div class="dodont-item"><span class="icon">🚫</span><span><strong>Don't work in isolation.</strong> The biggest waste is everyone discovering the same things alone.</span></div>
+          <div class="dodont-item"><span class="icon">🚫</span><span><strong>Don't ignore quality because it was fast.</strong> AI can make it easy to miss problems at scale.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:32px;">
+      <div class="card-head">🌱 Turning individual knowledge into team knowledge</div>
+      <div class="card-body">
+        <blockquote style="margin-bottom:20px;">"We're measuring AI adoption by time saved. We should also be measuring output quality and downstream impact. Two things missing: evals to validate AI output before it ships, and telemetry to track whether AI-assisted work holds up after it does."<cite>— survey respondent</cite></blockquote>
+        <div class="res-grid-2">
+          <div>
+            <div class="p-lbl">Teach the whole team</div>
+            <ul style="font-size:13px;color:var(--gray-4);line-height:1.7;padding-left:18px;margin-top:8px;">
+              <li>Giving AI design-system context before generating UI</li>
+              <li>Validating AI synthesis against the raw source</li>
+              <li>Building and sharing your own prompt library</li>
+            </ul>
+          </div>
+          <div>
+            <div class="p-lbl">Run and measure, don't just roll out</div>
+            <ul style="font-size:13px;color:var(--gray-4);line-height:1.7;padding-left:18px;margin-top:8px;">
+              <li>Pilot usability-test analysis (Practice 11) against the manual baseline</li>
+              <li>Roll out meeting-notes automation (Practice 01), track hours freed</li>
+              <li>Build a quality eval, not just a speed metric</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="share-cta">
+      <div>
+        <h3>Found a workflow that saves you real time?</h3>
+        <p>Share it and it becomes part of this page — the fastest way this team gets better at working with AI is capturing what already works, not inventing something new.</p>
+      </div>
+      <a href="mailto:?subject=AI%20Best%20Practice%20to%20share&body=Workflow%3A%0ATools%3A%0ATime%20saved%3A%0ASteps%3A" class="btn btn-primary" style="background:#fff;color:var(--text);flex-shrink:0;">Share a practice →</a>
+    </div>
+  </div>
+</section>
+
+</div><!-- /tab-best-practices -->
+
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
 <!-- ═══════════════════ TAB 5 — CONCLUSIONS ═════════════════════════ -->
 <!-- ══════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel" id="tab-conclusions">
@@ -2825,9 +4186,6 @@ Pushback rate among those who handed off:    40 ÷ 68      = 59%</div>
 </div><!-- /tab-conclusions -->
 
 
-<!-- Best Practices now lives at best-practices.html and is reachable directly
-     from the shared nav above (no in-page tab/pointer needed any more). -->
-
 </div><!-- /page -->
 
 <footer>
@@ -3034,9 +4392,8 @@ function showTab(name) {
   if (location.hash !== '#' + name) history.replaceState(null, '', '#' + name);
 }
 
-// Cluster A of the shared nav (Velocity/Issues/Champions/Report/Conclusions + brand)
-// switches tabs in-page. Cluster B (Best Practices/Workflows/.../Resources) are real
-// links to best-practices.html and need no handler here.
+// Every top-level nav item (plus the brand, which doubles as "home") switches
+// tabs in-page — one page, one tab set.
 document.querySelectorAll('nav [data-tab]').forEach(el => {
   el.addEventListener('click', e => {
     e.preventDefault();
@@ -3051,12 +4408,18 @@ document.querySelectorAll('nav [data-tab]').forEach(el => {
   window.addEventListener('scroll', function(){ navEl.classList.toggle('scrolled', window.scrollY > 8); }, { passive: true });
 })();
 
-// Sub-nav inside the Report/Champions tabs: smooth-scroll without clobbering the tab hash
-document.querySelectorAll('.subnav a').forEach(a => {
+// Sub-nav inside any tab (Report/Champions/Best Practices/...): smooth-scroll
+// without clobbering the tab hash. Also covers in-page anchors inside the Best
+// Practices tab (hero CTAs, featured-card links, insight "meaning" links) —
+// anything with an href starting in "#" that isn't a cross-tab [data-goto].
+document.querySelectorAll('.subnav a, #tab-best-practices a[href^="#"]:not([data-goto])').forEach(a => {
   a.addEventListener('click', e => {
     e.preventDefault();
     const el = document.querySelector(a.getAttribute('href'));
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (el) {
+      if (el.tagName === 'DETAILS') el.open = true;
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   });
 });
 
@@ -3069,10 +4432,110 @@ document.querySelectorAll('[data-goto]').forEach(el => {
   });
 });
 
-// Deep-link support: a tab name (#velocity / #issues / #champions / #report / #conclusions),
-// or any section id inside a tab — in which case we open that tab and scroll to it. The tab
-// list is read off the panels, so adding a tab needs no change here. (Best Practices lives at
-// best-practices.html now — reached via the shared nav, not an in-page tab.)
+/* ═════════════════════ BEST PRACTICES TAB — INTERACTION (merged from the hub) ═════════════════════ */
+(function(){
+  var scope = document.getElementById('tab-best-practices');
+  if (!scope) return;
+
+  /* Copy-to-clipboard for example prompts, with a fallback for restricted contexts */
+  function flashCopied(btn, label){
+    var orig = btn.textContent;
+    btn.textContent = label;
+    setTimeout(function(){ btn.textContent = orig; }, 2000);
+  }
+  window.copyPrompt = function(btn){
+    var text = btn.closest('.example-card').querySelector('.ex-text').textContent;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function(){
+        flashCopied(btn, '✓ Copied');
+      }).catch(function(){ fallbackCopy(text, btn); });
+    } else {
+      fallbackCopy(text, btn);
+    }
+  };
+  function fallbackCopy(text, btn){
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.focus(); ta.select();
+      var ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      flashCopied(btn, ok ? '✓ Copied' : 'Select & copy manually');
+    } catch (e) {
+      flashCopied(btn, 'Select & copy manually');
+    }
+  }
+
+  /* Bookmarks (localStorage) */
+  var SAVE_KEY = 'nice-ux-ai-saved-practices';
+  function getSaved(){ try { return JSON.parse(localStorage.getItem(SAVE_KEY) || '[]'); } catch(e){ return []; } }
+  function setSaved(arr){ try { localStorage.setItem(SAVE_KEY, JSON.stringify(arr)); } catch(e){} }
+  var saved = getSaved();
+
+  scope.querySelectorAll('.bookmark-btn').forEach(function(btn){
+    var id = btn.dataset.bookmark;
+    btn.setAttribute('aria-pressed', saved.indexOf(id) > -1 ? 'true' : 'false');
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      var isSaved = saved.indexOf(id) > -1;
+      if (isSaved) { saved = saved.filter(function(x){ return x !== id; }); }
+      else { saved.push(id); }
+      setSaved(saved);
+      btn.setAttribute('aria-pressed', String(!isSaved));
+      applyFilters();
+    });
+  });
+
+  /* Practice Library: search + filters */
+  var items = Array.prototype.slice.call(scope.querySelectorAll('.practice-item'));
+  var searchInput = document.getElementById('practiceSearch');
+  var resultsCount = document.getElementById('resultsCount');
+  var noResults = document.getElementById('noResults');
+  var activeFilters = { tier: 'all', level: 'all', saved: false };
+
+  scope.querySelectorAll('.filter-chip[data-filter-group]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var group = btn.dataset.filterGroup, val = btn.dataset.filterValue;
+      if (group === 'saved') {
+        activeFilters.saved = !activeFilters.saved;
+        btn.setAttribute('aria-pressed', String(activeFilters.saved));
+      } else {
+        activeFilters[group] = val;
+        scope.querySelectorAll('.filter-chip[data-filter-group="' + group + '"]').forEach(function(b){
+          b.setAttribute('aria-pressed', String(b.dataset.filterValue === val));
+        });
+      }
+      applyFilters();
+    });
+  });
+
+  if (searchInput) searchInput.addEventListener('input', applyFilters);
+
+  function applyFilters(){
+    if (!searchInput) return;
+    var q = searchInput.value.trim().toLowerCase();
+    var currentSaved = getSaved();
+    var visible = 0;
+    items.forEach(function(item){
+      var tierOk = activeFilters.tier === 'all' || (item.dataset.tier || '').indexOf(activeFilters.tier) > -1;
+      var levelOk = activeFilters.level === 'all' || (item.dataset.level || '').indexOf(activeFilters.level) > -1;
+      var savedOk = !activeFilters.saved || currentSaved.indexOf(item.id) > -1;
+      var searchOk = !q || (item.dataset.search || '').indexOf(q) > -1 || item.querySelector('.p-title').textContent.toLowerCase().indexOf(q) > -1;
+      var show = tierOk && levelOk && savedOk && searchOk;
+      item.hidden = !show;
+      if (show) visible++;
+    });
+    resultsCount.textContent = visible + ' of ' + items.length;
+    noResults.hidden = visible !== 0;
+  }
+
+  applyFilters();
+})();
+
+// Deep-link support: a tab name (#velocity / #issues / #champions / #report /
+// #best-practices / #conclusions), or any section id inside a tab — in which
+// case we open that tab and scroll to it. The tab list is read off the
+// panels, so adding a tab needs no change here.
 const TAB_NAMES = [...document.querySelectorAll('.tab-panel')].map(p => p.id.replace('tab-', ''));
 const HASH = location.hash.replace('#', '');
 const SECTION = HASH && !TAB_NAMES.includes(HASH) ? document.getElementById(HASH) : null;
